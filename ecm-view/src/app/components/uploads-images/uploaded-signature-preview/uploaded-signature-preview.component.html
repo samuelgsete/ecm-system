@@ -1,9 +1,6 @@
 <div class="ui-preview-image" *ngIf="isUploaded">
     <div class="image">
         <img class="image-uploaded" [src]="signature.url" alt="Image Uploaded">
-        <p class="image-resolution">
-            {{ signature.width }} x {{signature.height}} pixels
-        </p>
     </div>
     <div class="image-description">
         <a class="image-url" target="_blank" [href]="signature.url">
