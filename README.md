@@ -19,9 +19,9 @@ Nesse breve tutorial estarei ensinando como instalar o ambiente de desenvolvimen
 
 # Instalação do Java 17
  
-O backend do sistema foi construído em [Java]('https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html') na sua versão 17 usando o framework [Spring Boot]('https://spring.io/projects/spring-boot') e o banco de dados [Postgres]('https://www.postgresql.org/'). Clique [aqui]('https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html') para descobrir como configuar o Java no seu sitema operacional. Precisamos também instalar o Maven na sua versão 3.8.6, para isso acesse a página de download clicando [aqui]('https://maven.apache.org/download.cgi'). Para instalar o Postgres basta acessar a [página](https://www.postgresql.org/download/) de download e executar o instalador, no processo de instalação deve-se criar um usuario e senha, nesse caso utilize um usuário igual a postgres e uma senha também igual a postgres, caso contrário o sistema não conseguirá acessar o banco de dados. O passo final será configurar as variáveis de Ambiente do Java e do Maven, para isso veja esse [tutorial]('https://medium.com/beelabacademy/configurando-vari%C3%A1veis-de-ambiente-java-home-e-maven-home-no-windows-e-unix-d9461f783c26').
+O backend do sistema foi construído em [Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) na sua versão 17 usando o framework [Spring Boot](https://spring.io/projects/spring-boot) e o banco de dados [Postgres](https://www.postgresql.org/). Clique [aqui](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) para descobrir como configuar o Java no seu sitema operacional. Precisamos também instalar o Maven na sua versão 3.8.6, para isso acesse a página de download clicando [aqui](https://maven.apache.org/download.cgi). Para instalar o Postgres basta acessar a [página](https://www.postgresql.org/download/) de download e executar o instalador, no processo de instalação deve-se criar um usuario e senha, nesse caso utilize um usuário igual a postgres e uma senha também igual a postgres, caso contrário o sistema não conseguirá acessar o banco de dados. O passo final será configurar as variáveis de Ambiente do Java e do Maven, para isso veja esse [tutorial](https://medium.com/beelabacademy/configurando-vari%C3%A1veis-de-ambiente-java-home-e-maven-home-no-windows-e-unix-d9461f783c26).
 
-# Execucanto a Aplicação
+# Executando a Aplicação
 
 Após esses passos faça a clonagem do repositório. Veja que duas pastas serão baixadas: `ecm-core` e `ecm-view` Acesse o diretório `ecm-view`e digite o comando a seguir para instalar as dependências necessárias para execução da interface visual.  
  
@@ -42,3 +42,39 @@ O primeiro comando fará uma varredura no arquivo pom.xml e em seguida irá baix
 ```
     http://localhost:4200/app/members
 ```
+
+# Interface Visual
+
+Veja a seguir as capturas de algumas páginas do sistema
+
+### Listagem de membros
+
+![Listagem de membros](capturas-ecm/display-members.png)
+
+### Pesquise um membro pelo nome
+
+![Pesquise um membro](capturas-ecm/search-member.png)
+
+### Edite um membro
+
+![Listagem de membros](capturas-ecm/update-member.png)
+
+### Crie congregações
+
+![Listagem de membros](capturas-ecm/create-congregation.png)
+
+### Listagem de congregações
+
+![Listagem de membros](capturas-ecm/display-congregations.png)
+
+### Remoção de Imagem da núvem
+
+![Listagem de membros](capturas-ecm/delete-photo.png)
+
+### Impressão de credenciais
+
+![Listagem de membros](capturas-ecm/print-credentials.png)
+
+### Impressão de uma credencial
+
+![Listagem de membros](capturas-ecm/print-one-credential.png)

@@ -27,7 +27,7 @@ public class DataSourceConfig {
             .create()
             .username("postgres")
             .password("postgres")
-            .url("jdbc:postgresql://localhost:5432/ecmtestdb?createDatabaseIfNotExist=true")
+            .url("jdbc:postgresql://localhost:5432/ecmtest2db")
             .driverClassName("org.postgresql.Driver")
             .build();
     }
