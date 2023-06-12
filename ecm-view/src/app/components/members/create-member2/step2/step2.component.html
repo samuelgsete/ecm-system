@@ -1,0 +1,43 @@
+<form [formGroup]="form">
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>E-mail</mat-label>
+            <input
+                type="email"
+                formControlName="email"
+                placeholder="Ex.: daniel@email.com.br"
+                maxlength="255"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['email'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['email'].errors?.['maxlength']">
+                Informe no máximo 255 caracteres
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Telefone</mat-label>
+            <input
+                formControlName="phone"
+                placeholder="Ex.: (00)00000-0000"
+                mask="(00)00000-0000"
+                maxlength="15"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['phone'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['phone'].errors?.['mask']">
+                Formato inválido
+            </mat-error>
+            <mat-error *ngIf="form['controls']['phone'].errors?.['maxlength']">
+                Informe no máximo 15 caracteres
+            </mat-error>
+        </mat-form-field>
+    </div>
+</form>

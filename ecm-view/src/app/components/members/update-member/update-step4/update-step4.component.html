@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+    <div class="row-flex">
+        <div class="alert" color="purple">
+            <mat-icon class="icon-alert">warning</mat-icon>
+            <div class="content">
+                <h4 class="title">Atenção</h4>
+                <p class="message">
+                    Para uma melhor experiência visual as imagens precisam ter fundo transparente.
+                    Para isso utilize um programa, aplicativo ou ferramenta online de sua preferência.
+                    Formatos de imagens aceitos: jpg, jpeg e png.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div 
+        class="ui-upload-image" 
+        *ngIf="!isUploadedPhoto"
+        (fileDropped)="onFileDroppedPhoto.run($event)"
+        dragDropUpload 
+        matRipple
+    >
+        <mat-icon class="icon-image" [ngClass]="{ 'uploading-icon': uploadPhoto.progress() != 0 }">upload</mat-icon>
+        <label for="input-file-photo" *ngIf="uploadPhoto.progress() == 0">
+            Clique aqui ou arraste e solte para carregar a Foto
+        </label>
+        <label class="upload-progress" *ngIf="uploadPhoto.progress() != 0">
+            {{ uploadPhoto.progress() }}% Concluído
+        </label>
+        <input 
+            id="input-file-photo"
+            type="file"
+            (change)="onUploadPhoto.run($event)"
+            accept="image/png, image/jpeg" hidden
+        >
+        <div class="progress-upload" *ngIf="uploadPhoto.progress() != 0">    
+            <mat-progress-bar mode="determinate" [value]="uploadPhoto.progress()"></mat-progress-bar>
+        </div>
+    </div>
+    <div>
+        <app-uploaded-photo-preview 
+            [isUploaded]="isUploadedPhoto" [photo]="form.value.photo"
+        ></app-uploaded-photo-preview>                   
+    </div>
+    <div 
+        class="ui-upload-image" 
+        *ngIf="!isUploadedSignature" 
+        (fileDropped)="onFileDroppedSignature.run($event)"
+        dragDropUpload 
+        matRipple
+    >
+        <mat-icon class="icon-image" [ngClass]="{ 'uploading-icon': uploadSignature.progress() != 0 }">upload</mat-icon>
+        <label for="input-file" *ngIf="uploadSignature.progress() == 0">
+            Clique aqui ou arraste e solte para carregar a Assinatura
+        </label>
+        <label for="input-file" *ngIf="uploadSignature.progress() != 0">
+            {{ uploadSignature.progress() }}% Concluído
+        </label>
+        <input 
+            id="input-file"
+            (change)="onUploadSignature.run($event)"
+            type="file"
+            accept="image/png, image/jpeg" 
+            hidden
+        >
+        <div class="progress-upload" *ngIf="uploadSignature.progress() != 0">    
+            <mat-progress-bar mode="determinate" [value]="uploadSignature.progress()"></mat-progress-bar>
+        </div>
+    </div>
+    <div>
+        <app-uploaded-signature-preview
+            [isUploaded]="isUploadedSignature" [signature]="form.value.signature"
+        ></app-uploaded-signature-preview>                   
+    </div>
+</form>

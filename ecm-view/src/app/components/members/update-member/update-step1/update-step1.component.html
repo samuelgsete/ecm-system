@@ -1,0 +1,128 @@
+<form [formGroup]="form">
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Nome</mat-label>
+            <input 
+                formControlName="name"
+                placeholder="Ex.: João Paulo Alves"
+                minlength="6" 
+                maxlength="255"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
+                Informe no mínimo 6 caracteres
+            </mat-error>
+            <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+                Informe no máximo 255 caracteres
+            </mat-error>
+        </mat-form-field> 
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>CPF</mat-label>
+            <input 
+                formControlName="cpf"
+                placeholder="Ex.: 000.000.000-00"
+                maxlength="14"
+                mask="000.000.000-00"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['cpf'].errors?.['invalidCpf']">
+                CPF inválido
+            </mat-error>
+            <mat-error *ngIf="form['controls']['cpf'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['cpf'].errors?.['maxlength']">
+                Informe no máximo 255 caracteres
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>RG</mat-label>
+            <input
+                formControlName="rg"
+                placeholder="Ex.: 0000000000-0"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['rg'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Data de Nascimento</mat-label>
+            <input formControlName="dateOfBirth" type="date" matInput required>
+            <mat-error *ngIf="form['controls']['dateOfBirth'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Data de Batismo</mat-label>
+            <input formControlName="dateOfBaptism" type="date" matInput required>
+            <mat-error *ngIf="form['controls']['dateOfBaptism'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Estado Civil</mat-label>
+            <mat-select formControlName="maritalStatus">
+                <mat-option 
+                    *ngFor="let maritalStatus of listMaritalStatus.run()" 
+                    [value]="maritalStatus.value"
+                >
+                    {{ maritalStatus.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form['controls']['maritalStatus'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Sexo</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option 
+                    *ngFor="let gender of listGenders.run()" 
+                    [value]="gender.value"
+                >
+                    {{ gender.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form['controls']['gender'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Congregação</mat-label>
+            <mat-select formControlName="congregation" [compareWith]="congregationComparator.run">
+                <mat-option *ngFor="let congregation of congregations" [value]="congregation">
+                    {{ congregation.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form['controls']['congregation'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Cargo</mat-label>
+            <mat-select formControlName="role" [compareWith]="roleComparator.run">
+                <mat-option *ngFor="let role of roles" [value]="role">
+                    {{ role.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form['controls']['role'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+        </mat-form-field>
+    </div>         
+</form>

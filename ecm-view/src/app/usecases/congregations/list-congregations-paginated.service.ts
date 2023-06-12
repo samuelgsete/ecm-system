@@ -1,0 +1,36 @@
+import { Injectable } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+import { NgxSpinnerService } from "ngx-spinner";
+
+import { Pagination } from "src/app/models/pagination.entity";
+import { ListPaginatedService } from "../models/list-paginated.service";
+import { ListCongregationsPaginatedResource } from "src/app/resources/congregations/list-congregations-paginated.resource";
+
+@Injectable()
+export class ListCongregationsPaginatedService extends ListPaginatedService {
+
+    public constructor(
+        private readonly toastr: ToastrService,
+        private readonly spinner: NgxSpinnerService,
+        private readonly listPaginate: ListCongregationsPaginatedResource
+    ) { super() }
+
+    public run(pagination: Pagination): void {
+        this.spinner.show();
+        this.listPaginate.run(pagination).subscribe({
+            next: (response) => {
+                this.emptyData = response.content.length == 0 ? true : false;
+                this.complete.emit(response);
+            },
+            error: (eventErr) => {
+                this.toastr.error('Não foi possível listar as congregações', 'Poxa vida :(', { 
+                    progressBar: true,
+                    positionClass: 'toast-bottom-center'
+                });
+            }
+        }).add(() => {
+            this.spinner.hide();
+            this.finally = true;
+        })
+    }
+}

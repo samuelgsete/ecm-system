@@ -1,0 +1,35 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
+
+@import url('./colors.css');
+
+div.ui-text {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+div.ui-text label {
+    color: rgb(var(--dark-0));
+    font-weight: 600;
+    font-size: 0.84em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.8px;
+}
+
+div.ui-text p {
+    font-size: 1.12em;
+    font-family: 'Noto Sans', sans-serif;
+    color: rgb(var(--dark-0));
+    max-height: 20px;
+}
+
+@media print {
+    div.ui-text p {
+        height: 18px;
+    }
+}

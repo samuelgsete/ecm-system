@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300&display=swap');
+
+.ui-preview-image {
+    width: 96%;
+    margin: 2% 0;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.68em;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: rgba(var(--purple), 0.05);
+}
+
+.ui-preview-image .image {
+    text-align: center;
+}
+
+.ui-preview-image .image p,image-resolution {
+    font-size: 0.81em;
+    font-family: 'Figtree', monospace;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+}
+
+.ui-preview-image .image img.image-uploaded {
+    max-width: 90px;
+    height:auto;
+    border-radius: 5px;
+}
+
+.ui-preview-image .image-description p.image-name {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 0.86em;
+    color: rgb(var(--dark));
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin: 2px 0;
+}
+
+.ui-preview-image .image-description a.image-url {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.82em;
+    color: rgb(var(--gray-7));
+    letter-spacing: -0.6px;
+    margin: 2px 0;
+    text-decoration: none;
+    transition: all 0.55s;
+}
+
+.ui-preview-image .image-description a.image-url:hover {
+    text-decoration: underline;
+    color: rgb(var(--gray-8));
+}
+
+.ui-preview-image .image-description p.image-size {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.74em;
+    color: rgb(var(--dark));
+    font-weight: 700;
+    margin: 2px 0;
+}
+
+.ui-preview-image .image-description p.uploaded-at {
+    font-size: 0.76em;
+    color: rgb(var(--purple));
+    font-family: 'Maven Pro', sans-serif;
+    letter-spacing: -0.5px;
+    padding: 0.5em 0.4em;
+    max-width: fit-content;
+    font-weight: 500;
+    background-color: rgba(var(--purple), 0.05);
+}

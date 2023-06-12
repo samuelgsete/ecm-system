@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+
+section {
+    padding: 0.5% 2% 2% 2%;
+    border-radius: 5px;
+    background-color: #fff;
+    animation: down 0.5s;
+}
+
+header {
+    padding: 5px 0 20px 0;
+}
+
+header h1.title-page {
+    font-size: 1.40em;
+    font-family: 'Sen', sans-serif;
+    max-width: min-content;
+    white-space: nowrap;
+    margin: 0;
+}
+
+table tr td:nth-child(1) {
+    width: 5%;
+    font-weight: bold;
+    font-family: 'Blinker', sans-serif;
+    font-size: 1.05em;
+}
+
+table tr td:nth-child(2) {
+    width: 20%;
+}
+
+table tr td img.photo-member {
+    max-width: 68px;
+    max-height: auto;
+    border-radius: 8px;
+    border: 0.12em solid rgb(var(--gray-2));
+}

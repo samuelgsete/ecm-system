@@ -1,0 +1,20 @@
+@import url('./assets/css/main.css');
+
+html, body { 
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+.width-fix {
+    width: 100%;
+}
+
+mat-error, mat-hint {
+    font-size: 0.97em;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    padding: 2em 0;
+    width: 100%;
+    margin-left: -5px !important;
+}

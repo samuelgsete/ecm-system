@@ -1,0 +1,79 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { UploadsImagesModule } from '../uploads-images/uploads-images.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { PaginateModule } from '../paginate/paginate.module';
+import { UtilsModule } from 'src/app/utils/utils.module';
+
+import { CreateMemberComponent } from './create-member/create-member.component';
+import { DisplayMembersComponent } from './display-members/display-members.component';
+import { Step1Component } from './create-member2/step1/step1.component';
+import { Step2Component } from './create-member2/step2/step2.component';
+import { Step3Component } from './create-member2/step3/step3.component';
+import { Step4Component } from './create-member2/step4/step4.component';
+import { UpdateStep1Component } from './update-member/update-step1/update-step1.component';
+import { UpdateStep2Component } from './update-member/update-step2/update-step2.component';
+import { UpdateStep3Component } from './update-member/update-step3/update-step3.component';
+import { UpdateStep4Component } from './update-member/update-step4/update-step4.component';
+import { CreateMember2Component } from './create-member2/create-member2.component';
+import { UpdateMemberComponent } from './update-member/update-member.component';
+
+import { CreateMemberResource } from 'src/app/resources/members/create-member.resource';
+import { ListMembersPaginatedResource } from 'src/app/resources/members/list-members-paginated.resource';
+import { FindOneMemberResource } from 'src/app/resources/members/find-one-member.resource';
+import { UpdateMemberResource } from 'src/app/resources/members/update-member.resource';
+
+import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
+import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
+import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
+import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
+import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
+import { BuildFormUpdateMemberService } from 'src/app/usecases/members/build-form-update-member.service';
+import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
+import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
+import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
+import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
+
+@NgModule({
+  declarations: [
+    CreateMemberComponent,
+    DisplayMembersComponent,
+    UpdateMemberComponent,
+    CreateMember2Component,
+    Step1Component,
+    Step2Component,
+    Step3Component,
+    Step4Component,
+    UpdateStep1Component,
+    UpdateStep2Component,
+    UpdateStep3Component,
+    UpdateStep4Component
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PaginateModule,
+    SharedModule,
+    UploadsImagesModule,
+    UtilsModule
+  ],
+  providers: [
+    FindOneMemberResource,
+    FindOneMemberService,
+    CreateMemberResource,
+    CreateMemberService,
+    ListMembersPaginatedResource,
+    ListMembersPaginatedService,
+    UpdateMemberResource,
+    UpdateMemberService,
+    GoToEditService,
+    GoToPrintService,
+    OnSelectMemberService,
+    BuildFormCreateMemberService,
+    BuildFormUpdateMemberService,
+    ParseDataToMemberService
+  ]
+})
+export class MembersModule {}

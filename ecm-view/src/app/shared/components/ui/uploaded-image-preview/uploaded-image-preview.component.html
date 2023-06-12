@@ -1,0 +1,35 @@
+<div class="ui-preview-image">
+    <div class="image">
+        <img class="image-uploaded" [src]="uploadedImage.url" alt="Image Uploaded">
+        <p class="image-resolution" matTooltip="Resolução" >
+            {{ uploadedImage.width }} x {{uploadedImage.height}} pixels
+        </p>
+    </div>
+    <div class="image-description">
+        <p class="image-name" matTooltip="Nome da foto">
+            {{ uploadedImage.name }}. {{ uploadedImage.format }}
+        </p>
+        <a 
+            class="image-url"
+            target="_blank"
+            [href]="uploadedImage.url"
+            matTooltip="Url da foto"
+        >
+            {{ uploadedImage.url | smalltext: '36' }}
+        </a>
+        <p class="image-size" matTooltip="Tamanho da foto">
+            {{ uploadedImage.size }} bytes
+        </p>
+        <p class="uploaded-at">
+            {{ uploadedImage.uploadedAt }}
+        </p>
+    </div>
+    <button 
+        mat-icon-button 
+        color="warn"
+        matTooltip="Remover foto?"
+        (click)="deletePhoto(uploadedImage.publicId)"
+    >
+        <mat-icon>cancel</mat-icon>
+    </button>
+</div>

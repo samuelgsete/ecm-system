@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 96%;
+    height: 100vh;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    animation: up 0.5s;
+}
+
+main mat-stepper {
+    max-width: 615px;
+}
+
+div.complete-registration {
+    text-align: center;
+}
+
+div.complete-registration p {
+    color: rgb(var(--dark));
+    font-weight: 600;
+    font-size: 1.15em;
+    margin: 6px 0;
+    font-family: 'Noto Sans', sans-serif;
+}

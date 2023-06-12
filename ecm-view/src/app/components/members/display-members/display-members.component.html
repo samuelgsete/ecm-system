@@ -1,0 +1,77 @@
+<main>
+    <section>
+        <header>
+            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
+                <h1 class="title-page">Membros Cadastrados</h1>
+            </div>
+            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
+                <div class="total-elements" matRipple>
+                    <h1 class="total">{{ totalElements }}</h1>
+                    <span class="label">Total cadastrado</span>
+                </div>
+                <div class="input-search" matRipple>
+                    <mat-icon>search</mat-icon>
+                    <input 
+                        type="text"
+                        class="search"
+                        [formControl]="formSearch"
+                        placeholder="Pesquisar membros"
+                    >
+                </div>
+                <button 
+                    class="btn"
+                    color="purple"
+                    radius="true"
+                    (click)="router.navigateByUrl('/app/create/member')"
+                    matRipple
+                >CADASTRAR NOVO</button>
+            </div>
+        </header>
+        
+        <table class="ui-table default" *ngIf="!listMembers.isEmpty()">
+            <tr>
+                <th></th>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Última Atualização</th>
+                <th>Ações</th>
+            </tr>
+            <tr *ngFor="let member of members">
+                <td>
+                    <mat-checkbox 
+                        [checked]="member.isSelected"
+                        (change)="onSelect.run($event.checked, member)"
+                    ></mat-checkbox>
+                </td>
+                <td>
+                    <img 
+                        class="photo-member"
+                        [src]="member.photo.urlTransformed"
+                        [alt]="member.name"
+                    >
+                </td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.role.name }}</td>
+                <td>{{ member.updatedAt | dateDuration }}</td>
+                <td>
+                    <button mat-icon-button (click)="goToEdit.run(member.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="goToPrint.run(member.id)">
+                    <mat-icon>print</mat-icon>
+                </button>
+                </td>
+            </tr>
+        </table>
+        <app-pagination></app-pagination>
+    </section>
+</main>
+
+<ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#8e27fa"
+    type="ball-atom"
+    [fullScreen]="true">
+</ngx-spinner>

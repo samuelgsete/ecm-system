@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+.ui-upload-image {
+    width: 92%;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.7px;
+    color: rgb(var(--gray-8));
+    font-size: 0.88em;
+    padding: 4% !important;
+    margin: 2% 0 !important;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5pt;
+    border: 1.4pt solid rgba(var(--purple), 0.01);
+    background-color: rgba(var(--purple), 0.06);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.ui-drag-and-drop mat-icon, .ui-drag-and-drop p {
+    color: rgb(var(--default));
+}
+
+.uploading-icon {
+    animation: pulse 1s infinite;
+    animation-delay: 0.6s;
+}
+
+.ui-upload-image:hover {
+    background-color: rgba(var(--purple), 0.07);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.ui-upload-image label {
+    margin: 5px 0;
+    transition: all 0.4s;
+}
+
+.ui-upload-image label:hover {
+    color: rgb(var(--purple));
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ui-upload-image .icon-image {
+    color: rgb(var(--purple));
+}
+
+.upload-progress {
+    font-size: 0.99em;
+    font-weight: 600;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(var(--gray-7));
+}
+
+.ui-upload-image .progress-upload {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+@keyframes pulse {
+    to {
+        transform: translateY(0px);
+        color: rgb(var(--purple));
+    }
+    from {
+        transform: translateY(5px);
+        color: rgb(var(--pink));
+    }
+}

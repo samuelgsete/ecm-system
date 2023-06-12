@@ -1,0 +1,25 @@
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 85px;
+    background-color: rgb(var(--dark));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+header div.logo img {
+    width: 140px;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+ul li {
+    color: rgb(var(--gray-1));
+}

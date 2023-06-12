@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
+@import url('./colors.css');
+
+div.alert {
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    column-gap: 12px;
+    padding: 0.8em 0.6em;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+div.alert div.content {
+    width: 100%;
+}
+
+div.alert h4.title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92em;
+    color: rgb(var(--dark));
+    letter-spacing: -0.4px;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+div.alert p.message {
+    margin: 3px;
+    font-size: 0.91em;
+    color: rgb(var(--gray-8));
+    line-height: 18px;
+    letter-spacing: -0.6px;
+    font-family: 'Maven Pro', sans-serif;
+    text-align: justify;
+}
+
+div.alert .icon-alert {
+    width: fit-content;
+    margin: 5px 0;
+}
+
+div.alert[color=primary] {
+    border-left: 4px solid rgb(var(--primary));
+    background-color: rgba(var(--primary),0.08);
+}
+
+div.alert[color=primary] .icon-alert {
+    color: rgb(var(--primary));
+}
+
+div.alert[color=secondary] {
+    border-left: 4px solid rgb(var(--purple));
+    background-color: rgba(var(--purple),0.08);
+}
+
+div.alert[color=secondary] .icon-alert {
+    color: rgb(var(--purple));
+}
+
+div.alert[color=danger] {
+    border-left: 4px solid rgb(var(--danger));
+    background-color: rgba(var(--danger),0.08);
+}
+
+div.alert[color=danger] .icon-alert {
+    color: rgb(var(--danger));
+}
+
+div.alert[color=success] {
+    border-left: 4px solid rgb(var(--success));
+    background-color: rgba(var(--success),0.08);
+}
+
+div.alert[color=success] .icon-alert {
+    color: rgb(var(--success));
+}
+
+div.alert[color=warning] {
+    border-left: 4px solid rgb(var(--warning));
+    background-color: rgba(var(--warning),0.08);
+}
+
+div.alert[color=warning] .icon-alert {
+    color: rgb(var(--warning));
+}
+
+div.alert[color=purple] {
+    border-left: 4px solid rgb(var(--purple));
+    background-color: rgba(var(--purple),0.08);
+}
+
+div.alert[color=purple] .icon-alert {
+    color: rgb(var(--purple));
+}

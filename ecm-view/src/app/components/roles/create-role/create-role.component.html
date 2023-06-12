@@ -1,0 +1,46 @@
+<main>
+    <h1 class="form-title">Novo Cargo</h1>
+    <form [formGroup]="form">
+        <div class="row-flex">
+            <mat-form-field class="width-fix" appearance="fill" color="primary">
+                <mat-label>Nome</mat-label>
+                <input 
+                    formControlName="name"
+                    placeholder="Ex.: Presbítero"
+                    minlength="2" 
+                    maxlength="64"
+                    matInput 
+                    required
+                >
+                <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+                    Esse campo é obrigatório
+                </mat-error>
+                <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
+                    Informe no mínimo 2 caracteres
+                </mat-error>
+                <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+                    Informe no máximo 64 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row-flex" horizontal-align="center">
+            <button 
+                class="btn"
+                color="pink"
+                block="true"
+                [disabled]="!form.valid"
+                (click)="createRole.run(form.value)"
+                matRipple
+            >CONCLUIR CADASTRO</button>
+        </div>
+        <div class="row-flex" horizontal-align="center">
+            <button 
+                class="btn"
+                color="light"
+                block="true"
+                (click)="modalRef.close()"
+                matRipple
+            >CANCELAR CADASTRO</button>
+        </div>
+    </form>
+</main>

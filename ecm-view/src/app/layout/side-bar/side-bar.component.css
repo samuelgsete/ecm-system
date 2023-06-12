@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav.side-bar {
+    background-color: rgb(var(--gray-1));
+    max-width: min-content;
+    height: calc(100% - 20px);
+    position: fixed;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 10px 0;
+}
+
+img.logotipo {
+    width: 45px;
+}
+
+button.logout {
+    color: rgb(var(--purple));
+}
+
+nav.side-bar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+nav.side-bar ul li.nav-item {
+    padding: 12px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4px;
+    font-size: 0.64em;
+    font-weight: 600;
+    line-height: -0.9px;
+    font-family: 'Inter', sans-serif;
+    color: rgb(var(--purple));
+    cursor: pointer;
+    border-left: 2.4pt solid transparent;
+    border-right: 2.4pt solid transparent;
+    text-align: center;
+    transition: all 0.6s;
+}
+
+nav.side-bar ul li.nav-item a {
+    color: rgb(var(--gray-6));
+    text-decoration: none;
+}
+
+nav.side-bar ul li.nav-item:hover {
+    background-color: rgba(var(--purple), 0.2);
+}
+
+nav.side-bar ul li.active {
+    background-color: rgb(var(--gray-3));
+    border-left: 2.4pt solid rgb(var(--purple));
+}
+nav.side-bar ul li.active a {
+    color: rgb(var(--purple));
+}

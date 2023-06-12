@@ -1,0 +1,54 @@
+<main>
+    <h1 class="form-title">Editar Congregação</h1>
+    <form [formGroup]="form">
+        <div class="row-flex">
+            <mat-form-field class="width-fix" appearance="fill" color="primary">
+                <mat-label>Nome</mat-label>
+                <input 
+                    formControlName="name"
+                    placeholder="Ex.: Sede"
+                    minlength="2" 
+                    maxlength="64"
+                    matInput 
+                    required
+                >
+                <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+                    Esse campo é obrigatório
+                </mat-error>
+                <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
+                    Informe no mínimo 2 caracteres
+                </mat-error>
+                <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+                    Informe no máximo 64 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row-flex">
+            <button 
+                class="btn"
+                color="purple"
+                block="true"
+                [disabled]="!form.valid"
+                (click)="update.run(form.value)"
+                matRipple
+            >CONCLUIR EDIÇÃO</button>
+        </div>
+        <div class="row-flex">
+            <button 
+                class="btn"
+                color="light"
+                block="true"
+                (click)="modalRef.close()"
+                matRipple
+            >CANCELAR EDIÇÃO</button>
+        </div>
+    </form>
+</main>
+
+<ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#8e27fa"
+    type="ball-atom"
+    [fullScreen]="true">
+</ngx-spinner>

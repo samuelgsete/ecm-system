@@ -1,0 +1,58 @@
+<main>
+    <section>
+        <header>
+            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
+                <h1 class="title-page">Congregações Cadastradas</h1>
+            </div>
+            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
+                <div class="total-elements" matRipple>
+                    <h1 class="total">{{ totalElements }}</h1>
+                    <span class="label">Total cadastrado</span>
+                </div>
+                <div class="input-search" matRipple>
+                    <mat-icon>search</mat-icon>
+                    <input 
+                        type="text"
+                        class="search"
+                        [formControl]="formSearch"
+                        placeholder="Pesquisar Congregações"
+                    >
+                </div>
+                <button 
+                    class="btn"
+                    color="purple"
+                    radius="true"
+                    (click)="openCreateCongregationComponent()"
+                    matRipple
+                >CADASTRAR NOVA</button>
+            </div>
+        </header>
+        <table class="ui-table stripped" *ngIf="!listCongregations.isEmpty()">
+            <tr>
+                <th>ID</th>
+                <th>Congregação</th>
+                <th>Última Atualização</th>
+                <th>Ações</th>
+            </tr>
+            <tr *ngFor="let congregation of congregations">
+                <td>{{ congregation.id }}</td>
+                <td>{{ congregation.name }}</td>
+                <td>{{ congregation.updatedAt | dateDuration }}</td>
+                <td>
+                    <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <app-pagination></app-pagination>
+    </section>
+</main>
+
+<ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#8e27fa"
+    type="ball-atom"
+    [fullScreen]="true">
+</ngx-spinner>

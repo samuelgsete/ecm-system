@@ -1,0 +1,22 @@
+<div class="ui-preview-image" *ngIf="isUploaded">
+    <div class="image">
+        <img class="image-uploaded" [src]="photo.urlTransformed" alt="Image Uploaded">
+    </div>
+    <div class="image-description">
+        <a class="image-url" [href]="photo.urlTransformed" target="_blank">
+            {{ photo.url | smalltext: '48' }}
+        </a>
+        <p class="image-size">
+            {{ photo.size | filesize: 'Kb' }}
+        </p>
+        <p class="uploaded-at">
+            {{ photo.uploadedAt | dateDuration }}
+        </p>
+    </div>
+    <button mat-icon-button color="warn" (click)="deletePhoto.run(photo.publicId)">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div class="progress-upload" *ngIf="deletePhoto.isInProgress()">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</div>

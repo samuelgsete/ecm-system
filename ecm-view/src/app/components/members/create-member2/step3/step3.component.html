@@ -1,0 +1,46 @@
+<form [formGroup]="form">
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Nome do Pai</mat-label>
+            <input 
+                formControlName="fatherName"
+                placeholder="Ex.: Raimundo Silva Carlos"
+                minlength="6" 
+                maxlength="255"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['fatherName'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['fatherName'].errors?.['minlength']">
+                Informe no mínimo 6 caracteres
+            </mat-error>
+            <mat-error *ngIf="form['controls']['fatherName'].errors?.['maxlength']">
+                Informe no máximo 255 caracteres
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="row-flex">
+        <mat-form-field class="width-fix" appearance="fill" color="primary">
+            <mat-label>Nome da Mãe</mat-label>
+            <input 
+                formControlName="motherName"
+                placeholder="Ex.: Maria Madalena Souza"
+                minlength="5" 
+                maxlength="255"
+                matInput 
+                required
+            >
+            <mat-error *ngIf="form['controls']['motherName'].errors?.['required']">
+                Esse campo é obrigatório
+            </mat-error>
+            <mat-error *ngIf="form['controls']['motherName'].errors?.['minlength']">
+                Informe no mínimo 5 caracteres
+            </mat-error>
+            <mat-error *ngIf="form['controls']['motherName'].errors?.['maxlength']">
+                Informe no máximo 255 caracteres
+            </mat-error>
+        </mat-form-field>
+    </div>
+</form>
