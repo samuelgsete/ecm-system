@@ -1,19 +1,15 @@
 <nav class="side-bar">
     <img class="logotipo" src="/assets/img/ecm-logo-removebg-preview.png" alt="Logotipo">
-    <ul>
-        <li 
-            class="nav-item"
-            [ngClass]="{ 'active' : route.isActive }"
-            *ngFor="let route of routes"
-            (click)="goTo(route)"
-            matRipple
-        >
-            <mat-icon>{{ route.icon }}</mat-icon>
-            <a routerLinkActive="active">{{ route.name }}</a>
-        </li>
-        <li class="nav-item" (click)="toPrint()" matRipple>
-            <mat-icon>print</mat-icon>
-            <a>Imprimir</a>
+    <ul class="nav-menu">
+        <li class="nav-item" *ngFor="let route of routes" matRipple>
+            <a *ngIf="route.name != 'Imprimir'" class="item-link" [routerLink]="route.path" routerLinkActive="active">
+                <mat-icon>{{ route.icon }}</mat-icon>
+                {{ route.name }}
+            </a>
+            <a class="item-link" *ngIf="route.name == 'Imprimir'" (click)="print.all()">
+                <mat-icon>{{ route.icon }}</mat-icon>
+                {{ route.name }}
+            </a>
         </li>
     </ul>
 

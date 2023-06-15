@@ -9,6 +9,7 @@ import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
+import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class DisplayMembersComponent implements OnInit {
     protected readonly updateMember: UpdateMemberService,
     protected readonly goToPrint: GoToPrintService,
     protected readonly goToEdit: GoToEditService,
-    protected readonly onSelect: OnSelectMemberService
+    protected readonly onSelect: OnSelectMemberService,
+    protected readonly ordinations: OrdinationsMembersService
   ) {}
 
   public ngOnInit(): void {

@@ -1,14 +1,19 @@
 <main>
     <section>
         <header>
-            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
-                <h1 class="title-page">Membros Cadastrados</h1>
-            </div>
-            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
-                <div class="total-elements" matRipple>
-                    <h1 class="total">{{ totalElements }}</h1>
-                    <span class="label">Total cadastrado</span>
-                </div>
+            <app-name-page 
+                title="Membros" 
+                subtitle="Cadastrados" 
+            ></app-name-page>
+            <div class="row-flex space-between">
+                <button class="filter-table"  [matMenuTriggerFor]="ordination" mat-icon-button>
+                    <mat-icon>filter_list</mat-icon>
+                </button>
+                <mat-menu #ordination="matMenu">
+                    <button class="mat-menu" mat-menu-item *ngFor="let ordination of ordinations.run()">
+                        {{ ordination.label }}
+                    </button>
+                  </mat-menu>
                 <div class="input-search" matRipple>
                     <mat-icon>search</mat-icon>
                     <input 
@@ -32,7 +37,7 @@
             <tr>
                 <th></th>
                 <th>Foto</th>
-                <th>Nome</th>
+                <th>Membro</th>
                 <th>Cargo</th>
                 <th>Última Atualização</th>
                 <th>Ações</th>
@@ -58,7 +63,7 @@
                     <button mat-icon-button (click)="goToEdit.run(member.id)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="goToPrint.run(member.id)">
+                    <button mat-icon-button (click)="goToPrint.one(member.id)">
                     <mat-icon>print</mat-icon>
                 </button>
                 </td>

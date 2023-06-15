@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 section {
     padding: 0.5% 2% 2% 2%;
     border-radius: 5px;
     background-color: #fff;
-    animation: down 0.5s;
 }
 
 header {
-    padding: 5px 0 20px 0;
+    padding: 20px 0 0 0;
 }
 
-header h1.title-page {
-    font-size: 1.40em;
-    font-family: 'Sen', sans-serif;
-    max-width: min-content;
-    white-space: nowrap;
-    margin: 0;
+header button.filter-table {
+    color: rgb(var(--gray-6));    
+}
+
+header button.mat-menu {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.9px;
+    font-size: 0.84em !important;
 }
 
 table tr td:nth-child(1) {

@@ -5,6 +5,15 @@ div.row-flex {
     width: 100%;
 }
 
+div.center {
+    align-items: center;
+}
+
+div.space-between {
+    justify-content: space-between;;
+}
+
+
 div.row-flex[horizontal-align="space-between"] {
     justify-content: space-between;
 }

@@ -23,6 +23,7 @@ export class ListMembersPaginatedService extends ListPaginatedService {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
+                console.log(eventErr);
                 this.toastr.error('Não foi possível listar os membros', 'Deu errado :(', { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'

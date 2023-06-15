@@ -35,6 +35,7 @@ import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
+import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member
     OnSelectMemberService,
     BuildFormCreateMemberService,
     BuildFormUpdateMemberService,
-    ParseDataToMemberService
+    ParseDataToMemberService,
+    OrdinationsMembersService
   ]
 })
 export class MembersModule {}

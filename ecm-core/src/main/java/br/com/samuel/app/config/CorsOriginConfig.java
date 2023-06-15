@@ -18,7 +18,7 @@ public class CorsOriginConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.applyPermitDefaultValues();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://localhost:4200"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("*"));
         config.setExposedHeaders(Arrays.asList("content-length"));

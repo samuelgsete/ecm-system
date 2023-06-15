@@ -5,19 +5,10 @@ section {
     padding: 0.5% 2% 2% 2%;
     border-radius: 5px;
     background-color: #fff;
-    animation: down 0.5s;
 }
 
 header {
-    padding: 5px 0 20px 0;
-}
-
-header h1.title-page {
-    font-size: 1.45em;
-    font-family: 'Sen', sans-serif;
-    max-width: min-content;
-    white-space: nowrap;
-    margin: 0;
+    padding: 20px 0 0 0;
 }
 
 table tr td:nth-child(1) {

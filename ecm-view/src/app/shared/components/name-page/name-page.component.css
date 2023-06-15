@@ -1,0 +1,22 @@
+
+ p.name-page {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 0.96em;
+    color: rgb(var(--gray-6));
+    letter-spacing: -0.3px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 6ms;
+    padding: 10px 0;
+}
+
+p.name-page span:hover {
+    text-decoration: underline;
+}
+
+p.name-page mat-icon {
+    transform: scale(78%);
+    color: rgb(var(--purple));
+}

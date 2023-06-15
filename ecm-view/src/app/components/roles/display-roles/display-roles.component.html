@@ -1,14 +1,14 @@
 <main>
     <section>
         <header>
-            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
-                <h1 class="title-page">Cargos Cadastrados</h1>
-            </div>
-            <div class="row-flex" horizontal-align="space-between" vertical-align="center">
-                <div class="total-elements" matRipple>
-                    <h1 class="total">{{ totalElements }}</h1>
-                    <span class="label">Total cadastrado</span>
-                </div>
+            <app-name-page 
+                title="Cargos" 
+                subtitle="Cadastrados" 
+            ></app-name-page>
+            <div class="row-flex space-between">
+                <button class="filter-table" mat-icon-button>
+                    <mat-icon>filter_list</mat-icon>
+                </button>
                 <div class="input-search" matRipple>
                     <mat-icon>search</mat-icon>
                     <input 
@@ -30,7 +30,7 @@
         <table class="ui-table stripped" *ngIf="!listRoles.isEmpty()">
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th>Cargo</th>
                 <th>última Atualização</th>
                 <th>Ações</th>
             </tr>

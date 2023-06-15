@@ -3,7 +3,13 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class GoToPrintService {
 
-    run(id: number): void {
-        window.open(`http://localhost:8080/api/v1/credentials/${id}/print`, '_blank')?.focus();
+    private urlBase: string = 'http://localhost:8090/api/v1';
+
+    one(id: number): void {
+        window.open(this.urlBase.concat(`/credentials/${id}/print`), '_blank')?.focus();
+    }
+
+    all(): void {
+        window.open(this.urlBase.concat('/credentials/print/all'), '_blank')?.focus();
     }
 }

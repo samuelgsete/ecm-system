@@ -42,6 +42,7 @@ import { DateDurationPipe } from '../pipes/date-duration.pipe';
 import { FileSizePipe } from '../pipes/file-size.pipe';
 import { MaritalStatusPipe } from '../pipes/marital-status.pipe';
 import { DragDropUploadDirective } from '../directives/drag-drop-upload.directive';
+import { NamePageComponent } from './components/name-page/name-page.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { DragDropUploadDirective } from '../directives/drag-drop-upload.directiv
     DateDurationPipe,
     FileSizePipe,
     MaritalStatusPipe,
-    DragDropUploadDirective
+    DragDropUploadDirective,
+    NamePageComponent
   ],
   imports: [
     CommonModule,
@@ -125,6 +127,7 @@ import { DragDropUploadDirective } from '../directives/drag-drop-upload.directiv
     ToastrModule,
 
     UploadedImagePreviewComponent,
+    NamePageComponent,
     SmallTextPipe,
     DateDurationPipe,
     FileSizePipe,

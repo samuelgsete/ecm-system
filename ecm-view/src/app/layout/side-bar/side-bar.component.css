@@ -17,6 +17,7 @@ nav.side-bar {
     justify-content: space-between;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     padding: 10px 0;
+    overflow-y: auto;
 }
 
 img.logotipo {
@@ -27,23 +28,23 @@ button.logout {
     color: rgb(var(--purple));
 }
 
-nav.side-bar ul {
+nav.side-bar ul.nav-menu {
     list-style: none;
     display: flex;
     flex-direction: column;
 }
 
-nav.side-bar ul li.nav-item {
+nav.side-bar ul.nav-menu li.nav-item a.item-link {
     padding: 12px 6px;
     display: flex;
     flex-direction: column;
+    color: rgb(var(--gray-5));
     align-items: center;
     row-gap: 4px;
     font-size: 0.64em;
     font-weight: 600;
     line-height: -0.9px;
     font-family: 'Inter', sans-serif;
-    color: rgb(var(--purple));
     cursor: pointer;
     border-left: 2.4pt solid transparent;
     border-right: 2.4pt solid transparent;
@@ -51,19 +52,21 @@ nav.side-bar ul li.nav-item {
     transition: all 0.6s;
 }
 
-nav.side-bar ul li.nav-item a {
+nav.side-bar ul.nav-menu li.nav-item a.item-link mat-icon {
+    color: rgb(var(--purple));
+}
+
+nav.side-bar ul.nav-menu li.nav-item a.item-link {
     color: rgb(var(--gray-6));
     text-decoration: none;
 }
 
-nav.side-bar ul li.nav-item:hover {
+nav.side-bar ul.nav-menu li.nav-item a.item-link:hover {
     background-color: rgba(var(--purple), 0.2);
 }
 
-nav.side-bar ul li.active {
+nav.side-bar ul.nav-menu li.nav-item a.active {
     background-color: rgb(var(--gray-3));
     border-left: 2.4pt solid rgb(var(--purple));
-}
-nav.side-bar ul li.active a {
     color: rgb(var(--purple));
 }

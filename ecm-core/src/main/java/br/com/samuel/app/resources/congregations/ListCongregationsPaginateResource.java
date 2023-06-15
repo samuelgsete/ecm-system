@@ -20,8 +20,7 @@ public class ListCongregationsPaginateResource extends ResourcePaginate<Congrega
         @RequestParam String search, 
         @RequestParam String ordination, 
         Pageable pageable
-    ) 
-    {
+    ) {
         return ResponseEntity.ok(paginate().run(search, ordination, pageable));
     }
 }

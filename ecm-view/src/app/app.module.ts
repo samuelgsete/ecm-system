@@ -1,16 +1,19 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { MembersModule } from './components/members/members.module';
 import { RolesModule } from './components/roles/roles.module';
 import { CongregationsModule } from './components/congregations/congregations.module';
 import { UploadsImagesModule } from './components/uploads-images/uploads-images.module';
 import { PaginateModule } from './components/paginate/paginate.module';
 import { LayoutModule } from './layout/layout.module';
+
+import { AppComponent } from './app.component';
+import { initializeKeycloak } from './security/keycloak.config';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    KeycloakAngularModule,
     PaginateModule,
     HttpClientModule,
     MembersModule,
@@ -28,7 +32,14 @@ import { LayoutModule } from './layout/layout.module';
     UploadsImagesModule,
     LayoutModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

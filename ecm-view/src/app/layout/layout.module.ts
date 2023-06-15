@@ -5,18 +5,20 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { LayoutComponent } from './layout.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { GoToPrintService } from '../usecases/members/go-to-print.service';
 
 @NgModule({
   declarations: [
     SideBarComponent,
-    LayoutComponent,
-    TopBarComponent
+    LayoutComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule
+  ],
+  providers: [
+    GoToPrintService
   ]
 })
 export class LayoutModule {}

@@ -1,4 +1,4 @@
-package br.com.samuel.app.config;
+package br.com.samuel.app.config.props;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -7,4 +7,4 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(
     "classpath:upload.properties"
 )
-public class UploadConfig {}
+public class UploadProps {}
