@@ -9,6 +9,7 @@ import { Role } from 'src/app/models/role.entity';
 import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
 import { UpdateRoleComponent } from '../update-role/update-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';
+import { OrdinationsRolesService } from 'src/app/usecases/roles/ordinations-roles.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -26,7 +27,8 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly modal: MatDialog,
     protected readonly route: ActivatedRoute,
     protected readonly router: Router,
-    protected readonly listRoles: ListRolesPaginatedService
+    protected readonly listRoles: ListRolesPaginatedService,
+    protected readonly ordinations: OrdinationsRolesService
   ) {}
 
   public openUpdateRoleComponent(role: Role): void {
@@ -37,6 +39,11 @@ export class DisplayRolesComponent implements OnInit {
     this.modal.afterAllClosed.subscribe(() => {
       this.listRoles.run(this.pagination);
     })
+  }
+
+  public orderBy(ordination: string): void {
+    this.pagination.ordination = ordination;
+    this.listRoles.run(this.pagination);
   }
 
   public openCreateRoleComponent(): void {

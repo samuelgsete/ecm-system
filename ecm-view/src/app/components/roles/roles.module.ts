@@ -15,6 +15,7 @@ import { FindOneRoleService } from 'src/app/usecases/roles/find-one-role.service
 import { UpdateRoleResource } from 'src/app/resources/roles/update-role-resource';
 import { UpdateRoleService } from 'src/app/usecases/roles/update-role.service';
 import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-comparator.service';
+import { OrdinationsRolesService } from 'src/app/usecases/roles/ordinations-roles.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-
     CreateRoleService,
     UpdateRoleResource,
     UpdateRoleService,
-    SelectRoleComparatorService
+    SelectRoleComparatorService,
+    OrdinationsRolesService
   ],
 })
 export class RolesModule {}

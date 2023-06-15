@@ -12,10 +12,14 @@ public class ListRolePaginate extends Paginate<Role, RoleRepository> {
 
     public Page<Role> run(String search, String ordination, Pageable pageable) {
         switch(ordination) {
-            // Lista os mais recentes
-            case "latest":
-                return getRepository().listLatest(search, pageable);
-
+            case "by_name_desc":
+                return getRepository().listPaginateByNameDesc(search, pageable);
+            case "latest_created":
+                return getRepository().listPaginateLatestCreated(search, pageable);
+             case "older":
+                return getRepository().listPaginateOlder(search, pageable);
+            case "latest_updated":
+                return getRepository().listPaginateLatestUpdated(search, pageable);
             default: getRepository().listPaginate(search, pageable);
         }
         return getRepository().listPaginate(search, pageable);

@@ -1,14 +1,20 @@
 <main>
     <section>
         <header>
-            <app-name-page 
-                title="Cargos" 
-                subtitle="Cadastrados" 
-            ></app-name-page>
-            <div class="row-flex space-between">
-                <button class="filter-table" mat-icon-button>
+            <app-name-page title="Cargos" subtitle="Cadastrados"></app-name-page>
+            <div class="row-flex space-between center-vertical">
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
                 </button>
+                <mat-menu #ordination="matMenu">
+                    <button
+                        mat-menu-item
+                        *ngFor="let ordination of ordinations.run()"
+                        (click)="orderBy(ordination.name)"
+                    >
+                        {{ ordination.label }}
+                    </button>
+                </mat-menu>
                 <div class="input-search" matRipple>
                     <mat-icon>search</mat-icon>
                     <input 
@@ -31,12 +37,14 @@
             <tr>
                 <th>ID</th>
                 <th>Cargo</th>
+                <th>Criado</th>
                 <th>última Atualização</th>
                 <th>Ações</th>
             </tr>
             <tr *ngFor="let role of roles">
                 <td>{{ role.id }}</td>
                 <td>{{ role.name }}</td>
+                <td>{{ role.createdAt | dateDuration }}</td>
                 <td>{{ role.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="openUpdateRoleComponent(role)">
