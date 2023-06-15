@@ -35,6 +35,11 @@ export class DisplayMembersComponent implements OnInit {
     protected readonly ordinations: OrdinationsMembersService
   ) {}
 
+  orderBy(ordination: string): void {
+    this.pagination.ordination = ordination;
+    this.listMembers.run(this.pagination);
+  }
+
   public ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       let currentPage = params['currentPage'] || 0;

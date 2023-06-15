@@ -12,7 +12,11 @@ header {
 }
 
 button.filter-table {
-    color: rgb(var(--gray-6));
+    color: rgb(var(--gray-5));
+}
+
+button {
+    color: rgb(var(--gray-8));
 }
 
 table tr td:nth-child(1) {

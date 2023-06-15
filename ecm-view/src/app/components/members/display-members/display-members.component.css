@@ -11,6 +11,14 @@ header {
     padding: 20px 0 0 0;
 }
 
+button.filter-table {
+    color: rgb(var(--gray-5));
+}
+
+button {
+    color: rgb(var(--gray-8));
+}
+
 header button.filter-table {
     color: rgb(var(--gray-6));    
 }
