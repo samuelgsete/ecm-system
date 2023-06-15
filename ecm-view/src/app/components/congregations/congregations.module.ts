@@ -13,6 +13,7 @@ import { UpdateCongregationService } from 'src/app/usecases/congregations/update
 import { UpdateCongregationResource } from 'src/app/resources/congregations/update-congregation.resource';
 import { UpdateCongregationComponent } from './update-congregation/update-congregation.component';
 import { SelectCongregationComparatorService } from 'src/app/usecases/congregations/select-congregation-comparator.service';
+import { OrdinationsCongregationsService } from 'src/app/usecases/congregations/ordinations-congregations.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SelectCongregationComparatorService } from 'src/app/usecases/congregati
     CreateCongregationService,
     UpdateCongregationResource,
     UpdateCongregationService,
-    SelectCongregationComparatorService
+    SelectCongregationComparatorService,
+    OrdinationsCongregationsService
   ]
 })
 export class CongregationsModule {}

@@ -3,9 +3,18 @@
         <header>
             <app-name-page  title="Congregações" subtitle="Cadastradas"></app-name-page>
             <div class="row-flex space-between center-vertical">
-                <button class="filter-table" mat-icon-button>
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
                 </button>
+                <mat-menu #ordination="matMenu">
+                    <button
+                        mat-menu-item
+                        *ngFor="let ordination of ordinations.run()"
+                        (click)="orderBy(ordination.name)"
+                    >
+                        {{ ordination.label }}
+                    </button>
+                </mat-menu>
                 <div class="input-search" matRipple>
                     <mat-icon>search</mat-icon>
                     <input 
@@ -28,12 +37,14 @@
             <tr>
                 <th>ID</th>
                 <th>Congregação</th>
+                <th>Criado</th>
                 <th>Última Atualização</th>
                 <th>Ações</th>
             </tr>
             <tr *ngFor="let congregation of congregations">
                 <td>{{ congregation.id }}</td>
                 <td>{{ congregation.name }}</td>
+                <td>{{ congregation.createdAt | dateDuration }}</td>
                 <td>{{ congregation.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">

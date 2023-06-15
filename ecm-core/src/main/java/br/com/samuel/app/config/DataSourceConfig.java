@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 public class DataSourceConfig {
     
     @Bean
+    @Primary
     public DataSource mainDatabase() {
         return DataSourceBuilder
             .create()
@@ -21,7 +22,6 @@ public class DataSourceConfig {
     }
 
     @Bean
-    @Primary
     public DataSource testDatabase() {
         return DataSourceBuilder
             .create()

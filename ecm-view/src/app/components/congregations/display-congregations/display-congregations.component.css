@@ -8,7 +8,15 @@ section {
 }
 
 header {
-    padding: 20px 0 0 0;
+    padding: 16px 0 0 0;
+}
+
+button.filter-table {
+    color: rgb(var(--gray-6));
+}
+
+button {
+    color: rgb(var(--gray-7));
 }
 
 table tr td:nth-child(1) {

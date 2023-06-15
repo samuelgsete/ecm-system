@@ -9,6 +9,7 @@ import { Pagination } from 'src/app/models/pagination.entity';
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { CreateCongregrationComponent } from '../create-congregration/create-congregration.component';
 import { UpdateCongregationComponent } from '../update-congregation/update-congregation.component';
+import { OrdinationsCongregationsService } from 'src/app/usecases/congregations/ordinations-congregations.service';
 
 @Component({
   selector: 'app-display-congregations',
@@ -26,8 +27,14 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly modal: MatDialog,
     protected readonly route: ActivatedRoute,
     protected readonly router: Router,
-    protected readonly listCongregations: ListCongregationsPaginatedService
+    protected readonly listCongregations: ListCongregationsPaginatedService,
+    protected readonly ordinations: OrdinationsCongregationsService
   ) {}
+
+  public orderBy(ordination: string): void {
+    this.pagination.ordination = ordination;
+    this.listCongregations.run(this.pagination);
+  }
 
   public openCreateCongregationComponent(): void {
     this.modal.open(CreateCongregrationComponent);

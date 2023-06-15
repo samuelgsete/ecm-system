@@ -15,7 +15,19 @@ public interface CongregationRepository extends JpaRepository<Congregation, Inte
     @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.name ASC")
     Page<Congregation> listPaginate(@Param("search") String search, Pageable pageable);  
  
+    // Lista as congregações ordenando pelo nome decrescente
+    @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.name DESC")
+    Page<Congregation> listPaginateByNameDesc(@Param("search") String search, Pageable pageable); 
+
     // Lista as congregações mais recentemente criadas
     @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.createdAt DESC")
-    Page<Congregation> listLatest(@Param("search") String search, Pageable pageable); 
+    Page<Congregation> listPaginateLatestCreated(@Param("search") String search, Pageable pageable); 
+
+     // Lista as congregações menos recentemente criadas
+    @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.createdAt ASC")
+    Page<Congregation> listPaginateOlderCreated(@Param("search") String search, Pageable pageable); 
+
+    // Lista as congregações mais recentemente atualizadas
+    @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.updatedAt DESC")
+    Page<Congregation> listPaginateLatestUpdated(@Param("search") String search, Pageable pageable);
 }

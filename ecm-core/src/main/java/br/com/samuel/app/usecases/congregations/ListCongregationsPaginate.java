@@ -12,9 +12,16 @@ public class ListCongregationsPaginate extends Paginate<Congregation, Congregati
 
     public Page<Congregation> run(String search, String ordination, Pageable pageable) {
         switch(ordination) {
-            case "latest":
-                return getRepository().listLatest(search, pageable);
-            default: return getRepository().listPaginate(search, pageable);
+            case "by_name_desc":
+                return getRepository().listPaginateByNameDesc(search, pageable);
+            case "latest_created":
+                return getRepository().listPaginateLatestCreated(search, pageable);
+             case "older_created":
+                return getRepository().listPaginateOlderCreated(search, pageable);
+            case "latest_updated":
+                return getRepository().listPaginateLatestUpdated(search, pageable);
+            default: getRepository().listPaginate(search, pageable);
         }
+        return getRepository().listPaginate(search, pageable);
     }
 }
