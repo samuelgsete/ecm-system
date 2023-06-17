@@ -29,7 +29,7 @@ public class ListMembersPaginate extends Paginate<Member, MemberRepository> {
             
             case "minor_age":
                 return getRepository().listPaginateMinorAge(search, pageable);
-            
+                    
             default: return getRepository().listPaginate(search, pageable);
         }
     }

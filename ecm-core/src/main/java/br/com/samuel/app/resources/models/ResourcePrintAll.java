@@ -23,7 +23,7 @@ public abstract class ResourcePrintAll {
     private MaritalStatusFormatter maritalStatusFormatter;
 
     public Set<Member> findAllSelecteds() {
-        return repository.listSelecteds();
+        return repository.listAllSelecteds();
     }
 
     public DateFormatter getDateFormatter() {

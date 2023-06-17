@@ -42,5 +42,5 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     // Lista os membros criados recentemente
     @Query("SELECT m FROM Member m WHERE m.isSelected = TRUE ORDER BY m.name ASC")
-    Set<Member> listSelecteds();
+    Set<Member> listAllSelecteds();
 }

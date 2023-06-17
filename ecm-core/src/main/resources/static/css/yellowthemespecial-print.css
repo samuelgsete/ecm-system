@@ -6,19 +6,12 @@
     font-size: 100%;
 }
 
-@media print {
-    div.template-credential {
-        page-break-inside: avoid;
-    }
-}
-
 main {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
 }
 
 div.template-credential {
@@ -26,16 +19,18 @@ div.template-credential {
     height: 300px;
     display: flex;
     column-gap: 5px;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 div.front, div.back {
     width: 96%;
     padding: 2%;
     border-radius: 1px;
-    border-bottom: 3pt solid rgb(var(--purple));
+    border-bottom: 3pt solid rgb(var(--amber));
+    border-top: 1.4pt solid rgb(var(--gray-3));
+    border-left: 1.4pt solid rgb(var(--gray-3));
+    border-right: 1.4pt solid rgb(var(--gray-3));
     background-color: rgb(var(--gray-0));
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     cursor: pointer;
     position: relative;
 }
@@ -44,7 +39,7 @@ div.front div.banner {
     width: 98%;
     height: 36%;
     padding: 2% 1%;
-    background: url('../img/sun-tornado.png');
+    background: url('../img/yellow-theme-special.png');
     text-align: right;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -119,7 +114,13 @@ p.date-of-issue {
     top: 15px;
     right: 5px;
     font-weight: 600;
-    background-color: rgba(var(--purple), 0.11);
+    background-color: rgba(var(--warning), 0.11);
     font-family: 'IBM Plex Mono', monospace;
-    color: rgb(var(--purple));
+    color: rgb(var(--amber));
+}
+
+@media print {
+    div.template-credential {
+        page-break-inside: avoid;
+    }
 }

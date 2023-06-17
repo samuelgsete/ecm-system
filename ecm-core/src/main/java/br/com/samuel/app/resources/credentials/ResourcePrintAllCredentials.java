@@ -5,20 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import br.com.samuel.app.resources.models.ResourcePrintAll;
+import br.com.samuel.app.resources.models.ResourcePrint;
 
 @Controller
 @RequestMapping("/credentials")
-public class ResourcePrintAllCredentials extends ResourcePrintAll {
+public class ResourcePrintAllCredentials extends ResourcePrint {
     
     @GetMapping("/print/all")
     public String run(Model model) {
-        var members = findAllSelecteds();
+        var members = listAllSelecteds().run();
+        var mainTheme = mainTheme().run().get();
+        var template = mainTheme.getTemplate();
+
         model.addAttribute("members", members);
         model.addAttribute("dateOfIssue", LocalDateTime.now());
         model.addAttribute("dateFormatter", getDateFormatter());
         model.addAttribute("cpfFormatter", getCpfFormatter());
         model.addAttribute("maritalStatusFormatter", getMaritalStatusFormatter());
-        return "fulltheme-print-all";
+        return template;
     }
 }

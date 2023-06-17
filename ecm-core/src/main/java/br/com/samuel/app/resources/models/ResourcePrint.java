@@ -1,15 +1,24 @@
 package br.com.samuel.app.resources.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.samuel.app.usecases.credentials.FindOneThemeByIsMain;
 import br.com.samuel.app.usecases.members.FindOneMember;
+import br.com.samuel.app.usecases.members.ListAllMembersSelecteds;
 import br.com.samuel.app.usecases.utils.TextFormatter.CpfFormatter;
 import br.com.samuel.app.usecases.utils.TextFormatter.DateFormatter;
 import br.com.samuel.app.usecases.utils.TextFormatter.MaritalStatusFormatter;
 
-public abstract class ResourcePrintOne {
+public abstract class ResourcePrint {
     
     @Autowired
     private FindOneMember findOne;
+
+    @Autowired
+    private ListAllMembersSelecteds listAllSelecteds;
+
+    @Autowired
+    private FindOneThemeByIsMain findMainTheme;
 
     @Autowired
     private DateFormatter dateFormatter;
@@ -22,6 +31,14 @@ public abstract class ResourcePrintOne {
 
     public FindOneMember findOne() {
         return this.findOne;
+    }
+
+    public ListAllMembersSelecteds listAllSelecteds() {
+        return listAllSelecteds;
+    }
+
+    public FindOneThemeByIsMain mainTheme() {
+        return findMainTheme;
     }
 
     public DateFormatter getDateFormatter() {

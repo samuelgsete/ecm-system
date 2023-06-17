@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <link th:href="@{/css/fulltheme-print-one.css}" rel="stylesheet" />
-        <title th:text="${member.name}"></title>
+        <link th:href="@{/css/yellowthemespecial-print.css}" rel="stylesheet" />
+        <title>Página de Impressão</title>
     </head>
     <body>
         <main>
-            <div class="template-credential">
+            <div class="template-credential" th:each="member : ${members}">
                 <div class="template-credential">
                     <div class="back">
                         <p class="date-of-issue">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="front">
                         <div class="banner">
-                            <img th:src="@{/img/logotipo-adtc.png}" alt="Assembléia de Deus">
+                            <img th:src="@{/img/yellow-logo.png}" alt="Assembléia de Deus">
                         </div>
                         <div class="row-1">
                             <div class="photo">
