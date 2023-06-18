@@ -21,7 +21,7 @@
                             </div>
                             <div class="ui-text">
                                 <label>RG</label>
-                                <p th:text="${member.rg}"></p>
+                                <p th:text="${member.rg} ?: '************' "></p>
                             </div>
                             <div class="ui-text">
                                 <label>Data de Batismo</label>
@@ -92,8 +92,8 @@
                         <div class="row-flex" horizontal-align="space-between">
                             <div class="ui-text">
                                 <label>Filiação</label>
-                                <p th:text="${member.affiliation.fatherName}"></p>
-                                <p th:text="${member.affiliation.motherName}"></p>
+                                <p th:text="${member.affiliation.fatherName} ?: '************ *****' "></p>
+                                <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
                             </div>
                             <div class="ui-text">
                                 <label>Congregação</label>
