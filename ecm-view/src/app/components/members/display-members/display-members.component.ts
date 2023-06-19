@@ -50,7 +50,6 @@ export class DisplayMembersComponent implements OnInit {
     })
 
     this.listMembers.done().subscribe(response => {
-      console.log('oi');
       this.members = response.content;
       this.totalElements = response.totalElements;
       this.router.navigate([], { 

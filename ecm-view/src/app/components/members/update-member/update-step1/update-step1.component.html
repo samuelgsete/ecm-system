@@ -29,17 +29,13 @@
                 placeholder="Ex.: 000.000.000-00"
                 maxlength="14"
                 mask="000.000.000-00"
-                matInput 
-                required
+                matInput
             >
             <mat-error *ngIf="form['controls']['cpf'].errors?.['invalidCpf']">
                 CPF inválido
             </mat-error>
-            <mat-error *ngIf="form['controls']['cpf'].errors?.['required']">
-                Esse campo é obrigatório
-            </mat-error>
-            <mat-error *ngIf="form['controls']['cpf'].errors?.['maxlength']">
-                Informe no máximo 255 caracteres
+            <mat-error *ngIf="form['controls']['cpf'].errors?.['mask']">
+                Formato inválido
             </mat-error>
         </mat-form-field>
         <mat-form-field class="width-fix" appearance="fill" color="primary">
@@ -47,11 +43,11 @@
             <input
                 formControlName="rg"
                 placeholder="Ex.: 0000000000-0"
-                matInput 
-                required
+                mask="0000*"
+                matInput
             >
-            <mat-error *ngIf="form['controls']['rg'].errors?.['required']">
-                Esse campo é obrigatório
+            <mat-error *ngIf="form['controls']['rg'].errors?.['mask']">
+                Formato inválido
             </mat-error>
         </mat-form-field>
     </div>

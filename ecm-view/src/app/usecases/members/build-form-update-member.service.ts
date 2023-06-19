@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 
 import { FormatDateService } from "src/app/utils/services/format-date.service";
 import cpfValidator from "src/app/validators/cpf.validator";
+import acceptNullValues from "src/app/validators/accept-null-values.validator";
 
 @Injectable()
 export class BuildFormUpdateMemberService {
@@ -17,8 +18,8 @@ export class BuildFormUpdateMemberService {
             id: [response.id],
             isSelected: [response.isSelected],
             name: [response.name, [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-            cpf: [response.cpf, [Validators.maxLength(11), cpfValidator]],
-            rg: [response.rg, Validators.maxLength(15)],
+            cpf: [response.cpf, [acceptNullValues, cpfValidator]],
+            rg: [response.rg, acceptNullValues],
             dateOfBirth: [this.format.run(response.dateOfBirth,'yyyy-MM-dd'), Validators.required],
             dateOfBaptism: [this.format.run(response.dateOfBaptism,'yyyy-MM-dd'), Validators.required],
             maritalStatus: [response.maritalStatus, Validators.required],
@@ -27,13 +28,13 @@ export class BuildFormUpdateMemberService {
             role: [response.role, Validators.required],
         })
         const step2 = this._fb.group({
-            phone: [response.phone, [Validators.maxLength(255)]],
-            email: [response.email, [Validators.email, Validators.maxLength(255)]],
+            phone: [response.phone, acceptNullValues],
+            email: [response.email, [acceptNullValues, Validators.email, Validators.maxLength(255)]],
         })
         const step3 = this._fb.group({
             id: [response.affiliation.id],
-            fatherName: [response.affiliation.fatherName, [Validators.minLength(5), Validators.maxLength(255)]],
-            motherName: [response.affiliation.motherName, [Validators.minLength(5), Validators.maxLength(255)]]
+            fatherName: [response.affiliation.fatherName, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]],
+            motherName: [response.affiliation.motherName, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]]
         })
         const step4 = this._fb.group({
             photo: [response.photo, Validators.required],

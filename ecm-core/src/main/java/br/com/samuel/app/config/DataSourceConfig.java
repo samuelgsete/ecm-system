@@ -28,7 +28,7 @@ public class DataSourceConfig {
         return factory.run(
             "postgres", 
             "postgres", 
-            "ecmtestdb",
+            "ecmtest2db",
             5432
         );
     }

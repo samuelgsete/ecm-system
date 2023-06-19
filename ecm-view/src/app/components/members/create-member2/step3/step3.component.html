@@ -7,12 +7,8 @@
                 placeholder="Ex.: Raimundo Silva Carlos"
                 minlength="6" 
                 maxlength="255"
-                matInput 
-                required
+                matInput
             >
-            <mat-error *ngIf="form['controls']['fatherName'].errors?.['required']">
-                Esse campo é obrigatório
-            </mat-error>
             <mat-error *ngIf="form['controls']['fatherName'].errors?.['minlength']">
                 Informe no mínimo 6 caracteres
             </mat-error>
@@ -29,12 +25,8 @@
                 placeholder="Ex.: Maria Madalena Souza"
                 minlength="5" 
                 maxlength="255"
-                matInput 
-                required
+                matInput
             >
-            <mat-error *ngIf="form['controls']['motherName'].errors?.['required']">
-                Esse campo é obrigatório
-            </mat-error>
             <mat-error *ngIf="form['controls']['motherName'].errors?.['minlength']">
                 Informe no mínimo 5 caracteres
             </mat-error>

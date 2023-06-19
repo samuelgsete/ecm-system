@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
@@ -14,7 +14,7 @@ interface PathRoute {
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent {
 
   routes: PathRoute[] = [
     { icon: 'account_box', path: 'members', name: 'Membros' },
@@ -28,8 +28,4 @@ export class SideBarComponent implements OnInit {
     protected readonly router: Router,
     protected readonly print: GoToPrintService
   ) {}
-
-  ngOnInit(): void {
-    console.log(this.router);
-  }
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 import cpfValidator from "src/app/validators/cpf.validator";
+import acceptNullValues from "src/app/validators/accept-null-values.validator";
 
 @Injectable()
 export class BuildFormCreateMemberService {
@@ -11,8 +12,9 @@ export class BuildFormCreateMemberService {
     public run(): any {
         const step1 = this._fb.group({
             name: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-            cpf: [null, [Validators.maxLength(11), cpfValidator]],
-            rg: [null, Validators.maxLength(15)],
+            isSelected: [true],
+            cpf: [null, [acceptNullValues, cpfValidator]],
+            rg: [null, [acceptNullValues, Validators.maxLength(15)]],
             dateOfBirth: [null, Validators.required],
             dateOfBaptism: [null, Validators.required],
             maritalStatus: [null, Validators.required],
@@ -21,12 +23,12 @@ export class BuildFormCreateMemberService {
             role: [null, Validators.required],
         })
         const step2 = this._fb.group({
-            phone: [null, [Validators.maxLength(255)]],
-            email: [null, [Validators.email, Validators.maxLength(255)]],
+            phone: [null, acceptNullValues],
+            email: [null, [acceptNullValues, Validators.email, Validators.maxLength(255)]],
         })
         const step3 = this._fb.group({
-            fatherName: [null, [Validators.minLength(5), Validators.maxLength(255)]],
-            motherName: [null, [Validators.minLength(5), Validators.maxLength(255)]]
+            fatherName: [null, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]],
+            motherName: [null, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]]
         })
         const step4 = this._fb.group({
             photo: [null, Validators.required],

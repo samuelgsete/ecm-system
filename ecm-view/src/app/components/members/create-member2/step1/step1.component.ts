@@ -31,7 +31,6 @@ export class Step1Component implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    console.log(this.form);
     this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
     this.listRoles.done().subscribe(response => {
       this.roles = response.content

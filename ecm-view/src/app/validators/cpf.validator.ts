@@ -5,10 +5,12 @@ const y = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
 export default function cpfValidator(control: AbstractControl) {
     let cpf = control.value;
-    if(cpf == '')
-        return null;
-    if(cpf == null)
-        return { invalidCpf: true }
+    if(cpf == '') {
+        return null    
+    }
+    if(cpf == null) {
+        return null
+    }
     if(cpf.length != 11)
         return { invalidCpf: true }
     if(

@@ -98,8 +98,8 @@
                     class="btn"
                     color="success"
                     radius="true"
-                    [disabled]=" !(step1.valid && step2.valid && step3.valid && step3.valid)"
-                    (click)="createMember.run(getData())"
+                    
+                    (click)="createMember.run(data.run(step1, step2, step3, step4))"
                     matRipple
                 >
                     <div class="progress-bar" [ngStyle]="{ 'width' : createMember.getProgressDone() }"></div>
@@ -111,7 +111,7 @@
             <mat-icon>person</mat-icon>
         </ng-template>
         <ng-template matStepperIcon="contact">
-            <mat-icon>contact_support</mat-icon>
+            <mat-icon>contact_mail</mat-icon>
         </ng-template>
         <ng-template matStepperIcon="group-add">
             <mat-icon>group_add</mat-icon>

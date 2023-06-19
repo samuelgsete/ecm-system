@@ -7,6 +7,7 @@ import { Member } from 'src/app/models/member.entity';
 import { Role } from 'src/app/models/role.entity';
 import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
+import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
 
 @Component({
   selector: 'app-create-member2',
@@ -15,45 +16,19 @@ import { CreateMemberService } from 'src/app/usecases/members/create-member.serv
 })
 export class CreateMember2Component implements OnInit {
 
-  protected step1!: FormGroup;
-  protected step2!: FormGroup;
-  protected step3!: FormGroup;
-  protected step4!: FormGroup;
+  step1!: FormGroup;
+  step2!: FormGroup;
+  step3!: FormGroup;
+  step4!: FormGroup;
    
-  public constructor(
+  constructor(
     protected readonly router: Router,
     protected readonly buildForm: BuildFormCreateMemberService,
-    protected readonly createMember: CreateMemberService
+    protected readonly createMember: CreateMemberService,
+    protected readonly data: ParseDataToMemberService,
   ) {}
 
-  public getData(){
-    return new Member({
-      id: null,
-      name: this.step1.value.name,
-      cpf: this.step1.value.cpf,
-      rg: this.step1.value.rg,
-      dateOfBirth: new Date(this.step1.value.dateOfBirth).toISOString(),
-      dateOfBaptism: new Date(this.step1.value.dateOfBaptism).toISOString(),
-      gender: this.step1.value.gender,
-      maritalStatus: this.step1.value.maritalStatus,
-      role: new Role({
-        id: this.step1.value.role.id,
-        name: this.step1.value.role.name,
-      }),
-      congregation: new Congregation({
-        id: this.step1.value.congregation.id,
-        name: this.step1.value.congregation.name
-      }),
-      phone: this.step2.value.phone,
-      email: this.step2.value.email,
-      fatherName: this.step3.value.fatherName,
-      motherName: this.step3.value.motherName,
-      photo: this.step4.value.photo,
-      signature: this.step4.value.signature
-    })
-  }
-
-  public ngOnInit(): void {
+  ngOnInit(): void {
     const { step1, step2, step3, step4 } = this.buildForm.run();
     this.step1 = step1;
     this.step2 = step2;
