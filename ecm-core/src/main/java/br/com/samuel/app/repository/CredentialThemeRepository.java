@@ -23,4 +23,8 @@ public interface CredentialThemeRepository extends JpaRepository<CredentialTheme
   // Lista os temas pelo nome em ordem decrescente
   @Query("SELECT t FROM CredentialTheme t WHERE LOWER(t.name) LIKE %:search% ORDER BY t.name DESC")
   Page<CredentialTheme> listPaginateByNameDesc(@Param("search") String search, Pageable pageable);
+
+   // Lista os temas pelo nome em ordem decrescente
+  @Query("SELECT t FROM CredentialTheme t WHERE LOWER(t.name) LIKE %:search% ORDER BY t.updatedAt DESC")
+  Page<CredentialTheme> listPaginateLatestUpdated(@Param("search") String search, Pageable pageable);
 }

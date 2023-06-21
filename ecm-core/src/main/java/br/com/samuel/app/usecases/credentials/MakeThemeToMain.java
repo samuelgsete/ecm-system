@@ -18,8 +18,10 @@ public class MakeThemeToMain {
             .map(theme -> {
                 if(theme.getIsMain()) 
                     theme.setIsMain(false);
-                if(id.equals(theme.getId()))
+                if(id.equals(theme.getId())) {
                     theme.setIsMain(true);
+                    theme.toUpdated();
+                }
                 return theme;
             }).collect(Collectors.toSet());
         repository.saveAll(themes);

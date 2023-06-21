@@ -3,7 +3,7 @@
         class="previous-page"
         (click)="changePage(previousPage())"
         [ngClass]="{ 'disabled': pageCurrent().isFirst }">
-        Anterior
+        <mat-icon>navigate_before</mat-icon>
     </li>
     <li 
         class="page" 
@@ -18,6 +18,6 @@
         class="next-page"
         (click)="changePage(nextPage())"
         [ngClass]="{ 'disabled': pageCurrent().isLast }">
-        Próximo
+        <mat-icon>navigate_next</mat-icon>
     </li>
 </ul>

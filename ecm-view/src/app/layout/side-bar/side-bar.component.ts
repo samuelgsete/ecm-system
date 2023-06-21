@@ -17,10 +17,10 @@ interface PathRoute {
 export class SideBarComponent {
 
   routes: PathRoute[] = [
-    { icon: 'account_box', path: 'members', name: 'Membros' },
-    { icon: 'storage', path: 'roles', name: 'Cargos' },
+    { icon: 'group_add', path: 'members', name: 'Membros' },
+    { icon: 'layers', path: 'roles', name: 'Cargos' },
     { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
-    { icon: 'person_add', path: 'create/member', name: 'Novo Membro' },
+    { icon: 'widgets', path: 'credential/themes', name: 'Temas' },
     { icon: 'print', path: '~/http://localhost:8090/api/v1/credentials/print/all', name: 'Imprimir' }
   ];
 

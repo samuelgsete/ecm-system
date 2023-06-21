@@ -5,7 +5,7 @@
 
 button.btn {
     margin: 4px 0;
-    padding: 20px 30px;
+    padding: 16px 30px;
     font-size: 0.90em;
     font-weight: 700;
     border: none;
@@ -218,7 +218,9 @@ button.btn:enabled:hover {
 }
 
 button.btn[disabled=true], button:disabled {
-    cursor: not-allowed;
+    cursor: not-allowed !important;
     pointer-events: none;
     background-color: rgb(var(--gray-4)) !important;
+    border: 2px solid rgb(var(--gray-4)) !important;
+    color: rgb(var(--gray-0)) !important;
 }

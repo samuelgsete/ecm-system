@@ -14,6 +14,7 @@ import { LayoutModule } from './layout/layout.module';
 
 import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
+import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { initializeKeycloak } from './security/keycloak.config';
     RolesModule,
     CongregationsModule,
     UploadsImagesModule,
-    LayoutModule
+    LayoutModule,
+    CredentialThemesModule
   ],
   providers: [
     {

@@ -16,10 +16,7 @@ ul.pagination {
 li.previous-page, li.next-page {
     cursor: pointer;
     color: rgb(var(--gray-7));
-    font-family: 'Heebo', sans-serif;
-    font-size: 0.94em;
-    letter-spacing: -0.8px;
-    padding: 8px 14px;
+    padding: 6px;
     transition: all 0.6s;
 }
 

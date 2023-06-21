@@ -16,6 +16,8 @@ public class ListThemesPaginate extends Paginate<CredentialTheme, CredentialThem
                 return getRepository().listPaginateByNameAsc(search, pageable);
             case "by_name_desc":
                 return getRepository().listPaginateByNameDesc(search, pageable);
+            case "latest_updated":
+                return getRepository().listPaginateLatestUpdated(search, pageable);
         }
         return getRepository().listPaginateByNameAsc(search, pageable);
     }

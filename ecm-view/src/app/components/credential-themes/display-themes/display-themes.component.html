@@ -1,0 +1,76 @@
+<main>
+    <section>
+        <header>
+            <app-name-page title="Temas" subtitle="Disponíveis"></app-name-page>
+            <div class="row-flex space-between center-vertical">
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
+                    <mat-icon>filter_list</mat-icon>
+                </button>
+                <mat-menu #ordination="matMenu">
+                    <button
+                        mat-menu-item
+                        *ngFor="let ordination of onOrder.ordinations"
+                        (click)="onOrder.run(ordination.name)"
+                    >
+                        {{ ordination.label }}
+                    </button>
+                </mat-menu>
+                <div class="input-search" matRipple>
+                    <mat-icon>search</mat-icon>
+                    <input 
+                        type="text"
+                        class="search"
+                        [formControl]="formSearch"
+                        placeholder="Pesquisar temas"
+                    >
+                </div>
+                <button 
+                    class="btn"
+                    color="purple"
+                    radius="true"
+                    (click)="onPrint.all()"
+                    matRipple
+                >VER TEMA</button>
+            </div>
+        </header>
+        <table class="ui-table default" *ngIf="!listThemes.isEmpty()">
+            <tr>
+                <th>ID</th>
+                <th>Tema</th>
+                <th>Status</th>
+                <th>última Atualização</th>
+                <th>Ações</th>
+            </tr>
+            <tr *ngFor="let theme of themes">
+                <td>{{ theme.id }}</td>
+                <td>{{ theme.name }}</td>
+                <td>
+                    <div [ngClass]="{ 'active' : theme.isMain, 'inactive' : !theme.isMain }" matRipple>
+                        {{ theme.isMain ? 'ATIVADO' : 'DESATIVADO' }}
+                    </div>
+                </td>
+                <td>{{ theme.updatedAt | dateDuration }}</td>
+                <td>
+                    <button
+                        class="btn"
+                        color="purple"
+                        radius="true"
+                        outline="true"
+                        (click)="makeThemeToMain.run(theme.id)"
+                        [disabled]="theme.isMain"
+                        matRipple
+                    >ATIVAR</button>
+                </td>
+            </tr>
+        </table>
+        <app-pagination></app-pagination>
+    </section>
+</main>
+
+<ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#8e27fa"
+    type="ball-atom"
+    [fullScreen]="true">
+</ngx-spinner>

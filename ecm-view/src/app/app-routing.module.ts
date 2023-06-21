@@ -7,6 +7,7 @@ import { DisplayCongregationsComponent } from './components/congregations/displa
 import { UpdateMemberComponent } from './components/members/update-member/update-member.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CreateMember2Component } from './components/members/create-member2/create-member2.component';
+import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
 
 const routes: Routes = [
   { path: 'create/member2', component: CreateMember2Component },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'members', component: DisplayMembersComponent },
     { path: 'create/member', component: CreateMember2Component },
     { path: 'member/:id/update', component: UpdateMemberComponent },
+    { path: 'credential/themes', component: DisplayThemesComponent },
   ]}
 ];
 
