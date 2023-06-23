@@ -95,3 +95,39 @@ div.alert[color=purple] {
 div.alert[color=purple] .icon-alert {
     color: rgb(var(--purple));
 }
+
+div.primary {
+    border-left: 4px solid rgb(var(--primary));
+    background-color: rgba(var(--primary),0.08);
+}
+
+div.primary .icon-alert {
+    color: rgb(var(--primary));
+}
+
+div.danger {
+    border-left: 4px solid rgb(var(--danger));
+    background-color: rgba(var(--danger),0.08);
+}
+
+div.danger .icon-alert {
+    color: rgb(var(--danger));
+}
+
+div.warning {
+    border-left: 4px solid rgb(var(--warning));
+    background-color: rgba(var(--warning),0.08);
+}
+
+div.warning .icon-alert {
+    color: rgb(var(--warning));
+}
+
+div.default {
+    border-left: 4px solid rgb(var(--purple));
+    background-color: rgba(var(--purple),0.08);
+}
+
+div.default .icon-alert {
+    color: rgb(var(--purple));
+}

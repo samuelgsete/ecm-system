@@ -9,6 +9,10 @@ div.center-vertical {
     align-items: center;
 }
 
+div.center-horizontal {
+    justify-content: center;
+}
+
 div.space-between {
     justify-content: space-between;;
 }

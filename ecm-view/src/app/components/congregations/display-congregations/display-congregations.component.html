@@ -1,7 +1,7 @@
 <main>
     <section>
         <header>
-            <app-name-page  title="Congregações" subtitle="Cadastradas"></app-name-page>
+            <app-name-page title="Congregações" subtitle="Cadastradas"></app-name-page>
             <div class="row-flex space-between center-vertical">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
@@ -9,8 +9,8 @@
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
-                        *ngFor="let ordination of ordinations.run()"
-                        (click)="orderBy(ordination.name)"
+                        *ngFor="let ordination of order.ordinations"
+                        (click)="order.run(ordination.name)"
                     >
                         {{ ordination.label }}
                     </button>
@@ -25,7 +25,7 @@
                     >
                 </div>
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="purple"
                     radius="true"
                     (click)="openCreateCongregationComponent()"
@@ -53,7 +53,7 @@
                 </td>
             </tr>
         </table>
-        <app-pagination></app-pagination>
+        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </section>
 </main>
 

@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-class Page {
-  label: number = 0
-  isCurrent: boolean = false
-  isFirst: boolean = true
-  isLast: boolean = false
-}
+import { PaginationService } from './pagination.service';
+import { Page } from './page.entity';
+import { Paginate } from 'src/app/models/paginate.entity';
 
 @Component({
   selector: 'app-pagination',
@@ -14,52 +10,37 @@ class Page {
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  
-  pages: Page[] = [];
+    
+  pages: Page[] = []
+
+  @Output() changePage: EventEmitter<any> = new EventEmitter<any>()
 
   constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router
+    readonly pagination: PaginationService
   ) {}
 
-  changePage(nextPage: Page): void {
-    this.router.navigate([], { 
-      queryParams: { currentPage: nextPage.label },
-      queryParamsHandling: 'merge'
-    });
+  onChangePage(nextPage: Page): void {
+    this.changePage.emit(nextPage)
   }
 
-  pageCurrent(): Page {
-    return this.pages.filter(page => { return page.isCurrent })[0];
+  renderPagination(paginate: Paginate): void {
+    this.pages = []
+    const totalPages = paginate.totalPages
+    const currentPage = paginate.currentPage
+    for(let i = 0; i < totalPages; i++) {
+      this.pages.push({
+        label: i,
+        isCurrent: currentPage == i ? true : false,
+        isFirst: i == 0 ? true: false,
+        isLast: i == totalPages - 1 ? true: false
+      })
+    }
   }
 
-  nextPage(): Page {
-    let page = this.pageCurrent();
-    let index = this.pages.indexOf(page);
-    return this.pages[index + 1];
-  }
-
-  previousPage(): Page {
-    let page = this.pageCurrent();
-    let index = this.pages.indexOf(page);
-    return this.pages[index - 1];
-  }
-
-  loadPagination(): void {
-    this.route.queryParams.subscribe(params => {
+  ngOnInit(): void {
+    this.pagination.onRender().subscribe(paginate => {
       this.pages = []
-      let currentPage = params['currentPage'] || 0 ;
-      let numberOfPages = params['numberOfPages'] || 0;
-      for(let i = 0; i < numberOfPages; i++) {
-        this.pages.push({
-          label: i,
-          isCurrent: currentPage == i ? true : false,
-          isFirst: i == 0 ? true: false,
-          isLast: i == numberOfPages - 1 ? true: false
-        })
-      }
+      this.renderPagination(paginate)
     })
   }
-
-  ngOnInit(): void { this.loadPagination() }
 }

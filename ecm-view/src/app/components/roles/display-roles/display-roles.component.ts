@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 
 import { Pagination } from 'src/app/models/pagination.entity';
@@ -9,7 +8,9 @@ import { Role } from 'src/app/models/role.entity';
 import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
 import { UpdateRoleComponent } from '../update-role/update-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';
-import { OrdinationsRolesService } from 'src/app/usecases/roles/ordinations-roles.service';
+import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
+import { PaginationService } from '../../paginate/pagination/pagination.service';
+import { Paginate } from 'src/app/models/paginate.entity';
 
 @Component({
   selector: 'app-display-roles',
@@ -18,64 +19,52 @@ import { OrdinationsRolesService } from 'src/app/usecases/roles/ordinations-role
 })
 export class DisplayRolesComponent implements OnInit {
 
-  protected roles: Role[] = [];
-  protected pagination: Pagination = new Pagination({ size: 7 });
-  protected totalElements: number = 0;
-  protected formSearch: FormControl = new FormControl();
+  roles: Role[] = [];
+  pagination: Pagination = new Pagination({ size: 7 });
+  formSearch: FormControl = new FormControl();
 
-  public constructor(
-    protected readonly modal: MatDialog,
-    protected readonly route: ActivatedRoute,
-    protected readonly router: Router,
-    protected readonly listRoles: ListRolesPaginatedService,
-    protected readonly ordinations: OrdinationsRolesService
+  constructor(
+    readonly modal: MatDialog,
+    readonly onPaginate: PaginationService,
+    readonly listRoles: ListRolesPaginatedService,
+    readonly order: OrderRolesService
   ) {}
 
-  public openUpdateRoleComponent(role: Role): void {
+  nextPage(page: number): void {
+    this.pagination.page = page;
+    this.listRoles.run(this.pagination);
+  }
+
+  openUpdateRoleComponent(role: Role): void {
     this.modal.open(UpdateRoleComponent, {
       data: role
     })
-
     this.modal.afterAllClosed.subscribe(() => {
       this.listRoles.run(this.pagination);
     })
   }
 
-  public orderBy(ordination: string): void {
-    this.pagination.ordination = ordination;
-    this.listRoles.run(this.pagination);
-  }
-
-  public openCreateRoleComponent(): void {
+  openCreateRoleComponent(): void {
     this.modal.open(CreateRoleComponent);
     this.modal.afterAllClosed.subscribe(() => {
       this.listRoles.run(this.pagination);
     })
   }
 
-  public ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      let currentPage = params['currentPage'];
-      let search = params['search'] || '';
-      this.pagination.page = currentPage;
-      this.pagination.search = search;
-      this.listRoles.run(this.pagination);
-    })
-
+  ngOnInit(): void {
+    this.listRoles.run(this.pagination);
     this.listRoles.done().subscribe(response => {
       this.roles = response.content;
-      this.totalElements = response.totalElements;
-      this.router.navigate([], { 
-        queryParams: {  currentPage: response.number, numberOfPages: response.totalPages },
-        queryParamsHandling: 'merge'
-      });
+      this.pagination.page = response.number     
+      this.onPaginate.onBuild(new Paginate({
+        currentPage: response.number,
+        totalElements: response.totalElements,
+        totalPages: response.totalPages
+      }))
     })
-    
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.router.navigate([], { 
-        queryParams: { search: keyword.toLowerCase(), currentPage: 0 },
-        queryParamsHandling: 'merge'
-      });
-    });
+      this.pagination.search = keyword
+      this.listRoles.run(this.pagination)
+    })
   }
 }

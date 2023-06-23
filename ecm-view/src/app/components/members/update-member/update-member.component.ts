@@ -20,13 +20,13 @@ export class UpdateMemberComponent implements OnInit {
   step4!: FormGroup;
    
   constructor(
-    protected readonly router: Router,
-    protected readonly route: ActivatedRoute,
-    protected readonly buildForm: BuildFormUpdateMemberService,
-    protected readonly findOne: FindOneMemberService,
-    protected readonly data: ParseDataToMemberService,
-    protected readonly update: UpdateMemberService
-  ) {}
+    readonly router: Router,
+    readonly route: ActivatedRoute,
+    readonly buildForm: BuildFormUpdateMemberService,
+    readonly findOne: FindOneMemberService,
+    readonly data: ParseDataToMemberService,
+    readonly update: UpdateMemberService
+  ) { data.component = this }
 
   ngOnInit(): void {
     const id = parseInt(this.route.snapshot.params['id']);

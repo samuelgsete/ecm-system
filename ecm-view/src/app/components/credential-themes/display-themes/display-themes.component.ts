@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 
 import { CredentialTheme } from 'src/app/models/credential-theme.entity';
@@ -9,6 +8,8 @@ import { ListCredentialThemesPaginatedService } from 'src/app/usecases/credentia
 import { MakeThemeToMainService } from 'src/app/usecases/credential-themes/make-theme-to-main.service';
 import { OrderThemesService } from 'src/app/usecases/credential-themes/order-themes.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
+import { PaginationService } from '../../paginate/pagination/pagination.service';
+import { Paginate } from 'src/app/models/paginate.entity';
 
 @Component({
   selector: 'app-display-themes',
@@ -22,40 +23,37 @@ export class DisplayThemesComponent implements OnInit {
   formSearch: FormControl = new FormControl();
 
   constructor(
-    readonly router: Router,
-    readonly route: ActivatedRoute,
     readonly listThemes: ListCredentialThemesPaginatedService,
     readonly makeThemeToMain: MakeThemeToMainService,
     readonly onOrder: OrderThemesService,
-    readonly onPrint: GoToPrintService
+    readonly onPrint: GoToPrintService,
+    readonly onPaginate: PaginationService
   ) { onOrder.component = this }
 
+  nextPage(page: number): void {
+    this.pagination.page = page;
+    this.listThemes.run(this.pagination);
+  }
+
   ngOnInit(): void {
+    this.listThemes.run(this.pagination);
+    this.listThemes.done().subscribe(response => {
+      this.themes = response.content;
+      this.pagination.page = response.number     
+      this.onPaginate.onBuild(new Paginate({
+        currentPage: response.number,
+        totalElements: response.totalElements,
+        totalPages: response.totalPages
+      }))
+    })
+
     this.makeThemeToMain.done().subscribe(response => {
       this.listThemes.run(this.pagination)
     })
 
-    this.route.queryParams.subscribe(params => {
-      let currentPage = params['currentPage'];
-      let search = params['search'] || '';
-      this.pagination.page = currentPage;
-      this.pagination.search = search;
+    this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
+      this.pagination.search = keyword;
       this.listThemes.run(this.pagination);
     })
-
-    this.listThemes.done().subscribe(response => {
-      this.themes = response.content;
-      this.router.navigate([], { 
-        queryParams: {  currentPage: response.number, numberOfPages: response.totalPages },
-        queryParamsHandling: 'merge'
-      });
-    })
-    
-    this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.router.navigate([], { 
-        queryParams: { search: keyword.toLowerCase(), currentPage: 0 },
-        queryParamsHandling: 'merge'
-      });
-    }); 
   }
 }

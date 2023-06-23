@@ -5,13 +5,22 @@
 
 button.btn {
     margin: 4px 0;
-    padding: 16px 30px;
     font-size: 0.90em;
+    padding: 10px 25px;
     font-weight: 700;
+    letter-spacing: -0.3px;
     border: none;
     font-family: 'Laila', sans-serif;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     position: relative;
+}
+
+button.sm {
+    padding: 14px 30px;
+}
+
+button.lg {
+    padding: 20px 35px;
 }
 
 button.btn div.progress-bar {
@@ -203,7 +212,7 @@ button.btn[block=true] {
 }
 
 button.btn[radius=true] {
-    border-radius: 28px;
+    border-radius: 30px;
 }
 
 button.btn:enabled {

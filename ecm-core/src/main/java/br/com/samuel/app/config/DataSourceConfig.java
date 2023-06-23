@@ -13,6 +13,7 @@ public class DataSourceConfig {
     private DataSourceFactory factory;
     
     @Bean
+    @Primary
     public DataSource mainDatabase() {
         return factory.run(
             "postgres", 
@@ -23,7 +24,6 @@ public class DataSourceConfig {
     }
 
     @Bean
-    @Primary
     public DataSource testDatabase() {
         return factory.run(
             "postgres", 

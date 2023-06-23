@@ -9,21 +9,21 @@ import { ListMembersPaginatedResource } from "src/app/resources/members/list-mem
 @Injectable()
 export class ListMembersPaginatedService extends ListPaginatedService {
 
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly listPaginate: ListMembersPaginatedResource
     ) { super() }
 
-    public run(pagination: Pagination): void {
-        this.spinner.show();
+    run(pagination: Pagination): void {
+        this.spinner.show()
+        this.finally = false;
         this.listPaginate.run(pagination).subscribe({
             next: (response) => {
                 this.emptyData = response.content.length == 0 ? true : false;
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                console.log(eventErr);
                 this.toastr.error('Não foi possível listar os membros', 'Deu errado :(', { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'

@@ -4,7 +4,8 @@ import { Congregation } from "src/app/models/congregation.entity";
 
 @Injectable()
 export class SelectCongregationComparatorService {
-    run(r1: Congregation, r2: Congregation): boolean {
-        return r1.name == r2.name ? true: false;
+    
+    run(c1: Congregation, c2: Congregation): boolean {
+        return c1.name == c2.name ? true: false;
     }
 }

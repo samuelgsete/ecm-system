@@ -1,23 +1,11 @@
 <ul class="pagination" *ngIf="pages.length > 1">
     <li 
-        class="previous-page"
-        (click)="changePage(previousPage())"
-        [ngClass]="{ 'disabled': pageCurrent().isFirst }">
-        <mat-icon>navigate_before</mat-icon>
-    </li>
-    <li 
         class="page" 
         *ngFor="let page of pages"
+        (click)="onChangePage(page)"
         [ngClass]="{ 'isCurrent' : page.isCurrent == true }"
-        (click)="changePage(page)"
         matRipple
     >
         {{ page.label + 1 }}
-    </li>
-    <li 
-        class="next-page"
-        (click)="changePage(nextPage())"
-        [ngClass]="{ 'disabled': pageCurrent().isLast }">
-        <mat-icon>navigate_next</mat-icon>
     </li>
 </ul>

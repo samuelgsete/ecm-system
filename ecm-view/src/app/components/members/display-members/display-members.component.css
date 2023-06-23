@@ -41,7 +41,7 @@ table tr td:nth-child(2) {
 }
 
 table tr td img.photo-member {
-    max-width: 68px;
+    max-width: 48px;
     max-height: auto;
     border-radius: 8px;
     border: 0.12em solid rgb(var(--gray-2));

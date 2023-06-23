@@ -13,18 +13,6 @@ ul.pagination {
     align-items: center;
 }
 
-li.previous-page, li.next-page {
-    cursor: pointer;
-    color: rgb(var(--gray-7));
-    padding: 6px;
-    transition: all 0.6s;
-}
-
-li.previous-page:hover, li.next-page:hover {
-    background-color: rgb(var(--gray-1));
-    color: rgb(var(--dark));
-}
-
 li.disabled {
     color: rgb(var(--gray-4));
     pointer-events: none;
@@ -32,18 +20,19 @@ li.disabled {
 }
 
 ul.pagination li.page {
-    padding: 8px 14px;
-    margin-right: 4px;
+    padding: 10px 15px;
     color: rgb(var(--gray-7));
-    font-size: 1.05em;
+    font-size: 1.08em;
+    font-weight: 550;
     font-family: 'Heebo', sans-serif;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 50%;
     transition: all 0.5s;
 }
 
 ul.pagination li.page:hover {
     background-color: rgb(var(--gray-3));
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 ul.pagination li.isCurrent {

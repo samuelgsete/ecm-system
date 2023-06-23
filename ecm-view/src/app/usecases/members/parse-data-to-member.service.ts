@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Affiliation } from "src/app/models/affiliation.entity";
 
+import { CreateMember2Component } from "src/app/components/members/create-member2/create-member2.component";
+import { UpdateMemberComponent } from "src/app/components/members/update-member/update-member.component";
+import { Affiliation } from "src/app/models/affiliation.entity";
 import { Congregation } from "src/app/models/congregation.entity";
 import { Member } from "src/app/models/member.entity";
 import { Role } from "src/app/models/role.entity";
@@ -9,12 +11,13 @@ import { Role } from "src/app/models/role.entity";
 @Injectable()
 export class ParseDataToMemberService {
 
-  run(
-    step1: FormGroup, 
-    step2: FormGroup, 
-    step3: FormGroup, 
-    step4: FormGroup
-  ): Member {
+  component!: CreateMember2Component | UpdateMemberComponent;
+
+  run(): Member {
+    const step1: FormGroup = this.component.step1
+    const step2: FormGroup = this.component.step2
+    const step3: FormGroup = this.component.step3
+    const step4: FormGroup = this.component.step4
     return new Member({
       id: step1.value.id,
       isSelected: step1.value.isSelected,
@@ -42,6 +45,6 @@ export class ParseDataToMemberService {
       }),
       photo: step4.value.photo,
       signature: step4.value.signature
-    });
+    })
   }
 }

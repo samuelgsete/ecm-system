@@ -4,7 +4,7 @@
             <app-update-step1 [form]="step1"></app-update-step1>
             <div class="row-flex">
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="purple"
                     radius="true"
                     [disabled]="!step1.valid"
@@ -18,14 +18,14 @@
                 <app-update-step2 [form]="step2"></app-update-step2>
                 <div class="row-flex">
                     <button 
-                        class="btn"
+                        class="btn lg"
                         color="dark"
                         radius="true"
                         matStepperPrevious
                         matRipple
                     >ANTERIOR</button>
                     <button 
-                        class="btn"
+                        class="btn lg"
                         color="purple"
                         radius="true"
                         [disabled]="!step2.valid"
@@ -40,14 +40,14 @@
                 <app-update-step3 [form]="step3"></app-update-step3>
                 <div class="row-flex">
                     <button 
-                        class="btn"
+                        class="btn lg"
                         color="dark"
                         radius="true"
                         matStepperPrevious
                         matRipple
                     >ANTERIOR</button>
                     <button 
-                        class="btn"
+                        class="btn lg"
                         color="purple"
                         radius="true"
                         [disabled]="!step3.valid"
@@ -61,14 +61,14 @@
             <app-update-step4 [form]="step4"></app-update-step4>
             <div class="row-flex">
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="dark"
                     radius="true"
                     matStepperPrevious
                     matRipple
                 >ANTERIOR</button>
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="purple"
                     radius="true"
                     matStepperNext
@@ -86,20 +86,20 @@
                 >
                 <p>Tudo pronto!</p>
             </div>
-            <div class="row-flex" horizontal-align="center">
+            <div class="row-flex center-horizontal">
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="light"
                     radius="true"
                     matStepperPrevious
                     matRipple
                 >REVISAR</button>
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="success"
                     radius="true"
                     [disabled]=" !(step1.valid && step2.valid && step3.valid && step3.valid)"
-                    (click)="update.run(data.run(step1, step2, step3, step4))"
+                    (click)="update.run(data.run())"
                     matRipple
                 >
                     ATUALIZAR CADASTRO

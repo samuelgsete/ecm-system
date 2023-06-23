@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 
 import { Congregation } from 'src/app/models/congregation.entity';
@@ -9,7 +8,9 @@ import { Pagination } from 'src/app/models/pagination.entity';
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { CreateCongregrationComponent } from '../create-congregration/create-congregration.component';
 import { UpdateCongregationComponent } from '../update-congregation/update-congregation.component';
-import { OrdinationsCongregationsService } from 'src/app/usecases/congregations/ordinations-congregations.service';
+import { OrderCongregationsService } from 'src/app/usecases/congregations/order-congregations.service';
+import { PaginationService } from '../../paginate/pagination/pagination.service';
+import { Paginate } from 'src/app/models/paginate.entity';
 
 @Component({
   selector: 'app-display-congregations',
@@ -18,32 +19,30 @@ import { OrdinationsCongregationsService } from 'src/app/usecases/congregations/
 })
 export class DisplayCongregationsComponent implements OnInit {
 
-  protected congregations: Congregation[] = [];
-  protected pagination: Pagination = new Pagination({ size: 8 });
-  protected totalElements: number = 0;
-  protected formSearch: FormControl = new FormControl();
+  congregations: Congregation[] = []
+  pagination: Pagination = new Pagination({ size: 3 })
+  formSearch: FormControl = new FormControl()
 
-  public constructor(
-    protected readonly modal: MatDialog,
-    protected readonly route: ActivatedRoute,
-    protected readonly router: Router,
-    protected readonly listCongregations: ListCongregationsPaginatedService,
-    protected readonly ordinations: OrdinationsCongregationsService
+  constructor(
+    readonly modal: MatDialog,
+    readonly onPaginate: PaginationService,
+    readonly listCongregations: ListCongregationsPaginatedService,
+    readonly order: OrderCongregationsService
   ) {}
 
-  public orderBy(ordination: string): void {
-    this.pagination.ordination = ordination;
+  nextPage(page: number): void {
+    this.pagination.page = page;
     this.listCongregations.run(this.pagination);
   }
 
-  public openCreateCongregationComponent(): void {
+  openCreateCongregationComponent(): void {
     this.modal.open(CreateCongregrationComponent);
     this.modal.afterAllClosed.subscribe(() => {
       this.listCongregations.run(this.pagination);
     });
   }
 
-  public openUpdateCongregationComponent(congregation: Congregation): void {
+  openUpdateCongregationComponent(congregation: Congregation): void {
     this.modal.open(UpdateCongregationComponent, {
       data: congregation
     })
@@ -53,29 +52,20 @@ export class DisplayCongregationsComponent implements OnInit {
     })
   }
 
-  public ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      let currentPage = params['currentPage'];
-      let search = params['search'] || '';
-      this.pagination.page = currentPage;
-      this.pagination.search = search;
-      this.listCongregations.run(this.pagination);
-    })
-
+  ngOnInit(): void {
+    this.listCongregations.run(this.pagination);
     this.listCongregations.done().subscribe(response => {
       this.congregations = response.content;
-      this.totalElements = response.totalElements;
-      this.router.navigate([], { 
-        queryParams: {  currentPage: response.number, numberOfPages: response.totalPages },
-        queryParamsHandling: 'merge'
-      });
+      this.pagination.page = response.number     
+      this.onPaginate.onBuild(new Paginate({
+        currentPage: response.number,
+        totalElements: response.totalElements,
+        totalPages: response.totalPages
+      }))
     })
     
-    this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.router.navigate([], { 
-        queryParams: { search: keyword.toLowerCase(), currentPage: 0 },
-        queryParamsHandling: 'merge'
-      });
-    });
+    this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
+      this.listCongregations.run(this.pagination);
+    })
   }
 }

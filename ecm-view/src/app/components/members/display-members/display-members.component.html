@@ -9,8 +9,8 @@
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
-                        *ngFor="let ordination of ordinations.run()"
-                        (click)="orderBy(ordination.name)"
+                        *ngFor="let ordination of order.ordinations"
+                        (click)="order.run(ordination.name)"
                     >
                         {{ ordination.label }}
                     </button>
@@ -25,7 +25,7 @@
                     >
                 </div>
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="purple"
                     radius="true"
                     (click)="router.navigateByUrl('/app/create/member')"
@@ -34,7 +34,7 @@
             </div>
         </header>
         
-        <table class="ui-table default" *ngIf="!listMembers.isEmpty()">
+        <table class="ui-table default" *ngIf="!listMembers.isEmpty() && listMembers.isFinally()">
             <tr>
                 <th></th>
                 <th>Foto</th>
@@ -70,7 +70,7 @@
                 </td>
             </tr>
         </table>
-        <app-pagination></app-pagination>
+        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </section>
 </main>
 

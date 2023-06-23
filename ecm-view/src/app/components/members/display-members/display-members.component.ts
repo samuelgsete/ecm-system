@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 
 import { Member } from 'src/app/models/member.entity';
@@ -9,8 +9,10 @@ import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
-import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
+import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
+import { PaginationService } from '../../paginate/pagination/pagination.service';
+import { Paginate } from 'src/app/models/paginate.entity';
 
 @Component({
   selector: 'app-display-members',
@@ -19,51 +21,43 @@ import { UpdateMemberService } from 'src/app/usecases/members/update-member.serv
 })
 export class DisplayMembersComponent implements OnInit {
 
-  protected members: Member[] = [];
-  protected pagination: Pagination = new Pagination({ size: 5 });
-  protected totalElements: number = 0;
-  protected formSearch: FormControl = new FormControl();
+  members: Member[] = [];
+  pagination: Pagination = new Pagination({ size: 6 });
+  formSearch: FormControl = new FormControl();
 
-  public constructor(
-    protected readonly route: ActivatedRoute,
-    protected readonly router: Router,
-    protected readonly listMembers: ListMembersPaginatedService,
-    protected readonly updateMember: UpdateMemberService,
-    protected readonly goToPrint: GoToPrintService,
-    protected readonly goToEdit: GoToEditService,
-    protected readonly onSelect: OnSelectMemberService,
-    protected readonly ordinations: OrdinationsMembersService
+  constructor(
+    readonly router: Router,
+    readonly onPaginate: PaginationService,
+    readonly listMembers: ListMembersPaginatedService,
+    readonly updateMember: UpdateMemberService,
+    readonly goToPrint: GoToPrintService,
+    readonly goToEdit: GoToEditService,
+    readonly onSelect: OnSelectMemberService,
+    readonly order: OrderMembersService
   ) {}
 
-  orderBy(ordination: string): void {
-    this.pagination.ordination = ordination;
+  nextPage(page: number): void {
+    this.pagination.page = page;
     this.listMembers.run(this.pagination);
   }
 
-  public ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      let currentPage = params['currentPage'] || 0;
-      let search = params['search'] || '';
-      this.pagination.page = currentPage;
-      this.pagination.search = search;
-      this.listMembers.run(this.pagination);
-    })
-
+  ngOnInit(): void {
+    this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
+      console.log("listando...");
       this.members = response.content;
-      this.totalElements = response.totalElements;
-      this.router.navigate([], { 
-        queryParams: {  currentPage: response.number, numberOfPages: response.totalPages },
-        queryParamsHandling: 'merge'
-      })
+      this.pagination.page = response.number     
+      this.onPaginate.onBuild(new Paginate({
+        currentPage: response.number,
+        totalElements: response.totalElements,
+        totalPages: response.totalPages
+      }))
     })
     
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.router.navigate([], { 
-        queryParams: { search: keyword.toLowerCase(), currentPage: 0 },
-        queryParamsHandling: 'merge'
-      });
-    });
+      this.pagination.search = keyword;
+      this.listMembers.run(this.pagination);
+    })
 
     this.updateMember.done().subscribe(response => {
       this.listMembers.run(this.pagination);

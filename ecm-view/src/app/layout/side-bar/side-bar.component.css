@@ -53,6 +53,7 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link {
 }
 
 nav.side-bar ul.nav-menu li.nav-item a.item-link mat-icon {
+    transform: scale(85%);
     color: rgb(var(--purple));
 }
 

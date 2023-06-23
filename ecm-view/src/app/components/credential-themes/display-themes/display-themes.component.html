@@ -25,7 +25,7 @@
                     >
                 </div>
                 <button 
-                    class="btn"
+                    class="btn lg"
                     color="purple"
                     radius="true"
                     (click)="onPrint.all()"
@@ -52,7 +52,7 @@
                 <td>{{ theme.updatedAt | dateDuration }}</td>
                 <td>
                     <button
-                        class="btn"
+                        class="btn sm"
                         color="purple"
                         radius="true"
                         outline="true"
@@ -63,7 +63,7 @@
                 </td>
             </tr>
         </table>
-        <app-pagination></app-pagination>
+        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </section>
 </main>
 

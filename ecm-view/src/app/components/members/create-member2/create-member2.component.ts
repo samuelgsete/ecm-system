@@ -22,11 +22,11 @@ export class CreateMember2Component implements OnInit {
   step4!: FormGroup;
    
   constructor(
-    protected readonly router: Router,
-    protected readonly buildForm: BuildFormCreateMemberService,
-    protected readonly createMember: CreateMemberService,
-    protected readonly data: ParseDataToMemberService,
-  ) {}
+    readonly router: Router,
+    readonly buildForm: BuildFormCreateMemberService,
+    readonly createMember: CreateMemberService,
+    readonly data: ParseDataToMemberService,
+  ) { data.component = this }
 
   ngOnInit(): void {
     const { step1, step2, step3, step4 } = this.buildForm.run();

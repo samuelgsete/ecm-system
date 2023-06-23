@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
 
-import { CreateMemberComponent } from './create-member/create-member.component';
 import { DisplayMembersComponent } from './display-members/display-members.component';
 import { Step1Component } from './create-member2/step1/step1.component';
 import { Step2Component } from './create-member2/step2/step2.component';
@@ -36,10 +35,10 @@ import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
 import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
+import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
 
 @NgModule({
   declarations: [
-    CreateMemberComponent,
     DisplayMembersComponent,
     UpdateMemberComponent,
     CreateMember2Component,
@@ -75,7 +74,8 @@ import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-
     BuildFormCreateMemberService,
     BuildFormUpdateMemberService,
     ParseDataToMemberService,
-    OrdinationsMembersService
+    OrdinationsMembersService,
+    OrderMembersService
   ]
 })
 export class MembersModule {}

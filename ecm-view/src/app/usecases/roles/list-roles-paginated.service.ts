@@ -16,10 +16,10 @@ export class ListRolesPaginatedService extends ListPaginatedService {
     ) { super() }
 
     public run(pagination: Pagination): void {
-        this.spinner.show();
+        this.spinner.show()
         this.listPaginate.run(pagination).subscribe({
             next: (response) => {
-                this.emptyData = response.content.length == 0 ? true : false;
+                this.emptyData = (response.content.length == 0) ? true : false;
                 this.complete.emit(response);
             },
             error: (eventErr) => {
