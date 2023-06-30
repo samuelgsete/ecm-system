@@ -5,7 +5,7 @@ body *::-webkit-scrollbar, body::-webkit-scrollbar {
 }
   
 body *::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
-    background: rgb(var(--gray-0));
+    background: rgb(var(--dark));
 }
   
 body *::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb  {

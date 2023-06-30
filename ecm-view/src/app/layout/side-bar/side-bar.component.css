@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300&display=swap');
 
 * {
     margin: 0;
@@ -7,10 +8,9 @@
 
 nav.side-bar {
     background-color: rgb(var(--gray-1));
-    max-width: min-content;
+    width: 85px;
     height: calc(100% - 20px);
     position: fixed;
-    width: 100px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -24,8 +24,16 @@ img.logotipo {
     width: 45px;
 }
 
-button.logout {
+div.user-avatar {
+    font-family: 'Geologica', sans-serif;
+    border: 1.8px solid rgb(var(--purple));
     color: rgb(var(--purple));
+    font-weight: 600;
+    font-size: 1.7em;
+    background-color: rgba(var(--purple), 0.12);
+    padding: 13px 18px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 nav.side-bar ul.nav-menu {

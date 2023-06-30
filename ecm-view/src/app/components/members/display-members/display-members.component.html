@@ -21,7 +21,7 @@
                         type="text"
                         class="search"
                         [formControl]="formSearch"
-                        placeholder="Pesquisar membros"
+                        placeholder="Pesquisar..."
                     >
                 </div>
                 <button 
@@ -33,6 +33,8 @@
                 >CADASTRAR NOVO</button>
             </div>
         </header>
+
+        <app-no-data-created *ngIf="listMembers.isEmpty()"></app-no-data-created>
         
         <table class="ui-table default" *ngIf="!listMembers.isEmpty() && listMembers.isFinally()">
             <tr>

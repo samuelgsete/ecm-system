@@ -12,7 +12,6 @@ import { Paginate } from 'src/app/models/paginate.entity';
 export class PaginationComponent implements OnInit {
     
   pages: Page[] = []
-
   @Output() changePage: EventEmitter<any> = new EventEmitter<any>()
 
   constructor(
@@ -24,15 +23,12 @@ export class PaginationComponent implements OnInit {
   }
 
   renderPagination(paginate: Paginate): void {
-    this.pages = []
     const totalPages = paginate.totalPages
     const currentPage = paginate.currentPage
     for(let i = 0; i < totalPages; i++) {
       this.pages.push({
         label: i,
-        isCurrent: currentPage == i ? true : false,
-        isFirst: i == 0 ? true: false,
-        isLast: i == totalPages - 1 ? true: false
+        isCurrent: currentPage == i ? true : false
       })
     }
   }

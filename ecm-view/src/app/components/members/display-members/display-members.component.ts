@@ -44,7 +44,6 @@ export class DisplayMembersComponent implements OnInit {
   ngOnInit(): void {
     this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
-      console.log("listando...");
       this.members = response.content;
       this.pagination.page = response.number     
       this.onPaginate.onBuild(new Paginate({
@@ -55,8 +54,9 @@ export class DisplayMembersComponent implements OnInit {
     })
     
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.pagination.search = keyword;
-      this.listMembers.run(this.pagination);
+      this.listMembers.run(new Pagination({ 
+        size: 6, search: keyword.toLowerCase() 
+      }))
     })
 
     this.updateMember.done().subscribe(response => {

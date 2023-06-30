@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 .no-data-found {
+    background-color: rgb(var(--gray-0));
     display: flex;
     flex-direction: column;
     row-gap: 15px;
     text-align: center;
     align-items: center;
-    margin: 50px 0;
+    margin: 20px 0;
+    padding: 5%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+img.no-found {
+    max-width: 35%;
+    max-height: auto;
 }
 
 p.message {

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+footer {
+    padding: 2% 4%;
+    width: 92%;
+    background-color: rgb(var(--dark));
+    font-size: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+footer hr {
+    border: 1.3px solid rgb(var(--gray-8))
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    max-width: 36px;
+    max-height: auto;
+}
+
+.logo p {
+    font-size: 0.97em;
+    letter-spacing: 0.6px;
+    font-family: 'Fredoka', sans-serif;
+    margin: 2px;
+}
+
+.support p:first-child, .logo p {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    font-size: 0.95em;
+    color: rgb(var(--gray-2));
+}
+
+.support p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92em;
+    letter-spacing: -0.7px;
+    margin: 3px;
+    color: rgb(var(--gray-3));
+    display: flex;
+    align-items: center;
+}
+
+.support p mat-icon {
+    transform: scale(70%);
+    margin-left: 5px; 
+    color: rgb(var(--pink));
+}
+
+.copyright {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93em;
+    letter-spacing: -0.8px;
+    color: rgb(var(--gray-3));
+}
+
+.copyright strong {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 0.97em;
+    letter-spacing: 0.6px;
+    color: rgb(var(--gray-4));
+    text-decoration: underline;
+}
