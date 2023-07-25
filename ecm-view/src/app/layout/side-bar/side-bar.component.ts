@@ -16,6 +16,7 @@ interface PathRoute {
 })
 export class SideBarComponent {
 
+  avatar: string = "L";
   routes: PathRoute[] = [
     { icon: 'group_add', path: 'members', name: 'Membros' },
     { icon: 'layers', path: 'roles', name: 'Cargos' },

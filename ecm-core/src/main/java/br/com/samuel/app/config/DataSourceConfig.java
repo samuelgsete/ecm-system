@@ -13,9 +13,9 @@ public class DataSourceConfig {
     private DataSourceFactory factory;
     
     @Bean
-    @Primary
-    public DataSource mainDatabase() {
+    public DataSource mainDB() {
         return factory.run(
+            Sgbd.POSTGRES,
             "postgres", 
             "postgres", 
             "ecmdb",
@@ -24,12 +24,36 @@ public class DataSourceConfig {
     }
 
     @Bean
-    public DataSource testDatabase() {
+    public DataSource testDB() {
         return factory.run(
+            Sgbd.POSTGRES,
             "postgres", 
             "postgres", 
             "ecmtest2db",
             5432
+        );
+    }
+
+    @Bean
+    @Primary
+    public DataSource mysqlDB() {
+        return factory.run(
+            Sgbd.MYSQL,
+            "root", 
+            "root", 
+            "ecmdb",
+            3306
+        );
+    }
+
+    @Bean
+    public DataSource h2DB() {
+        return factory.run(
+            Sgbd.H2,
+            "root", 
+            "root", 
+            "./h2",
+            5555
         );
     }
 }

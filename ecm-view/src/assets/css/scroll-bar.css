@@ -9,6 +9,6 @@ body *::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
 }
   
 body *::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb  {
-    background-color: rgb(var(--pink));
+    background-color: rgb(var(--gray-4));
     border: none;
 }

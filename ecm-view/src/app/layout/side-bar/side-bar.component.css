@@ -21,7 +21,7 @@ nav.side-bar {
 }
 
 img.logotipo {
-    width: 45px;
+    width: 42px;
 }
 
 div.user-avatar {
@@ -29,9 +29,10 @@ div.user-avatar {
     border: 1.8px solid rgb(var(--purple));
     color: rgb(var(--purple));
     font-weight: 600;
-    font-size: 1.7em;
-    background-color: rgba(var(--purple), 0.12);
-    padding: 13px 18px;
+    font-size: 1.5em;
+    background-color: rgba(var(--purple), 0.14);
+    text-transform: uppercase;
+    padding: 10px 15px;
     border-radius: 50%;
     cursor: pointer;
 }
