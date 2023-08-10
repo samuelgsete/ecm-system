@@ -7,12 +7,12 @@ import br.com.samuel.app.models.CredentialTheme;
 import br.com.samuel.app.repository.CredentialThemeRepository;
 
 @Service
-public class FindOneThemeByIsMain {
+public class FindActivatedTheme {
 
     @Autowired
     private CredentialThemeRepository repository;
 
     public Optional<CredentialTheme> run() {
-        return repository.findOneThemeByIsMain();
+        return repository.findActivatedTheme();
     }
 }

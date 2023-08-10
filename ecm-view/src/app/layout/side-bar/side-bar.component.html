@@ -2,18 +2,19 @@
     <img class="logotipo" src="/assets/img/ecm-logo-removebg-preview.png" alt="Logotipo">
     <ul class="nav-menu">
         <li class="nav-item" *ngFor="let route of routes" matRipple>
-            <a *ngIf="route.name != 'Imprimir'" class="item-link" [routerLink]="route.path" routerLinkActive="active">
-                <mat-icon>{{ route.icon }}</mat-icon>
-                {{ route.name }}
-            </a>
-            <a class="item-link" *ngIf="route.name == 'Imprimir'" (click)="print.all()">
+            <a class="item-link" [routerLink]="route.path" routerLinkActive="active">
                 <mat-icon>{{ route.icon }}</mat-icon>
                 {{ route.name }}
             </a>
         </li>
+        <li class="nav-item" matRipple (click)="print.run()">
+            <a class="item-link">
+                <mat-icon>download</mat-icon>
+                Imprimir
+            </a>
+        </li>
     </ul>
-
-    <div class="user-avatar" matRipple>
-        {{ avatar }}
+    <div class="name-initial" matRipple>
+        {{ nameInitial }}
     </div>
 </nav>

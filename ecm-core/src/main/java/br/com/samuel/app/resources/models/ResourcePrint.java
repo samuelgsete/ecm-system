@@ -2,7 +2,7 @@ package br.com.samuel.app.resources.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.samuel.app.usecases.credentials.FindOneThemeByIsMain;
+import br.com.samuel.app.usecases.credentials.FindActivatedTheme;
 import br.com.samuel.app.usecases.members.FindOneMember;
 import br.com.samuel.app.usecases.members.ListAllMembersSelecteds;
 import br.com.samuel.app.usecases.utils.TextFormatter.CpfFormatter;
@@ -18,7 +18,7 @@ public abstract class ResourcePrint {
     private ListAllMembersSelecteds listAllSelecteds;
 
     @Autowired
-    private FindOneThemeByIsMain findMainTheme;
+    private FindActivatedTheme findMainTheme;
 
     @Autowired
     private DateFormatter dateFormatter;
@@ -37,7 +37,7 @@ public abstract class ResourcePrint {
         return listAllSelecteds;
     }
 
-    public FindOneThemeByIsMain mainTheme() {
+    public FindActivatedTheme mainTheme() {
         return findMainTheme;
     }
 

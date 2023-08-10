@@ -29,44 +29,37 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
         if(foundThemes.isEmpty()) {
             var blueTheme = new CredentialTheme(
                 "Blue Theme Special", 
-                "bluethemespecial-print", 
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028969/ecm/static/blue-theme-special-preview_m1aald.png",
+                "blue-theme-special", 
                 false
             );
             var indigoTheme = new CredentialTheme(
                 "Indigo Theme Special", 
-                "indigothemespecial-print",
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028969/ecm/static/indigo-theme-special-preview_gfrggd.png",
+                "indigo-theme-special",
                 false
             );
             var purpleTheme = new CredentialTheme(
                 "Purple Theme Special", 
-                "purplethemespecial-print",
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028969/ecm/static/purple-theme-special-preview_pxqetp.png",
+                "purple-theme-special",
                 true
             );
             var greenTheme = new CredentialTheme(
                 "Green Theme Special", 
-                "greenthemespecial-print", 
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028969/ecm/static/green-theme-special-preview_lgompo.png",
+                "green-theme-special", 
                 false
             );
             var yellowheme = new CredentialTheme(
                 "Yellow Theme Special", 
-                "yellowthemespecial-print", 
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028970/ecm/static/yellow-theme-special-preview_weab7t.png",
+                "yellow-theme-special",
                 false
             );
             var pinkTheme = new CredentialTheme(
                 "Pink Theme Special", 
-                "pinkthemespecial-print", 
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028970/ecm/static/pink-theme-special-preview_jneuzx.png",
+                "pink-theme-special", 
                 false
             );
             var redTheme = new CredentialTheme(
                 "Red Theme Special", 
-                "redthemespecial-print", 
-                "https://res.cloudinary.com/dt4bynswk/image/upload/v1687028969/ecm/static/red-theme-special-preview_ozecsi.png",
+                "red-theme-special",
                 false
             );
             var themes = new HashSet<CredentialTheme>(Arrays.asList(

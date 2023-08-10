@@ -25,10 +25,10 @@
                     >
                 </div>
                 <button 
-                    class="btn lg"
+                    class="btn btn-lg"
                     color="purple"
                     radius="true"
-                    (click)="onPrint.all()"
+                    (click)="onPrint.run()"
                     matRipple
                 >VER TEMA</button>
             </div>
@@ -45,8 +45,8 @@
                 <td>{{ theme.id }}</td>
                 <td>{{ theme.name }}</td>
                 <td>
-                    <div [ngClass]="{ 'active' : theme.isMain, 'inactive' : !theme.isMain }" matRipple>
-                        {{ theme.isMain ? 'ATIVADO' : 'DESATIVADO' }}
+                    <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
+                        {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
                     </div>
                 </td>
                 <td>{{ theme.updatedAt | dateDuration }}</td>
@@ -57,7 +57,7 @@
                         radius="true"
                         outline="true"
                         (click)="makeThemeToMain.run(theme.id)"
-                        [disabled]="theme.isMain"
+                        [disabled]="theme.isActive"
                         matRipple
                     >ATIVAR</button>
                 </td>

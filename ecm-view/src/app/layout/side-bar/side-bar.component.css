@@ -21,19 +21,25 @@ nav.side-bar {
 }
 
 img.logotipo {
-    width: 42px;
+    width: 40px;
 }
 
-div.user-avatar {
+div.name-initial {
     font-family: 'Geologica', sans-serif;
-    border: 1.8px solid rgb(var(--purple));
+    border: 1.8px solid rgb(var(--dark));
     color: rgb(var(--purple));
     font-weight: 600;
-    font-size: 1.5em;
+    font-size: 1.55em;
     background-color: rgba(var(--purple), 0.14);
     text-transform: uppercase;
-    padding: 10px 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
     border-radius: 50%;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 

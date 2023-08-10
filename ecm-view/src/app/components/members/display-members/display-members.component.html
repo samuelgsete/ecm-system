@@ -11,8 +11,7 @@
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
                         (click)="order.run(ordination.name)"
-                    >
-                        {{ ordination.label }}
+                    >{{ ordination.label }}
                     </button>
                 </mat-menu>
                 <div class="input-search" matRipple>
@@ -25,7 +24,7 @@
                     >
                 </div>
                 <button 
-                    class="btn lg"
+                    class="btn btn-lg"
                     color="purple"
                     radius="true"
                     (click)="router.navigateByUrl('/app/create/member')"
@@ -33,9 +32,7 @@
                 >CADASTRAR NOVO</button>
             </div>
         </header>
-
         <app-no-data-created *ngIf="listMembers.isEmpty()"></app-no-data-created>
-        
         <table class="ui-table default" *ngIf="!listMembers.isEmpty() && listMembers.isFinally()">
             <tr>
                 <th></th>
@@ -66,8 +63,8 @@
                     <button mat-icon-button (click)="goToEdit.run(member.id)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="goToPrint.one(member.id)">
-                    <mat-icon>print</mat-icon>
+                    <button mat-icon-button (click)="onPrint.run(member.id)">
+                    <mat-icon>download</mat-icon>
                 </button>
                 </td>
             </tr>

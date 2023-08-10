@@ -16,10 +16,10 @@ public class MakeThemeToMain {
             .findAll()
             .stream()
             .map(theme -> {
-                if(theme.getIsMain()) 
-                    theme.setIsMain(false);
+                if(theme.getIsActive()) 
+                    theme.setIsActive(false);
                 if(id.equals(theme.getId())) {
-                    theme.setIsMain(true);
+                    theme.setIsActive(true);
                     theme.toUpdated();
                 }
                 return theme;

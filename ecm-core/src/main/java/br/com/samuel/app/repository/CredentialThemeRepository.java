@@ -13,8 +13,8 @@ import br.com.samuel.app.models.CredentialTheme;
 public interface CredentialThemeRepository extends JpaRepository<CredentialTheme, Integer> {
     
   // Busca o tema cadastrado como principal
-  @Query("SELECT t FROM CredentialTheme t WHERE t.isMain = true")
-  Optional<CredentialTheme> findOneThemeByIsMain();
+  @Query("SELECT t FROM CredentialTheme t WHERE t.isActive = true")
+  Optional<CredentialTheme> findActivatedTheme();
 
    // Lista os temas pelo nome em ordem crescente
   @Query("SELECT t FROM CredentialTheme t WHERE LOWER(t.name) LIKE %:search% ORDER BY t.name ASC")

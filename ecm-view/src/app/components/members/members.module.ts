@@ -36,6 +36,8 @@ import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
 import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
 import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
+import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
+import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { OrderMembersService } from 'src/app/usecases/members/order-members.serv
     BuildFormUpdateMemberService,
     ParseDataToMemberService,
     OrdinationsMembersService,
-    OrderMembersService
+    OrderMembersService,
+    ListMembersSelectedsResource,
+    ListMembersSelectedsService
   ]
 })
 export class MembersModule {}

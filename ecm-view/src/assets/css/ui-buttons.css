@@ -15,11 +15,11 @@ button.btn {
     position: relative;
 }
 
-button.sm {
+button.btn-sm {
     padding: 14px 30px;
 }
 
-button.lg {
+button.btn-lg {
     padding: 20px 35px;
 }
 

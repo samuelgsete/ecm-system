@@ -1,108 +1,308 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <link th:href="@{/css/yellowthemespecial-print.css}" rel="stylesheet" />
-        <title>Página de Impressão</title>
-    </head>
-    <body>
-        <main>
-            <div class="template-credential" th:each="member : ${members}">
-                <div class="template-credential">
-                    <div class="back">
-                        <p class="date-of-issue">
-                            EMITIDO EM
-                            <span th:text="${dateFormatter.run(dateOfIssue, 'dd-MM-yyyy hh:mm:ss')}"></span>
-                        </p>
-                        <div class="grid">
-                            <div class="ui-text">
-                                <label>CPF</label>
-                                <p th:text="${cpfFormatter.run(member.cpf)}"></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>RG</label>
-                                <p th:text="${member.rg} ?: '************' "></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>Data de Batismo</label>
-                                <p th:text="${dateFormatter.run(member.dateOfBaptism, 'dd/MM/yyyy')}"></p>
-                            </div>
-                        </div>
-                        <div class="grid">
-                            <div class="ui-text">
-                                <label>Estado Civil</label>
-                                <p th:text="${maritalStatusFormatter.run(member.maritalStatus, member.gender)}"></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>Data de Nascimento</label>
-                                <p th:text="${dateFormatter.run(member.dateOfBirth, 'dd/MM/yyyy')}"></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>Cargo</label>
-                                <p th:text="${member.role.name}"></p>
-                            </div>
-                        </div>
-                        <div class="member">
-                            <div class="signature-member">
-                                <img
-                                    th:src="${member.signature.url}"
-                                    alt="Assinatura do membro"
-                                    width="100%" 
-                                    height="auto"
-                                >
-                            </div>
-                            <p class="name-member" th:text="${member.name}"></p>
-                            <p class="carrier-member">MEMBRO PORTADOR</p>
-                        </div>
-                        <div class="shepherd">
-                            <div class="signature-shepherd">
-                                <img 
-                                    th:src="@{/img/assinatura-pastor.png}"
-                                    alt="Assinatura do pastor" 
-                                    width="100%" 
-                                    height="auto"
-                                >
-                            </div>
-                            <p class="name-shepherd">Moisés Gonçalves Rodrigues</p>
-                            <p class="president-shepherd">PASTOR PRESIDENTE</p>
-                        </div>
+<main>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+        }
+    
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
+    
+        :root {
+            --primary: 49, 124, 245;
+            --danger: 255, 68, 68;
+            --secondary: 79, 38, 175;
+            --info: 51, 181, 229;
+            --warning: 230, 209, 15;
+            --success: 12, 223, 82;
+            --default: 38, 186, 171;
+            --dark-0: 33, 33, 33;
+            --dark-1: 39, 38, 38;
+            --light: 238, 238, 238;
+            --pink: 235, 63, 169;
+            --brown:201, 147, 32;
+            --indigo: 48, 68, 182;
+            --purple: 115, 21, 247;
+            --amber: 235, 120, 20;
+            --orange: 252, 131, 18;
+            --florest: 34, 139, 34;
+            --gray-0: 250, 250, 250;
+            --gray-1: 245, 245, 245;
+            --gray-2: 238, 238, 238;
+            --gray-3: 224, 224, 224;
+            --gray-4: 189, 189, 189;
+            --gray-5: 158, 158, 158;
+            --gray-6: 117, 117, 117;
+            --gray-7: 97, 97, 97;
+            --gray-8: 66, 66, 66;
+        }
+    
+        div.row-flex {
+            display: flex;
+            column-gap: 0.9em;
+            margin: 0.9em 0;
+            width: 100%;
+        }
+    
+        div.center-vertical {
+            align-items: center;
+        }
+    
+        div.center-horizontal {
+            justify-content: center;
+        }
+    
+        div.space-between {
+            justify-content: space-between;;
+        }
+    
+        div.ui-text {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            margin: 4px 0;
+        }
+    
+        div.ui-text label {
+            color: rgb(var(--dark-0));
+            font-weight: 600;
+            font-size: 0.76em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.8px;
+        }
+    
+        div.ui-text p {
+            font-size: 0.99em;
+            font-family: 'Noto Sans', sans-serif;
+            color: rgb(var(--dark-0));
+            max-height: 20px;
+            margin: 2px 0;
+        }
+    
+        main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        div.template-credential {
+            width: 960px;
+            height: 300px;
+            display: flex;
+            column-gap: 5px;
+            margin: 10px 0;
+        }
+    
+        div.front, div.back {
+            width: 96%;
+            padding: 2%;
+            border-radius: 1px;
+            border-bottom: 3pt solid rgb(var(--warning));
+            border-top: 1.4pt solid rgb(var(--gray-3));
+            border-left: 1.4pt solid rgb(var(--gray-3));
+            border-right: 1.4pt solid rgb(var(--gray-3));
+            background-color: rgb(var(--gray-0));
+            cursor: pointer;
+            position: relative;
+        }
+    
+        div.front div.banner {
+            width: 98%;
+            height: 36%;
+            padding: 2% 1%;
+            background: url('https://res.cloudinary.com/dt4bynswk/image/upload/v1691609724/ecm/static/yellow-theme-special_fuvri0.png');
+            text-align: right;
+            border-radius: 4px;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        }
+    
+        div.front div.banner img {
+            max-height: auto;
+            max-width: 62%;
+            margin-top: -12px;
+        }
+    
+        div.member, div.shepherd {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: -5px;
+        }
+    
+        p.name-member, p.name-shepherd {
+            font-weight: 600;
+            font-size: 1.05em;
+            font-family: 'Poppins', sans-serif;
+            color: rgb(var(--dark-0));
+            margin: 0 !important;
+        }
+    
+        p.carrier-member, p.president-shepherd {
+            font-size: 0.82em;
+            font-family: 'Inter', sans-serif;
+            color: rgb(var(--gray-6));
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin: 0 !important;
+        }
+    
+        div.photo {
+            height: 135px;
+            width: 110px;
+            padding: 2px;
+            border-radius: 2px;
+            background-color: #fff;
+            border: 1.4pt solid rgb(var(--gray-2));
+            margin: -90px 5px 2px 20px;
+            z-index: 9999999;
+        }
+    
+        div.signature-member {
+            width: 100%;
+            height: 50px;
+            margin-top: -15px;
+        }
+    
+        div.signature-shepherd {
+            width: 100%;
+            height: 38px;
+            margin-top: -11px;
+        }
+    
+        div.grid {
+            display: grid;
+            margin: 5px 0;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    
+        div.row-1 {
+            display: grid;
+            column-gap: 6px;
+            margin: 10px 0 6px 0;
+            grid-template-columns: 1fr 10fr 1fr;
+        }
+    
+        p.date-of-issue {
+            font-size: 0.62em;
+            letter-spacing: 0.2px;
+            padding: 12px 4px;
+            writing-mode: vertical-lr;
+            position: absolute;
+            top: 15px;
+            right: 5px;
+            font-weight: 600;
+            background-color: rgba(var(--warning), 0.11);
+            font-family: 'IBM Plex Mono', monospace;
+            color: rgb(var(--warning));
+        }
+    
+        @media print {
+            div.template-credential {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+    <div class="template-credential" th:each="member : ${members}">
+        <div class="template-credential">
+            <div class="back">
+                <p class="date-of-issue">
+                    EMITIDO EM
+                    <span th:text="${dateFormatter.run(dateOfIssue, 'dd-MM-yyyy hh:mm:ss')}"></span>
+                </p>
+                <div class="grid">
+                    <div class="ui-text">
+                        <label>CPF</label>
+                        <p th:text="${cpfFormatter.run(member.cpf)}"></p>
                     </div>
-                    <div class="front">
-                        <div class="banner">
-                            <img th:src="@{/img/yellow-logo.png}" alt="Assembléia de Deus">
-                        </div>
-                        <div class="row-1">
-                            <div class="photo">
-                                <img
-                                    th:src="${member.photo.urlTransformed}" 
-                                    alt="Photo of Member" 
-                                    width="100%" 
-                                    height="100%"
-                                >
-                            </div>
-                            <div class="ui-text">
-                                <label>Nome</label>
-                                <p th:text="${member.name}"></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>ID</label>
-                                <p th:text="${member.id}"></p>
-                            </div>
-                        </div>
-                        <div class="row-flex" horizontal-align="space-between">
-                            <div class="ui-text">
-                                <label>Filiação</label>
-                                <p th:text="${member.affiliation.fatherName} ?: '************ *****' "></p>
-                                <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
-                            </div>
-                            <div class="ui-text">
-                                <label>Congregação</label>
-                                <p th:text="${member.congregation.name}"></p>
-                            </div>
-                        </div>
+                    <div class="ui-text">
+                        <label>RG</label>
+                        <p th:text="${member.rg} ?: '************' "></p>
+                    </div>
+                    <div class="ui-text">
+                        <label>Data de Batismo</label>
+                        <p th:text="${dateFormatter.run(member.dateOfBaptism, 'dd/MM/yyyy')}"></p>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="ui-text">
+                        <label>Estado Civil</label>
+                        <p th:text="${maritalStatusFormatter.run(member.maritalStatus, member.gender)}"></p>
+                    </div>
+                    <div class="ui-text">
+                        <label>Data de Nascimento</label>
+                        <p th:text="${dateFormatter.run(member.dateOfBirth, 'dd/MM/yyyy')}"></p>
+                    </div>
+                    <div class="ui-text">
+                        <label>Cargo</label>
+                        <p th:text="${member.role.name}"></p>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="signature-member">
+                        <img
+                            th:src="${member.signature.url}"
+                            alt="Assinatura do membro"
+                            width="100%"
+                        >
+                    </div>
+                    <p class="name-member" th:text="${member.name}"></p>
+                    <p class="carrier-member">MEMBRO PORTADOR</p>
+                </div>
+                <div class="shepherd">
+                    <div class="signature-shepherd">
+                        <img 
+                            src="https://res.cloudinary.com/dt4bynswk/image/upload/v1683896485/ecm/static/assinatura-pastor_gdhrtg.png"
+                            alt="Assinatura do pastor" 
+                            width="100%" 
+                            height="auto"
+                        >
+                    </div>
+                    <p class="name-shepherd">Moisés Gonçalves Rodrigues</p>
+                    <p class="president-shepherd">PASTOR PRESIDENTE</p>
+                </div>
+            </div>
+            <div class="front">
+                <div class="banner">
+                    <img src="https://res.cloudinary.com/dt4bynswk/image/upload/v1691609825/ecm/static/yellow-logo_ae0crx.png" alt="Assembléia de Deus">
+                </div>
+                <div class="row-1">
+                    <div class="photo">
+                        <img
+                            th:src="${member.photo.urlTransformed}" 
+                            alt="Photo of Member" 
+                            width="100%" 
+                            height="100%"
+                        >
+                    </div>
+                    <div class="ui-text">
+                        <label>Nome</label>
+                        <p th:text="${member.name}"></p>
+                    </div>
+                    <div class="ui-text">
+                        <label>ID</label>
+                        <p th:text="${member.id}"></p>
+                    </div>
+                </div>
+                <div class="row-flex space-between">
+                    <div class="ui-text">
+                        <label>Filiação</label>
+                        <p th:text="${member.affiliation.fatherName} ?: '************ *****' "></p>
+                        <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
+                    </div>
+                    <div class="ui-text">
+                        <label>Congregação</label>
+                        <p th:text="${member.congregation.name}"></p>
                     </div>
                 </div>
             </div>
-        </main>
-    </body>
-</html>
+        </div>
+    </div>
+</main>

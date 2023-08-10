@@ -17,6 +17,5 @@ public class CredentialTheme extends EntityBase {
     
     private String name;
     private String template;
-    private String urlPreviewTheme;
-    private Boolean isMain;
+    private Boolean isActive;
 }

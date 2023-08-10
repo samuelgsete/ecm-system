@@ -5,9 +5,17 @@
         </h1>
     </div>
     <ul class="nav-menu">
-        <li class="nav-item" *ngFor="let route of routes" matRipple>
-            <mat-icon>{{ route.icon }}</mat-icon>
-            {{ route.name }}
+        <li class="nav-item" matRipple (click)="router.navigateByUrl('/app/members')">
+            <mat-icon>home</mat-icon>
+            Início
+        </li>
+        <li class="nav-item" matRipple (click)="managerUser.run()">
+            <mat-icon>settings</mat-icon>
+            Conta
+        </li>
+        <li class="nav-item" matRipple (click)="logoutUser.run()">
+            <mat-icon>logout</mat-icon>
+            Sair
         </li>
     </ul>
 </header>

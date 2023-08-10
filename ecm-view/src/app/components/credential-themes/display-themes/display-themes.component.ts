@@ -4,17 +4,22 @@ import { debounceTime } from 'rxjs';
 
 import { CredentialTheme } from 'src/app/models/credential-theme.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
+import { Paginate } from 'src/app/models/paginate.entity';
 import { ListCredentialThemesPaginatedService } from 'src/app/usecases/credential-themes/list-credential-themes-paginated.service';
 import { MakeThemeToMainService } from 'src/app/usecases/credential-themes/make-theme-to-main.service';
 import { OrderThemesService } from 'src/app/usecases/credential-themes/order-themes.service';
-import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
-import { Paginate } from 'src/app/models/paginate.entity';
+import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
+import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 
 @Component({
   selector: 'app-display-themes',
   templateUrl: './display-themes.component.html',
-  styleUrls: ['./display-themes.component.css']
+  styleUrls: ['./display-themes.component.css'],
+  providers: [
+    PrintAllCredentialsResource,
+    PrintAllCredentialsService
+  ]
 })
 export class DisplayThemesComponent implements OnInit {
 
@@ -26,8 +31,9 @@ export class DisplayThemesComponent implements OnInit {
     readonly listThemes: ListCredentialThemesPaginatedService,
     readonly makeThemeToMain: MakeThemeToMainService,
     readonly onOrder: OrderThemesService,
-    readonly onPrint: GoToPrintService,
-    readonly onPaginate: PaginationService
+    readonly onPrint: PrintAllCredentialsService,
+    readonly onPaginate: PaginationService,
+
   ) { onOrder.component = this }
 
   nextPage(page: number): void {
@@ -54,6 +60,11 @@ export class DisplayThemesComponent implements OnInit {
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
       this.pagination.search = keyword;
       this.listThemes.run(this.pagination);
+    })
+
+    this.onPrint.done().subscribe(htmlContent => {
+      let newWindow = open();
+      newWindow?.document.write(htmlContent);
     })
   }
 }

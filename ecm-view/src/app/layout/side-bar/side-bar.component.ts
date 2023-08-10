@@ -1,32 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
-
-interface PathRoute {
-  icon: string,
-  path: string,
-  name: string
-}
+import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
+import { UserInfoService } from 'src/app/usecases/users/userinfo.service';
+import { PathRoute } from './path-route.entity';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
-export class SideBarComponent {
+export class SideBarComponent implements OnInit {
 
-  avatar: string = "L";
+  nameInitial: string = "";
   routes: PathRoute[] = [
     { icon: 'group_add', path: 'members', name: 'Membros' },
     { icon: 'layers', path: 'roles', name: 'Cargos' },
     { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
-    { icon: 'widgets', path: 'credential/themes', name: 'Temas' },
-    { icon: 'print', path: '~/http://localhost:8090/api/v1/credentials/print/all', name: 'Imprimir' }
+    { icon: 'widgets', path: 'credential/themes', name: 'Temas' }
   ];
 
   constructor(
     protected readonly router: Router,
-    protected readonly print: GoToPrintService
+    protected readonly userinfo: UserInfoService,
+    protected readonly print: PrintAllCredentialsService
   ) {}
+
+  ngOnInit(): void {
+    /**
+      Recupera as informações do usuário logado
+    **/
+    this.userinfo.done().subscribe(userData => {
+      this.nameInitial = userData.given_name[0];
+    })
+    /**
+      Obtém o HTML contendo as credenciais para impressão
+      Renderiza o conteúdo HTML numa nova aba no navegador
+    **/
+    this.print.done().subscribe(htmlContent => {
+      let newWin = open();
+      newWin?.document.write(htmlContent);
+    })
+  }
 }

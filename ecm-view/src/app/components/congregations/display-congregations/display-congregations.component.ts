@@ -65,7 +65,9 @@ export class DisplayCongregationsComponent implements OnInit {
     })
     
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
-      this.listCongregations.run(this.pagination);
+      this.listCongregations.run(new Pagination({
+        size: 6, search: keyword.toLowerCase() 
+      }));
     })
   }
 }

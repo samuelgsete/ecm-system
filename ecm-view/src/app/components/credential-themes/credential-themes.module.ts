@@ -13,6 +13,8 @@ import { MakeThemeToMainService } from 'src/app/usecases/credential-themes/make-
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OrdinationsThemesService } from 'src/app/usecases/credential-themes/ordinations--themes.service';
 import { OrderThemesService } from 'src/app/usecases/credential-themes/order-themes.service';
+import { FindThemeActivatedResource } from 'src/app/resources/credential-themes/find-theme-activated.resource';
+import { FindThemeActivatedService } from 'src/app/usecases/credential-themes/find-theme-activated.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { OrderThemesService } from 'src/app/usecases/credential-themes/order-the
     MakeThemeToMainService,
     GoToPrintService,
     OrdinationsThemesService,
-    OrderThemesService
+    OrderThemesService,
+    FindThemeActivatedResource,
+    FindThemeActivatedService
   ]
 })
 export class CredentialThemesModule {}

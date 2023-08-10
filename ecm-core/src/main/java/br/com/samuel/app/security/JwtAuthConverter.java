@@ -33,6 +33,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
             jwtGrantedAuthoritiesConverter.convert(jwt).stream(),
             extractResourceRoles(jwt).stream()
         ).collect(Collectors.toSet());
+
         return new JwtAuthenticationToken(
             jwt,
             authorities,
@@ -61,7 +62,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         resourceRoles = (Collection<String>) resource.get("roles");
         return resourceRoles
             .stream()
-            .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+            .map(role -> new SimpleGrantedAuthority(role.toUpperCase()))
             .collect(Collectors.toSet());
     }
 }

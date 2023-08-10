@@ -8,12 +8,8 @@ import { UpdateMemberComponent } from './components/members/update-member/update
 import { LayoutComponent } from './layout/layout.component';
 import { CreateMember2Component } from './components/members/create-member2/create-member2.component';
 import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
-import { FooterComponent } from './layout/footer/footer.component';
 
 const routes: Routes = [
-  { path: 'create/member2', component: CreateMember2Component },
-  { path: 'member/:id/update', component: UpdateMemberComponent },
-  { path: 'footer', component: FooterComponent },
   { path: 'app', component: LayoutComponent, children: [
     { path: 'roles', component: DisplayRolesComponent },
     { path: 'congregations', component: DisplayCongregationsComponent },
