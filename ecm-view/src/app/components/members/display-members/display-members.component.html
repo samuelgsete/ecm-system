@@ -61,23 +61,19 @@
                     ></mat-checkbox>
                 </td>
                 <td>
-                    <img 
-                        class="photo-member"
-                        [src]="member.photo.urlTransformed"
-                        [alt]="member.name"
-                    >
+                    <img class="photo-member" [src]="member.photo.urlTransformed" [alt]="member.name">
                 </td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.role.name }}</td>
                 <td>{{ member.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="onPrint.run(member.id)">
-                        <mat-icon>download</mat-icon>
+                        <mat-icon>print</mat-icon>
                     </button>
                     <button mat-icon-button (click)="goToEdit.run(member.id)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="onDelete.run(member.id, member)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

@@ -1,6 +1,8 @@
 package br.com.samuel.app.models;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -58,4 +60,11 @@ public class Member extends EntityBase {
     @JoinColumn(name = "signature_id")
     @OneToOne(cascade = CascadeType.ALL)
     private ImageModel signature;
+
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return Objects.equals(id, member.getId()) && Objects.equals(cpf, member.getCpf());
+    }
 }

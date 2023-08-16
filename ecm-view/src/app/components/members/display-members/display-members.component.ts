@@ -17,6 +17,7 @@ import { PrintOneCredentialsService } from 'src/app/usecases/credentials/print-o
 import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print-one-credentials.resource';
 import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
 import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
+import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 
 @Component({
   selector: 'app-display-members',
@@ -46,7 +47,8 @@ export class DisplayMembersComponent implements OnInit {
     readonly onSelect: OnSelectMemberService,
     readonly order: OrderMembersService,
     readonly onPrint: PrintOneCredentialsService,
-    readonly onPrintAll: PrintAllCredentialsService
+    readonly onPrintAll: PrintAllCredentialsService,
+    readonly onDelete: DeleteMemberService
   ) {}
   
   nextPage(page: number): void {
@@ -85,6 +87,10 @@ export class DisplayMembersComponent implements OnInit {
     this.onPrintAll.done().subscribe(htmlContent => {
       let newWindow = open();
       newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
+    })
+
+    this.onDelete.done().subscribe(response => {
+      this.listMembers.run(new Pagination({ size: 6 }));
     })
   }
 }

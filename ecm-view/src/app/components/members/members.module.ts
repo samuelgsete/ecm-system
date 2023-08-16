@@ -38,6 +38,8 @@ import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-
 import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
 import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
+import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
+import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ListMembersSelectedsService } from 'src/app/usecases/members/list-membe
     OrdinationsMembersService,
     OrderMembersService,
     ListMembersSelectedsResource,
-    ListMembersSelectedsService
+    ListMembersSelectedsService,
+    DeleteMemberResource,
+    DeleteMemberService
   ]
 })
 export class MembersModule {}
