@@ -7,6 +7,7 @@ div.alert {
     margin: 10px 0;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     column-gap: 12px;
     padding: 0.8em 0.6em;
     border-radius: 3px;

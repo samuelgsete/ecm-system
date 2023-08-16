@@ -8,7 +8,8 @@ interface Ordination {
 export class OrdinationsMembersService {
 
     ordinations: Ordination[] = [
-        { label: 'Nome decrescente', name: 'by_name_desc' },
+        { label: 'Nome A-Z', name: 'by_name_asc' },
+        { label: 'Nome Z-A', name: 'by_name_desc' },
         { label: 'Criados recentemente', name: 'latest_created' },
         { label: 'Atualizados recentemente', name: 'latest_updated' },
         { label: 'Mais antigos', name: 'older_created' },

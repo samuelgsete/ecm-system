@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component,  Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,9 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './update-step2.component.html',
   styleUrls: ['./update-step2.component.css']
 })
-export class UpdateStep2Component implements AfterViewInit {
+export class UpdateStep2Component {
   
-  @ViewChild('email') emailInput!: ElementRef
-
   @Input() 
   form!: FormGroup;
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    console.log(this.emailInput);
-    this.emailInput.nativeElement.focus();
-  }
 }

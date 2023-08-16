@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -15,6 +15,8 @@ import { UpdateMemberService } from 'src/app/usecases/members/update-member.serv
 import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { PrintOneCredentialsService } from 'src/app/usecases/credentials/print-one-credential.service';
 import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print-one-credentials.resource';
+import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
+import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 
 @Component({
   selector: 'app-display-members',
@@ -22,12 +24,15 @@ import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print
   styleUrls: ['./display-members.component.css'],
   providers: [
     PrintOneCredentialsService,
-    PrintOneCredentialsResource
+    PrintOneCredentialsResource,
+    PrintAllCredentialsService,
+    PrintAllCredentialsResource
   ]
 })
-export class DisplayMembersComponent implements OnInit, OnDestroy {
+export class DisplayMembersComponent implements OnInit {
 
   members: Member[] = [];
+  countSelecteds: number = 0;
   pagination: Pagination = new Pagination({ size: 6 });
   formSearch: FormControl = new FormControl();
 
@@ -40,7 +45,8 @@ export class DisplayMembersComponent implements OnInit, OnDestroy {
     readonly goToEdit: GoToEditService,
     readonly onSelect: OnSelectMemberService,
     readonly order: OrderMembersService,
-    readonly onPrint: PrintOneCredentialsService
+    readonly onPrint: PrintOneCredentialsService,
+    readonly onPrintAll: PrintAllCredentialsService
   ) {}
   
   nextPage(page: number): void {
@@ -52,6 +58,7 @@ export class DisplayMembersComponent implements OnInit, OnDestroy {
     this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
       this.members = response.content;
+      this.countSelecteds = this.members.filter(member => member.isSelected).length;
       this.pagination.page = response.number     
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
@@ -72,9 +79,12 @@ export class DisplayMembersComponent implements OnInit, OnDestroy {
 
     this.onPrint.done().subscribe(htmlContent => {
       let newWindow = open();
-      newWindow?.document.write(htmlContent);
-    });
-  }
+      newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
+    })
 
-  ngOnDestroy(): void {}
+    this.onPrintAll.done().subscribe(htmlContent => {
+      let newWindow = open();
+      newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
+    })
+  }
 }

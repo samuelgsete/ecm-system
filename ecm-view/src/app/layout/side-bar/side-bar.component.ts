@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
 import { UserInfoService } from 'src/app/usecases/users/userinfo.service';
 import { PathRoute } from './path-route.entity';
 
@@ -13,7 +12,8 @@ export class SideBarComponent implements OnInit {
 
   nameInitial: string = "";
   routes: PathRoute[] = [
-    { icon: 'group_add', path: 'members', name: 'Membros' },
+    { icon: 'person_search', path: 'members', name: 'Membros' },
+    { icon: 'group_add', path: 'create/member', name: 'Novo membro' },
     { icon: 'layers', path: 'roles', name: 'Cargos' },
     { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
     { icon: 'widgets', path: 'credential/themes', name: 'Temas' }
@@ -21,8 +21,7 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     protected readonly router: Router,
-    protected readonly userinfo: UserInfoService,
-    protected readonly print: PrintAllCredentialsService
+    protected readonly userinfo: UserInfoService
   ) {}
 
   ngOnInit(): void {
@@ -31,14 +30,6 @@ export class SideBarComponent implements OnInit {
     **/
     this.userinfo.done().subscribe(userData => {
       this.nameInitial = userData.given_name[0];
-    })
-    /**
-      Obtém o HTML contendo as credenciais para impressão
-      Renderiza o conteúdo HTML numa nova aba no navegador
-    **/
-    this.print.done().subscribe(htmlContent => {
-      let newWin = open();
-      newWin?.document.write(htmlContent);
     })
   }
 }

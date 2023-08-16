@@ -10,8 +10,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { LayoutComponent } from './layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-
-import { GoToPrintService } from '../usecases/members/go-to-print.service';
+import { LogoutService } from '../security/logout.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { GoToPrintService } from '../usecases/members/go-to-print.service';
     CredentialsModule
   ],
   providers: [
-    GoToPrintService
+    LogoutService
   ]
 })
 export class LayoutModule {}

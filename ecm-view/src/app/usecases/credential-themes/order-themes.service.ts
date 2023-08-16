@@ -1,26 +1,21 @@
 import { Injectable } from "@angular/core";
 
 import { Pagination } from "src/app/models/pagination.entity";
-import { DisplayThemesComponent } from "src/app/components/credential-themes/display-themes/display-themes.component";
-
-interface Ordination {
-    label: string
-    name: string
-}
+import { Ordination } from "../models/ordination.entity";
+import { ListCredentialThemesPaginatedService } from "./list-credential-themes-paginated.service";
 
 @Injectable()
 export class OrderThemesService {
 
-    component!: DisplayThemesComponent
     ordinations: Ordination[] = [
-        { label: 'Nome crescente', name: 'by_name_asc' },
-        { label: 'Nome decrescente', name: 'by_name_desc' },
-        { label: 'Atualizados recentemente', name: 'latest_updated' }
+        { label: 'Nome A-Z', name: 'by_name_asc' },
+        { label: 'Nome Z-A', name: 'by_name_desc' },
+        { label: 'Atuais', name: 'latest_updated' }
     ]
 
-    run(ordination: string) {
-        let pagination: Pagination = this.component.pagination;
-        pagination.ordination = ordination;
-        this.component.listThemes.run(pagination);
+    constructor(readonly listThemes: ListCredentialThemesPaginatedService) {}
+
+    run(_ordination: string) {
+        this.listThemes.run(new Pagination({ size: 7, ordination: _ordination}));
     }
 }

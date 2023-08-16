@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { LogoutUserService } from 'src/app/usecases/users/logout-user.service';
+import { LogoutService } from 'src/app/security/logout.service';
 import { ManagerUserService } from 'src/app/usecases/users/manager-user.service';
 import { UserInfoService } from 'src/app/usecases/users/userinfo.service';
 
@@ -17,7 +16,7 @@ export class TopBarComponent implements OnInit {
   constructor(
     protected readonly router: Router,
     protected readonly managerUser: ManagerUserService,
-    protected readonly logoutUser: LogoutUserService,
+    protected readonly logout: LogoutService,
     protected readonly userinfo: UserInfoService
   ) {}
 

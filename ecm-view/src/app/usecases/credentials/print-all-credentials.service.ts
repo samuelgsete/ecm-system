@@ -1,18 +1,15 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { PrintAllCredentialsResource } from "src/app/resources/credentials/print-all-credentials.resource";
+import { PrintAll } from "../models/print-all.service";
 
 @Injectable()
-export class PrintAllCredentialsService {
-
-    private isDone: EventEmitter<any> = new EventEmitter<any>();
+export class PrintAllCredentialsService extends PrintAll {
 
     constructor(
         protected readonly spinner: NgxSpinnerService,
         protected readonly print: PrintAllCredentialsResource
-    ) {}
-
-    done(): EventEmitter<any> { return this.isDone }
+    ) { super() }
 
     run(): void {
         this.spinner.show();

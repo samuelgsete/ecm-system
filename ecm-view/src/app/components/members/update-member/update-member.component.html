@@ -1,129 +1,136 @@
-<main *ngIf="!findOne.inProgress()">
-    <mat-stepper orientation="vertical" animationDuration="420" [linear]="!true">
-        <mat-step label="Dados Pessoais" [stepControl]="step1" state="account" errorMessage="Revise essa etapa">
-            <app-update-step1 [form]="step1"></app-update-step1>
-            <div class="row-flex">
-                <button 
-                    class="btn btn-lg"
-                    color="purple"
-                    radius="true"
-                    [disabled]="!step1.valid"
-                    matStepperNext
-                    matRipple
-                >PRÓXIMO</button>
-            </div>
-        </mat-step>
-        <mat-step [stepControl]="step2" label="Contato" state="contact" errorMessage="Revise essa etapa">
-            <form [formGroup]="step2">
-                <app-update-step2 [form]="step2"></app-update-step2>
-                <div class="row-flex">
-                    <button 
-                        class="btn btn-lg"
-                        color="dark"
-                        radius="true"
-                        matStepperPrevious
-                        matRipple
-                    >ANTERIOR</button>
-                    <button 
-                        class="btn btn-lg"
-                        color="purple"
-                        radius="true"
-                        [disabled]="!step2.valid"
-                        matStepperNext
-                        matRipple
-                    >PRÓXIMO</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step label="Filiação" [stepControl]="step3" state="group-add" errorMessage="Revise essa etapa">
-            <form [formGroup]="step3">
-                <app-update-step3 [form]="step3"></app-update-step3>
-                <div class="row-flex">
-                    <button 
-                        class="btn btn-lg"
-                        color="dark"
-                        radius="true"
-                        matStepperPrevious
-                        matRipple
-                    >ANTERIOR</button>
-                    <button 
-                        class="btn btn-lg"
-                        color="purple"
-                        radius="true"
-                        [disabled]="!step3.valid"
-                        matStepperNext
-                        matRipple
-                    >PRÓXIMO</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step label="Imagens" [stepControl]="step4" state="add-image" errorMessage="Revise essa etapa">
-            <app-update-step4 [form]="step4"></app-update-step4>
-            <div class="row-flex">
-                <button 
-                    class="btn btn-lg"
-                    color="dark"
-                    radius="true"
-                    matStepperPrevious
-                    matRipple
-                >ANTERIOR</button>
-                <button 
-                    class="btn btn-lg"
-                    color="purple"
-                    radius="true"
-                    matStepperNext
-                    [disabled]="!step4.valid"
-                    matRipple
-                >PRÓXIMO</button>
-            </div>
-        </mat-step>
-        <mat-step label="Confirmar" state="done">
-            <div class="complete-registration">
-                <img 
-                    src="/assets/img/svg/completing_re_i7ap.svg"
-                    alt="Complete Registration" 
-                    width="120px"
-                >
-                <p>Tudo pronto!</p>
-            </div>
-            <div class="row-flex center-horizontal">
-                <button 
-                    class="btn btn-lg"
-                    color="light"
-                    radius="true"
-                    matStepperPrevious
-                    matRipple
-                >REVISAR</button>
-                <button 
-                    class="btn btn-lg"
-                    color="success"
-                    radius="true"
-                    [disabled]=" !(step1.valid && step2.valid && step3.valid && step3.valid)"
-                    (click)="update.run(data.run())"
-                    matRipple
-                >
-                    ATUALIZAR CADASTRO
-                </button>
-            </div>
-        </mat-step>
-
-        <ng-template matStepperIcon="account">
-            <mat-icon>person</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="contact">
-            <mat-icon>contact_main</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="group-add">
-            <mat-icon>group_add</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="add-image">
-            <mat-icon>add_photo_alternate</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="done">
-            <mat-icon>done</mat-icon>
-        </ng-template>
-        
-    </mat-stepper>
+<main>
+    <section>
+        <header>
+            <app-name-page title="Membros" subtitle="Editar"></app-name-page>
+        </header>
+        <div class="content" *ngIf="!findOne.inProgress()">
+            <mat-stepper orientation="vertical" animationDuration="420" [linear]="!true" scrollStepperFix>
+                <mat-step label="Dados Pessoais" [stepControl]="step1" state="account" errorMessage="Revise essa etapa">
+                    <app-update-step1 [form]="step1"></app-update-step1>
+                    <div class="row-flex">
+                        <button 
+                            class="btn btn-lg"
+                            color="purple"
+                            radius="true"
+                            [disabled]="!step1.valid"
+                            matStepperNext
+                            matRipple
+                        >PRÓXIMO</button>
+                    </div>
+                </mat-step>
+                <mat-step [stepControl]="step2" label="Contato" state="contact" errorMessage="Revise essa etapa">
+                    <form [formGroup]="step2">
+                        <app-update-step2 [form]="step2"></app-update-step2>
+                        <div class="row-flex">
+                            <button 
+                                class="btn btn-lg"
+                                color="dark"
+                                radius="true"
+                                matStepperPrevious
+                                matRipple
+                            >ANTERIOR</button>
+                            <button 
+                                class="btn btn-lg"
+                                color="purple"
+                                radius="true"
+                                [disabled]="!step2.valid"
+                                matStepperNext
+                                matRipple
+                            >PRÓXIMO</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step label="Filiação" [stepControl]="step3" state="group-add" errorMessage="Revise essa etapa">
+                    <form [formGroup]="step3">
+                        <app-update-step3 [form]="step3"></app-update-step3>
+                        <div class="row-flex">
+                            <button 
+                                class="btn btn-lg"
+                                color="dark"
+                                radius="true"
+                                matStepperPrevious
+                                matRipple
+                            >ANTERIOR</button>
+                            <button 
+                                class="btn btn-lg"
+                                color="purple"
+                                radius="true"
+                                [disabled]="!step3.valid"
+                                matStepperNext
+                                matRipple
+                            >PRÓXIMO</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step label="Imagens" [stepControl]="step4" state="add-image" errorMessage="Revise essa etapa">
+                    <app-update-step4 [form]="step4"></app-update-step4>
+                    <div class="row-flex">
+                        <button 
+                            class="btn btn-lg"
+                            color="dark"
+                            radius="true"
+                            matStepperPrevious
+                            matRipple
+                        >ANTERIOR</button>
+                        <button 
+                            class="btn btn-lg"
+                            color="purple"
+                            radius="true"
+                            matStepperNext
+                            [disabled]="!step4.valid"
+                            matRipple
+                        >PRÓXIMO</button>
+                    </div>
+                </mat-step>
+                <mat-step label="Confirmar" state="done">
+                    <div class="complete-registration">
+                        <img 
+                            src="/assets/img/svg/completing_re_i7ap.svg"
+                            alt="Complete Registration" 
+                            width="120px"
+                        >
+                        <p>Tudo pronto!</p>
+                    </div>
+                    <div class="row-flex center-horizontal">
+                        <button 
+                            class="btn btn-lg"
+                            color="light"
+                            radius="true"
+                            matStepperPrevious
+                            matRipple
+                        >REVISAR</button>
+                        <button 
+                            class="btn btn-lg"
+                            color="success"
+                            radius="true"
+                            [disabled]=" !(step1.valid && step2.valid && step3.valid && step3.valid)"
+                            (click)="update.run(data.run())"
+                            matRipple
+                        >
+                            ATUALIZAR CADASTRO
+                        </button>
+                    </div>
+                </mat-step>
+    
+                <ng-template matStepperIcon="account">
+                    <mat-icon>person</mat-icon>
+                </ng-template>
+                <ng-template matStepperIcon="contact">
+                    <mat-icon>contact_main</mat-icon>
+                </ng-template>
+                <ng-template matStepperIcon="group-add">
+                    <mat-icon>group_add</mat-icon>
+                </ng-template>
+                <ng-template matStepperIcon="add-image">
+                    <mat-icon>add_photo_alternate</mat-icon>
+                </ng-template>
+                <ng-template matStepperIcon="done">
+                    <mat-icon>done</mat-icon>
+                </ng-template>
+                
+            </mat-stepper>
+        </div>
+    </section>
 </main>
 
 <ngx-spinner 

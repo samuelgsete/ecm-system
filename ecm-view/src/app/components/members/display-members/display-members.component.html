@@ -33,6 +33,17 @@
             </div>
         </header>
         <app-no-data-created *ngIf="listMembers.isEmpty()"></app-no-data-created>
+        <div class="row-flex">
+            <button 
+                class="btn" 
+                radius="true" 
+                outline="true" 
+                color="purple" 
+                [matBadge]="countSelecteds"
+                matBadgeColor="accent"
+                (click)="onPrintAll.run()"
+            >IMPRIMIR</button>
+        </div>
         <table class="ui-table default" *ngIf="!listMembers.isEmpty() && listMembers.isFinally()">
             <tr>
                 <th></th>
@@ -60,12 +71,15 @@
                 <td>{{ member.role.name }}</td>
                 <td>{{ member.updatedAt | dateDuration }}</td>
                 <td>
+                    <button mat-icon-button (click)="onPrint.run(member.id)">
+                        <mat-icon>download</mat-icon>
+                    </button>
                     <button mat-icon-button (click)="goToEdit.run(member.id)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="onPrint.run(member.id)">
-                    <mat-icon>download</mat-icon>
-                </button>
+                    <button mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </tr>
         </table>

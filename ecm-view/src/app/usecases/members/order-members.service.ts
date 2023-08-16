@@ -2,20 +2,17 @@ import { Injectable } from "@angular/core";
 
 import { ListMembersPaginatedService } from "./list-members-paginated.service"; 
 import { Pagination } from "src/app/models/pagination.entity";
-
-interface Ordination {
-    label: string
-    name: string
-}
+import { Ordination } from "../models/ordination.entity";
 
 @Injectable()
 export class OrderMembersService {
 
     ordinations: Ordination[] = [
-        { label: 'Nome decrescente', name: 'by_name_desc' },
-        { label: 'Criados recentemente', name: 'latest_created' },
-        { label: 'Atualizados recentemente', name: 'latest_updated' },
-        { label: 'Mais antigos', name: 'older_created' }
+        { label: 'Nome A-Z', name: 'by_name_asc' },
+        { label: 'Nome Z-A', name: 'by_name_desc' },
+        { label: 'Recentes', name: 'latest_created' },
+        { label: 'Atuais', name: 'latest_updated' },
+        { label: 'Antigos', name: 'older_created' }
     ]
 
     constructor(readonly listMembers: ListMembersPaginatedService) {}

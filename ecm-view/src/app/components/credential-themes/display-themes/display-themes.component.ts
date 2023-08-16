@@ -32,9 +32,8 @@ export class DisplayThemesComponent implements OnInit {
     readonly makeThemeToMain: MakeThemeToMainService,
     readonly onOrder: OrderThemesService,
     readonly onPrint: PrintAllCredentialsService,
-    readonly onPaginate: PaginationService,
-
-  ) { onOrder.component = this }
+    readonly onPaginate: PaginationService
+  ) {}
 
   nextPage(page: number): void {
     this.pagination.page = page;
@@ -64,7 +63,7 @@ export class DisplayThemesComponent implements OnInit {
 
     this.onPrint.done().subscribe(htmlContent => {
       let newWindow = open();
-      newWindow?.document.write(htmlContent);
+      newWindow?.document.write(htmlContent || "Erro 404: Not Found");
     })
   }
 }

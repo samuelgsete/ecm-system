@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
-
 import { DisplayThemesComponent } from './display-themes/display-themes.component';
 
 import { ListCredentialThemesPaginatedResource } from 'src/app/resources/credential-themes/list-credential-themes-paginated.resource';
@@ -11,7 +10,6 @@ import { ListCredentialThemesPaginatedService } from 'src/app/usecases/credentia
 import { MakeThemeToMainResource } from 'src/app/resources/credential-themes/make-theme-to-main.resource';
 import { MakeThemeToMainService } from 'src/app/usecases/credential-themes/make-theme-to-main.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
-import { OrdinationsThemesService } from 'src/app/usecases/credential-themes/ordinations--themes.service';
 import { OrderThemesService } from 'src/app/usecases/credential-themes/order-themes.service';
 import { FindThemeActivatedResource } from 'src/app/resources/credential-themes/find-theme-activated.resource';
 import { FindThemeActivatedService } from 'src/app/usecases/credential-themes/find-theme-activated.service';
@@ -31,7 +29,6 @@ import { FindThemeActivatedService } from 'src/app/usecases/credential-themes/fi
     MakeThemeToMainResource,
     MakeThemeToMainService,
     GoToPrintService,
-    OrdinationsThemesService,
     OrderThemesService,
     FindThemeActivatedResource,
     FindThemeActivatedService
