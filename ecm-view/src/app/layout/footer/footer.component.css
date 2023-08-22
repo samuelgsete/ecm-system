@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
@@ -39,9 +39,9 @@ footer hr {
 }
 
 .support p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 0.92em;
-    letter-spacing: -0.7px;
+    letter-spacing: 0.3px;
     margin: 3px;
     color: rgb(var(--gray-3));
     display: flex;
@@ -55,9 +55,9 @@ footer hr {
 }
 
 .copyright {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 0.93em;
-    letter-spacing: -0.8px;
+    letter-spacing: 0.3px;
     color: rgb(var(--gray-3));
 }
 

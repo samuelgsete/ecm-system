@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BuildFormUpdateMemberService } from 'src/app/usecases/members/build-form-update-member.service';
@@ -22,6 +23,7 @@ export class UpdateMemberComponent implements OnInit {
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
+    readonly titleService: Title,
     readonly buildForm: BuildFormUpdateMemberService,
     readonly findOne: FindOneMemberService,
     readonly data: ParseDataToMemberService,
@@ -32,6 +34,7 @@ export class UpdateMemberComponent implements OnInit {
     const id = parseInt(this.route.snapshot.params['id']);
     this.findOne.run(id);
     this.findOne.done().subscribe(response => {
+      this.titleService.setTitle(`Editar ${response.name}`);
       const { step1, step2, step3, step4 } = this.buildForm.run(response);
       this.step1 = step1;
       this.step2 = step2;

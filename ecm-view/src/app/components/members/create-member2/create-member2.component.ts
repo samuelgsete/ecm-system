@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { Congregation } from 'src/app/models/congregation.entity';
-import { Member } from 'src/app/models/member.entity';
-import { Role } from 'src/app/models/role.entity';
 import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
@@ -23,12 +21,14 @@ export class CreateMember2Component implements OnInit {
    
   constructor(
     readonly router: Router,
+    readonly titleService: Title,
     readonly buildForm: BuildFormCreateMemberService,
     readonly createMember: CreateMemberService,
     readonly data: ParseDataToMemberService,
   ) { data.component = this }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Cadastrar novo membro');
     const { step1, step2, step3, step4 } = this.buildForm.run();
     this.step1 = step1;
     this.step2 = step2;

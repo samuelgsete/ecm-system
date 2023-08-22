@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
 
 @import url('./colors.css');
 
@@ -30,11 +31,11 @@ div.alert h4.title {
 
 div.alert p.message {
     margin: 3px;
-    font-size: 0.91em;
+    font-size: 0.9em;
     color: rgb(var(--gray-8));
     line-height: 18px;
-    letter-spacing: -0.6px;
-    font-family: 'Maven Pro', sans-serif;
+    letter-spacing: 0.1px;
+    font-family: 'Urbanist', sans-serif;
     text-align: justify;
 }
 

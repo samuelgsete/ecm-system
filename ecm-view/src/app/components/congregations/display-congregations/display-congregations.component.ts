@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { debounceTime } from 'rxjs';
@@ -24,6 +25,7 @@ export class DisplayCongregationsComponent implements OnInit {
   formSearch: FormControl = new FormControl()
 
   constructor(
+    readonly titleService: Title,
     readonly modal: MatDialog,
     readonly onPaginate: PaginationService,
     readonly listCongregations: ListCongregationsPaginatedService,
@@ -53,6 +55,7 @@ export class DisplayCongregationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Gerenciar congregações');
     this.listCongregations.run(this.pagination);
     this.listCongregations.done().subscribe(response => {
       this.congregations = response.content;

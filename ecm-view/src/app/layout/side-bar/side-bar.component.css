@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
 
 * {
     margin: 0;
@@ -21,7 +22,7 @@ nav.side-bar {
 }
 
 img.logotipo {
-    width: 40px;
+    width: 54px;
 }
 
 div.name-initial {
@@ -58,11 +59,12 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link {
     row-gap: 4px;
     font-size: 0.64em;
     font-weight: 600;
-    line-height: -0.9px;
-    font-family: 'Inter', sans-serif;
+    line-height: -0.2px;
+    font-family: 'Urbanist', sans-serif;
     cursor: pointer;
     border-left: 2.4pt solid transparent;
     border-right: 2.4pt solid transparent;
+    border-radius: 3px;
     text-align: center;
     transition: all 0.6s;
 }
@@ -83,6 +85,7 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link:hover {
 
 nav.side-bar ul.nav-menu li.nav-item a.active {
     background-color: rgb(var(--gray-3));
-    border-left: 2.4pt solid rgb(var(--purple));
+    border-right: 2.4pt solid rgb(var(--purple));
     color: rgb(var(--purple));
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }

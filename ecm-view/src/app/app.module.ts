@@ -42,7 +42,7 @@ import { UsersModule } from './components/users/users.module';
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

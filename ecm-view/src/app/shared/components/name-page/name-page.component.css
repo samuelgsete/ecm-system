@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
 
- p.name-page {
+p.name-page {
     display: flex;
     column-gap: 10px;
     align-items: center;
     font-size: 0.96em;
     color: rgb(var(--gray-6));
-    letter-spacing: -0.3px;
-    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.2px;
+    font-family: 'Urbanist', sans-serif !important;
     cursor: pointer;
     transition: all 6ms;
     padding: 10px 0;

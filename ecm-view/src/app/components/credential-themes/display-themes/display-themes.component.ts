@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 
@@ -28,6 +29,7 @@ export class DisplayThemesComponent implements OnInit {
   formSearch: FormControl = new FormControl();
 
   constructor(
+    readonly titleService: Title,
     readonly listThemes: ListCredentialThemesPaginatedService,
     readonly makeThemeToMain: MakeThemeToMainService,
     readonly onOrder: OrderThemesService,
@@ -41,6 +43,7 @@ export class DisplayThemesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Ativar o tema para as credenciais');
     this.listThemes.run(this.pagination);
     this.listThemes.done().subscribe(response => {
       this.themes = response.content;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -39,6 +40,7 @@ export class DisplayMembersComponent implements OnInit {
 
   constructor(
     readonly router: Router,
+    readonly titleService:Title,
     readonly onPaginate: PaginationService,
     readonly listMembers: ListMembersPaginatedService,
     readonly updateMember: UpdateMemberService,
@@ -57,6 +59,7 @@ export class DisplayMembersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Todos os membros cadastrados');
     this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
       this.members = response.content;

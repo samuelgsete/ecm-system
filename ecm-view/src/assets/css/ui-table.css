@@ -16,14 +16,14 @@ table.ui-table tr td {
     padding: 0.5% 1%;
     text-align: left;
     animation: down 0.4s;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 0.99em;
     color: rgb(var(--gray-8));
 }
 
 table.ui-table tr th {
     color: rgb(var(--gray-6));
-    font-family: 'Blinker', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 1.05em;
     padding: 1%;
     text-align: left;

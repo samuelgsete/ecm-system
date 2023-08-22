@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { debounceTime } from 'rxjs';
@@ -24,6 +25,7 @@ export class DisplayRolesComponent implements OnInit {
   formSearch: FormControl = new FormControl();
 
   constructor(
+    readonly titleService: Title,
     readonly modal: MatDialog,
     readonly onPaginate: PaginationService,
     readonly listRoles: ListRolesPaginatedService,
@@ -52,6 +54,7 @@ export class DisplayRolesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Gerenciar cargos');
     this.listRoles.run(this.pagination);
     this.listRoles.done().subscribe(response => {
       this.roles = response.content;
