@@ -8,7 +8,6 @@ import { Member } from 'src/app/models/member.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
 import { Paginate } from 'src/app/models/paginate.entity';
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
-import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
 import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
@@ -19,6 +18,7 @@ import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print
 import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
 import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
+import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 
 @Component({
   selector: 'app-display-members',
@@ -44,7 +44,7 @@ export class DisplayMembersComponent implements OnInit {
     readonly onPaginate: PaginationService,
     readonly listMembers: ListMembersPaginatedService,
     readonly updateMember: UpdateMemberService,
-    readonly goToPrint: GoToPrintService,
+    readonly count: CountMembersSelectedsService,
     readonly goToEdit: GoToEditService,
     readonly onSelect: OnSelectMemberService,
     readonly order: OrderMembersService,
@@ -63,7 +63,6 @@ export class DisplayMembersComponent implements OnInit {
     this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
       this.members = response.content;
-      this.countSelecteds = this.members.filter(member => member.isSelected).length;
       this.pagination.page = response.number     
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
@@ -78,8 +77,14 @@ export class DisplayMembersComponent implements OnInit {
       }))
     })
 
+    this.count.run();
+    this.count.done().subscribe(response => {
+      this.countSelecteds = response;
+    })
+
     this.updateMember.done().subscribe(response => {
       this.listMembers.run(this.pagination);
+      this.count.run();
     })
 
     this.onPrint.done().subscribe(htmlContent => {

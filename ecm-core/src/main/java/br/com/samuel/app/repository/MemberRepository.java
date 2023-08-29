@@ -28,14 +28,6 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.updatedAt DESC")
     Page<Member> listPaginateLatestUpdated(@Param("search") String search, Pageable pageable);
 
-    // Lista os membros de maior idade
-    @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.dateOfBirth DESC")
-    Page<Member> listPaginateOlderAge(@Param("search") String search, Pageable pageable);
-
-     // Lista os membros de menor idade
-    @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.dateOfBirth ASC")
-    Page<Member> listPaginateMinorAge(@Param("search") String search, Pageable pageable);
-
     // Lista os membros criado há mais tempo
     @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.createdAt ASC")
     Page<Member> listPaginateOlder(@Param("search") String search, Pageable pageable);
@@ -43,4 +35,8 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     // Lista os membros criados recentemente
     @Query("SELECT m FROM Member m WHERE m.isSelected = TRUE ORDER BY m.name ASC")
     Set<Member> listAllSelecteds();
+
+    // Retorna a quantidade de membros selecionados para impressão
+    @Query("SELECT COUNT(m) FROM Member m WHERE m.isSelected = TRUE")
+    Integer countSelecteds();
 }

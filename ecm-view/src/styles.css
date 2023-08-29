@@ -11,9 +11,9 @@ html, body {
 }
 
 mat-error, mat-hint {
-    font-size: 0.97em;
+    font-size: 0.98em;
     font-weight: 600;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.2px;
     padding: 2em 0;
     width: 100%;
     margin-left: -5px !important;

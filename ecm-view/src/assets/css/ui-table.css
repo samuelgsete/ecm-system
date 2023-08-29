@@ -17,17 +17,17 @@ table.ui-table tr td {
     text-align: left;
     animation: down 0.4s;
     font-family: 'Urbanist', sans-serif;
-    font-size: 0.99em;
+    font-size: 1.05em;
     color: rgb(var(--gray-8));
 }
 
 table.ui-table tr th {
     color: rgb(var(--gray-6));
     font-family: 'Urbanist', sans-serif;
-    font-size: 1.05em;
+    font-size: 0.95em;
     padding: 1%;
     text-align: left;
-    font-weight: normal;
+    font-weight: 600;
     border-top: 1.45pt solid rgb(var(--gray-2));
     text-transform: uppercase;
 }

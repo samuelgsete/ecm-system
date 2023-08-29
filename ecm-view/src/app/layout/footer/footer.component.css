@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
 footer {
     padding: 2% 4%;
     width: 92%;
@@ -62,9 +58,9 @@ footer hr {
 }
 
 .copyright strong {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 0.97em;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.2px;
     color: rgb(var(--gray-4));
     text-decoration: underline;
 }

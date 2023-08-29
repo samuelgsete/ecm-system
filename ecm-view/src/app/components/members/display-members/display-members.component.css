@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 section {
     padding: 0.5% 2% 2% 2%;
     border-radius: 5px;
@@ -20,11 +17,11 @@ button {
 }
 
 header button.filter-table {
-    color: rgb(var(--gray-6));    
+    color: rgb(var(--gray-6));
 }
 
 header button.mat-menu {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Urbanist', sans-serif !important;
     letter-spacing: -0.9px;
     font-size: 0.84em !important;
 }
@@ -32,7 +29,6 @@ header button.mat-menu {
 table tr td:nth-child(1) {
     width: 5%;
     font-weight: bold;
-    font-family: 'Blinker', sans-serif;
     font-size: 1.05em;
 }
 
@@ -41,8 +37,8 @@ table tr td:nth-child(2) {
 }
 
 table tr td img.photo-member {
-    max-width: 48px;
-    max-height: auto;
+    width: 48px;
+    height: 100%;
     border-radius: 8px;
     border: 0.12em solid rgb(var(--gray-2));
 }

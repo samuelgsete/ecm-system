@@ -34,12 +34,13 @@ import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
-import { OrdinationsMembersService } from 'src/app/usecases/members/ordinations-members.service';
 import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
 import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
+import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.reousrce';
+import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 
 @NgModule({
   declarations: [
@@ -78,12 +79,13 @@ import { DeleteMemberResource } from 'src/app/resources/members/delete-member.re
     BuildFormCreateMemberService,
     BuildFormUpdateMemberService,
     ParseDataToMemberService,
-    OrdinationsMembersService,
     OrderMembersService,
     ListMembersSelectedsResource,
     ListMembersSelectedsService,
     DeleteMemberResource,
-    DeleteMemberService
+    DeleteMemberService,
+    CountMembersSelectedsResource,
+    CountMembersSelectedsService
   ]
 })
 export class MembersModule {}

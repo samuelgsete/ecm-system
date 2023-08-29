@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +9,12 @@ main {
 
 main h1.form-title {
     font-weight: 500;
-    letter-spacing: -0.8px;
-    font-size: 1.43em;
+    letter-spacing: -0.4px;
+    font-size: 1.31em;
     margin: 5px 0 18px 0;
     font-family: 'Inter', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 main form {
