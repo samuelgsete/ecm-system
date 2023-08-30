@@ -2,6 +2,7 @@ package br.com.samuel.app.usecases.models;
 
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
+import br.com.samuel.app.exceptions.AlreadyCreatedException;
 
 public abstract class Create<T, R> {
 
@@ -10,5 +11,5 @@ public abstract class Create<T, R> {
 
     protected R getRepository() { return repository; }
 
-    public abstract URI run(T newInstance);
+    public abstract URI run(T newInstance) throws AlreadyCreatedException;
 }

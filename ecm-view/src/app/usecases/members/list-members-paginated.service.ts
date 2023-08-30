@@ -20,7 +20,8 @@ export class ListMembersPaginatedService extends ListPaginatedService {
         this.finally = false;
         this.listPaginate.run(pagination).subscribe({
             next: (response) => {
-                this.emptyData = response.content.length == 0 ? true : false;
+                this.emptyData = (response.totalElements == 0 && pagination.search == "") ? true : false;
+                this.suchNotFound = (response.totalElements == 0 && pagination.search != "") ? true : false;
                 this.complete.emit(response);
             },
             error: (eventErr) => {

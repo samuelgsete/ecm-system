@@ -2,7 +2,7 @@
     <section>
         <header>
             <app-name-page title="Cargos" subtitle="Cadastrados"></app-name-page>
-            <div class="row-flex space-between center-vertical">
+            <div class="row-flex space-between center-vertical" *ngIf="!listRoles.isEmpty()">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -34,20 +34,30 @@
             </div>
         </header>
         
-        <app-no-data-created *ngIf="listRoles.isEmpty()"></app-no-data-created>
+        <app-no-data-created message="Você ainda não têm cargos cadastrados" [isVisible]="listRoles.isEmpty()">
+            <button 
+                class="btn btn-lg"
+                color="purple"
+                radius="true"
+                (click)="openCreateRoleComponent()"
+                matRipple
+            >CADASTRAR NOVO</button>
+        </app-no-data-created>
 
-        <table class="ui-table stripped" *ngIf="!listRoles.isEmpty()">
+        <app-such-notfound [keyword]="formSearch.value" [isVisible]="listRoles.notFound()"></app-such-notfound>
+
+        <table class="ui-table stripped" *ngIf="!listRoles.isEmpty() && !listRoles.notFound()">
             <tr>
                 <th>ID</th>
                 <th>Cargo</th>
-                <th>Criado</th>
+                <th>Total cadastrado</th>
                 <th>última Atualização</th>
                 <th>Ações</th>
             </tr>
             <tr *ngFor="let role of roles">
                 <td>{{ role.id }}</td>
                 <td>{{ role.name }}</td>
-                <td>{{ role.createdAt | dateDuration }}</td>
+                <td>{{ role.numberOfMembers }} membro(s)</td>
                 <td>{{ role.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="openUpdateRoleComponent(role)">

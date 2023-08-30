@@ -14,14 +14,14 @@ export class UpdateCongregationComponent implements OnInit {
   
   protected form!: FormGroup;
 
-  public constructor(
+  constructor(
     protected readonly _fb: FormBuilder,
     protected modalRef: MatDialogRef<UpdateCongregationComponent>,
     @Inject(MAT_DIALOG_DATA) protected congregation: Congregation,
     protected readonly update: UpdateCongregationService
   ) {}
   
-  public buildForm(congregation: Congregation): FormGroup {
+  private buildForm(congregation: Congregation): FormGroup {
     return this._fb.group({
       id: [congregation.id],
       name: [congregation.name, [
@@ -29,12 +29,13 @@ export class UpdateCongregationComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(64)]
       ],
+      numberOfMembers: [congregation.numberOfMembers],
       createdAt: [congregation.createdAt],
       updatedAt: [congregation.updatedAt]
     })
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this.buildForm(this.congregation);
     this.update.done().subscribe(response => {
       this.modalRef.close();

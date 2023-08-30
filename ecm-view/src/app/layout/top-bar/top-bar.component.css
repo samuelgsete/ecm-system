@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
 header {
     height: 40px;
     width: calc(96% - 85px);
@@ -18,7 +20,7 @@ div.user-logged h1 {
     margin: 0;
     font-weight: 550;
     color: rgb(var(--gray-2));
-    font-size: 1.15em;
+    font-size: 1.075em;
     letter-spacing: -0.3px;
     font-family: 'Urbanist', sans-serif;
 }
@@ -28,6 +30,20 @@ div.user-logged h1 strong {
     letter-spacing: -0.2px;
     font-family: 'Inter', sans-serif;
 }
+
+.logo {
+    font-family: 'Days One', sans-serif;
+    font-weight: 550;
+    letter-spacing: 0.6px;
+    font-size: 1.14em;
+    color: rgb(var(--gray-3));
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
 
 ul {
     list-style: none;

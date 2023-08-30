@@ -2,6 +2,7 @@ package br.com.samuel.app.resources.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import br.com.samuel.app.exceptions.AlreadyCreatedException;
 
 public abstract class ResourceCreate<T, R> {
 
@@ -10,5 +11,5 @@ public abstract class ResourceCreate<T, R> {
 
     protected R create() { return create; }
 
-    public abstract ResponseEntity<Object> run(T newObject);
+    public abstract ResponseEntity<Object> run(T newObject) throws AlreadyCreatedException;
 }

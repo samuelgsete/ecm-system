@@ -37,7 +37,7 @@ export class CreateMemberService extends CreateService  {
                 }
             },
             error: (eventErr) => {
-                this.toastr.error('O Membro não foi criado', 'Há não :(', { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

@@ -14,17 +14,18 @@ export class CreateRoleComponent implements OnInit {
 
   protected form!: FormGroup;
 
-  public constructor(
+  constructor(
     protected readonly router: Router,
     protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateRoleComponent>,
     protected readonly createRole: CreateRoleService
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this._fb.group({
       id: [null],
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]],
+      numberOfMembers: [0],
       createdAt: [null],
       updatedAt: [null]
     })

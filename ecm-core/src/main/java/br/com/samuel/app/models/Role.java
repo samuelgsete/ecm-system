@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Role extends EntityBase {
     
     private String name;
-   
+      
     @JsonIgnore
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private Set<Member> members = new HashSet<Member>();
@@ -25,5 +25,9 @@ public class Role extends EntityBase {
     public void addMember(Member member) {
         member.setRole(this);
         members.add(member);
+    }
+
+    public Integer getNumberOfMembers() {
+        return members.size();
     }
 }

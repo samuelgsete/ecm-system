@@ -2,9 +2,10 @@ import { EntityBase } from "./entity-base.entity";
 
 export class Role extends EntityBase {
 
-    public name!: string;
+    name!: string;
+    numberOfMembers!: number;
 
-    public constructor(values: Object = {}) { 
+    constructor(values: Object = {}) { 
         super();
         Object.assign(this, values) 
     }

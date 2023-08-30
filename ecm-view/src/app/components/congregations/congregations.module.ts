@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
+import { UtilsModule } from 'src/app/utils/utils.module';
 import { ListCongregationsPaginatedResource } from 'src/app/resources/congregations/list-congregations-paginated.resource';
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { CreateCongregrationComponent } from './create-congregration/create-congregration.component';
@@ -24,7 +25,8 @@ import { OrderCongregationsService } from 'src/app/usecases/congregations/order-
   imports: [
     CommonModule,
     SharedModule,
-    PaginateModule
+    PaginateModule,
+    UtilsModule
   ],
   providers: [
     ListCongregationsPaginatedResource,

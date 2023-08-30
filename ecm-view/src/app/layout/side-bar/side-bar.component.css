@@ -56,6 +56,7 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link {
     font-size: 0.64em;
     font-weight: 600;
     line-height: -0.2px;
+    letter-spacing: 0.2px;
     font-family: 'Urbanist', sans-serif;
     cursor: pointer;
     border-left: 2.4pt solid transparent;

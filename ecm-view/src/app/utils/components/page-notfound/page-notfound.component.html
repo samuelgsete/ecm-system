@@ -1,0 +1,14 @@
+<div class="page-notfound">
+    <img class="notfound-image" [src]="image.src" [alt]="image.alt">
+    <h1 class="title">ERRO 404</h1>
+    <p class="message">Página requisitada não encontrada</p>
+    <button
+        class="btn btn-lg"
+        color="dark"
+        radius="true"
+        (click)="router.navigateByUrl('/app/members')"
+        matRipple
+    >
+        IR PARA INÍCIO
+    </button>
+</div>

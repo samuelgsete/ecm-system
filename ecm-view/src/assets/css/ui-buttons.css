@@ -219,7 +219,7 @@ button.btn[radius=true] {
 button.btn:enabled {
     cursor: pointer;
     background-position: center;
-    transition: background 0.8s, box-shadow 0.6s, filter 0.3s;
+    transition: all 0.4s;
 }
 
 button.btn:enabled:hover {
@@ -231,7 +231,6 @@ button.btn[disabled=true], button:disabled {
     cursor: not-allowed !important;
     pointer-events: none;
     background-color: rgb(var(--gray-4)) !important;
-    /*border: 2px solid rgb(var(--gray-4)) !important;*/
-    border: 0;
+    border: 2px solid rgb(var(--gray-4));
     color: rgb(var(--gray-0)) !important;
 }

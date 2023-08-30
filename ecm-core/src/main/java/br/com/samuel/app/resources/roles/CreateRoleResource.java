@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.samuel.app.exceptions.AlreadyCreatedException;
 import br.com.samuel.app.models.Role;
 import br.com.samuel.app.resources.models.ResourceCreate;
 import br.com.samuel.app.usecases.roles.CreateRole;
@@ -14,7 +16,7 @@ import br.com.samuel.app.usecases.roles.CreateRole;
 public class CreateRoleResource extends ResourceCreate<Role, CreateRole> {
 
     @PostMapping
-    public ResponseEntity<Object> run(@RequestBody Role role) {
+    public ResponseEntity<Object> run(@RequestBody Role role) throws AlreadyCreatedException {
         return ResponseEntity.created(create().run(role)).build();
     }  
 }

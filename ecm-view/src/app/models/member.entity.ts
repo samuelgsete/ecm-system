@@ -13,6 +13,7 @@ export class Member extends EntityBase {
     public rg!: string;
     public dateOfBirth!: string;
     public dateOfBaptism!: string;
+    public age!: number;
     public phone!: string;
     public email!: string;
     public gender!: Gender;

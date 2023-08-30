@@ -1,0 +1,7 @@
+<div class="such-notfound" *ngIf="isVisible">
+    <img class="notfound" [src]="image.src" [alt]="image.alt">
+    <p class="message">
+        Nenhum resultado encontrado para a busca
+        <strong>"{{ keyword }}"</strong>
+    </p>
+</div>

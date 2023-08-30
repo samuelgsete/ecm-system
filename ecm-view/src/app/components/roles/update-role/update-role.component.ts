@@ -15,7 +15,7 @@ export class UpdateRoleComponent implements OnInit {
   
   protected form!: FormGroup;
 
-  public constructor(
+  constructor(
     protected readonly _fb: FormBuilder,
     protected readonly router: Router,
     protected modalRef: MatDialogRef<UpdateRoleComponent>,
@@ -23,18 +23,18 @@ export class UpdateRoleComponent implements OnInit {
     protected readonly update: UpdateRoleService
   ) {}
   
-  public buildForm(role: Role): FormGroup {
+  buildForm(role: Role): FormGroup {
     return this._fb.group({
       id: [role.id],
       name: [role.name, [Validators.required, Validators.minLength(2), Validators.maxLength(64)]],
+      numberOfMembers: [role.numberOfMembers],
       createdAt: [role.createdAt],
       updatedAt: [role.updatedAt]
     })
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this.buildForm(this.role);
-
     this.update.done().subscribe(response => {
       this.modalRef.close();
     });

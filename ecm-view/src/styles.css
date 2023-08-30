@@ -18,3 +18,12 @@ mat-error, mat-hint {
     width: 100%;
     margin-left: -5px !important;
 }
+
+/* Corrigindo o Bug de duas mensagens de erro ao mesmo tempo */
+mat-form-field mat-error {
+    display: none !important;
+}
+
+mat-form-field mat-error:first-child {
+    display: block !important;
+}

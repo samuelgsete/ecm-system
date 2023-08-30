@@ -9,17 +9,18 @@ import { UpdateRoleResource } from "src/app/resources/roles/update-role-resource
 @Injectable()
 export class UpdateRoleService extends UpdateOneService<Role> {
     
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly update: UpdateRoleResource
     ) { super() }
 
-    public override run(data: any): void {
+    run(data: any): void {
         this.spinner.show();
         const role: Role = new Role({
             id: data.id,
             name: data.name,
+            numberOfMembers: data.numberOfMembers,
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
@@ -32,7 +33,7 @@ export class UpdateRoleService extends UpdateOneService<Role> {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                this.toastr.error('Os dados não foram alterados', 'Há não :(', { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

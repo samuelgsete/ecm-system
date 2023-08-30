@@ -20,6 +20,7 @@ export class CreateRoleService extends CreateService  {
         const role: Role = new Role({
             id: data.id,
             name: data.name,
+            numberOfMembers: data.numberOfMembers,
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
@@ -32,7 +33,7 @@ export class CreateRoleService extends CreateService  {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                this.toastr.error('O Cargo não foi criado', 'Há não :(', { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

@@ -1,6 +1,5 @@
 package br.com.samuel.app.resources.members;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +13,6 @@ import br.com.samuel.app.usecases.members.DeleteMember;
 @RestController
 @RequestMapping("/members")
 public class DeleteMemberResource extends ResourceDeleteOne<Member, DeleteMember> {
-
-   
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Member> run(@PathVariable Integer id, @RequestBody Member member) {

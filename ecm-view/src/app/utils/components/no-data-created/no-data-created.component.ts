@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
 
+interface Image {
+  src: string,
+  alt: string
+}
+
 @Component({
   selector: 'app-no-data-created',
   templateUrl: './no-data-created.component.html',
@@ -7,7 +12,11 @@ import { Component, Input } from '@angular/core';
 })
 export class NoDataCreatedComponent {
 
-  srcImg: string = '/assets/img/svg/no-date-created.svg';
+  protected image: Image = {
+    src: '/assets/img/svg/no-date-created.svg',
+    alt: 'No data created'
+  }
 
   @Input() message: string = 'Nenhum resultado encontrado';
+  @Input() isVisible: boolean = false;
 }

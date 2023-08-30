@@ -8,6 +8,7 @@ import { UpdateMemberComponent } from './components/members/update-member/update
 import { LayoutComponent } from './layout/layout.component';
 import { CreateMember2Component } from './components/members/create-member2/create-member2.component';
 import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
+import { PageNotfoundComponent } from './utils/components/page-notfound/page-notfound.component';
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
@@ -17,7 +18,9 @@ const routes: Routes = [
     { path: 'create/member', component: CreateMember2Component },
     { path: 'member/:id/update', component: UpdateMemberComponent },
     { path: 'credential/themes', component: DisplayThemesComponent },
-  ]}
+  ]},
+  { path:'**', redirectTo: '404' },
+  { path:'404', component: PageNotfoundComponent }
 ];
 
 @NgModule({

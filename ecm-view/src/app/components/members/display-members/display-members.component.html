@@ -2,7 +2,7 @@
     <section>
         <header>
             <app-name-page title="Membros" subtitle="Cadastrados"></app-name-page>
-            <div class="row-flex space-between center-vertical">
+            <div class="row-flex space-between center-vertical" *ngIf="!listMembers.isEmpty()">
                 <button class="filter-table"  [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -32,8 +32,20 @@
                 >CADASTRAR NOVO</button>
             </div>
         </header>
-        <app-no-data-created *ngIf="listMembers.isEmpty()"></app-no-data-created>
-        <div class="row-flex">
+       
+        <app-no-data-created message="Você ainda não têm membros cadastrados" [isVisible]="listMembers.isEmpty()">
+            <button 
+                class="btn btn-lg"
+                color="purple"
+                radius="true"
+                (click)="router.navigateByUrl('/app/create/member')"
+                matRipple
+            >CADASTRAR NOVO</button>
+        </app-no-data-created>
+
+        <app-such-notfound [keyword]="formSearch.value" [isVisible]="listMembers.notFound()"></app-such-notfound>
+
+        <div class="row-flex" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
             <button 
                 class="btn" 
                 radius="true" 
@@ -44,12 +56,13 @@
                 (click)="onPrintAll.run()"
             >IMPRIMIR</button>
         </div>
-        <table class="ui-table default" *ngIf="!listMembers.isEmpty() && listMembers.isFinally()">
+        <table class="ui-table default" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
             <tr>
                 <th></th>
                 <th>Foto</th>
                 <th>Membro</th>
                 <th>Cargo</th>
+                <th>Idade</th>
                 <th>Última Atualização</th>
                 <th>Ações</th>
             </tr>
@@ -65,6 +78,7 @@
                 </td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.role.name }}</td>
+                <td>{{ member.age }} anos</td>
                 <td>{{ member.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="onPrint.run(member.id)">

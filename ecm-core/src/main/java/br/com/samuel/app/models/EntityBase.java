@@ -27,4 +27,9 @@ public abstract class EntityBase {
     public void toUpdated() {
         updatedAt = LocalDateTime.now();
     }
+
+    public void toCreated() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
 }

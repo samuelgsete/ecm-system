@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+
 footer {
     padding: 2% 4%;
     width: 92%;
@@ -22,12 +24,12 @@ footer hr {
 .logo p {
     font-size: 0.97em;
     letter-spacing: 0.6px;
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Days One', sans-serif;
     margin: 2px;
 }
 
 .support p:first-child, .logo p {
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Days One', sans-serif;
     font-weight: 600;
     letter-spacing: 0.6px;
     font-size: 0.95em;
@@ -58,7 +60,7 @@ footer hr {
 }
 
 .copyright strong {
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Days One', sans-serif;
     font-size: 0.97em;
     letter-spacing: 0.2px;
     color: rgb(var(--gray-4));

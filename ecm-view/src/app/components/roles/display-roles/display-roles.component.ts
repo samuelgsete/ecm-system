@@ -58,6 +58,7 @@ export class DisplayRolesComponent implements OnInit {
     this.listRoles.run(this.pagination);
     this.listRoles.done().subscribe(response => {
       this.roles = response.content;
+      console.log(response);
       this.pagination.page = response.number     
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,

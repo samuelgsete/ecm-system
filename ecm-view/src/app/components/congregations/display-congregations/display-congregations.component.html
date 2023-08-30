@@ -2,7 +2,7 @@
     <section>
         <header>
             <app-name-page title="Congregações" subtitle="Cadastradas"></app-name-page>
-            <div class="row-flex space-between center-vertical">
+            <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.isEmpty()">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -33,18 +33,31 @@
                 >CADASTRAR NOVA</button>
             </div>
         </header>
-        <table class="ui-table stripped" *ngIf="!listCongregations.isEmpty()">
+
+        <app-no-data-created message="Você ainda não têm congregações cadastradas" [isVisible]="listCongregations.isEmpty()">
+            <button 
+                class="btn btn-lg"
+                color="purple"
+                radius="true"
+                (click)="openCreateCongregationComponent()"
+                matRipple
+            >CADASTRAR NOVA</button>
+        </app-no-data-created>
+
+        <app-such-notfound [keyword]="formSearch.value" [isVisible]="listCongregations.notFound()"></app-such-notfound>
+
+        <table class="ui-table stripped" *ngIf="!listCongregations.isEmpty() && !listCongregations.notFound()">
             <tr>
                 <th>ID</th>
                 <th>Congregação</th>
-                <th>Criado</th>
+                <th>Total cadastrado</th>
                 <th>Última Atualização</th>
                 <th>Ações</th>
             </tr>
             <tr *ngFor="let congregation of congregations">
                 <td>{{ congregation.id }}</td>
                 <td>{{ congregation.name }}</td>
-                <td>{{ congregation.createdAt | dateDuration }}</td>
+                <td>{{ congregation.numberOfMembers }} membro(s)</td>
                 <td>{{ congregation.updatedAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.samuel.app.models.Member;
 import br.com.samuel.app.repository.MemberRepository;
 import br.com.samuel.app.usecases.models.DeleteOne;
@@ -24,7 +25,9 @@ public class DeleteMember extends DeleteOne<Member, MemberRepository> {
             .findById(id)
             .map(foundMember -> {
                 if(foundMember.equals(member)) {
+                    // Deleta o membro da base de dados
                     getRepository().delete(member);
+                    // Deleta as imagens do servidor de hospedagem de imagens
                     String photoId = foundMember.getPhoto().getPublicId();
                     String signatureId = foundMember.getSignature().getPublicId();
                     try {

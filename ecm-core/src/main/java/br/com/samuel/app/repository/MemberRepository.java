@@ -1,5 +1,6 @@
 package br.com.samuel.app.repository;
 
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,4 +40,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     // Retorna a quantidade de membros selecionados para impressão
     @Query("SELECT COUNT(m) FROM Member m WHERE m.isSelected = TRUE")
     Integer countSelecteds();
+
+    @Query("SELECT m FROM Member m WHERE m.cpf = :cpf OR m.rg = :rg")
+    Optional<Member> alreadyCreated(@Param("cpf") String cpf, @Param("rg") String rg);
 }

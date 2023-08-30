@@ -1,5 +1,6 @@
 package br.com.samuel.app.repository;
 
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,6 @@ import br.com.samuel.app.models.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-
 
     // Lista os cargos 'roles' de maneira paginada filtrando pelo nome do cargo
     @Query("SELECT r FROM Role r WHERE LOWER(r.name) LIKE %:search% ORDER BY r.name ASC")
@@ -31,4 +31,7 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
     // Lista os cargos 'roles' atualizados recentamente
     @Query("SELECT r FROM Role r WHERE LOWER(r.name) LIKE %:search% ORDER BY r.updatedAt DESC")
     Page<Role> listPaginateLatestUpdated(@Param("search") String search, Pageable pageable); 
+
+    @Query("SELECT r FROM Role r WHERE lower(r.name) = lower(:name)")
+    Optional<Role> alreadyCreated(@Param("name") String name);
 }

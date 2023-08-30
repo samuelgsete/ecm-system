@@ -1,4 +1,5 @@
-<div class="no-data-found">
-    <img class="no-found" [src]="srcImg" alt="No data found">
+<div class="no-data-found" *ngIf="isVisible">
+    <img class="no-found" [src]="image.src" [alt]="image.alt">
     <p class="message">{{ message }}</p>
+    <ng-content></ng-content>
 </div>

@@ -9,17 +9,18 @@ import { Congregation } from "src/app/models/congregation.entity";
 @Injectable()
 export class CreateCongregationService extends CreateService  {
 
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly create: CreateCongregationResource
     ) { super() }
 
-    public run(data: any): void {
+    run(data: any): void {
         this.spinner.show();
-        const congregation: Congregation = new Congregation({
+        const congregation = new Congregation({
             id: data.id,
             name: data.name,
+            numberOfMembers: data.numberOfMembers,
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
@@ -32,7 +33,7 @@ export class CreateCongregationService extends CreateService  {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                this.toastr.error('A Congregaçaõ não foi criado', 'Há não :(', { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

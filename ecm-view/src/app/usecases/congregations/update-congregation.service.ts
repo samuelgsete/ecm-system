@@ -9,17 +9,18 @@ import { UpdateCongregationResource } from "src/app/resources/congregations/upda
 @Injectable()
 export class UpdateCongregationService extends UpdateOneService<Congregation> {
     
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly update: UpdateCongregationResource
     ) { super() }
 
-    public override run(data: any): void {
+    run(data: any): void {
         this.spinner.show();
-        const congregation: Congregation = new  Congregation({
+        const congregation = new  Congregation({
             id: data.id,
             name: data.name,
+            numberOfMembers: data.numberOfMembers,
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
@@ -32,7 +33,7 @@ export class UpdateCongregationService extends UpdateOneService<Congregation> {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                this.toastr.error('Os Dados não foram alterados', 'Há não :(', { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

@@ -14,7 +14,7 @@ export class CreateCongregrationComponent implements OnInit {
 
   protected form!: FormGroup;
 
-  public constructor(
+  constructor(
     protected readonly router: Router,
     protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateCongregrationComponent>,
@@ -27,14 +27,15 @@ export class CreateCongregrationComponent implements OnInit {
       name: ['', [
         Validators.required, 
         Validators.minLength(2), 
-        Validators.maxLength(64)]
+        Validators.maxLength(16)]
       ],
+      numberOfMembers: [0],
       createdAt: [null],
       updatedAt: [null]
     })
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this.buildForm();
     this.create.done().subscribe(response => {
       this.modalRef.close()

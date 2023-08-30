@@ -17,7 +17,7 @@ button {
 }
 
 table tr td:nth-child(1) {
-    width: 5%;
+    width: 10%;
     font-weight: bold;
     font-family: 'Urbanist', sans-serif;
     font-size: 1.05em;
@@ -25,5 +25,5 @@ table tr td:nth-child(1) {
 
 table tr td:nth-child(2),
 table tr td:nth-child(2) {
-    width: 40%;
+    width: 30%;
 }

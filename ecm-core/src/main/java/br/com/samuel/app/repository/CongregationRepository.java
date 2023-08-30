@@ -1,5 +1,7 @@
 package br.com.samuel.app.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,4 +32,7 @@ public interface CongregationRepository extends JpaRepository<Congregation, Inte
     // Lista as congregações mais recentemente atualizadas
     @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.updatedAt DESC")
     Page<Congregation> listPaginateLatestUpdated(@Param("search") String search, Pageable pageable);
+
+    @Query("SELECT c FROM Congregation c WHERE lower(c.name) = lower(:name)")
+    Optional<Congregation> alreadyCreated(@Param("name") String name);
 }
