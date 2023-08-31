@@ -8,7 +8,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class UpdateStep2Component {
   
-  @Input() 
-  form!: FormGroup;
+  @Input() form!: FormGroup;
 
 }

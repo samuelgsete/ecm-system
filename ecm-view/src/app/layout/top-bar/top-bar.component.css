@@ -7,7 +7,7 @@ header {
     position: fixed;
     top: 0;
     left: 85px;
-    background-color: rgb(var(--dark));
+    background-color: rgb(var(--dark-0));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,8 +35,16 @@ div.user-logged h1 strong {
     font-family: 'Days One', sans-serif;
     font-weight: 550;
     letter-spacing: 0.6px;
-    font-size: 1.14em;
+    font-size: 1.25em;
     color: rgb(var(--gray-3));
+}
+
+.logo span {
+    font-family: 'Days One', sans-serif;
+    font-weight: 550;
+    letter-spacing: 0.6px;
+    font-size: 1.25em;
+    color: rgb(var(--pink));
 }
 
 nav {

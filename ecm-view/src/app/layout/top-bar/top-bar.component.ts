@@ -11,7 +11,7 @@ import { UserInfoService } from 'src/app/usecases/users/userinfo.service';
 })
 export class TopBarComponent implements OnInit {
 
-  user: string = 'Layla';
+  user: string = 'Usuário';
   
   constructor(
     protected readonly router: Router,

@@ -1,5 +1,5 @@
 <main>
-    <h1 class="form-title">Atualizar Cargo</h1>
+    <h1 class="form-title">Editar Cargo</h1>
     <form [formGroup]="form">
         <div class="row-flex">
             <mat-form-field class="width-fix" appearance="fill" color="primary">
@@ -8,7 +8,8 @@
                     formControlName="name"
                     placeholder="Ex.: Alto Alegre"
                     minlength="2" 
-                    maxlength="64"
+                    maxlength="16"
+                    max="16"
                     matInput 
                     required
                 >
@@ -19,7 +20,7 @@
                     Informe no mínimo 2 caracteres
                 </mat-error>
                 <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
-                    Informe no máximo 64 caracteres
+                    Informe no máximo 16 caracteres
                 </mat-error>
             </mat-form-field>
         </div>

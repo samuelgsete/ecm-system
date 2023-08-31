@@ -17,7 +17,7 @@ export class BuildFormUpdateMemberService {
         const step1 = this._fb.group({
             id: [response.id],
             isSelected: [response.isSelected],
-            name: [response.name, [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
+            name: [response.name, [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
             cpf: [response.cpf, [acceptNullValues, cpfValidator]],
             rg: [response.rg, acceptNullValues],
             dateOfBirth: [this.format.run(response.dateOfBirth,'yyyy-MM-dd'), Validators.required],
@@ -29,12 +29,12 @@ export class BuildFormUpdateMemberService {
         })
         const step2 = this._fb.group({
             phone: [response.phone, acceptNullValues],
-            email: [response.email, [acceptNullValues, Validators.email, Validators.maxLength(255)]],
+            email: [response.email, [acceptNullValues, Validators.email, Validators.minLength(6), Validators.maxLength(48)]],
         })
         const step3 = this._fb.group({
             id: [response.affiliation.id],
-            fatherName: [response.affiliation.fatherName, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]],
-            motherName: [response.affiliation.motherName, [acceptNullValues, Validators.minLength(5), Validators.maxLength(255)]]
+            fatherName: [response.affiliation.fatherName, [acceptNullValues, Validators.minLength(6), Validators.maxLength(32)]],
+            motherName: [response.affiliation.motherName, [acceptNullValues, Validators.minLength(6), Validators.maxLength(32)]]
         })
         const step4 = this._fb.group({
             photo: [response.photo, Validators.required],

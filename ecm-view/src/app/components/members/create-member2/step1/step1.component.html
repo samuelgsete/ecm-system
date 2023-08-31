@@ -6,7 +6,8 @@
                 formControlName="name"
                 placeholder="Ex.: João Paulo Alves"
                 minlength="6" 
-                maxlength="255"
+                maxlength="32"
+                max="32"
                 matInput 
                 required
             >
@@ -17,7 +18,7 @@
                 Informe no mínimo 6 caracteres
             </mat-error>
             <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
-                Informe no máximo 255 caracteres
+                Informe no máximo 32 caracteres
             </mat-error>
         </mat-form-field> 
     </div>

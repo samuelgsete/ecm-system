@@ -6,11 +6,16 @@
                 type="email"
                 formControlName="email"
                 placeholder="Ex.: daniel@email.com.br"
-                maxlength="255"
+                minlength="6"
+                maxlength="48"
+                max="48"
                 matInput
             >
+            <mat-error *ngIf="form['controls']['email'].errors?.['minlength']">
+                Informe no mínimo 6 caracteres
+            </mat-error>
             <mat-error *ngIf="form['controls']['email'].errors?.['maxlength']">
-                Informe no máximo 255 caracteres
+                Informe no máximo 48 caracteres
             </mat-error>
         </mat-form-field>
     </div>
@@ -21,14 +26,10 @@
                 formControlName="phone"
                 placeholder="Ex.: (00)00000-0000"
                 mask="(00)00000-0000"
-                maxlength="15"
                 matInput
             >
             <mat-error *ngIf="form['controls']['phone'].errors?.['mask']">
                 Formato inválido
-            </mat-error>
-            <mat-error *ngIf="form['controls']['phone'].errors?.['maxlength']">
-                Informe no máximo 15 caracteres
             </mat-error>
         </mat-form-field>
     </div>

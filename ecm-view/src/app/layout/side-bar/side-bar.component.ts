@@ -10,7 +10,7 @@ import { PathRoute } from './path-route.entity';
 })
 export class SideBarComponent implements OnInit {
 
-  nameInitial: string = "";
+  nameInitial: string = "U";
   routes: PathRoute[] = [
     { icon: 'person_search', path: 'members', name: 'Membros' },
     { icon: 'group_add', path: 'create/member', name: 'Novo membro' },

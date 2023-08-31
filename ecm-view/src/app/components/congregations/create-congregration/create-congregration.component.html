@@ -8,7 +8,7 @@
                     formControlName="name"
                     placeholder="Ex.: Sede"
                     minlength="2" 
-                    maxlength="64"
+                    maxlength="16"
                     matInput 
                     required
                 >
@@ -19,7 +19,7 @@
                     Informe no mínimo 2 caracteres
                 </mat-error>
                 <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
-                    Informe no máximo 64 caracteres
+                    Informe no máximo 16 caracteres
                 </mat-error>
             </mat-form-field>
         </div>
@@ -31,7 +31,7 @@
                 [disabled]="!form.valid"
                 (click)="create.run(form.value)"
                 matRipple
-            >CONCLUIR CADASTRO</button>
+            >CADASTRAR</button>
         </div>
         <div class="row-flex">
             <button 
@@ -40,7 +40,7 @@
                 block="true"
                 (click)="modalRef.close()"
                 matRipple
-            >CANCELAR CADASTRO</button>
+            >CANCELAR</button>
         </div>
     </form>
 </main>

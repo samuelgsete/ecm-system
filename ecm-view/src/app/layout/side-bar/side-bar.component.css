@@ -18,7 +18,9 @@ nav.side-bar {
 }
 
 img.logotipo {
-    width: 54px;
+    width: 52px;
+    margin-top: 8px;
+    transform: rotate(-180deg);
 }
 
 div.name-initial {

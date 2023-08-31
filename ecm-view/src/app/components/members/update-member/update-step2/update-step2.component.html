@@ -6,12 +6,16 @@
                 type="email"
                 formControlName="email"
                 placeholder="Ex.: daniel@email.com.br"
-                maxlength="255"
+                minlength="6"
+                maxlength="48"
+                max="48"
                 matInput
-                #email
             >
+            <mat-error *ngIf="form['controls']['email'].errors?.['minlength']">
+                Informe no máximo 6 caracteres
+            </mat-error>
             <mat-error *ngIf="form['controls']['email'].errors?.['maxlength']">
-                Informe no máximo 255 caracteres
+                Informe no máximo 48 caracteres
             </mat-error>
         </mat-form-field>
     </div>
