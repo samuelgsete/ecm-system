@@ -1,4 +1,4 @@
-p.name-page {
+p.page-description {
     display: flex;
     column-gap: 10px;
     align-items: center;
@@ -12,11 +12,11 @@ p.name-page {
     padding: 10px 0;
 }
 
-p.name-page span:hover {
+p.page-description span:hover {
     text-decoration: underline;
 }
 
-p.name-page mat-icon {
+p.page-description mat-icon {
     transform: scale(78%);
     color: rgb(var(--purple));
 }

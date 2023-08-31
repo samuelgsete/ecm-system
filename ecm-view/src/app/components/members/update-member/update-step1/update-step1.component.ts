@@ -3,8 +3,8 @@ import { FormGroup } from '@angular/forms';
 
 import { Role } from 'src/app/models/role.entity';
 import { Congregation } from 'src/app/models/congregation.entity';
-import { ListGendersService } from 'src/app/shared/usecases/list-genders.service';
-import { ListMaritalStatusService } from 'src/app/shared/usecases/list-marital-status.service';
+import { ListGendersService } from 'src/app/utils/services/list-genders.service';
+import { ListMaritalStatusService } from 'src/app/utils/services/list-marital-status.service';
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
 import { Pagination } from 'src/app/models/pagination.entity';

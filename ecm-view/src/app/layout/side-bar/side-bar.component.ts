@@ -14,9 +14,9 @@ export class SideBarComponent implements OnInit {
   routes: PathRoute[] = [
     { icon: 'person_search', path: 'members', name: 'Membros' },
     { icon: 'group_add', path: 'create/member', name: 'Novo membro' },
-    { icon: 'layers', path: 'roles', name: 'Cargos' },
+    { icon: 'work_history', path: 'roles', name: 'Cargos' },
     { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
-    { icon: 'widgets', path: 'credential/themes', name: 'Temas' }
+    { icon: 'format_color_fill', path: 'credential/themes', name: 'Temas' }
   ];
 
   constructor(

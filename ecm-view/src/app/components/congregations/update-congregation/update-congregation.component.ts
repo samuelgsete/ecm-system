@@ -27,7 +27,7 @@ export class UpdateCongregationComponent implements OnInit {
       name: [congregation.name, [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(16)]
+        Validators.maxLength(24)]
       ],
       numberOfMembers: [congregation.numberOfMembers],
       createdAt: [congregation.createdAt],

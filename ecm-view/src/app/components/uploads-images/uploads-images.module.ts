@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UtilsModule } from 'src/app/utils/utils.module';
 import { UploadPhotoResource } from 'src/app/resources/uploads-images/upload-photo.resource';
 import { UploadPhotoService } from 'src/app/usecases/uploads/upload-photo.service';
 import { DeletePhotoResource } from 'src/app/resources/uploads-images/delete-photo.resource';
@@ -24,7 +25,8 @@ import { OnFileDroppedSignatureService } from 'src/app/usecases/uploads/on-file-
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    UtilsModule
   ],
   exports: [
     UploadedPhotoPreviewComponent,

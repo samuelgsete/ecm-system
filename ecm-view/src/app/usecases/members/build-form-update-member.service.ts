@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 import { FormatDateService } from "src/app/utils/services/format-date.service";
-import cpfValidator from "src/app/validators/cpf.validator";
-import acceptNullValues from "src/app/validators/accept-null-values.validator";
+import cpfValidator from "src/app/utils/validators/cpf.validator";
+import acceptNullValues from "src/app/utils/validators/accept-null-values.validator";
 
 @Injectable()
 export class BuildFormUpdateMemberService {

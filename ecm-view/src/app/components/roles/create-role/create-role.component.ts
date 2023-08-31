@@ -24,7 +24,7 @@ export class CreateRoleComponent implements OnInit {
   ngOnInit(): void {
     this.form = this._fb.group({
       id: [null],
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(16)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(24)]],
       numberOfMembers: [0],
       createdAt: [null],
       updatedAt: [null]

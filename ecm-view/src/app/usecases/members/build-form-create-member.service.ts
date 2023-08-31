@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
-import cpfValidator from "src/app/validators/cpf.validator";
-import acceptNullValues from "src/app/validators/accept-null-values.validator";
+import cpfValidator from "src/app/utils/validators/cpf.validator";
+import acceptNullValues from "src/app/utils/validators/accept-null-values.validator";
 
 @Injectable()
 export class BuildFormCreateMemberService {
 
-    public constructor(private readonly _fb:FormBuilder) {}
+    constructor(private readonly _fb:FormBuilder) {}
 
-    public run(): any {
+    run(): any {
         const step1 = this._fb.group({
             name: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
             isSelected: [true],

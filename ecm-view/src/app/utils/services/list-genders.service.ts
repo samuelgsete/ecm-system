@@ -8,12 +8,12 @@ interface Gender {
 @Injectable()
 export class ListGendersService {
 
-    private data: Gender[] = [
+    private readonly data: Gender[] = [
         { name: 'Feminino', value: 'FEMALE'},
         { name: 'Masculino', value: 'MALE'}
     ];
 
-    public run(): Gender[] {
+    run(): Gender[] {
         return this.data;
     }
 }

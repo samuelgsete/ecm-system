@@ -17,9 +17,8 @@ footer hr {
 }
 
 .logo img {
-    max-width: 36px;
+    max-width: 46px;
     max-height: auto;
-    transform: rotate(-180deg);
 }
 
 .logo p {

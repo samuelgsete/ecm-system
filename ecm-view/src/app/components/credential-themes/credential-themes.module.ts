@@ -13,6 +13,7 @@ import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OrderThemesService } from 'src/app/usecases/credential-themes/order-themes.service';
 import { FindThemeActivatedResource } from 'src/app/resources/credential-themes/find-theme-activated.resource';
 import { FindThemeActivatedService } from 'src/app/usecases/credential-themes/find-theme-activated.service';
+import { UtilsModule } from 'src/app/utils/utils.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FindThemeActivatedService } from 'src/app/usecases/credential-themes/fi
   imports: [
     CommonModule,
     SharedModule,
+    UtilsModule,
     PaginateModule
   ],
   providers: [

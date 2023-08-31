@@ -26,7 +26,7 @@ export class UpdateRoleComponent implements OnInit {
   private buildForm(role: Role): FormGroup {
     return this._fb.group({
       id: [role.id],
-      name: [role.name, [Validators.required, Validators.minLength(2), Validators.maxLength(16)]],
+      name: [role.name, [Validators.required, Validators.minLength(2), Validators.maxLength(24)]],
       numberOfMembers: [role.numberOfMembers],
       createdAt: [role.createdAt],
       updatedAt: [role.updatedAt]

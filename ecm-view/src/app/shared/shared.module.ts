@@ -34,27 +34,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-import { ListMaritalStatusService } from './usecases/list-marital-status.service';
-import { ListGendersService } from './usecases/list-genders.service';
-import { UploadedImagePreviewComponent } from './components/ui/uploaded-image-preview/uploaded-image-preview.component';
-import { SmallTextPipe } from '../pipes/small-text.pipe';
-import { DateDurationPipe } from '../pipes/date-duration.pipe';
-import { FileSizePipe } from '../pipes/file-size.pipe';
-import { MaritalStatusPipe } from '../pipes/marital-status.pipe';
-import { DragDropUploadDirective } from '../directives/drag-drop-upload.directive';
-import { NamePageComponent } from './components/name-page/name-page.component';
-
-
 @NgModule({
-  declarations: [
-    UploadedImagePreviewComponent,
-    SmallTextPipe,
-    DateDurationPipe,
-    FileSizePipe,
-    MaritalStatusPipe,
-    DragDropUploadDirective,
-    NamePageComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -124,19 +105,9 @@ import { NamePageComponent } from './components/name-page/name-page.component';
     NgxMaskPipe,
 
     NgxSpinnerModule,
-    ToastrModule,
-
-    UploadedImagePreviewComponent,
-    NamePageComponent,
-    SmallTextPipe,
-    DateDurationPipe,
-    FileSizePipe,
-    MaritalStatusPipe,
-    DragDropUploadDirective
+    ToastrModule
   ],
   providers: [
-    ListMaritalStatusService,
-    ListGendersService,
     provideEnvironmentNgxMask(),
     {
       provide: STEPPER_GLOBAL_OPTIONS,
