@@ -15,7 +15,7 @@
                         {{ ordination.label }}
                     </button>
                 </mat-menu>
-                <div class="input-search" matRipple>
+                <div class="input-search">
                     <mat-icon>search</mat-icon>
                     <input 
                         type="text"
@@ -33,6 +33,7 @@
                 >VER TEMA</button>
             </div>
         </header>
+
         <table class="ui-table default" *ngIf="!listThemes.isEmpty()">
             <tr>
                 <th>ID</th>
@@ -63,6 +64,17 @@
                 </td>
             </tr>
         </table>
+        <div class="row-flex space-between center-vertical">
+            <mat-form-field class="input-size-pagination" appearance="outline">
+                <mat-label>Ítens/Página</mat-label>
+                <mat-select [formControl]="formSize">
+                    <mat-option *ngFor="let size of [5, 10, 15, 20]" [value]="size">
+                        {{ size }} ítens
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p class="total-elements">Total de elementos.: <strong>{{ pagination.total }}</strong></p>
+        </div>
         <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </section>
 </main>

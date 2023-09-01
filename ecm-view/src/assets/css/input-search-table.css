@@ -4,7 +4,7 @@
 
 div.input-search {
     position: relative;
-    width: 150px;
+    width: 130px;
     height: 46px;
     padding-right: 15px;
     border-radius: 25px;
@@ -15,7 +15,7 @@ div.input-search input.search {
     height: 100%;
     border: none;
     color: rgb(var(--gray-8));
-    padding: 0 25% 0 25%;
+    padding: 0 38px 0 38px;
     font-family: 'Urbanist', sans-serif;
     border-radius: 25px;
     background-color: rgb(var(--gray-1));

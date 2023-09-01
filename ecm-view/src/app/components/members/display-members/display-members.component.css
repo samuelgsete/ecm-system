@@ -42,3 +42,7 @@ table tr td img.photo-member {
     border-radius: 8px;
     border: 0.12em solid rgb(var(--gray-2));
 }
+
+.input-size-pagination {
+    max-width: 150px;
+}

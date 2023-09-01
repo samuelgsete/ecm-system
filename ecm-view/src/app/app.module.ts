@@ -37,12 +37,12 @@ import { UsersModule } from './components/users/users.module';
     UsersModule
   ],
   providers: [
-    /*{
+    {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService],
-    }*/
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -25,8 +25,9 @@ import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print
 export class DisplayThemesComponent implements OnInit {
 
   themes: CredentialTheme[] = [];
-  pagination: Pagination = new Pagination({ size: 5 });
+  pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
+  formSize: FormControl = new FormControl(5);
 
   constructor(
     readonly titleService: Title,
@@ -47,7 +48,8 @@ export class DisplayThemesComponent implements OnInit {
     this.listThemes.run(this.pagination);
     this.listThemes.done().subscribe(response => {
       this.themes = response.content;
-      this.pagination.page = response.number     
+      this.pagination.page = response.number
+      this.pagination.total = response.totalElements 
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
         totalElements: response.totalElements,
@@ -60,8 +62,11 @@ export class DisplayThemesComponent implements OnInit {
     })
 
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
-      this.pagination.search = keyword;
-      this.listThemes.run(this.pagination);
+      this.listThemes.run(new Pagination({ search: keyword.toLowerCase() }));
+    })
+
+    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
+      this.listThemes.run(new Pagination({ size: customSize }));
     })
 
     this.onPrint.done().subscribe(htmlContent => {

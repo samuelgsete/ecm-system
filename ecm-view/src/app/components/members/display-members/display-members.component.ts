@@ -35,8 +35,9 @@ export class DisplayMembersComponent implements OnInit {
 
   members: Member[] = [];
   countSelecteds: number = 0;
-  pagination: Pagination = new Pagination({ size: 6 });
+  pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
+  formSize: FormControl = new FormControl(5);
 
   constructor(
     readonly router: Router,
@@ -63,7 +64,8 @@ export class DisplayMembersComponent implements OnInit {
     this.listMembers.run(this.pagination);
     this.listMembers.done().subscribe(response => {
       this.members = response.content;
-      this.pagination.page = response.number     
+      this.pagination.page = response.number
+      this.pagination.total = response.totalElements     
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
         totalElements: response.totalElements,
@@ -72,9 +74,11 @@ export class DisplayMembersComponent implements OnInit {
     })
     
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.listMembers.run(new Pagination({ 
-        size: 6, search: keyword.toLowerCase() 
-      }))
+      this.listMembers.run(new Pagination({ search: keyword.toLowerCase() }))
+    })
+
+    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
+      this.listMembers.run(new Pagination({ size: customSize }));
     })
 
     this.count.run();
@@ -98,7 +102,8 @@ export class DisplayMembersComponent implements OnInit {
     })
 
     this.onDelete.done().subscribe(response => {
-      this.listMembers.run(new Pagination({ size: 6 }));
+      this.listMembers.run(new Pagination());
+      this.count.run();
     })
   }
 }

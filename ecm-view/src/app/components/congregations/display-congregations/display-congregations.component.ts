@@ -21,9 +21,9 @@ import { Paginate } from 'src/app/models/paginate.entity';
 export class DisplayCongregationsComponent implements OnInit {
 
   congregations: Congregation[] = []
-  pagination: Pagination = new Pagination({ size: 3 })
+  pagination: Pagination = new Pagination()
   formSearch: FormControl = new FormControl()
-
+  formSize: FormControl = new FormControl(5)
   constructor(
     readonly titleService: Title,
     readonly modal: MatDialog,
@@ -59,7 +59,8 @@ export class DisplayCongregationsComponent implements OnInit {
     this.listCongregations.run(this.pagination);
     this.listCongregations.done().subscribe(response => {
       this.congregations = response.content;
-      this.pagination.page = response.number     
+      this.pagination.page = response.number
+      this.pagination.total = response.totalElements
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
         totalElements: response.totalElements,
@@ -68,9 +69,11 @@ export class DisplayCongregationsComponent implements OnInit {
     })
     
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
-      this.listCongregations.run(new Pagination({
-        size: 6, search: keyword.toLowerCase() 
-      }));
+      this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }));
+    })
+
+    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
+      this.listCongregations.run(new Pagination({ size: customSize }));
     })
   }
 }

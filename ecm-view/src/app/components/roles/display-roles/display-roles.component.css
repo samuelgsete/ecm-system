@@ -26,3 +26,7 @@ table tr td:nth-child(2),
 table tr td:nth-child(2) {
     width: 30%;
 }
+
+.input-size-pagination {
+    max-width: 138px;
+}

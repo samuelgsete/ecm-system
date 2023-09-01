@@ -21,8 +21,9 @@ import { Paginate } from 'src/app/models/paginate.entity';
 export class DisplayRolesComponent implements OnInit {
 
   roles: Role[] = [];
-  pagination: Pagination = new Pagination({ size: 7 });
+  pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
+  formSize: FormControl = new FormControl(5);
 
   constructor(
     readonly titleService: Title,
@@ -59,16 +60,22 @@ export class DisplayRolesComponent implements OnInit {
     this.listRoles.done().subscribe(response => {
       this.roles = response.content;
       console.log(response);
-      this.pagination.page = response.number     
+      this.pagination.page = response.number
+      this.pagination.total = response.totalElements 
       this.onPaginate.onBuild(new Paginate({
         currentPage: response.number,
         totalElements: response.totalElements,
         totalPages: response.totalPages
       }))
     })
+
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
       this.pagination.search = keyword
-      this.listRoles.run(this.pagination)
+      this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
+    })
+
+    this.formSize.valueChanges.pipe(debounceTime(900)).subscribe(customSize => {
+      this.listRoles.run(new Pagination({ size: customSize }));
     })
   }
 }

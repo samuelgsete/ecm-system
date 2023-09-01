@@ -1,0 +1,67 @@
+/* Margin de 5px */
+.mt5 {
+    margin: 5px 0 0 0 !important;
+}
+
+.mb5 {
+    margin: 0 0 5px 0 !important;
+}
+
+.ml5 {
+    margin: 0 0 0 5px !important;
+}
+
+.mr5 {
+    margin: 0 5px 0 0 !important;
+}
+
+/* Margin de 10px */
+.mt10 {
+    margin: 10px 0 0 0 !important;
+}
+
+.mb10 {
+    margin: 0 0 10px 0 !important;
+}
+
+.ml10 {
+    margin: 0 0 0 10px !important;
+}
+
+.mr10 {
+    margin: 0 10px 0 0 !important;
+}
+
+/* Margin de 20px */
+.mt20 {
+    margin: 20px 0 0 0 !important;
+}
+
+.mb20 {
+    margin: 0 0 20px 0 !important;
+}
+
+.ml20 {
+    margin: 0 0 0 20px !important;
+}
+
+.mr20 {
+    margin: 0 20px 0 0 !important;
+}
+
+/* Margin de 30px */
+.mt30 {
+    margin: 30px 0 0 0 !important;
+}
+
+.mb30 {
+    margin: 0 0 30px 0 !important;
+}
+
+.ml30 {
+    margin: 0 0 0 30px !important;
+}
+
+.mr30 {
+    margin: 0 30px 0 0 !important;
+}

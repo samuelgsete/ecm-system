@@ -52,3 +52,7 @@ div.inactive {
     color: rgb(var(--danger));
     background-color: rgba(var(--danger), 0.12);
 }
+
+.input-size-pagination {
+    max-width: 150px;
+}
