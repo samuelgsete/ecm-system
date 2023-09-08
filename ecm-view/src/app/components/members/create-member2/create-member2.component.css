@@ -15,14 +15,14 @@ header {
 
 div.content {
     width: 96%;
-    padding: 2%;
+    padding: 0 2%;
     display: flex;
     justify-content: center;
     animation: up 0.5s;
 }
 
-main mat-stepper {
-    max-width: 615px;
+mat-stepper {
+   width: 640px;
 }
 
 div.complete-registration {

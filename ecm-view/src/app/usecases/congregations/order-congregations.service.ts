@@ -11,13 +11,13 @@ export class OrderCongregationsService {
         { label: 'Nome A-Z', name: 'by_name_asc' },
         { label: 'Nome Z-A', name: 'by_name_desc' },
         { label: 'Recentes', name: 'latest_created' },
-        { label: 'Atuais', name: 'latest_updated' },
+        { label: 'Atualizados', name: 'latest_updated' },
         { label: 'Antigos', name: 'older_created' }
     ]
 
     constructor(readonly listCongregations: ListCongregationsPaginatedService) {}
 
     run(_ordination: string) {;
-        this.listCongregations.run(new Pagination({ size: 6, ordination: _ordination }));
+        this.listCongregations.run(new Pagination({ ordination: _ordination }));
     }
 }

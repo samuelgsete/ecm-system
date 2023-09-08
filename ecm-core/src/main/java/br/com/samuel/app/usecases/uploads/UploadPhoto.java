@@ -9,7 +9,8 @@ import br.com.samuel.app.usecases.models.Upload;
 @Service
 public class UploadPhoto extends Upload<SavePhotoAtCloud> {
 
-    public ImageModel run(MultipartFile file) throws IOException {               
-        return saveAtCloud().run(file.getBytes(), randonName());
+    @Override
+    public ImageModel run(MultipartFile file, Cropped cropped) throws IOException {
+        return saveAtCloud().run(file.getBytes(), randonName(), cropped);
     }
 }

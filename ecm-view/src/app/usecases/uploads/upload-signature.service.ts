@@ -4,6 +4,7 @@ import { HttpEventType } from "@angular/common/http";
 
 import { UploadedImageService } from "../models/upload-image.service";
 import { UploadSignatureResource } from "src/app/resources/uploads-images/upload-signature.resource";
+import { Cropped } from "src/app/models/cropped.entity";
 
 const PERCENTAGE = 100;
 
@@ -15,8 +16,8 @@ export class UploadSignatureService extends UploadedImageService {
         private readonly upload: UploadSignatureResource
     ) { super() }
 
-    public run(file: FormData): void {
-        this.upload.run(file).subscribe({
+    public run(file: FormData, cropped: Cropped): void {
+        this.upload.run(file, cropped).subscribe({
             next: (event) => {
                 if(event.type == HttpEventType.UploadProgress) {
                     this.progressDone = Math.round(PERCENTAGE * event.loaded / event.total);

@@ -9,7 +9,7 @@ import br.com.samuel.app.usecases.models.Upload;
 @Service
 public class UploadSignature extends Upload<SaveSignatureAtCloud> {
 
-    public ImageModel run(MultipartFile file) throws IOException {              
-        return saveAtCloud().run(file.getBytes(), randonName());
+    public ImageModel run(MultipartFile file, Cropped cropped) throws IOException {
+        return saveAtCloud().run(file.getBytes(), randonName(), cropped);
     }
 }

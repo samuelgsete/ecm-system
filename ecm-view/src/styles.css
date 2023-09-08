@@ -27,3 +27,7 @@ mat-form-field mat-error {
 mat-form-field mat-error:first-child {
     display: block !important;
 }
+
+.cdk-overlay-container {
+    z-index: 9999 !important;
+}

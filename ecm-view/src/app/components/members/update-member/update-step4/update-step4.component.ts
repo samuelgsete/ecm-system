@@ -1,14 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { DeletePhotoService } from 'src/app/usecases/uploads/delete-photo.service';
 import { DeleteSignatureService } from 'src/app/usecases/uploads/delete-signature.service';
-import { OnFileDroppedPhotoService } from 'src/app/usecases/uploads/on-file-dropped-photo.service';
-import { OnFileDroppedSignatureService } from 'src/app/usecases/uploads/on-file-dropped-signature.service';
-import { OnUploadPhotoService } from 'src/app/usecases/uploads/on-upload-photo.service';
-import { OnUploadSiginatureService } from 'src/app/usecases/uploads/on-upload-signature.service';
 import { UploadPhotoService } from 'src/app/usecases/uploads/upload-photo.service';
 import { UploadSignatureService } from 'src/app/usecases/uploads/upload-signature.service';
+import { CroppedImageComponent } from 'src/app/components/uploads-images/cropped-image/cropped-image.component';
 
 @Component({
   selector: 'app-update-step4',
@@ -24,15 +22,21 @@ export class UpdateStep4Component implements OnInit {
   signatureId: number = 0;
 
   constructor(
-    protected readonly onUploadPhoto: OnUploadPhotoService,
-    protected readonly onFileDroppedPhoto: OnFileDroppedPhotoService,
+    protected readonly modal: MatDialog,
     protected readonly uploadPhoto: UploadPhotoService,
     protected readonly deletePhoto: DeletePhotoService,
-    protected readonly onUploadSignature: OnUploadSiginatureService,
-    protected readonly onFileDroppedSignature: OnFileDroppedSignatureService,
     protected readonly uploadSignature: UploadSignatureService,
     protected readonly deleteSignature: DeleteSignatureService
   ) {}
+
+  onChangeFile(_changeEvent: Event, _uploadWhat: string): void {
+    this.modal.open(CroppedImageComponent, {
+      data: {
+        changeEvent: _changeEvent,
+        uploadWhat: _uploadWhat
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.photoId = this.form.value.photo.id;

@@ -1,6 +1,8 @@
 import { Observable } from "rxjs";
 import { HttpRequest } from "./http-request.resource";
 
+import { Cropped } from "src/app/models/cropped.entity";
+
 export abstract class UploadImageResource extends HttpRequest {
 
     private controller: string = '';
@@ -14,5 +16,5 @@ export abstract class UploadImageResource extends HttpRequest {
         return this.localUrl.concat(this.controller);
     }
 
-    public abstract run(file: FormData): Observable<any>
+    public abstract run(imgFile: FormData, cropped: Cropped): Observable<any>
 }

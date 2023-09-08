@@ -12,7 +12,7 @@ public class SavePhotoAtCloud extends UploadAtCloudinary {
 
     private String path = "ecm/fotos3x4/";
 
-    public ImageModel run(byte[] img, String imgName) throws IOException {
+    public ImageModel run(byte[] img, String imgName, Cropped cropped) throws IOException {
         var params = ObjectUtils.asMap(
             "public_id", this.path.concat(imgName),
             "resource_type", "image"
@@ -29,11 +29,11 @@ public class SavePhotoAtCloud extends UploadAtCloudinary {
         var urlTransformed = getCloudinaryConfig()
             .url()
             .transformation(new Transformation()
-                .aspectRatio("3:4")
-                .gravity("face")
-                .height(500)
-                .crop("thumb")
-                .zoom(0.8)
+                .width(cropped.getWidth())
+                .height(cropped.getHeight())
+                .x(cropped.getPositionX1())
+                .y(cropped.getPositionY2())
+                .crop("crop")
             ).generate(publicId);
         
         ImageModel uploadedImage = new ImageModel();

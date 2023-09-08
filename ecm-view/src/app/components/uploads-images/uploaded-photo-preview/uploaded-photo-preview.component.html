@@ -1,9 +1,9 @@
 <div class="ui-preview-image" *ngIf="isUploaded">
     <div class="image">
-        <img class="image-uploaded" [src]="photo.urlTransformed" alt="Image Uploaded">
+        <img class="image-uploaded" [src]="photo.url" alt="Image Uploaded">
     </div>
     <div class="image-description">
-        <a class="image-url" [href]="photo.urlTransformed" target="_blank">
+        <a class="image-url" [href]="photo.url" target="_blank">
             {{ photo.url | smalltext: '48' }}
         </a>
         <p class="image-size">

@@ -17,11 +17,13 @@ import { OnUploadPhotoService } from 'src/app/usecases/uploads/on-upload-photo.s
 import { OnUploadSiginatureService } from 'src/app/usecases/uploads/on-upload-signature.service';
 import { OnFileDroppedPhotoService } from 'src/app/usecases/uploads/on-file-dropped-photo.service';
 import { OnFileDroppedSignatureService } from 'src/app/usecases/uploads/on-file-dropped-signature.service';
+import { CroppedImageComponent } from './cropped-image/cropped-image.component';
 
 @NgModule({
   declarations: [
     UploadedPhotoPreviewComponent,
-    UploadedSignaturePreviewComponent
+    UploadedSignaturePreviewComponent,
+    CroppedImageComponent
   ],
   imports: [
     CommonModule,

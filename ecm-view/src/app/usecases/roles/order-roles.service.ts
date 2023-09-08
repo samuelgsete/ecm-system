@@ -11,13 +11,13 @@ export class OrderRolesService {
         { label: 'Nome A-Z', name: 'by_name_asc' },
         { label: 'Nome Z-A', name: 'by_name_desc' },
         { label: 'Recentes', name: 'latest_created' },
-        { label: 'Atuais', name: 'latest_updated' },
+        { label: 'Atualizados', name: 'latest_updated' },
         { label: 'Antigos', name: 'older_created' }
     ]
 
     constructor(readonly listRoles: ListRolesPaginatedService) {}
 
     run(_ordination: string) {
-        this.listRoles.run(new Pagination({ size: 7, ordination: _ordination}));
+        this.listRoles.run(new Pagination({ ordination: _ordination}));
     }
 }

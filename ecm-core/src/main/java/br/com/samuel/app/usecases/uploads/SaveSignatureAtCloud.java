@@ -2,8 +2,8 @@ package br.com.samuel.app.usecases.uploads;
 
 import java.io.IOException;
 import org.springframework.stereotype.Service;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
-
 import br.com.samuel.app.models.ImageModel;
 
 @Service
@@ -11,7 +11,7 @@ public class SaveSignatureAtCloud extends UploadAtCloudinary {
 
     private String path = "ecm/assinaturas/";
 
-    public ImageModel run(byte[] img, String imgName) throws IOException {
+    public ImageModel run(byte[] img, String imgName, Cropped cropped) throws IOException {
         var params = ObjectUtils.asMap(
             "public_id", this.path.concat(imgName),
             "resource_type", "image"
@@ -24,6 +24,16 @@ public class SaveSignatureAtCloud extends UploadAtCloudinary {
         var height = Integer.parseInt(imageMap.get("height").toString());
         var size = Long.parseLong(imageMap.get("bytes").toString());
         var format = imageMap.get("format").toString();
+
+        getCloudinaryConfig()
+            .url()
+            .transformation(new Transformation()
+                .width(cropped.getWidth())
+                .height(cropped.getHeight())
+                .x(cropped.getPositionX1())
+                .y(cropped.getPositionY2())
+                .crop("crop")
+            );
         
         ImageModel uploadedImage = new ImageModel();
         uploadedImage.setName(imgName);
@@ -32,7 +42,6 @@ public class SaveSignatureAtCloud extends UploadAtCloudinary {
         uploadedImage.setWidth(width);
         uploadedImage.setSize(size);
         uploadedImage.setUrl(url);
-        uploadedImage.setUrlTransformed(url);
         uploadedImage.setFormat(format);
         uploadedImage.setUploadedAt(uploadedAt);
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.samuel.app.models.ImageModel;
+import br.com.samuel.app.usecases.uploads.Cropped;
 
 public abstract class Upload<T> {
     
@@ -20,5 +21,5 @@ public abstract class Upload<T> {
         return UUID.randomUUID().toString();
     }
 
-    public abstract ImageModel run(MultipartFile file) throws IOException;
+    public abstract ImageModel run(MultipartFile file, Cropped cropped) throws IOException;
 }

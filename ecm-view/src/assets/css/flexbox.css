@@ -17,6 +17,14 @@ div.center-horizontal {
     justify-content: center;
 }
 
+div.align-right-h {
+    justify-content: flex-end;
+}
+
+div.align-right-v {
+    align-items: flex-end;
+}
+
 div.space-between {
     justify-content: space-between;;
 }

@@ -15,6 +15,6 @@ public abstract class UploadAtCloudinary {
     protected Cloudinary getCloudinaryConfig() {
         return context.getBean(CloudinaryConfig.class).config();
     }
-
-    public abstract ImageModel run(byte[] img, String imgName) throws IOException;
+    
+    public abstract ImageModel run(byte[] img, String imgName, Cropped cropped) throws IOException;
 }

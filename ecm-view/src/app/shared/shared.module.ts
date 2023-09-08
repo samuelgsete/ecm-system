@@ -33,6 +33,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [],
@@ -72,6 +73,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgxMaskPipe,
     ToastrModule.forRoot(),
     NgxSpinnerModule.forRoot({ type: 'ball-atom' }),
+    ImageCropperModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -105,7 +107,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgxMaskPipe,
 
     NgxSpinnerModule,
-    ToastrModule
+    ToastrModule,
+    ImageCropperModule
   ],
   providers: [
     provideEnvironmentNgxMask(),

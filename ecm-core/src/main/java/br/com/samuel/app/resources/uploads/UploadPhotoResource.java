@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import br.com.samuel.app.models.ImageModel;
 import br.com.samuel.app.resources.models.ResourceUpload;
+import br.com.samuel.app.usecases.uploads.Cropped;
 import br.com.samuel.app.usecases.uploads.UploadPhoto;
 
 @RestController
@@ -17,7 +18,14 @@ import br.com.samuel.app.usecases.uploads.UploadPhoto;
 public class UploadPhotoResource extends ResourceUpload<UploadPhoto> {
 
     @PostMapping("/photo")
-    public ResponseEntity<ImageModel> run( @RequestParam MultipartFile img) throws IOException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(upload().run(img));
+    public ResponseEntity<ImageModel> run(
+        @RequestParam MultipartFile img,
+        @RequestParam Integer width,
+        @RequestParam Integer height,
+        @RequestParam Integer positionX1,
+        @RequestParam Integer positionY1
+    ) throws IOException {
+        Cropped cropped = new Cropped(width, height, positionX1, positionY1);
+        return ResponseEntity.status(HttpStatus.CREATED).body(upload().run(img, cropped));
     }
 }

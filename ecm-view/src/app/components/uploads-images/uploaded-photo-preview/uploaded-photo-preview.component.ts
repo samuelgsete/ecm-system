@@ -12,22 +12,24 @@ import { UploadPhotoService } from 'src/app/usecases/uploads/upload-photo.servic
 export class UploadedPhotoPreviewComponent implements OnInit {
 
   @Input('photo')
-  public photo!: ImageModel;
+  photo!: ImageModel;
 
   @Input('isUploaded')
-  public isUploaded: boolean = false;
+  isUploaded: boolean = false;
  
-  public constructor(
+  constructor(
     protected readonly deletePhoto: DeletePhotoService,
     protected readonly uploadedPhoto: UploadPhotoService
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.deletePhoto.done().subscribe(response => {
       this.isUploaded = false;
     })
     this.uploadedPhoto.done().subscribe(response => {
       this.photo = response;
+      console.log(this.photo.url);
+      console.log(this.photo.urlTransformed);
       this.isUploaded = true;
     })
   }

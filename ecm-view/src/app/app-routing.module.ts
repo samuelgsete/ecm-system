@@ -9,6 +9,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { CreateMember2Component } from './components/members/create-member2/create-member2.component';
 import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
 import { PageNotfoundComponent } from './utils/components/page-notfound/page-notfound.component';
+import { CroppedImageComponent } from './components/uploads-images/cropped-image/cropped-image.component';
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'member/:id/update', component: UpdateMemberComponent },
     { path: 'credential/themes', component: DisplayThemesComponent },
   ]},
+  { path: 'cropped/image', component: CroppedImageComponent },
   { path:'**', redirectTo: '404' },
   { path:'404', component: PageNotfoundComponent }
 ];

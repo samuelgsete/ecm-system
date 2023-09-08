@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { UploadPhotoResource } from "src/app/resources/uploads-images/upload-photo.resource";
 import { UploadedImageService } from "../models/upload-image.service";
 import { HttpEventType } from "@angular/common/http";
+import { Cropped } from "src/app/models/cropped.entity";
 
 const PERCENTAGE = 100;
 
@@ -15,8 +16,8 @@ export class UploadPhotoService extends UploadedImageService {
         private readonly upload: UploadPhotoResource
     ) { super() }
 
-    run(file: FormData): void {
-        this.upload.run(file).subscribe({
+    run(file: FormData, cropped: Cropped): void {
+        this.upload.run(file, cropped).subscribe({
             next: (event) => {
                 if(event.type == HttpEventType.UploadProgress) {
                     this.progressDone = Math.round(PERCENTAGE * event.loaded / event.total);

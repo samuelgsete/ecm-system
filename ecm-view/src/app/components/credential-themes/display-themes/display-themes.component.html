@@ -64,7 +64,7 @@
                 </td>
             </tr>
         </table>
-        <div class="row-flex space-between center-vertical">
+        <div class="row-flex space-between center-vertical mt10" *ngIf="pagination.total > pagination.size">
             <mat-form-field class="input-size-pagination" appearance="outline">
                 <mat-label>Ítens/Página</mat-label>
                 <mat-select [formControl]="formSize">

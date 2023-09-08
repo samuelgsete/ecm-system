@@ -11,6 +11,6 @@ export class OnFileDroppedPhotoService {
         const file = files[0];
         const formData = new FormData();
         formData.append('img', file);
-        this.upload.run(formData);
+        //this.upload.run(formData, cropped);
     }
 }

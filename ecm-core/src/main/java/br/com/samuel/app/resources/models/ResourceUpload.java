@@ -13,5 +13,11 @@ public abstract class ResourceUpload<T> {
 
     public T upload() { return upload; }
 
-    public abstract ResponseEntity<ImageModel> run(MultipartFile img) throws IOException;
+    public abstract ResponseEntity<ImageModel> run(
+        MultipartFile img, 
+        Integer width, 
+        Integer height, 
+        Integer positionX1, 
+        Integer positionY1
+    ) throws IOException;
 }
