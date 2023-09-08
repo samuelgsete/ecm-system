@@ -27,6 +27,7 @@ public class ResourcePrintCredential extends ResourcePrint {
             model.addAttribute("dateFormatter", getDateFormatter());
             model.addAttribute("cpfFormatter", getCpfFormatter());
             model.addAttribute("maritalStatusFormatter", getMaritalStatusFormatter());
+            model.addAttribute("church", getChurch());
             return template;
         }
         return "notfound";

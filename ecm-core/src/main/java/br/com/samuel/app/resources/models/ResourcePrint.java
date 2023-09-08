@@ -2,6 +2,8 @@ package br.com.samuel.app.resources.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.samuel.app.models.Church;
+import br.com.samuel.app.usecases.churches.GetChurchDetails;
 import br.com.samuel.app.usecases.credentials.FindActivatedTheme;
 import br.com.samuel.app.usecases.members.FindOneMember;
 import br.com.samuel.app.usecases.members.ListAllMembersSelecteds;
@@ -10,6 +12,9 @@ import br.com.samuel.app.usecases.utils.TextFormatter.DateFormatter;
 import br.com.samuel.app.usecases.utils.TextFormatter.MaritalStatusFormatter;
 
 public abstract class ResourcePrint {
+
+    @Autowired
+    private GetChurchDetails churchDetails;
     
     @Autowired
     private FindOneMember findOne;
@@ -52,4 +57,6 @@ public abstract class ResourcePrint {
     public MaritalStatusFormatter getMaritalStatusFormatter() {
         return maritalStatusFormatter;
     }
+
+    public Church getChurch() { return churchDetails.run(); }
 }

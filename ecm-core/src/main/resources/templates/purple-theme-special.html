@@ -260,19 +260,19 @@
                 <div class="shepherd">
                     <div class="signature-shepherd">
                         <img 
-                            src="https://res.cloudinary.com/dt4bynswk/image/upload/v1683896485/ecm/static/assinatura-pastor_gdhrtg.png"
+                            th:src="${church.urlSignatureShepherd}"
                             alt="Assinatura do pastor" 
                             width="100%" 
-                            height="auto"
+                            height="100%"
                         >
                     </div>
-                    <p class="name-shepherd">Moisés Gonçalves Rodrigues</p>
+                    <p class="name-shepherd" th:text="${church.nameShepherd}"></p>
                     <p class="president-shepherd">PASTOR PRESIDENTE</p>
                 </div>
             </div>
             <div class="front">
                 <div class="banner">
-                    <img src="https://res.cloudinary.com/dt4bynswk/image/upload/v1691544760/ecm/static/purple-logo_dyoguc.png" alt="Assembléia de Deus">
+                    <img th:src="${church.urlLogo}" alt="Logotipo Igreja">
                 </div>
                 <div class="row-1">
                     <div class="photo">

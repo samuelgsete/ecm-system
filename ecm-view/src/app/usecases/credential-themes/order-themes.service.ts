@@ -10,7 +10,7 @@ export class OrderThemesService {
     ordinations: Ordination[] = [
         { label: 'Nome A-Z', name: 'by_name_asc' },
         { label: 'Nome Z-A', name: 'by_name_desc' },
-        { label: 'Atuais', name: 'latest_updated' }
+        { label: 'Atualizados', name: 'latest_updated' }
     ]
 
     constructor(readonly listThemes: ListCredentialThemesPaginatedService) {}

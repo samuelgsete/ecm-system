@@ -16,12 +16,14 @@ public class ResourcePrintAllCredentials extends ResourcePrint {
         var members = listAllSelecteds().run();
         var mainTheme = mainTheme().run().get();
         var template = mainTheme.getTemplate();
-
+       
         model.addAttribute("members", members);
         model.addAttribute("dateOfIssue", LocalDateTime.now());
         model.addAttribute("dateFormatter", getDateFormatter());
         model.addAttribute("cpfFormatter", getCpfFormatter());
         model.addAttribute("maritalStatusFormatter", getMaritalStatusFormatter());
+        model.addAttribute("church", getChurch());
+
         return template;
     }
 }
