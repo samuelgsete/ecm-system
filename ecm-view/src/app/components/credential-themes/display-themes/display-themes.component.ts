@@ -27,8 +27,7 @@ export class DisplayThemesComponent implements OnInit {
   themes: CredentialTheme[] = [];
   pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
-  formSize: FormControl = new FormControl(5);
-
+ 
   constructor(
     readonly titleService: Title,
     readonly listThemes: ListCredentialThemesPaginatedService,
@@ -63,10 +62,6 @@ export class DisplayThemesComponent implements OnInit {
 
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
       this.listThemes.run(new Pagination({ search: keyword.toLowerCase() }));
-    })
-
-    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
-      this.listThemes.run(new Pagination({ size: customSize }));
     })
 
     this.onPrint.done().subscribe(htmlContent => {

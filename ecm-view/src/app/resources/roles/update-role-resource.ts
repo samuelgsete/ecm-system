@@ -11,7 +11,7 @@ export class UpdateRoleResource extends UpdateResource<Role> {
         super('roles')
     }
 
-    public run(id: number, role: Role): Observable<Role> {
+    public run(id: string, role: Role): Observable<Role> {
         return this.http.put<Role>(this.getBaseUrl().concat(`/${id}`), role);
     }
 }

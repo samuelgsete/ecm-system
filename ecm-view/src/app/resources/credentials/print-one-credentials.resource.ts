@@ -9,7 +9,7 @@ export class PrintOneCredentialsResource {
 
     constructor(private readonly http: HttpClient) {}
 
-    run(id: number): Observable<HttpResponse<string>> {
+    run(id: string): Observable<HttpResponse<string>> {
         return this.http.get<string>(this.url.concat(`/${id}/print`), {
             observe: 'response',
             responseType: 'text' as 'json'

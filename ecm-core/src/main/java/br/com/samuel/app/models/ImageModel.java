@@ -14,7 +14,6 @@ public class ImageModel extends EntityBase {
     private String name;
     private String publicId;
     private String url;
-    private String urlTransformed;
     private Integer width;
     private Integer height;
     private Long size;

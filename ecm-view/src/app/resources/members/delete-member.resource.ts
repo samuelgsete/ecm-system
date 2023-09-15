@@ -10,7 +10,7 @@ export class DeleteMemberResource extends DeleteResource<Member> {
    
     constructor(private readonly http: HttpClient) { super('members') }
 
-    run(id: number, member: Member): Observable<Member> {
+    run(id: string, member: Member): Observable<Member> {
         return this.http.delete<Member>(this.getBaseUrl().concat(`/${id}`), {
             body: member
         });

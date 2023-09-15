@@ -10,5 +10,5 @@ public abstract class ResourceFindOne<T, R> {
 
     protected R findOne() { return find; }
 
-    public abstract ResponseEntity<T> run(Integer id);
+    public abstract ResponseEntity<T> run(String id);
 }

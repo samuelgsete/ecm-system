@@ -10,5 +10,5 @@ public abstract class DeleteOne<T, R> {
 
     protected R getRepository() { return repository; }
 
-    public abstract Optional<T> run(Integer id, T object);
+    public abstract Optional<T> run(String id, T object);
 }

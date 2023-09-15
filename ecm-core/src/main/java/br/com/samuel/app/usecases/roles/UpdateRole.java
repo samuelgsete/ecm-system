@@ -9,7 +9,7 @@ import br.com.samuel.app.usecases.models.Update;
 @Service
 public class UpdateRole extends Update<Role, RoleRepository> {
 
-    public Optional<Role> run(Integer id, Role role) {
+    public Optional<Role> run(String id, Role role) {
         return getRepository()
             .findById(id)
             .map(unupdatedRole -> {

@@ -11,7 +11,7 @@ export class MakeThemeToMainResource extends PatchResource {
         super('credential-themes')
     }
 
-    run(id: number): Observable<any> {
+    run(id: string): Observable<any> {
         return this.http.patch<any>(this.getBaseUrl().concat(`/${id}`), {});
     }
 }

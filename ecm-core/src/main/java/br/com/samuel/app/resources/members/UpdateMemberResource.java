@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.samuel.app.models.Member;
 import br.com.samuel.app.resources.models.ResourceUpdate;
 import br.com.samuel.app.usecases.members.UpdateMember;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/members")
 public class UpdateMemberResource extends ResourceUpdate<Member, UpdateMember> {
 
     @PutMapping("/{id}")
-    public ResponseEntity<Member> run(
-        @PathVariable Integer id,
-         @RequestBody Member createdMember
-    ) 
+    public ResponseEntity<Member> run(@PathVariable String id, @RequestBody @Valid Member createdMember) 
     {
         return update()
             .run(id, createdMember)

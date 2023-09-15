@@ -9,8 +9,7 @@ import br.com.samuel.app.usecases.models.FindOne;
 @Service
 public class FindOneMember extends FindOne<Member, MemberRepository> {
 
-    @Override
-    public Optional<Member> run(Integer id) {
+    public Optional<Member> run(String id) {
         return getRepository().findById(id);
     }
 }

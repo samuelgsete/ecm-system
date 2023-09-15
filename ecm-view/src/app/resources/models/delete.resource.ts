@@ -14,5 +14,5 @@ export abstract class DeleteResource<T> extends HttpRequest {
         return this.localUrl.concat(this.controller);
     }
 
-    public abstract run(id: number, deletedResource: T): Observable<T>
+    public abstract run(id: string, deletedResource: T): Observable<T>
 }

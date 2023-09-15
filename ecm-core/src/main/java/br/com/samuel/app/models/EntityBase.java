@@ -2,8 +2,6 @@ package br.com.samuel.app.models;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -15,8 +13,8 @@ import lombok.Setter;
 public abstract class EntityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+    @Column(length = 6)
+    protected String id;
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdAt = LocalDateTime.now();

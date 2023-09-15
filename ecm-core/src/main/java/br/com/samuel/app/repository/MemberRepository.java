@@ -13,6 +13,9 @@ import br.com.samuel.app.models.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
+    @Query("SELECT m FROM Member m WHERE m.id = :id")
+    Optional<Member> findById(@Param("id") String id);
+
     // Lista os membros de maneira paginada filtrando pelo nome
     @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.name ASC")
     Page<Member> listPaginate(@Param("search") String search, Pageable pageable);

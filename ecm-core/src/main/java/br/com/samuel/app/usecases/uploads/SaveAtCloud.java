@@ -18,31 +18,5 @@ public abstract class SaveAtCloud {
         this.path = path;
     }
     
-    public ImageModel run(byte[] img, String name) throws IOException {
-        var cloudinary = context.getBean(CloudinaryConfig.class).config();
-        var params = ObjectUtils.asMap(
-            "public_id", this.path.concat(name),
-            "resource_type", "image"
-        );
-        var imageMap = cloudinary.uploader().upload(img, params);
-        var publicId = imageMap.get("public_id").toString();
-        var uploadedAt = imageMap.get("created_at").toString();
-        var url = imageMap.get("url").toString();
-        var width = Integer.parseInt(imageMap.get("width").toString());
-        var height = Integer.parseInt(imageMap.get("height").toString());
-        var size = Long.parseLong(imageMap.get("bytes").toString());
-        var format = imageMap.get("format").toString();
-        
-        ImageModel newImage = new ImageModel();
-        newImage.setName(name);
-        newImage.setPublicId(publicId);
-        newImage.setHeight(height);
-        newImage.setWidth(width);
-        newImage.setSize(size);
-        newImage.setUrl(url);
-        newImage.setFormat(format);
-        newImage.setUploadedAt(uploadedAt);
-
-        return newImage;
-    }
+    public abstract ImageModel run(byte[] img, String name) throws IOException;
 }

@@ -15,7 +15,7 @@ import br.com.samuel.app.usecases.members.DeleteMember;
 public class DeleteMemberResource extends ResourceDeleteOne<Member, DeleteMember> {
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Member> run(@PathVariable Integer id, @RequestBody Member member) {
+    public ResponseEntity<Member> run(@PathVariable String id, @RequestBody Member member) {
         return delete()
             .run(id, member)
             .map(deletedMember -> ResponseEntity.ok(deletedMember))

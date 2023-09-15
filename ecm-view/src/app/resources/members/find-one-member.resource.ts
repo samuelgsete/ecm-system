@@ -10,7 +10,7 @@ export class FindOneMemberResource extends FindOneResource<Member> {
 
     public constructor(private readonly http: HttpClient) { super('members') }
 
-    public override run(id: number): Observable<Member> {
+    public override run(id: string): Observable<Member> {
         return this.http.get<Member>(this.getBaseUrl().concat(`/${id}`));
     }
 }

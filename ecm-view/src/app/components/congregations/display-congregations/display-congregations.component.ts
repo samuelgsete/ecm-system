@@ -23,7 +23,7 @@ export class DisplayCongregationsComponent implements OnInit {
   congregations: Congregation[] = []
   pagination: Pagination = new Pagination()
   formSearch: FormControl = new FormControl()
-  formSize: FormControl = new FormControl(5)
+  
   constructor(
     readonly titleService: Title,
     readonly modal: MatDialog,
@@ -70,10 +70,6 @@ export class DisplayCongregationsComponent implements OnInit {
     
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
       this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }));
-    })
-
-    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
-      this.listCongregations.run(new Pagination({ size: customSize }));
     })
   }
 }

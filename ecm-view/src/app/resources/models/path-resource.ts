@@ -14,5 +14,5 @@ export abstract class PatchResource extends HttpRequest {
         return this.localUrl.concat(this.controller);
     }
 
-    abstract run(id: number): Observable<any>
+    abstract run(id: string): Observable<any>
 }

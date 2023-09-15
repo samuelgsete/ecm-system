@@ -9,5 +9,5 @@ export abstract class PatchService {
 
     isFinally(): boolean { return this.finally }
 
-    abstract run(id: number): void
+    abstract run(id: string): void
 }

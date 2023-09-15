@@ -10,13 +10,7 @@ public class DataSourceFactory {
     private DatabaseSet postgresDB = new DatabaseSet(
         "jdbc:postgresql://localhost:", "org.postgresql.Driver"
     );
-    private DatabaseSet mysqlDB = new DatabaseSet(
-        "jdbc:mysql://localhost:", "com.mysql.jdbc.Driver"
-    );
-    private DatabaseSet h2DB = new DatabaseSet(
-        "jdbc:h2:file:", "org.h2.Driver"
-    );
-       
+          
     public DataSource run(
         Sgbd sgbd,
         String username,
@@ -33,33 +27,11 @@ public class DataSourceFactory {
                     .url(postgresDB.getUrlBase() + port + "/" + database)
                     .driverClassName(postgresDB.getDriver())
                     .build();
-            
-            case H2:
-                return DataSourceBuilder
-                    .create()
-                    .username(username)
-                    .password(password)
-                    .url(h2DB.getUrlBase() + port + "/" + database)
-                    .driverClassName(h2DB.getDriver())
-                    .build();
 
-            case MYSQL:
-                return DataSourceBuilder
-                    .create()
-                    .username(username)
-                    .password(password)
-                    .url(mysqlDB.getUrlBase() + port + "/" + database)
-                    .driverClassName(mysqlDB.getDriver())
-                    .build();
+            case H2: return null;
 
-            default: 
-                return DataSourceBuilder
-                    .create()
-                    .username(username)
-                    .password(password)
-                    .url(postgresDB.getUrlBase() + port + "/" + database)
-                    .driverClassName(postgresDB.getDriver())
-                    .build();
+            case MYSQL: return null;
         }
+        return null;
     }
 }

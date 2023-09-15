@@ -1,0 +1,11 @@
+GET http://localhost:8090/api/v1/congregations?search=&ordination=&page=0&size=5
+
+###
+
+POST http://localhost:8090/api/v1/congregations
+Content-Type: application/json
+
+{
+    "id": null,
+    "name": "alto alegre II"
+}

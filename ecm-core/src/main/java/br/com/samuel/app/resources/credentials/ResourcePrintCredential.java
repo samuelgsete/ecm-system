@@ -14,7 +14,7 @@ import br.com.samuel.app.resources.models.ResourcePrint;
 public class ResourcePrintCredential extends ResourcePrint {
     
     @GetMapping("/{id}/print")
-    public String run(@PathVariable Integer id, Model model) {
+    public String run(@PathVariable String id, Model model) {
         var memberExists = findOne().run(id);
         var mainTheme = mainTheme().run().get();
         var template = mainTheme.getTemplate();

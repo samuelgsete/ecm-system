@@ -12,6 +12,9 @@ import br.com.samuel.app.models.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+     @Query("SELECT r FROM Role r WHERE r.id = :id")
+    Optional<Role> findById(@Param("id") String id);
+
     // Lista os cargos 'roles' de maneira paginada filtrando pelo nome do cargo
     @Query("SELECT r FROM Role r WHERE LOWER(r.name) LIKE %:search% ORDER BY r.name ASC")
     Page<Role> listPaginate(@Param("search") String search, Pageable pageable);  

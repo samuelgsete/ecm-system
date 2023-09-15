@@ -43,7 +43,6 @@ public class SavePhotoAtCloud extends UploadAtCloudinary {
         uploadedImage.setWidth(width);
         uploadedImage.setSize(size);
         uploadedImage.setUrl(url);
-        uploadedImage.setUrlTransformed(urlTransformed);
         uploadedImage.setFormat(format);
         uploadedImage.setUploadedAt(uploadedAt);
 

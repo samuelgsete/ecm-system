@@ -9,13 +9,13 @@ import { FindOneRoleResource } from "src/app/resources/roles/find-one-role.resou
 @Injectable()
 export class FindOneRoleService extends findOneService<Role> {
 
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly findOne: FindOneRoleResource
     ) { super() }
     
-    public override run(id: number): void {
+    run(id: string): void {
         this.spinner.show();
         this.findOne.run(id).subscribe({
             next: (response) => {

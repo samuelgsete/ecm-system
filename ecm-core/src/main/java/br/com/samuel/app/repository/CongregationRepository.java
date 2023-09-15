@@ -12,6 +12,9 @@ import br.com.samuel.app.models.Congregation;
 
 @Repository
 public interface CongregationRepository extends JpaRepository<Congregation, Integer> {
+
+    @Query("SELECT c FROM Congregation c WHERE c.id = :id")
+    Optional<Congregation> findById(@Param("id") String id);
     
     // Lista as congregações filtrando pelo nome
     @Query("SELECT c FROM Congregation c WHERE LOWER(c.name) LIKE %:search% ORDER BY c.name ASC")

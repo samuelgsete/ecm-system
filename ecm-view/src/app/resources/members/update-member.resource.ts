@@ -8,11 +8,11 @@ import { Member } from "src/app/models/member.entity";
 @Injectable()
 export class UpdateMemberResource extends UpdateResource<Member> {
 
-    public constructor(private readonly http: HttpClient) {
+    constructor(private readonly http: HttpClient) {
         super('members');
     }
 
-    public override run(id: number, member: Member): Observable<Member> {
+    run(id: string, member: Member): Observable<Member> {
         return this.http.put<Member>(this.getBaseUrl().concat(`/${id}`), member);
     }
 }

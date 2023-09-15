@@ -1,5 +1,6 @@
 package br.com.samuel.app.resources.members;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ import br.com.samuel.app.usecases.members.CreateMember;
 public class CreateMemberResource extends ResourceCreate<Member, CreateMember> {
 
     @PostMapping
-    public ResponseEntity<Object> run(@RequestBody Member member) throws AlreadyCreatedException {
+    public ResponseEntity<Object> run(@RequestBody @Valid Member member) throws AlreadyCreatedException {
         return ResponseEntity.created(create().run(member)).build();
     }
 }

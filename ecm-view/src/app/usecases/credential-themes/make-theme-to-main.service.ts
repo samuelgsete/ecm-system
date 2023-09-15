@@ -14,7 +14,7 @@ export class MakeThemeToMainService extends PatchService {
         private readonly toMain: MakeThemeToMainResource
     ) { super() }
 
-    run(id: number): void {
+    run(id: string): void {
         this.spinner.show()
         this.toMain.run(id).subscribe({
             next: (response) => {

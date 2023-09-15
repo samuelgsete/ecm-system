@@ -10,5 +10,5 @@ public abstract class ResourceDeleteOne<T, R> {
 
     protected R  delete() { return delete; }
 
-    public abstract ResponseEntity<T> run(Integer id, T object);
+    public abstract ResponseEntity<T> run(String id, T object);
 }

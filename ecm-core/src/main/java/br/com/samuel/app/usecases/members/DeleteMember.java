@@ -20,7 +20,7 @@ public class DeleteMember extends DeleteOne<Member, MemberRepository> {
     @Autowired
     private DeleteSignatureAtCloud deleteSignature;
 
-    public Optional<Member> run(Integer id, Member member) {
+    public Optional<Member> run(String id, Member member) {
         return getRepository()
             .findById(id)
             .map(foundMember -> {

@@ -9,5 +9,5 @@ export abstract class findOneService<T> {
 
     public inProgress(): boolean { return this.progress; }
 
-    public abstract run(id: number): void
+    public abstract run(id: string): void
 }

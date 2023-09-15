@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Title} from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
@@ -37,8 +37,7 @@ export class DisplayMembersComponent implements OnInit {
   countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
-  formSize: FormControl = new FormControl(5);
-
+  
   constructor(
     readonly router: Router,
     readonly titleService:Title,
@@ -75,10 +74,6 @@ export class DisplayMembersComponent implements OnInit {
     
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
       this.listMembers.run(new Pagination({ search: keyword.toLowerCase() }))
-    })
-
-    this.formSize.valueChanges.pipe(debounceTime(500)).subscribe(customSize => {
-      this.listMembers.run(new Pagination({ size: customSize }));
     })
 
     this.count.run();

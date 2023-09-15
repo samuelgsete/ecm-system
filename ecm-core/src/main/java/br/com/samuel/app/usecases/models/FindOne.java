@@ -10,5 +10,5 @@ public abstract class FindOne<T, R> {
 
     protected R getRepository() { return repository; }
 
-    public abstract Optional<T> run(Integer id);
+    public abstract Optional<T> run(String id);
 }

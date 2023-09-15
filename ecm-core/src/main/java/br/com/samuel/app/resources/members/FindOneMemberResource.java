@@ -14,7 +14,7 @@ import br.com.samuel.app.usecases.members.FindOneMember;
 public class FindOneMemberResource extends ResourceFindOne<Member, FindOneMember> {
 
     @GetMapping("/{id}")
-    public ResponseEntity<Member> run(@PathVariable Integer id) {
+    public ResponseEntity<Member> run(@PathVariable String id) {
         return findOne()
             .run(id)
             .map(foundMember -> ResponseEntity.ok(foundMember))

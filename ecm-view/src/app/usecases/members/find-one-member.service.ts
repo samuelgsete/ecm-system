@@ -9,13 +9,13 @@ import { FindOneMemberResource } from "src/app/resources/members/find-one-member
 @Injectable()
 export class FindOneMemberService extends findOneService<Member> {
 
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly findOne: FindOneMemberResource
     ) { super() }
     
-    public override run(id: number): void {
+    run(id: string): void {
         this.spinner.show();
         this.findOne.run(id).subscribe({
             next: (response) => {

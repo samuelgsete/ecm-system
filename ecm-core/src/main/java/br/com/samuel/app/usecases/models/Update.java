@@ -10,5 +10,5 @@ public abstract class Update<T, R> {
 
     protected R getRepository() { return repository; }
 
-    public abstract Optional<T> run(Integer id, T createdObject);
+    public abstract Optional<T> run(String id, T createdObject);
 }

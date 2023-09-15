@@ -31,7 +31,7 @@ export class UpdateMemberComponent implements OnInit {
   ) { data.component = this }
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.params['id']);
+    const id = this.route.snapshot.params['id']
     this.findOne.run(id);
     this.findOne.done().subscribe(response => {
       this.titleService.setTitle(`Editar ${response.name}`);

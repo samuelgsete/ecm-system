@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.samuel.app.models.Congregation;
 import br.com.samuel.app.resources.models.ResourceUpdate;
 import br.com.samuel.app.usecases.congregations.UpdateCongregation;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/congregations")
 public class UpdateCongregationResource extends ResourceUpdate<Congregation, UpdateCongregation> {
 
     @PutMapping("/{id}")
-    public ResponseEntity<Congregation> run(
-        @PathVariable Integer id, 
-        @RequestBody Congregation congregation
-    ) 
+    public ResponseEntity<Congregation> run(@PathVariable String id, @RequestBody @Valid Congregation congregation) 
     {
         return update()
             .run(id, congregation)

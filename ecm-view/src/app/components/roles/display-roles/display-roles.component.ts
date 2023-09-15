@@ -23,7 +23,6 @@ export class DisplayRolesComponent implements OnInit {
   roles: Role[] = [];
   pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
-  formSize: FormControl = new FormControl(5);
 
   constructor(
     readonly titleService: Title,
@@ -72,10 +71,6 @@ export class DisplayRolesComponent implements OnInit {
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
       this.pagination.search = keyword
       this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
-    })
-
-    this.formSize.valueChanges.pipe(debounceTime(900)).subscribe(customSize => {
-      this.listRoles.run(new Pagination({ size: customSize }));
     })
   }
 }

@@ -11,7 +11,7 @@ export class PrintOneCredentialsService extends PrintOne {
         protected readonly printOne: PrintOneCredentialsResource
     ) { super() }
 
-    run(id: number): void {
+    run(id: string): void {
         this.spinner.show();
         this.printOne.run(id).subscribe({
             next: (response) => {

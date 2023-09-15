@@ -14,5 +14,5 @@ export abstract class FindOneResource<T> extends HttpRequest {
         return this.localUrl.concat(this.controller);
     }
 
-    public abstract run(id: number): Observable<T>;
+    public abstract run(id: string): Observable<T>;
 }

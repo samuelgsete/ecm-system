@@ -7,11 +7,11 @@ import { Congregation } from "src/app/models/congregation.entity";
 @Injectable()
 export class UpdateCongregationResource extends UpdateResource<Congregation> {
 
-    public constructor(private readonly http: HttpClient) {
+    constructor(private readonly http: HttpClient) {
         super('congregations');
     }
 
-    public run(id: number, congregation: Congregation): Observable<Congregation> {
+    run(id: string, congregation: Congregation): Observable<Congregation> {
         return this.http.put<Congregation>(this.getBaseUrl().concat(`/${id}`), congregation);
     }
 }

@@ -2,11 +2,15 @@ package br.com.samuel.app.models;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +19,10 @@ import lombok.Setter;
 @Setter
 @Table(name = "roles")
 public class Role extends EntityBase {
-    
+
+    @NotBlank(message = "{role.name.notblank}")
+    @Size(min = 2, max = 24, message ="{role.name.size}")
+    @Column(length = 24, nullable = false)
     private String name;
       
     @JsonIgnore

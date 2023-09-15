@@ -10,7 +10,7 @@ export class FindOneRoleResource extends FindOneResource<Role> {
 
     public constructor(private readonly http: HttpClient) { super('roles') }
 
-    public override run(id: number): Observable<Role> {
+    public run(id: string): Observable<Role> {
         return this.http.get<Role>(this.getBaseUrl().concat(`/${id}`));
     }
 }

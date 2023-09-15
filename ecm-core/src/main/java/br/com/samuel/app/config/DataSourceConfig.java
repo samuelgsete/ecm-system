@@ -18,7 +18,7 @@ public class DataSourceConfig {
             Sgbd.POSTGRES,
             "postgres", 
             "postgres", 
-            "ecmdb",
+            "secredavd",
             5432
         );
     }
@@ -30,30 +30,8 @@ public class DataSourceConfig {
             Sgbd.POSTGRES,
             "postgres", 
             "postgres", 
-            "ecmtest2db",
+            "secredtest",
             5432
-        );
-    }
-
-    @Bean
-    public DataSource mysqlDB() {
-        return factory.run(
-            Sgbd.MYSQL,
-            "root", 
-            "root", 
-            "ecmdb",
-            3306
-        );
-    }
-
-    @Bean
-    public DataSource h2DB() {
-        return factory.run(
-            Sgbd.H2,
-            "root", 
-            "root", 
-            "./h2",
-            5555
         );
     }
 }

@@ -16,7 +16,7 @@ export class DeleteMemberService extends DeleteOne<Member> {
         protected readonly deleteOne: DeleteMemberResource
     ) { super() }
 
-    run(id: number, member: Member): void {
+    run(id: string, member: Member): void {
         Swal.fire({
             title: 'Tem certeza que deseja remover?',
             text: 'Essa operação é irreversível',

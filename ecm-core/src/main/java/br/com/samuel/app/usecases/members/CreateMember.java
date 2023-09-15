@@ -13,6 +13,14 @@ import br.com.samuel.app.exceptions.AlreadyCreatedException;
 public class CreateMember extends Create<Member, MemberRepository> {
 
     public URI run(Member member) throws AlreadyCreatedException {
+        member.setId(getKey());
+        var affiliation = member.getAffiliation();
+        var photo = member.getPhoto();
+        var signature = member.getSignature();
+        affiliation.setId(getKey());
+        photo.setId(getKey());
+        signature.setId(getKey());
+
         var cpf = member.getCpf();
         var rg = member.getRg();
         var memberExists = getRepository().alreadyCreated(cpf, rg);

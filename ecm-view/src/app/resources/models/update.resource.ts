@@ -14,5 +14,5 @@ export abstract class UpdateResource<T> extends HttpRequest {
         return this.localUrl.concat(this.controller);
     }
 
-    public abstract run(id: number, createdResource: T): Observable<T>
+    public abstract run(id: string, createdResource: T): Observable<T>
 }

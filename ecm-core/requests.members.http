@@ -1,0 +1,28 @@
+GET http://localhost:8090/api/v1/members?search=&ordination=&page=0&size=5
+
+###
+
+POST http://localhost:8090/api/v1/members
+Content-Type: application/json
+
+{
+    "id": null,
+    "name": "Samuel de Souza Taveira",
+    "cpf": null,
+    "rg": null,
+    "dateOfBirth": "1995-06-21T13:23:34.314511",
+    "dateOfBaptism": "1995-06-21T13:23:34.314511",
+    "phone": null,
+    "email": null,
+    "isSelected": null,
+    "maritalStatus": "SINGLE",
+    "gender": "MALE",
+    "affiliation": {
+        "fatherName": "",
+        "motherName": ""
+    },
+    "role": null,
+    "congregations": null,
+    "photo": null,
+    "signature": null
+}

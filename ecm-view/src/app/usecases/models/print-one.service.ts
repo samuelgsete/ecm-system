@@ -6,5 +6,5 @@ export abstract class PrintOne {
 
     done(): EventEmitter<string | null> { return this.isDone }
 
-    abstract run(id: number): void
+    abstract run(id: string): void
 }

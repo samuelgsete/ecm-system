@@ -9,5 +9,5 @@ public abstract class ResourceUpdate<T, R> {
 
     protected R update() { return updateUsecase; }
 
-    public abstract ResponseEntity<T> run(Integer id, T createdObject);
+    public abstract ResponseEntity<T> run(String id, T createdObject);
 }

@@ -6,7 +6,7 @@ export class GoToEditService {
 
     constructor(private readonly router: Router) {}
 
-    run(id: number): void {
+    run(id: string): void {
         this.router.navigateByUrl(`/app/member/${id}/update`);
     }
 }

@@ -9,5 +9,5 @@ export abstract class DeleteOne<T> {
 
     public inProgress(): boolean { return this.progress; }
 
-    public abstract run(id: number, object: T): void
+    public abstract run(id: string, resource: T): void
 }

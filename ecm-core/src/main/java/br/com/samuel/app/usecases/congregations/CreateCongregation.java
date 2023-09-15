@@ -12,6 +12,7 @@ import br.com.samuel.app.usecases.models.Create;
 public class CreateCongregation extends Create<Congregation, CongregationRepository> {
 
     public URI run(Congregation congregation) throws AlreadyCreatedException {
+        congregation.setId(getKey());
         var name = congregation.getName();
         var congregationExists = getRepository().alreadyCreated(name);
     

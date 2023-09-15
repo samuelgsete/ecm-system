@@ -9,7 +9,7 @@ import br.com.samuel.app.usecases.models.Update;
 @Service
 public class UpdateCongregation extends Update<Congregation, CongregationRepository> {
 
-    public Optional<Congregation> run(Integer id, Congregation congregation) {
+    public Optional<Congregation> run(String id, Congregation congregation) {
         return getRepository()
             .findById(id)
             .map(unupdatedCongregation -> {

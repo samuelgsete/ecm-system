@@ -13,6 +13,7 @@ import br.com.samuel.app.usecases.models.Create;
 public class CreateRole extends Create<Role, RoleRepository> {
     
     public URI run(Role role) throws AlreadyCreatedException {
+        role.setId(getKey());
         var name = role.getName();
         var roleExists = getRepository().alreadyCreated(name);
         if(roleExists.isPresent())
