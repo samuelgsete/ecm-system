@@ -63,6 +63,9 @@
                     <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    <button mat-icon-button (click)="onDelete.run(congregation.id, congregation)">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
                 </td>
             </tr>
         </table>

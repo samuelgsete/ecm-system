@@ -1,6 +1,7 @@
 package br.com.samuel.app.models;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
@@ -35,5 +36,15 @@ public class Congregation extends EntityBase {
 
     public Integer getNumberOfMembers() {
         return members.size();
+    }
+
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Congregation congregation = (Congregation) o;
+        return Objects.equals(
+            id, congregation.getId()) && 
+            Objects.equals(name.toLowerCase(), congregation.getName().toLowerCase()
+        );
     }
 }

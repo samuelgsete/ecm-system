@@ -45,20 +45,20 @@
 
         <app-such-notfound [keyword]="formSearch.value" [isVisible]="listMembers.notFound()"></app-such-notfound>
         
-        <div class="row-flex" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
-            <button 
-                class="btn" 
-                radius="true" 
-                outline="true" 
-                color="purple" 
-                [matBadge]="countSelecteds"
-                matBadgeColor="accent"
-                (click)="onPrintAll.run()"
-            >IMPRIMIR</button>
-        </div>
+        <button 
+            class="mb10"
+            mat-button 
+            [matBadge]="countSelecteds"
+            matBadgeColor="accent"
+            (click)="onPrintAll.run()"
+            [disabled]="countSelecteds == 0"
+        >Imprimir selecionados</button>
+
         <table class="ui-table default" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
             <tr>
-                <th></th>
+                <th>
+                    <mat-checkbox [checked]="allSelecteds()" [indeterminate]="someSelecteds()" (change)="onToggleSelection.run($event.checked)" ></mat-checkbox>
+                </th>
                 <th>Foto</th>
                 <th>Membro</th>
                 <th>Cargo</th>
@@ -88,7 +88,7 @@
                         <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-icon-button (click)="onDelete.run(member.id, member)">
-                        <mat-icon>delete</mat-icon>
+                        <mat-icon>cancel</mat-icon>
                     </button>
                 </td>
             </tr>

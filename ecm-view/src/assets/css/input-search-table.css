@@ -18,14 +18,12 @@ div.input-search input.search {
     padding: 0 38px 0 38px;
     font-family: 'Urbanist', sans-serif;
     border-radius: 25px;
-    background-color: rgb(var(--gray-1));
-    border: 1.2pt solid rgb(var(--gray-2));
+    border: 1.1pt solid rgb(var(--gray-4));
     transition: all 0.6s;
 }
 
 div.input-search input.search:focus {
     outline: none;
-    background-color: rgb(var(--gray-2));
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 

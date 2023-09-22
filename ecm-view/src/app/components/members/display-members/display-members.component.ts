@@ -19,6 +19,7 @@ import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-a
 import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
+import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 
 @Component({
   selector: 'app-display-members',
@@ -37,6 +38,7 @@ export class DisplayMembersComponent implements OnInit {
   countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
   formSearch: FormControl = new FormControl();
+  allselecteds: boolean = true;
   
   constructor(
     readonly router: Router,
@@ -50,12 +52,21 @@ export class DisplayMembersComponent implements OnInit {
     readonly order: OrderMembersService,
     readonly onPrint: PrintOneCredentialsService,
     readonly onPrintAll: PrintAllCredentialsService,
-    readonly onDelete: DeleteMemberService
+    readonly onDelete: DeleteMemberService,
+    readonly onToggleSelection: ToggleSelectionMembersService
   ) {}
   
   nextPage(page: number): void {
     this.pagination.page = page;
     this.listMembers.run(this.pagination);
+  }
+
+  allSelecteds(): boolean {
+    return this.countSelecteds == this.pagination.total ? true : false;
+  }
+
+  someSelecteds(): boolean {
+    return this.countSelecteds > 0 && this.countSelecteds < this.pagination.total;
   }
 
   ngOnInit(): void {
@@ -97,6 +108,11 @@ export class DisplayMembersComponent implements OnInit {
     })
 
     this.onDelete.done().subscribe(response => {
+      this.listMembers.run(new Pagination());
+      this.count.run();
+    })
+
+    this.onToggleSelection.done().subscribe(response => {
       this.listMembers.run(new Pagination());
       this.count.run();
     })

@@ -41,6 +41,8 @@ import { DeleteMemberService } from 'src/app/usecases/members/delete-member.serv
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
 import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.reousrce';
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
+import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
+import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { CountMembersSelectedsService } from 'src/app/usecases/members/count-mem
     DeleteMemberResource,
     DeleteMemberService,
     CountMembersSelectedsResource,
-    CountMembersSelectedsService
+    CountMembersSelectedsService,
+    ToggleSelectionMembersResource,
+    ToggleSelectionMembersService
   ]
 })
 export class MembersModule {}

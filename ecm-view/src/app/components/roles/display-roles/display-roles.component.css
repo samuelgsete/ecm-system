@@ -12,18 +12,23 @@ button.filter-table {
     color: rgb(var(--gray-6));
 }
 
-button {
-    color: rgb(var(--gray-8));
-}
-
 table tr td:nth-child(1) {
     width: 10%;
+    font-weight: 600;
     font-size: 1.05em;
 }
 
 table tr td:nth-child(2),
 table tr td:nth-child(2) {
     width: 30%;
+}
+
+table tr td > button:first-child {
+    color: rgb(var(--dark));
+}
+
+table tr td > button:last-child {
+    color: rgb(var(--danger));
 }
 
 .input-size-pagination {

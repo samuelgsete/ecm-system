@@ -63,6 +63,9 @@
                     <button mat-icon-button (click)="openUpdateRoleComponent(role)">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    <button mat-icon-button (click)="onDelete.run(role.id, role)">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
                 </td>
             </tr>
         </table>

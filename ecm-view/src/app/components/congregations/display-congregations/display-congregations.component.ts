@@ -12,6 +12,7 @@ import { UpdateCongregationComponent } from '../update-congregation/update-congr
 import { OrderCongregationsService } from 'src/app/usecases/congregations/order-congregations.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { Paginate } from 'src/app/models/paginate.entity';
+import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 
 @Component({
   selector: 'app-display-congregations',
@@ -25,11 +26,12 @@ export class DisplayCongregationsComponent implements OnInit {
   formSearch: FormControl = new FormControl()
   
   constructor(
-    readonly titleService: Title,
-    readonly modal: MatDialog,
-    readonly onPaginate: PaginationService,
-    readonly listCongregations: ListCongregationsPaginatedService,
-    readonly order: OrderCongregationsService
+    protected readonly titleService: Title,
+    protected readonly modal: MatDialog,
+    protected readonly onPaginate: PaginationService,
+    protected readonly listCongregations: ListCongregationsPaginatedService,
+    protected readonly onDelete: DeleteCongregationService,
+    protected readonly order: OrderCongregationsService
   ) {}
 
   nextPage(page: number): void {
@@ -70,6 +72,10 @@ export class DisplayCongregationsComponent implements OnInit {
     
     this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
       this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }));
+    })
+
+    this.onDelete.done().subscribe(congregationDeleted => {
+      this.listCongregations.run(new Pagination());
     })
   }
 }

@@ -19,6 +19,8 @@ import { UpdateRoleResource } from 'src/app/resources/roles/update-role-resource
 import { UpdateRoleService } from 'src/app/usecases/roles/update-role.service';
 import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-comparator.service';
 import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
+import { DeleteRoleResource } from 'src/app/resources/roles/delete-role.resource';
+import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
     UpdateRoleResource,
     UpdateRoleService,
     SelectRoleComparatorService,
-    OrderRolesService
+    OrderRolesService,
+    DeleteRoleResource,
+    DeleteRoleService
   ],
 })
 export class RolesModule {}

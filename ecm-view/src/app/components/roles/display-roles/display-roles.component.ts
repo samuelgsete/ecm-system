@@ -12,6 +12,7 @@ import { CreateRoleComponent } from '../create-role/create-role.component';
 import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { Paginate } from 'src/app/models/paginate.entity';
+import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -25,11 +26,12 @@ export class DisplayRolesComponent implements OnInit {
   formSearch: FormControl = new FormControl();
 
   constructor(
-    readonly titleService: Title,
-    readonly modal: MatDialog,
-    readonly onPaginate: PaginationService,
-    readonly listRoles: ListRolesPaginatedService,
-    readonly order: OrderRolesService
+    protected readonly titleService: Title,
+    protected readonly modal: MatDialog,
+    protected readonly onPaginate: PaginationService,
+    protected readonly listRoles: ListRolesPaginatedService,
+    protected readonly onDelete: DeleteRoleService,
+    protected readonly order: OrderRolesService
   ) {}
 
   nextPage(page: number): void {
@@ -72,5 +74,9 @@ export class DisplayRolesComponent implements OnInit {
       this.pagination.search = keyword
       this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
     })
+
+    this.onDelete.done().subscribe(roleDeleted => {
+      this.listRoles.run(new Pagination());
+    });
   }
 }
