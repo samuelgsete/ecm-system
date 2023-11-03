@@ -3,27 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
-import { UploadPhotoResource } from 'src/app/resources/uploads-images/upload-photo.resource';
-import { UploadPhotoService } from 'src/app/usecases/uploads/upload-photo.service';
-import { DeletePhotoResource } from 'src/app/resources/uploads-images/delete-photo.resource';
-import { DeletePhotoService } from 'src/app/usecases/uploads/delete-photo.service';
-import { UploadedPhotoPreviewComponent } from './uploaded-photo-preview/uploaded-photo-preview.component';
-import { UploadedSignaturePreviewComponent } from './uploaded-signature-preview/uploaded-signature-preview.component';
-import { UploadSignatureResource } from 'src/app/resources/uploads-images/upload-signature.resource';
-import { UploadSignatureService } from 'src/app/usecases/uploads/upload-signature.service';
-import { DeleteSignatureResource } from 'src/app/resources/uploads-images/delete-signature.resource';
-import { DeleteSignatureService } from 'src/app/usecases/uploads/delete-signature.service';
-import { OnUploadPhotoService } from 'src/app/usecases/uploads/on-upload-photo.service';
-import { OnUploadSiginatureService } from 'src/app/usecases/uploads/on-upload-signature.service';
-import { OnFileDroppedPhotoService } from 'src/app/usecases/uploads/on-file-dropped-photo.service';
-import { OnFileDroppedSignatureService } from 'src/app/usecases/uploads/on-file-dropped-signature.service';
+
+import { UploadPhotoService } from 'src/app/usecases/uploads/photo/upload-photo.service';
+import { UploadSignatureService } from 'src/app/usecases/uploads/signature/upload-signature.service';
 import { CroppedImageComponent } from './cropped-image/cropped-image.component';
+import { UploadedImagePreviewComponent } from './uploaded-image-preview/uploaded-image-preview.component';
+import { UploadImageSkeletonComponent } from './upload-image-skeleton/upload-image-skeleton.component';
+import { DestroyerPhotoService } from 'src/app/usecases/uploads/photo/destroyer-photo.service';
+import { DestroyerSignatureService } from 'src/app/usecases/uploads/signature/destroyer-signature.service';
+import { DestroyerImageResource } from 'src/app/resources/uploads-images/destroyer-image.resource';
+import { UploadImageResource } from 'src/app/resources/uploads-images/upload-image.resource';
 
 @NgModule({
   declarations: [
-    UploadedPhotoPreviewComponent,
-    UploadedSignaturePreviewComponent,
-    CroppedImageComponent
+    CroppedImageComponent,
+    UploadedImagePreviewComponent,
+    UploadImageSkeletonComponent
   ],
   imports: [
     CommonModule,
@@ -31,22 +26,16 @@ import { CroppedImageComponent } from './cropped-image/cropped-image.component';
     UtilsModule
   ],
   exports: [
-    UploadedPhotoPreviewComponent,
-    UploadedSignaturePreviewComponent
+    UploadedImagePreviewComponent,
+    UploadImageSkeletonComponent
   ],
   providers: [
-    OnUploadPhotoService,
-    OnFileDroppedPhotoService,
-    UploadPhotoResource,
     UploadPhotoService,
-    DeletePhotoResource,
-    DeletePhotoService,
-    OnUploadSiginatureService,
-    OnFileDroppedSignatureService,
-    UploadSignatureResource,
     UploadSignatureService,
-    DeleteSignatureResource,
-    DeleteSignatureService
+    DestroyerPhotoService,
+    DestroyerSignatureService,
+    UploadImageResource,
+    DestroyerImageResource
   ]
 })
 export class UploadsImagesModule {}

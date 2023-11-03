@@ -7,11 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import br.com.samuel.app.resources.models.ResourcePrint;
+
+import br.com.samuel.app.resources.interfaces.IPrintResource;
 
 @Controller
 @RequestMapping("/credentials")
-public class ResourcePrintCredential extends ResourcePrint {
+public class ResourcePrintCredential extends IPrintResource {
     
     @GetMapping("/{id}/print")
     public String run(@PathVariable String id, Model model) {

@@ -8,21 +8,17 @@ import org.springframework.stereotype.Service;
 import br.com.samuel.app.models.Member;
 import br.com.samuel.app.models.Role;
 import br.com.samuel.app.repository.RoleRepository;
-import br.com.samuel.app.usecases.models.DeleteOne;
-import br.com.samuel.app.usecases.uploads.DeletePhotoAtCloud;
-import br.com.samuel.app.usecases.uploads.DeleteSignatureAtCloud;
+import br.com.samuel.app.usecases.interfaces.IRemover;
+import br.com.samuel.app.usecases.uploads.DestroyerImage;
 
 @Service
-public class DeleteRole extends DeleteOne<Role, RoleRepository> {
+public class DeleteRole extends IRemover<Role, RoleRepository> {
 
     @Autowired
-    private DeletePhotoAtCloud deletePhoto;
+    private DestroyerImage destroyer;
     
-    @Autowired
-    private DeleteSignatureAtCloud deleteSignature;
-
     public Optional<Role> run(String id, Role role) {
-        return getRepository()
+        return repository()
             .findById(id)
             .map(roleDeleted -> {
                 if(role.equals(roleDeleted)) {
@@ -31,13 +27,13 @@ public class DeleteRole extends DeleteOne<Role, RoleRepository> {
                         var photoId = member.getPhoto().getPublicId();
                         var signatureId = member.getSignature().getPublicId();
                         try {
-                            deleteSignature.run(signatureId);
-                            deletePhoto.run(photoId);
+                            destroyer.run(signatureId);
+                            destroyer.run(photoId);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    getRepository().delete(roleDeleted);
+                    repository().delete(roleDeleted);
                 }
                 return roleDeleted;
             });

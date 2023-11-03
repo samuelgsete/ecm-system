@@ -3,10 +3,10 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { Pagination } from "src/app/models/pagination.entity";
-import { ListPaginatedResource } from "../models/list-paginated.resource";
+import { IPaginaterResource } from "../interfaces/paginater.resource";
 
 @Injectable()
-export class ListMembersPaginatedResource extends ListPaginatedResource {
+export class ListMembersPaginatedResource extends IPaginaterResource {
 
     public constructor(private readonly http: HttpClient) {
         super('members')
@@ -18,6 +18,6 @@ export class ListMembersPaginatedResource extends ListPaginatedResource {
             .set('ordination', pagination.ordination)
             .set('page', pagination.page)
             .set('size', pagination.size)
-        return this.http.get<any>(this.getBaseUrl(), { params: _params });
+        return this.http.get<any>(this.baseUrl(), { params: _params });
     }
 }

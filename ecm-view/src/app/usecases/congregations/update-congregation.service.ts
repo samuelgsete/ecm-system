@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { UpdateOneService } from "../models/update-one.service";
 import { Congregation } from "src/app/models/congregation.entity";
 import { UpdateCongregationResource } from "src/app/resources/congregations/update-congregation.resource";
+import { IUpdater } from "../interfaces/updater";
 
 @Injectable()
-export class UpdateCongregationService extends UpdateOneService<Congregation> {
+export class UpdateCongregationService extends IUpdater<Congregation> {
     
     constructor(
         private readonly toastr: ToastrService,

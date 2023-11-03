@@ -3,19 +3,19 @@ import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
 import { Pagination } from "src/app/models/pagination.entity";
-import { ListPaginatedService } from "../models/list-paginated.service";
 import { ListRolesPaginatedResource } from "src/app/resources/roles/list-roles-paginated.resource";
+import { IPaginater } from "../interfaces/paginater";
 
 @Injectable()
-export class ListRolesPaginatedService extends ListPaginatedService {
+export class ListRolesPaginatedService extends IPaginater {
 
-    public constructor(
+    constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly listPaginate: ListRolesPaginatedResource
     ) { super() }
 
-    public run(pagination: Pagination): void {
+    run(pagination: Pagination): void {
         this.spinner.show()
         this.listPaginate.run(pagination).subscribe({
             next: (response) => {

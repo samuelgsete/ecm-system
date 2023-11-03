@@ -13,52 +13,37 @@
             </div>
         </div>
     </div>
-    <div  class="ui-upload-image" *ngIf="!isUploadedPhoto" matRipple>
-        <mat-icon class="icon-image" [ngClass]="{ 'uploading-icon': uploadPhoto.progress() != 0 }">upload</mat-icon>
-        <label for="input-file-photo" *ngIf="uploadPhoto.progress() == 0">
-            Clique aqui carregar a Foto3x4
+   <div class="ui-upload-image" *ngIf="!uploadPhoto.uploading()  && !isUploadedPhoto" matRipple>
+        <mat-icon class="icon-image">upload</mat-icon>
+        <label for="input-file-photo">
+            Clique aqui para carregar a Foto3x4
         </label>
-        <label class="upload-progress" *ngIf="uploadPhoto.progress() != 0">
-            {{ uploadPhoto.progress() }}% Concluído
-        </label>
-        <input
+        <input 
             id="input-file-photo"
             type="file"
-            (change)="onChangeFile($event, 'photo')"
-            accept="image/png, image/jpeg"
-            hidden
+            (change)="onChangePhoto($event)"
+            accept="image/png, image/jpeg" hidden
         >
-        <div class="progress-upload" *ngIf="uploadPhoto.progress() != 0">    
-            <mat-progress-bar mode="determinate" [value]="uploadPhoto.progress()"></mat-progress-bar>
-        </div>
     </div>
     <div>
-        <app-uploaded-photo-preview 
-            [isUploaded]="isUploadedPhoto" [photo]="form.value.photo"
-        ></app-uploaded-photo-preview>                   
+        <app-upload-image-skeleton [isVisible]="uploadPhoto.uploading()"></app-upload-image-skeleton>
+        <app-uploaded-image-preview [uploadedImage]="photo" [isUploaded]="isUploadedPhoto" [destroy]="destroyerPhoto"></app-uploaded-image-preview>                   
     </div>
-    <div class="ui-upload-image" *ngIf="!isUploadedSignature" matRipple>
-        <mat-icon class="icon-image" [ngClass]="{ 'uploading-icon': uploadSignature.progress() != 0 }">upload</mat-icon>
-        <label for="input-file" *ngIf="uploadSignature.progress() == 0">
-            Clique aqui ou arraste e solte para carregar a Assinatura
-        </label>
-        <label for="input-file" *ngIf="uploadSignature.progress() != 0">
-            {{ uploadSignature.progress() }}% Concluído
+    <div class="ui-upload-image" *ngIf="!uploadSignature.uploading() && !isUploadedSignature" matRipple>
+        <mat-icon class="icon-image">upload</mat-icon>
+        <label for="input-file">
+            Clique aqui para carregar a Assinatura
         </label>
         <input 
             id="input-file"
             type="file"
-            (change)="onChangeFile($event, 'signature')"
+            (change)="onChangeSignature($event)"
             accept="image/png, image/jpeg" 
             hidden
         >
-        <div class="progress-upload" *ngIf="uploadSignature.progress() != 0">    
-            <mat-progress-bar mode="determinate" [value]="uploadSignature.progress()"></mat-progress-bar>
-        </div>
     </div>
     <div>
-        <app-uploaded-signature-preview
-            [isUploaded]="isUploadedSignature" [signature]="form.value.signature"
-        ></app-uploaded-signature-preview>                   
+        <app-upload-image-skeleton [isVisible]="uploadSignature.uploading()"></app-upload-image-skeleton>
+        <app-uploaded-image-preview [uploadedImage]="signature" [isUploaded]="isUploadedSignature" [destroy]="destroyerSignature"></app-uploaded-image-preview>                 
     </div>
 </form>

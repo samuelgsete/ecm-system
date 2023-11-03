@@ -3,17 +3,17 @@ import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 import Swal from "sweetalert2";
 
-import { DeleteOne } from "../models/delete-one.service";
 import { Role } from "src/app/models/role.entity";
 import { DeleteRoleResource } from "src/app/resources/roles/delete-role.resource";
+import { IRemover } from "../interfaces/remover";
 
 @Injectable()
-export class DeleteRoleService extends DeleteOne<Role> {
+export class DeleteRoleService extends IRemover<Role> {
 
     constructor(
         protected readonly toastr: ToastrService,
         protected readonly spinner: NgxSpinnerService,
-        protected readonly deleteOne: DeleteRoleResource
+        protected readonly remover: DeleteRoleResource
     ) { super() }
 
     run(id: string, role: Role): void {
@@ -27,7 +27,7 @@ export class DeleteRoleService extends DeleteOne<Role> {
         }).then((result) => {
             if(result.isConfirmed) {
                 this.spinner.show();
-                this.deleteOne.run(id, role).subscribe({
+                this.remover.run(id, role).subscribe({
                     next: (response) => {
                         this.toastr.success('O cargo foi removido', 'Tudo ok!', { 
                             progressBar: true,

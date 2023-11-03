@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { CreateService } from "../models/create.service";
 import { CreateCongregationResource } from "src/app/resources/congregations/create-congregation.resource";
 import { Congregation } from "src/app/models/congregation.entity";
+import { ICreater } from "../interfaces/creater";
 
 @Injectable()
-export class CreateCongregationService extends CreateService  {
+export class CreateCongregationService extends ICreater  {
 
     constructor(
         private readonly toastr: ToastrService,

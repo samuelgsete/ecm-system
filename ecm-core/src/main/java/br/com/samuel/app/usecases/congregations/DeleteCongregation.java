@@ -8,21 +8,17 @@ import org.springframework.stereotype.Service;
 import br.com.samuel.app.models.Congregation;
 import br.com.samuel.app.models.Member;
 import br.com.samuel.app.repository.CongregationRepository;
-import br.com.samuel.app.usecases.models.DeleteOne;
-import br.com.samuel.app.usecases.uploads.DeletePhotoAtCloud;
-import br.com.samuel.app.usecases.uploads.DeleteSignatureAtCloud;
+import br.com.samuel.app.usecases.interfaces.IRemover;
+import br.com.samuel.app.usecases.uploads.DestroyerImage;
 
 @Service
-public class DeleteCongregation extends DeleteOne<Congregation, CongregationRepository> {
+public class DeleteCongregation extends IRemover<Congregation, CongregationRepository> {
 
     @Autowired
-    private DeletePhotoAtCloud deletePhoto;
+    private DestroyerImage destroyer;
     
-    @Autowired
-    private DeleteSignatureAtCloud deleteSignature;
-
     public Optional<Congregation> run(String id, Congregation congregation) {
-        return getRepository()
+        return repository()
             .findById(id)
             .map(congregationDeleted -> {
                 if(congregation.equals(congregationDeleted)) {
@@ -31,13 +27,13 @@ public class DeleteCongregation extends DeleteOne<Congregation, CongregationRepo
                         var photoId = member.getPhoto().getPublicId();
                         var signatureId = member.getSignature().getPublicId();
                         try {
-                            deleteSignature.run(signatureId);
-                            deletePhoto.run(photoId);
+                            destroyer.run(signatureId);
+                            destroyer.run(photoId);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
-                    getRepository().delete(congregationDeleted);
+                    repository().delete(congregationDeleted);
                 }
                 return congregationDeleted;
             });

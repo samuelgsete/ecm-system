@@ -11,7 +11,7 @@ public class MakeThemeToMain {
     @Autowired
     private CredentialThemeRepository repository;
 
-    public void run(Integer id) {
+    public void run(String id) {
         var themes = repository
             .findAll()
             .stream()

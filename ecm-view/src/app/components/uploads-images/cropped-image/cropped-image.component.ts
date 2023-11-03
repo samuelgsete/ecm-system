@@ -3,8 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 
 import { Cropped } from '../../../models/cropped.entity';
-import { UploadPhotoService } from 'src/app/usecases/uploads/upload-photo.service';
-import { UploadSignatureService } from 'src/app/usecases/uploads/upload-signature.service';
+import { UploadPhotoService } from 'src/app/usecases/uploads/photo/upload-photo.service';
+import { UploadSignatureService } from 'src/app/usecases/uploads/signature/upload-signature.service';
 
 @Component({
   selector: 'app-cropped-image',
@@ -39,9 +39,11 @@ export class CroppedImageComponent {
       width, height, positionX1, positionY1
     });
 
-    if(this.data.uploadWhat == 'photo') this.uploadPhoto.run(formData, this.cropped);
+    this.data.onUpload.run(formData, this.cropped);
 
-    else if(this.data.uploadWhat == 'signature') this.unploadSignature.run(formData, this.cropped);
+    /*if(this.data.uploadWhat == 'photo') this.uploadPhoto.run(formData, this.cropped);
+
+    else if(this.data.uploadWhat == 'signature') this.unploadSignature.run(formData, this.cropped);*/
   }
 
   imageCropped(event: ImageCroppedEvent): void {

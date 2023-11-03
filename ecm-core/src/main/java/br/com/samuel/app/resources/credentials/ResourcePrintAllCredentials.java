@@ -5,11 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import br.com.samuel.app.resources.models.ResourcePrint;
+
+import br.com.samuel.app.resources.interfaces.IPrintResource;
 
 @Controller
 @RequestMapping("/credentials")
-public class ResourcePrintAllCredentials extends ResourcePrint {
+public class ResourcePrintAllCredentials extends IPrintResource {
     
     @GetMapping("/print/all")
     public String run(Model model) {

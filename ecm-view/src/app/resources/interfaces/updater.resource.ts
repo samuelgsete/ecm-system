@@ -1,0 +1,18 @@
+import { Observable } from "rxjs";
+import { HttpRequest } from "./http-request.resource";
+
+export abstract class IUpdaterResource<T> extends HttpRequest {
+
+    private controller: string = '';
+    
+    public constructor(_controller: string) {
+        super()
+        this.controller = _controller;
+    }
+
+    public baseUrl(): string {
+        return this.localUrl.concat(this.controller);
+    }
+
+    public abstract run(id: string, createdResource: T): Observable<T>
+}

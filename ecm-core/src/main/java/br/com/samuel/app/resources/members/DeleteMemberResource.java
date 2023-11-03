@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.samuel.app.models.Member;
-import br.com.samuel.app.resources.models.ResourceDeleteOne;
+import br.com.samuel.app.resources.interfaces.IRemoverResource;
 import br.com.samuel.app.usecases.members.DeleteMember;
 
 @RestController
 @RequestMapping("/members")
-public class DeleteMemberResource extends ResourceDeleteOne<Member, DeleteMember> {
+public class DeleteMemberResource extends IRemoverResource<Member, DeleteMember> {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Member> run(@PathVariable String id, @RequestBody Member member) {
-        return delete()
+        return remover()
             .run(id, member)
             .map(deletedMember -> ResponseEntity.ok(deletedMember))
             .orElse(ResponseEntity.notFound().build());

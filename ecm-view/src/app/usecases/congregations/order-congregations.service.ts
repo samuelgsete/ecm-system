@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Pagination } from "src/app/models/pagination.entity";
 import { ListCongregationsPaginatedService } from "./list-congregations-paginated.service";
-import { Ordination } from "../models/ordination.entity";
+import { Ordination } from "../../models/ordination.entity";
 
 @Injectable()
 export class OrderCongregationsService {

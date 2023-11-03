@@ -13,7 +13,6 @@ import { NoDataCreatedComponent } from './components/no-data-created/no-data-cre
 import { SuchNotfoundComponent } from './components/such-notfound/such-notfound.component';
 import { PageNotfoundComponent } from './components/page-notfound/page-notfound.component';
 import { PageDescriptionComponent } from './components/page-description/page-description.component';
-import { UploadedImagePreviewComponent } from './components/uploaded-image-preview/uploaded-image-preview.component';
 import { FormatDateService } from './services/format-date.service';
 import { ListGendersService } from './services/list-genders.service';
 import { ListMaritalStatusService } from './services/list-marital-status.service';
@@ -29,8 +28,7 @@ import { ListMaritalStatusService } from './services/list-marital-status.service
     NoDataCreatedComponent,
     SuchNotfoundComponent,
     PageNotfoundComponent,
-    PageDescriptionComponent,
-    UploadedImagePreviewComponent
+    PageDescriptionComponent
   ],
   imports: [
     CommonModule,
@@ -46,8 +44,7 @@ import { ListMaritalStatusService } from './services/list-marital-status.service
     ScrollStepperFixDirective,
     NoDataCreatedComponent,
     SuchNotfoundComponent,
-    PageDescriptionComponent,
-    UploadedImagePreviewComponent
+    PageDescriptionComponent
   ],
   providers: [
     FormatDateService,

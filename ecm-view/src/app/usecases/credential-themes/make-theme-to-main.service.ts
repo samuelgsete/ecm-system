@@ -1,18 +1,24 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { PatchService } from "../models/path.service";
 import { MakeThemeToMainResource } from "src/app/resources/credential-themes/make-theme-to-main.resource";
 
 @Injectable()
-export class MakeThemeToMainService extends PatchService {
+export class MakeThemeToMainService  {
+
+    private complete: EventEmitter<any> = new EventEmitter<any>()
+    private finally: boolean = false;
 
     constructor(
         private readonly toastr: ToastrService,
         private readonly spinner: NgxSpinnerService,
         private readonly toMain: MakeThemeToMainResource
-    ) { super() }
+    ) {}
+
+    done(): EventEmitter<any> { return this.complete }
+
+    isFinally(): boolean { return this.finally }
 
     run(id: string): void {
         this.spinner.show()

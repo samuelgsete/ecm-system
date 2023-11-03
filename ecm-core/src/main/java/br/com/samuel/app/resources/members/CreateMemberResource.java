@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.samuel.app.exceptions.AlreadyCreatedException;
 import br.com.samuel.app.models.Member;
-import br.com.samuel.app.resources.models.ResourceCreate;
+import br.com.samuel.app.resources.interfaces.ICreateResource;
 import br.com.samuel.app.usecases.members.CreateMember;
 
 @RestController
 @RequestMapping("/members")
-public class CreateMemberResource extends ResourceCreate<Member, CreateMember> {
+public class CreateMemberResource extends ICreateResource<Member, CreateMember> {
 
     @PostMapping
     public ResponseEntity<Object> run(@RequestBody @Valid Member member) throws AlreadyCreatedException {
-        return ResponseEntity.created(create().run(member)).build();
+        return ResponseEntity.created(creater().run(member)).build();
     }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { Pagination } from "src/app/models/pagination.entity";
-import { Ordination } from "../models/ordination.entity";
+import { Ordination } from "../../models/ordination.entity";
 import { ListCredentialThemesPaginatedService } from "./list-credential-themes-paginated.service";
 
 @Injectable()

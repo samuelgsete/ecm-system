@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { UpdateOneService } from "../models/update-one.service";
 import { Role } from "src/app/models/role.entity";
 import { UpdateRoleResource } from "src/app/resources/roles/update-role-resource";
+import { IUpdater } from "../interfaces/updater";
 
 @Injectable()
-export class UpdateRoleService extends UpdateOneService<Role> {
+export class UpdateRoleService extends IUpdater<Role> {
     
     constructor(
         private readonly toastr: ToastrService,
@@ -17,7 +17,7 @@ export class UpdateRoleService extends UpdateOneService<Role> {
 
     run(data: any): void {
         this.spinner.show();
-        const role: Role = new Role({
+        const role = new Role({
             id: data.id,
             name: data.name,
             numberOfMembers: data.numberOfMembers,

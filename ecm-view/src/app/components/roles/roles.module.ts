@@ -13,8 +13,6 @@ import { ListRolesPaginatedResource } from 'src/app/resources/roles/list-roles-p
 import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
 import { CreateRoleResource } from 'src/app/resources/roles/create-role.resource';
 import { CreateRoleService } from 'src/app/usecases/roles/create-role.service';
-import { FindOneRoleResource } from 'src/app/resources/roles/find-one-role.resource';
-import { FindOneRoleService } from 'src/app/usecases/roles/find-one-role.service';
 import { UpdateRoleResource } from 'src/app/resources/roles/update-role-resource';
 import { UpdateRoleService } from 'src/app/usecases/roles/update-role.service';
 import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-comparator.service';
@@ -35,8 +33,6 @@ import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
     UtilsModule
   ],
   providers: [
-    FindOneRoleResource,
-    FindOneRoleService,
     ListRolesPaginatedResource,
     ListRolesPaginatedService,
     CreateRoleResource,

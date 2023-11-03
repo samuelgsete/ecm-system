@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
 import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 import { UsersModule } from './components/users/users.module';
+import { FieldsModule } from './components/fields/fields.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UsersModule } from './components/users/users.module';
     UploadsImagesModule,
     LayoutModule,
     CredentialThemesModule,
-    UsersModule
+    UsersModule,
+    FieldsModule
   ],
   providers: [
     /*{

@@ -6,22 +6,22 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.samuel.app.exceptions.AlreadyCreatedException;
 import br.com.samuel.app.models.Congregation;
 import br.com.samuel.app.repository.CongregationRepository;
-import br.com.samuel.app.usecases.models.Create;
+import br.com.samuel.app.usecases.interfaces.ICreater;
 
 @Service
-public class CreateCongregation extends Create<Congregation, CongregationRepository> {
+public class CreateCongregation extends ICreater<Congregation, CongregationRepository> {
 
     public URI run(Congregation congregation) throws AlreadyCreatedException {
-        congregation.setId(getKey());
+        congregation.setId(primaryKey());
         var name = congregation.getName();
-        var congregationExists = getRepository().alreadyCreated(name);
+        var congregationExists = repository().alreadyCreated(name);
     
         if(congregationExists.isPresent()) 
             throw new AlreadyCreatedException(
                 "Já existe uma congregação criada com o nome informado"
             );
         congregation.toCreated();
-        var createdCongregation = getRepository().save(congregation);
+        var createdCongregation = repository().save(congregation);
         return ServletUriComponentsBuilder
             .fromCurrentRequest()
             .path("/{id}")

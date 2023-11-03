@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { findOneService } from "../models/find-one.service";
 import { Member } from "src/app/models/member.entity";
 import { FindOneMemberResource } from "src/app/resources/members/find-one-member.resource";
+import { IFinder } from "../interfaces/finder";
 
 @Injectable()
-export class FindOneMemberService extends findOneService<Member> {
+export class FindOneMemberService extends IFinder<Member> {
 
     constructor(
         private readonly toastr: ToastrService,
@@ -17,9 +17,9 @@ export class FindOneMemberService extends findOneService<Member> {
     
     run(id: string): void {
         this.spinner.show();
+        this.progress = true;
         this.findOne.run(id).subscribe({
             next: (response) => {
-                this.progress = false;
                 this.complete.emit(response);
             },
             error: (eventErr) => {
@@ -30,6 +30,7 @@ export class FindOneMemberService extends findOneService<Member> {
             }
         }).add(() => {
             this.spinner.hide();
+            this.progress = false;
         })
     }
 }

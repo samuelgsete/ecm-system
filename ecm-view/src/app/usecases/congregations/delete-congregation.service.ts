@@ -3,12 +3,12 @@ import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 import Swal from "sweetalert2";
 
-import { DeleteOne } from "../models/delete-one.service";
 import { Congregation } from "src/app/models/congregation.entity";
 import { DeleteCongregationeResource } from "src/app/resources/congregations/delete-congregation.resource";
+import { IRemover } from "../interfaces/remover";
 
 @Injectable()
-export class DeleteCongregationService extends DeleteOne<Congregation> {
+export class DeleteCongregationService extends IRemover<Congregation> {
 
     constructor(
         protected readonly toastr: ToastrService,

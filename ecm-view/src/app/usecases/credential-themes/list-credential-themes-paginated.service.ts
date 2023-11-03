@@ -3,11 +3,11 @@ import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
 import { Pagination } from "src/app/models/pagination.entity";
-import { ListPaginatedService } from "../models/list-paginated.service";
 import { ListCredentialThemesPaginatedResource } from "src/app/resources/credential-themes/list-credential-themes-paginated.resource";
+import { IPaginater } from "../interfaces/paginater";
 
 @Injectable()
-export class ListCredentialThemesPaginatedService extends ListPaginatedService {
+export class ListCredentialThemesPaginatedService extends IPaginater {
 
     constructor(
         private readonly toastr: ToastrService,

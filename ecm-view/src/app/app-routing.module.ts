@@ -10,6 +10,7 @@ import { CreateMember2Component } from './components/members/create-member2/crea
 import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
 import { PageNotfoundComponent } from './utils/components/page-notfound/page-notfound.component';
 import { CroppedImageComponent } from './components/uploads-images/cropped-image/cropped-image.component';
+import { CreateFieldComponent } from './components/fields/create-field/create-field.component';
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'create/member', component: CreateMember2Component },
     { path: 'member/:id/update', component: UpdateMemberComponent },
     { path: 'credential/themes', component: DisplayThemesComponent },
+    { path: 'create/field', component: CreateFieldComponent },
   ]},
   { path: 'cropped/image', component: CroppedImageComponent },
   { path:'**', redirectTo: '404' },

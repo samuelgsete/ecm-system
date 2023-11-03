@@ -7,20 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.samuel.app.models.Congregation;
-import br.com.samuel.app.resources.models.ResourcePaginate;
+import br.com.samuel.app.resources.interfaces.IPaginaterResource;
 import br.com.samuel.app.usecases.congregations.ListCongregationsPaginate;
 
 @RestController
 @RequestMapping("/congregations")
-public class ListCongregationsPaginateResource extends ResourcePaginate<Congregation, ListCongregationsPaginate> {
+public class ListCongregationsPaginateResource extends IPaginaterResource<Congregation, ListCongregationsPaginate> {
 
     @GetMapping
-    public ResponseEntity<Page<Congregation>> run(
-        @RequestParam String search, 
-        @RequestParam String ordination, 
-        Pageable pageable
-    ) {
-        return ResponseEntity.ok(paginate().run(search, ordination, pageable));
+    public ResponseEntity<Page<Congregation>> run(@RequestParam String search, @RequestParam String ordination, Pageable pageable) {
+        return ResponseEntity.ok(paginater().run(search, ordination, pageable));
     }
 }

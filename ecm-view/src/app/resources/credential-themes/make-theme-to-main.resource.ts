@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { PatchResource } from '../models/path-resource';
-
 @Injectable()
-export class MakeThemeToMainResource extends PatchResource {
+export class MakeThemeToMainResource {
+
+    private baseUrl: string = 'http://localhost:8090/api/v1/credential-themes';
     
-    constructor(private readonly http: HttpClient) {
-        super('credential-themes')
-    }
+    constructor(private readonly http: HttpClient) {}
 
     run(id: string): Observable<any> {
-        return this.http.patch<any>(this.getBaseUrl().concat(`/${id}`), {});
+        return this.http.patch<any>(this.baseUrl.concat(`/${id}`), {});
     }
 }

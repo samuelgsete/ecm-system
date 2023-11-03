@@ -2,15 +2,16 @@ package br.com.samuel.app.usecases.members;
 
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+
 import br.com.samuel.app.models.Member;
 import br.com.samuel.app.repository.MemberRepository;
-import br.com.samuel.app.usecases.models.Update;
+import br.com.samuel.app.usecases.interfaces.IUpdater;
 
 @Service
-public class UpdateMember extends Update<Member, MemberRepository> {
+public class UpdateMember extends IUpdater<Member, MemberRepository> {
 
     public Optional<Member> run(String id, Member createdMember) {
-        return getRepository()
+        return repository()
             .findById(id)
             .map(unupdatedMember -> {
                 unupdatedMember.setName(createdMember.getName());
@@ -29,9 +30,8 @@ public class UpdateMember extends Update<Member, MemberRepository> {
                 unupdatedMember.setEmail(createdMember.getEmail());
                 unupdatedMember.setIsSelected(createdMember.getIsSelected());
                 unupdatedMember.toUpdated();
-                
                 // Atualiza os dados no banco
-                var updatedMember = getRepository().save(unupdatedMember);
+                var updatedMember = repository().save(unupdatedMember);
                 return updatedMember;
             });
     }

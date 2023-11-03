@@ -16,7 +16,7 @@ public class ResourceMakeCredentialThemeToMain {
     private MakeThemeToMain toMain;
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> run(@PathVariable Integer id) {
+    public ResponseEntity<?> run(@PathVariable String id) {
         toMain.run(id);
         return ResponseEntity.ok().build();
     }

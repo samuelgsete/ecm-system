@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.samuel.app.exceptions.AlreadyCreatedException;
 import br.com.samuel.app.models.Role;
-import br.com.samuel.app.resources.models.ResourceCreate;
+import br.com.samuel.app.resources.interfaces.ICreateResource;
 import br.com.samuel.app.usecases.roles.CreateRole;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/roles")
-public class CreateRoleResource extends ResourceCreate<Role, CreateRole> {
+public class CreateRoleResource extends ICreateResource<Role, CreateRole> {
 
     @PostMapping
     public ResponseEntity<Object> run(@RequestBody @Valid Role role) throws AlreadyCreatedException {
-        return ResponseEntity.created(create().run(role)).build();
+        return ResponseEntity.created(creater().run(role)).build();
     }  
 }

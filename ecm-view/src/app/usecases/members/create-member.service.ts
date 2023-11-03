@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpEventType } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
 
-import { CreateService } from "../models/create.service";
 import { CreateMemberResource } from "src/app/resources/members/create-member.resource";
 import { Member } from "src/app/models/member.entity";
+import { ICreater } from "../interfaces/creater";
 
 const PERCENTEGE = 100;
 
 @Injectable()
-export class CreateMemberService extends CreateService  {
+export class CreateMemberService extends ICreater {
 
     progressDone: number = 0;
 

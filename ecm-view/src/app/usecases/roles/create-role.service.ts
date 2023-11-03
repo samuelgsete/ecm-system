@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { CreateService } from "../models/create.service";
 import { Role } from "src/app/models/role.entity";
 import { CreateRoleResource } from "src/app/resources/roles/create-role.resource";
+import { ICreater } from "../interfaces/creater";
 
 @Injectable()
-export class CreateRoleService extends CreateService  {
+export class CreateRoleService extends ICreater {
 
     public constructor(
         private readonly toastr: ToastrService,
@@ -17,7 +17,7 @@ export class CreateRoleService extends CreateService  {
 
     public override run(data: any): void {
         this.spinner.show();
-        const role: Role = new Role({
+        const role = new Role({
             id: data.id,
             name: data.name,
             numberOfMembers: data.numberOfMembers,

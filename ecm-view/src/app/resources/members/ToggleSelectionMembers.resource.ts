@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { HttpRequest } from "../models/http-request.resource";
 import { Observable } from "rxjs";
+
+import { HttpRequest } from "../interfaces/http-request.resource";
 
 @Injectable()
 export class ToggleSelectionMembersResource extends HttpRequest {

@@ -3,17 +3,17 @@ import { ToastrService } from "ngx-toastr";
 import Swal from "sweetalert2";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { DeleteOne } from "../models/delete-one.service";
 import { Member } from "src/app/models/member.entity";
 import { DeleteMemberResource } from "src/app/resources/members/delete-member.resource";
+import { IRemover } from "../interfaces/remover";
 
 @Injectable()
-export class DeleteMemberService extends DeleteOne<Member> {
+export class DeleteMemberService extends IRemover<Member> {
 
     constructor(
         protected readonly toastr: ToastrService,
         protected readonly spinner: NgxSpinnerService,
-        protected readonly deleteOne: DeleteMemberResource
+        protected readonly remover: DeleteMemberResource
     ) { super() }
 
     run(id: string, member: Member): void {
@@ -27,7 +27,7 @@ export class DeleteMemberService extends DeleteOne<Member> {
         }).then((result) => {
             if(result.isConfirmed) {
                 this.spinner.show();
-                this.deleteOne.run(id, member).subscribe({
+                this.remover.run(id, member).subscribe({
                     next: (response) => {
                         this.toastr.success('O Membro foi removido', 'Tudo ok!', { 
                             progressBar: true,
