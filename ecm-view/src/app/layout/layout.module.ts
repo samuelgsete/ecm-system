@@ -11,20 +11,27 @@ import { LayoutComponent } from './layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { LogoutService } from '../security/logout.service';
+import { MetricsComponent } from './metrics/metrics.component';
+import { UtilsModule } from '../utils/utils.module';
 
 @NgModule({
   declarations: [
     SideBarComponent,
     LayoutComponent,
     FooterComponent,
-    TopBarComponent
+    TopBarComponent,
+    MetricsComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     UsersModule,
+    UtilsModule,
     CredentialsModule
+  ],
+  exports: [
+    MetricsComponent
   ],
   providers: [
     LogoutService

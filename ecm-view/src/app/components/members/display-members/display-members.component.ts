@@ -20,12 +20,16 @@ import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 
 @Component({
   selector: 'app-display-members',
   templateUrl: './display-members.component.html',
   styleUrls: ['./display-members.component.css'],
   providers: [
+    PaginationService,
+    OrderMembersService,
+    ListMembersPaginatedService,
     PrintOneCredentialsService,
     PrintOneCredentialsResource,
     PrintAllCredentialsService,
@@ -53,7 +57,8 @@ export class DisplayMembersComponent implements OnInit {
     readonly onPrint: PrintOneCredentialsService,
     readonly onPrintAll: PrintAllCredentialsService,
     readonly onDelete: DeleteMemberService,
-    readonly onToggleSelection: ToggleSelectionMembersService
+    readonly onToggleSelection: ToggleSelectionMembersService,
+    readonly updateMetrics: DisplayMetricsService
   ) {}
   
   nextPage(page: number): void {
@@ -92,11 +97,6 @@ export class DisplayMembersComponent implements OnInit {
       this.countSelecteds = response;
     })
 
-    this.updateMember.done().subscribe(response => {
-      this.listMembers.run(this.pagination);
-      this.count.run();
-    })
-
     this.onPrint.done().subscribe(htmlContent => {
       let newWindow = open();
       newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
@@ -109,11 +109,18 @@ export class DisplayMembersComponent implements OnInit {
 
     this.onDelete.done().subscribe(response => {
       this.listMembers.run(new Pagination());
+      this.updateMetrics.run();
       this.count.run();
     })
 
     this.onToggleSelection.done().subscribe(response => {
       this.listMembers.run(new Pagination());
+      this.count.run();
+      this.updateMetrics.run();
+    })
+
+    this.onSelect.done().subscribe(response => {
+      this.updateMetrics.run();
       this.count.run();
     })
   }

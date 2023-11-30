@@ -29,8 +29,8 @@ import br.com.samuel.app.models.enums.MaritalStatus;
 public class Member extends EntityBase {
     
     @NotBlank(message = "{member.name.notblank}")
-    @Size(min = 6, max = 32, message = "{member.name.size}")
-    @Column(length = 32, nullable = false)
+    @Size(min = 6, max = 48, message = "{member.name.size}")
+    @Column(length = 48, nullable = false)
     private String name;
 
     @Size(max = 11, message = "{member.cpf.size}")

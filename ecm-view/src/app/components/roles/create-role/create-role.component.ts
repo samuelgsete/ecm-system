@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { CreateRoleService } from 'src/app/usecases/roles/create-role.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class CreateRoleComponent implements OnInit {
     protected readonly router: Router,
     protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateRoleComponent>,
-    protected readonly createRole: CreateRoleService
+    protected readonly createRole: CreateRoleService,
+    protected readonly updateMetrics: DisplayMetricsService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class CreateRoleComponent implements OnInit {
     })
 
     this.createRole.done().subscribe(response => {
+      this.updateMetrics.run();
       this.modalRef.close();
     });
   }

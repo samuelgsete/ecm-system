@@ -6,6 +6,7 @@ import { Role } from "src/app/models/role.entity";
 export class SelectRoleComparatorService {
 
     run(r1: Role, r2: Role): boolean {
-        return r1.name == r2.name ? true: false;
+        if(r2 != null) return r1.name == r2.name ? true: false;
+        return false;
     }
 }

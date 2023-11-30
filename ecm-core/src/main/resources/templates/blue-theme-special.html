@@ -155,7 +155,7 @@
         }
     
         div.photo {
-            height: 135px;
+            height: 140px;
             width: 110px;
             padding: 2px;
             border-radius: 2px;
@@ -233,6 +233,10 @@
                 </div>
                 <div class="grid">
                     <div class="ui-text">
+                        <label>Congregação</label>
+                        <p th:text="${member.congregation.name}"></p>
+                    </div>
+                    <div class="ui-text">
                         <label>Estado Civil</label>
                         <p th:text="${maritalStatusFormatter.run(member.maritalStatus, member.gender)}"></p>
                     </div>
@@ -240,17 +244,12 @@
                         <label>Data de Nascimento</label>
                         <p th:text="${dateFormatter.run(member.dateOfBirth, 'dd/MM/yyyy')}"></p>
                     </div>
-                    <div class="ui-text">
-                        <label>Cargo</label>
-                        <p th:text="${member.role.name}"></p>
-                    </div>
                 </div>
                 <div class="member">
                     <div class="signature-member">
                         <img
                             th:src="${member.signature.url}"
                             alt="Assinatura do membro"
-                            width="100%"
                             width="100%"
                         >
                     </div>
@@ -299,8 +298,8 @@
                         <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
                     </div>
                     <div class="ui-text">
-                        <label>Congregação</label>
-                        <p th:text="${member.congregation.name}"></p>
+                        <label>Cargo</label>
+                        <p th:text="${member.role.name}"></p>
                     </div>
                 </div>
             </div>

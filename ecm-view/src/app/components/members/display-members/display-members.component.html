@@ -45,14 +45,16 @@
 
         <app-such-notfound [keyword]="formSearch.value" [isVisible]="listMembers.notFound()"></app-such-notfound>
         
-        <button 
-            class="mb10"
-            mat-button 
-            [matBadge]="countSelecteds"
-            matBadgeColor="accent"
-            (click)="onPrintAll.run()"
-            [disabled]="countSelecteds == 0"
-        >Imprimir selecionados</button>
+        <div class="row-flex space-between center-vertical">
+            <button 
+                class="mb10"
+                mat-button 
+                [matBadge]="countSelecteds"
+                matBadgeColor="accent"
+                (click)="onPrintAll.run()"
+                [disabled]="countSelecteds == 0"
+            >Aguardando emissão</button>
+        </div>
 
         <table class="ui-table default" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
             <tr>
@@ -61,7 +63,7 @@
                 </th>
                 <th>Foto</th>
                 <th>Membro</th>
-                <th>Cargo</th>
+                <th>Estado civil</th>
                 <th>Idade</th>
                 <th>Última Atualização</th>
                 <th>Ações</th>
@@ -77,7 +79,7 @@
                     <img class="photo-member" [src]="member.photo.url" [alt]="member.name">
                 </td>
                 <td>{{ member.name }}</td>
-                <td>{{ member.role.name }}</td>
+                <td>{{ member.maritalStatus | maritalstatus }}</td>
                 <td>{{ member.age }} anos</td>
                 <td>{{ member.updatedAt | dateDuration }}</td>
                 <td>

@@ -6,6 +6,7 @@ import { Congregation } from "src/app/models/congregation.entity";
 export class SelectCongregationComparatorService {
     
     run(c1: Congregation, c2: Congregation): boolean {
-        return c1.name == c2.name ? true: false;
+        if(c2 != null) return c1.name == c2.name ? true: false;
+        return false;
     }
 }

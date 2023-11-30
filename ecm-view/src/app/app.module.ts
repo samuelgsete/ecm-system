@@ -16,7 +16,8 @@ import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
 import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 import { UsersModule } from './components/users/users.module';
-import { FieldsModule } from './components/fields/fields.module';
+import { DisplayMetricsResource } from './resources/metrics/display-metrics.resource';
+import { DisplayMetricsService } from './usecases/metrics/display-metrics.service';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { FieldsModule } from './components/fields/fields.module';
     UploadsImagesModule,
     LayoutModule,
     CredentialThemesModule,
-    UsersModule,
-    FieldsModule
+    UsersModule
   ],
   providers: [
+    DisplayMetricsResource,
+    DisplayMetricsService
     /*{
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

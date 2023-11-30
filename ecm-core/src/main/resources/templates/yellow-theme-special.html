@@ -242,7 +242,7 @@
                     </div>
                     <div class="ui-text">
                         <label>Cargo</label>
-                        <p th:text="${member.role.name}"></p>
+                        <p th:text="${member.role} ? ${member.role.name} : '************'"></p>
                     </div>
                 </div>
                 <div class="member">
@@ -300,7 +300,7 @@
                     </div>
                     <div class="ui-text">
                         <label>Congregação</label>
-                        <p th:text="${member.congregation.name}"></p>
+                        <p th:text="${member.congregation} ? ${member.congregation.name} : '************'"></p>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { UploadsImagesModule } from '../uploads-images/uploads-images.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
+import { LayoutModule } from 'src/app/layout/layout.module';
 
 import { DisplayMembersComponent } from './display-members/display-members.component';
 import { Step1Component } from './create-member2/step1/step1.component';
@@ -23,9 +24,11 @@ import { CreateMemberResource } from 'src/app/resources/members/create-member.re
 import { ListMembersPaginatedResource } from 'src/app/resources/members/list-members-paginated.resource';
 import { FindOneMemberResource } from 'src/app/resources/members/find-one-member.resource';
 import { UpdateMemberResource } from 'src/app/resources/members/update-member.resource';
+import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
+import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
+import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.reousrce';
 
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
-import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
 import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
@@ -34,14 +37,10 @@ import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
-import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
-import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
-import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.reousrce';
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
-import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 
 @NgModule({
@@ -62,6 +61,7 @@ import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSe
     CommonModule,
     RouterModule,
     PaginateModule,
+    LayoutModule,
     SharedModule,
     UploadsImagesModule,
     UtilsModule
@@ -72,7 +72,6 @@ import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSe
     CreateMemberResource,
     CreateMemberService,
     ListMembersPaginatedResource,
-    ListMembersPaginatedService,
     UpdateMemberResource,
     UpdateMemberService,
     GoToEditService,
@@ -81,7 +80,6 @@ import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSe
     BuildFormCreateMemberService,
     BuildFormUpdateMemberService,
     ParseDataToMemberService,
-    OrderMembersService,
     ListMembersSelectedsResource,
     ListMembersSelectedsService,
     DeleteMemberResource,

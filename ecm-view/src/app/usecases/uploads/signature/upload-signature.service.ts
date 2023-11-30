@@ -16,7 +16,7 @@ export class UploadSignatureService extends IUploaderImage {
 
     run(imageFile: FormData, cropped: Cropped): void {
         this.isUploading = true;
-        this.upload.run(imageFile, cropped, SIGNATURE_FOLDER_PATH.test).subscribe({
+        this.upload.run(imageFile, cropped, SIGNATURE_FOLDER_PATH.prod).subscribe({
             next: (response) => {
                 this.isUploading = false;
                 this.complete.emit(response);

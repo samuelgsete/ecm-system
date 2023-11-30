@@ -18,6 +18,10 @@ export class ParseDataToMemberService {
     const step2: FormGroup = this.component.step2
     const step3: FormGroup = this.component.step3
     const step4: FormGroup = this.component.step4
+
+    const _role = step1.value.role;
+    const _congregation = step1.value.congregation;
+
     return new Member({
       id: step1.value.id,
       isSelected: step1.value.isSelected,
@@ -28,14 +32,8 @@ export class ParseDataToMemberService {
       dateOfBaptism: new Date(step1.value.dateOfBaptism).toISOString(),
       gender: step1.value.gender,
       maritalStatus: step1.value.maritalStatus,
-      role: new Role({
-        id: step1.value.role.id,
-        name: step1.value.role.name,
-      }),
-      congregation: new Congregation({
-        id: step1.value.congregation.id,
-        name: step1.value.congregation.name
-      }),
+      role: _role,
+      congregation: _congregation,
       phone: step2.value.phone,
       email: step2.value.email,
       affiliation: new Affiliation({

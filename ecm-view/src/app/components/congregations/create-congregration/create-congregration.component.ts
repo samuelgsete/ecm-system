@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { CreateCongregationService } from 'src/app/usecases/congregations/create-congregation.service';
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 
 @Component({
   selector: 'app-create-congregration',
@@ -18,7 +19,8 @@ export class CreateCongregrationComponent implements OnInit {
     protected readonly router: Router,
     protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateCongregrationComponent>,
-    protected readonly create: CreateCongregationService
+    protected readonly create: CreateCongregationService,
+    protected readonly updateMetrics: DisplayMetricsService
   ) {}
 
   private buildForm(): FormGroup {
@@ -38,6 +40,7 @@ export class CreateCongregrationComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.buildForm();
     this.create.done().subscribe(response => {
+      this.updateMetrics.run();
       this.modalRef.close()
     })
   }

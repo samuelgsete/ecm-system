@@ -13,6 +13,7 @@ import { OrderCongregationsService } from 'src/app/usecases/congregations/order-
 import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 
 @Component({
   selector: 'app-display-congregations',
@@ -31,7 +32,8 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly onPaginate: PaginationService,
     protected readonly listCongregations: ListCongregationsPaginatedService,
     protected readonly onDelete: DeleteCongregationService,
-    protected readonly order: OrderCongregationsService
+    protected readonly order: OrderCongregationsService,
+    protected readonly updateMetrics: DisplayMetricsService
   ) {}
 
   nextPage(page: number): void {
@@ -75,6 +77,7 @@ export class DisplayCongregationsComponent implements OnInit {
     })
 
     this.onDelete.done().subscribe(congregationDeleted => {
+      this.updateMetrics.run();
       this.listCongregations.run(new Pagination());
     })
   }

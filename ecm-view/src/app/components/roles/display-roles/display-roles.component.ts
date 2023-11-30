@@ -13,6 +13,7 @@ import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -31,7 +32,8 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly onPaginate: PaginationService,
     protected readonly listRoles: ListRolesPaginatedService,
     protected readonly onDelete: DeleteRoleService,
-    protected readonly order: OrderRolesService
+    protected readonly order: OrderRolesService,
+    protected readonly updateMetrics: DisplayMetricsService
   ) {}
 
   nextPage(page: number): void {
@@ -76,6 +78,7 @@ export class DisplayRolesComponent implements OnInit {
     })
 
     this.onDelete.done().subscribe(roleDeleted => {
+      this.updateMetrics.run();
       this.listRoles.run(new Pagination());
     });
   }

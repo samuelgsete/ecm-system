@@ -42,7 +42,7 @@ export class UpdateMemberComponent implements OnInit {
       this.step4 = step4;
     });
     this.update.done().subscribe(response => {
-      this.router.navigateByUrl("/app/members");
+      this.router.navigateByUrl("app/members");
     })
   }
 }

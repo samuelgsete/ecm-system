@@ -3,7 +3,7 @@ package br.com.samuel.app.models;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,6 +33,17 @@ public class Role extends EntityBase {
     public void addMember(Member member) {
         member.setRole(this);
         members.add(member);
+    }
+
+    public void removeAllMembers() {
+        members = members
+            .stream()
+            .map(member -> {
+                member.setRole(null);
+                return member;
+            })
+            .collect(Collectors.toSet());
+        members = new HashSet<Member>();
     }
 
     public Integer getNumberOfMembers() {

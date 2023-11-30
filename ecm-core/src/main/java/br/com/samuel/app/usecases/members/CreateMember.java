@@ -31,10 +31,11 @@ public class CreateMember extends ICreater<Member, MemberRepository> {
             );
 
         var role = member.getRole();
+        if(role != null) role.addMember(member);
+        
         var congregation = member.getCongregation();
-        congregation.addMember(member);
-        role.addMember(member);
-
+        if(congregation != null) congregation.addMember(member);
+        
         var createdMember = repository().save(member);
 
         return ServletUriComponentsBuilder

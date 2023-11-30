@@ -17,7 +17,7 @@ export class MaritalStatusPipe implements PipeTransform {
             { name: 'Viúvo(a)',         value: 'WINDOWER' },
             { name: 'Divorciado(a)',    value: 'DIVORCED' }
         ]
-        const name = data.filter( item => value === item.value)[0].name;
+        const name = data.filter(item => value === item.value)[0].name;
         return name;
     }
 }

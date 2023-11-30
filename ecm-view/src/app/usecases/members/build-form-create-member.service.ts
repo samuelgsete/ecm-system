@@ -11,7 +11,7 @@ export class BuildFormCreateMemberService {
 
     run(): any {
         const step1 = this._fb.group({
-            name: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
+            name: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(48)]],
             isSelected: [true],
             cpf: [null, [acceptNullValues, cpfValidator]],
             rg: [null, acceptNullValues],
@@ -19,8 +19,8 @@ export class BuildFormCreateMemberService {
             dateOfBaptism: [null, Validators.required],
             maritalStatus: [null, Validators.required],
             gender: [null, Validators.required],
-            congregation: [null, Validators.required],
-            role: [null, Validators.required]
+            congregation: [null],
+            role: [null]
         })
         const step2 = this._fb.group({
             phone: [null, acceptNullValues],

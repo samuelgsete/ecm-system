@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
+import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 
 @Component({
   selector: 'app-create-member2',
@@ -25,6 +26,7 @@ export class CreateMember2Component implements OnInit {
     readonly buildForm: BuildFormCreateMemberService,
     readonly createMember: CreateMemberService,
     readonly data: ParseDataToMemberService,
+    readonly updateMetrics: DisplayMetricsService
   ) { data.component = this }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class CreateMember2Component implements OnInit {
     this.step3 = step3;
     this.step4 = step4;
     this.createMember.done().subscribe(response => {
+      this.updateMetrics.run();
       this.router.navigateByUrl("/app/members");
     })
   }
