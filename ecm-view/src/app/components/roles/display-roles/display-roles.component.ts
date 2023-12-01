@@ -14,6 +14,7 @@ import { PaginationService } from '../../paginate/pagination/pagination.service'
 import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
+import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -33,7 +34,8 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly listRoles: ListRolesPaginatedService,
     protected readonly onDelete: DeleteRoleService,
     protected readonly order: OrderRolesService,
-    protected readonly updateMetrics: DisplayMetricsService
+    protected readonly updateMetrics: DisplayMetricsService,
+    protected readonly onEmit: EmitCredentialsByRoleService
   ) {}
 
   nextPage(page: number): void {
@@ -81,5 +83,10 @@ export class DisplayRolesComponent implements OnInit {
       this.updateMetrics.run();
       this.listRoles.run(new Pagination());
     });
+
+    this.onEmit.done().subscribe(htmlContent => {
+      let newWindow = open();
+      newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
+    })
   }
 }

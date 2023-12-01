@@ -60,7 +60,7 @@
                 <td>{{ role.numberOfMembers }} membro(s)</td>
                 <td>{{ role.updatedAt | dateDuration }}</td>
                 <td>
-                    <button class="emit_credentials" mat-icon-button [disabled]="role.numberOfMembers <= 0">
+                    <button mat-icon-button [disabled]="role.numberOfMembers <= 0" (click)="onEmit.run(role.name)">
                         <mat-icon>print</mat-icon>
                     </button>
                     <button mat-icon-button (click)="openUpdateRoleComponent(role)">

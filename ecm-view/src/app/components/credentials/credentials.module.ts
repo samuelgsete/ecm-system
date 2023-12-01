@@ -6,7 +6,9 @@ import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print
 import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print-one-credentials.resource';
 import { PrintOneCredentialsService } from 'src/app/usecases/credentials/print-one-credential.service';
 import { EmitCredencialsByCongregationResource } from 'src/app/resources/credentials/emit-credentials-by-congregation.resource';
-import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-bycongregation.service';
+import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-by-congregation.service';
+import { EmitCredentialsByRoleResource } from 'src/app/resources/credentials/emit-credentials-by-role.resource';
+import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
 
 @NgModule({
   declarations: [],
@@ -19,7 +21,9 @@ import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentia
     PrintAllCredentialsService,
     PrintAllCredentialsResource,
     EmitCredencialsByCongregationResource,
-    EmitCredentialsByCongregationService
+    EmitCredentialsByCongregationService,
+    EmitCredentialsByRoleResource,
+    EmitCredentialsByRoleService
   ]
 })
 export class CredentialsModule {}

@@ -20,6 +20,10 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     @Query("SELECT m FROM Member m WHERE m.congregation.name = :congregation ORDER BY m.name ASC")
     Set<Member> listMembersByCongregation(@Param("congregation") String congregation);
 
+    // Listar membros filtrando pelo cargo
+    @Query("SELECT m FROM Member m WHERE m.role.name = :role ORDER BY m.name ASC")
+    Set<Member> listMembersByRole(@Param("role") String role);
+
     // Lista os membros de maneira paginada filtrando pelo nome
     @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.name ASC")
     Page<Member> listPaginate(@Param("search") String search, Pageable pageable);

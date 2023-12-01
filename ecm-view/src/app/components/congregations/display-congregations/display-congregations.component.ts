@@ -14,7 +14,7 @@ import { PaginationService } from '../../paginate/pagination/pagination.service'
 import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
-import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-bycongregation.service';
+import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-by-congregation.service';
 
 @Component({
   selector: 'app-display-congregations',

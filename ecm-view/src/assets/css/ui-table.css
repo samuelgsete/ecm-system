@@ -32,10 +32,6 @@ table.ui-table tr th {
     text-transform: uppercase;
 }
 
-table.ui-table tr {
-    cursor: pointer;
-}
-
 .stripped tr:nth-child(even) {
     background-color: rgb(var(--gray-1));
 }

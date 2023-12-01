@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.samuel.app.resources.interfaces.IPrintResource;
-import br.com.samuel.app.usecases.congregations.ListMembersByCongregation;
+import br.com.samuel.app.usecases.roles.ListMembersByRole;
 
 @Controller
 @RequestMapping("/credentials")
-public class EmitCredentialsByCongregationResource extends IPrintResource {
-
+public class EmitCredentialsByRoleResource extends IPrintResource {
+    
     @Autowired
-    private ListMembersByCongregation listByCongregation;
+    private ListMembersByRole listByRole;
 
-    @GetMapping("congregation/{congregation}")
-    public String run(Model model, @PathVariable String congregation) {
+    @GetMapping("role/{role}")
+    public String run(Model model, @PathVariable String role) {
         var mainTheme = mainTheme().run().get();
         var template = mainTheme.getTemplate();
-        var members = listByCongregation.run(congregation);
+        var members = listByRole.run(role);
        
         model.addAttribute("members", members);
         model.addAttribute("dateOfIssue", LocalDateTime.now());

@@ -227,17 +227,19 @@ button.btn:enabled:hover {
     filter: brightness(90%);
 }
 
-button.btn[disabled=true] {
-    cursor: not-allowed !important;
-    pointer-events: none;
+button {
+    transition: all 0.4s;
+}
+
+button:disabled, .btn-disable:disabled {
+    cursor: not-allowed;
     background-color: rgb(var(--gray-4)) !important;
-    border: 2px solid rgb(var(--gray-4)) !important;
     color: rgb(var(--gray-0)) !important;
 }
 
-button:disabled {
+button.btn[disabled=true], button.btn:disabled {
     cursor: not-allowed !important;
-    pointer-events: none;
     background-color: rgb(var(--gray-4)) !important;
+    border: 2px solid rgb(var(--gray-4)) !important;
     color: rgb(var(--gray-0)) !important;
 }
