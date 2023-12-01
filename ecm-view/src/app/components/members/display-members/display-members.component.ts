@@ -21,6 +21,7 @@ import { DeleteMemberService } from 'src/app/usecases/members/delete-member.serv
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
+import { OnFullScreenImage } from 'src/app/utils/services/on-fullscreen-image.service';
 
 @Component({
   selector: 'app-display-members',
@@ -58,7 +59,8 @@ export class DisplayMembersComponent implements OnInit {
     readonly onPrintAll: PrintAllCredentialsService,
     readonly onDelete: DeleteMemberService,
     readonly onToggleSelection: ToggleSelectionMembersService,
-    readonly updateMetrics: DisplayMetricsService
+    readonly updateMetrics: DisplayMetricsService,
+    readonly onFullScreen: OnFullScreenImage
   ) {}
   
   nextPage(page: number): void {

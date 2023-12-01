@@ -1,0 +1,12 @@
+.full-screen {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+}
+
+button {
+    width: min-content;
+}

@@ -76,7 +76,7 @@
                     ></mat-checkbox>
                 </td>
                 <td>
-                    <img class="photo-member" [src]="member.photo.url" [alt]="member.name">
+                    <img class="photo-member" [src]="member.photo.url" [alt]="member.name" (click)="onFullScreen.run(member.photo)">
                 </td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.maritalStatus | maritalstatus }}</td>

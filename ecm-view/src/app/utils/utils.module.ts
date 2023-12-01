@@ -16,6 +16,8 @@ import { PageDescriptionComponent } from './components/page-description/page-des
 import { FormatDateService } from './services/format-date.service';
 import { ListGendersService } from './services/list-genders.service';
 import { ListMaritalStatusService } from './services/list-marital-status.service';
+import { ImageFullscreenComponent } from './components/image-fullscreen/image-fullscreen.component';
+import { OnFullScreenImage } from './services/on-fullscreen-image.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ListMaritalStatusService } from './services/list-marital-status.service
     NoDataCreatedComponent,
     SuchNotfoundComponent,
     PageNotfoundComponent,
-    PageDescriptionComponent
+    PageDescriptionComponent,
+    ImageFullscreenComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +52,8 @@ import { ListMaritalStatusService } from './services/list-marital-status.service
   providers: [
     FormatDateService,
     ListGendersService,
-    ListMaritalStatusService
+    ListMaritalStatusService,
+    OnFullScreenImage
   ]
 })
 export class UtilsModule {}

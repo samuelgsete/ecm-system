@@ -44,6 +44,7 @@ table tr td img.photo-member {
     width: 48px;
     height: 100%;
     border-radius: 8px;
+    cursor: pointer;
     border: 0.12em solid rgb(var(--gray-2));
 }
 
