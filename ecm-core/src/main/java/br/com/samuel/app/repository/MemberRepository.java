@@ -16,6 +16,10 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     @Query("SELECT m FROM Member m WHERE m.id = :id")
     Optional<Member> findById(@Param("id") String id);
 
+    // Listar membros filtrando pela congregação
+    @Query("SELECT m FROM Member m WHERE m.congregation.name = :congregation ORDER BY m.name ASC")
+    Set<Member> listMembersByCongregation(@Param("congregation") String congregation);
+
     // Lista os membros de maneira paginada filtrando pelo nome
     @Query("SELECT m FROM Member m WHERE LOWER(m.name) LIKE %:search% ORDER BY m.name ASC")
     Page<Member> listPaginate(@Param("search") String search, Pageable pageable);
@@ -44,6 +48,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     @Query("SELECT COUNT(m) FROM Member m WHERE m.isSelected = TRUE")
     Integer countSelecteds();
 
+    // Verifica se o membro já foi registrado
     @Query("SELECT m FROM Member m WHERE m.cpf = :cpf OR m.rg = :rg")
     Optional<Member> alreadyCreated(@Param("cpf") String cpf, @Param("rg") String rg);
 }

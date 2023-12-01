@@ -60,7 +60,7 @@
                 <td>{{ congregation.numberOfMembers }} membro(s)</td>
                 <td>{{ congregation.updatedAt | dateDuration }}</td>
                 <td>
-                    <button mat-icon-button>
+                    <button mat-icon-button [disabled]="congregation.numberOfMembers <= 0" (click)="onEmit.run(congregation.name)">
                         <mat-icon>print</mat-icon>
                     </button>
                     <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">

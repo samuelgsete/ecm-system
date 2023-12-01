@@ -14,6 +14,7 @@ import { PaginationService } from '../../paginate/pagination/pagination.service'
 import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
+import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-bycongregation.service';
 
 @Component({
   selector: 'app-display-congregations',
@@ -33,7 +34,8 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly listCongregations: ListCongregationsPaginatedService,
     protected readonly onDelete: DeleteCongregationService,
     protected readonly order: OrderCongregationsService,
-    protected readonly updateMetrics: DisplayMetricsService
+    protected readonly updateMetrics: DisplayMetricsService,
+    protected readonly onEmit: EmitCredentialsByCongregationService
   ) {}
 
   nextPage(page: number): void {
@@ -79,6 +81,11 @@ export class DisplayCongregationsComponent implements OnInit {
     this.onDelete.done().subscribe(congregationDeleted => {
       this.updateMetrics.run();
       this.listCongregations.run(new Pagination());
+    })
+
+    this.onEmit.done().subscribe(htmlContent => {
+      let newWindow = open();
+      newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
     })
   }
 }
