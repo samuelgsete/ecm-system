@@ -13,7 +13,6 @@ public class DataSourceConfig {
     private DataSourceFactory factory;
     
     @Bean
-    @Primary
     public DataSource mainDB() {
         return factory.run(
             Sgbd.POSTGRES,
@@ -25,6 +24,7 @@ public class DataSourceConfig {
     }
 
     @Bean
+    @Primary
     public DataSource testDB() {
         return factory.run(
             Sgbd.POSTGRES,

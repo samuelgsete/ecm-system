@@ -104,6 +104,7 @@
                             color="success"
                             radius="true"
                             (click)="createMember.run(data.run())"
+                            [disabled]="!step1.valid || !step2.valid || !step3.valid || !step4.valid"
                             matRipple
                         >
                             <div class="progress-bar" [ngStyle]="{ 'width' : createMember.getProgressDone() }"></div>

@@ -11,6 +11,9 @@
                 max="48"
                 matInput
             >
+            <mat-error *ngIf="form['controls']['email'].errors?.['email']">
+                Informe um e-mail válido
+            </mat-error>
             <mat-error *ngIf="form['controls']['email'].errors?.['minlength']">
                 Informe no máximo 6 caracteres
             </mat-error>
@@ -29,7 +32,7 @@
                 matInput
             >
             <mat-error *ngIf="form['controls']['phone'].errors?.['mask']">
-                Formato inválido
+                Informe um telefone válido
             </mat-error>
         </mat-form-field>
     </div>

@@ -103,7 +103,7 @@
                             class="btn btn-lg"
                             color="success"
                             radius="true"
-                            [disabled]=" !(step1.valid && step2.valid && step3.valid && step3.valid)"
+                            [disabled]="!step1.valid || !step2.valid || !step3.valid || !step4.valid"
                             (click)="update.run(data.run())"
                             matRipple
                         >
