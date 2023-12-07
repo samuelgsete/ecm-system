@@ -17,19 +17,9 @@ export const SIGNATURE_FOLDER_PATH = {
     test: 'se-cred/test/membros/assinaturas/'
 }
 /*
-    Caminho onde as imagens do
-    logotipo do campo
-    serão salvas no cloudinary
-*/
-export const FIELD_LOGO_FOLDER_PATH = {
-    prod: 'se-cred/prod/credencial/logotipo-campo/',
-    test: 'se-cred/test/credencial/logotipo-campo/'
-}
-
-/*
-    Caminho onde as imagens do
-    logotipo do campo
-    serão salvas no cloudinary
+    Caminho onde a imagem da assinatura
+    digitalizada do pastor presidente
+    será armazenada no cloudinary
 */
 export const SHEPHERD_SIGNATURE_FOLDER_PATH = {
     prod: 'se-cred/prod/credencial/assinatura-pastor/',

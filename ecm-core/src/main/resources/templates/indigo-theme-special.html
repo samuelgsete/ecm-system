@@ -203,6 +203,7 @@
             font-weight: 600;
             background-color: rgba(var(--indigo), 0.11);
             font-family: 'IBM Plex Mono', monospace;
+            text-transform: uppercase;
             color: rgb(var(--indigo));
         }
     
@@ -216,7 +217,8 @@
         <div class="template-credential">
             <div class="back">
                 <p class="date-of-issue">
-                    EMITIDO EM
+                    EM
+                    <span th:text="${shepherd.location}"></span>
                     <span th:text="${dateFormatter.run(dateOfIssue, 'dd-MM-yyyy hh:mm:ss')}"></span>
                 </p>
                 <div class="grid">
@@ -262,19 +264,19 @@
                 <div class="shepherd">
                     <div class="signature-shepherd">
                         <img 
-                            th:src="${church.urlSignatureShepherd}"
+                            th:src="${shepherd.signature.url}"
                             alt="Assinatura do pastor" 
                             width="100%" 
                             height="100%"
                         >
                     </div>
-                    <p class="name-shepherd" th:text="${church.nameShepherd}"></p>
+                    <p class="name-shepherd" th:text="${shepherd.name}"></p>
                     <p class="president-shepherd">PASTOR PRESIDENTE</p>
                 </div>
             </div>
             <div class="front">
                 <div class="banner">
-                    <img th:src="${church.urlLogo}" alt="Logotipo Igreja">
+                    <img src="https://res.cloudinary.com/dt4bynswk/image/upload/v1697824012/se-cred/static/logotipo-adtc_lsi5bt_reamcq.png" alt="Logotipo Igreja">
                 </div>
                 <div class="row-1">
                     <div class="photo">

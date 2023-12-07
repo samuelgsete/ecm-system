@@ -1,0 +1,45 @@
+mat-panel-title {
+    font-size: 0.94em;
+    font-weight: 650;
+    color: rgb(var(--dark))
+}
+
+mat-panel-description {
+    font-size: 0.99em;
+    color: rgb(var(--gray-8));
+}
+
+table tr td:nth-child(1) {
+    width: 5%;
+    font-weight: bold;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.05em;
+}
+
+div.active {
+    margin: 5px 0;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 0.76em;
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: -0.3px;
+    width: 100px;
+    font-weight: 600;
+    padding: 12px 6px;
+    color: rgb(var(--default));
+    background-color: rgba(var(--default), 0.12);
+}
+
+div.inactive {
+    margin: 5px 0;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 0.76em;
+    letter-spacing: -0.3px;
+    font-family: 'Work Sans', sans-serif;
+    width: 100px;
+    font-weight: 600;
+    padding: 12px 6px;
+    color: rgb(var(--danger));
+    background-color: rgba(var(--danger), 0.12);
+}

@@ -1,0 +1,26 @@
+<mat-accordion *ngIf="isDefined">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Pastor Presidente do Campo</mat-panel-title>
+            <mat-panel-description>{{ shepherd.name }}</mat-panel-description>
+        </mat-expansion-panel-header>
+       
+        <section class="content">
+            <app-update-shepherd [shepherd]="shepherd"></app-update-shepherd>
+        </section>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion *ngIf="!isDefined">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Pastor Presidente do Campo</mat-panel-title>
+        </mat-expansion-panel-header>
+       
+        <section class="content">
+            <app-set-shepherd></app-set-shepherd>
+        </section>
+
+    </mat-expansion-panel>
+</mat-accordion>

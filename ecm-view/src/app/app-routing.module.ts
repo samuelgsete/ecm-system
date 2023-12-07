@@ -7,8 +7,10 @@ import { DisplayCongregationsComponent } from './components/congregations/displa
 import { UpdateMemberComponent } from './components/members/update-member/update-member.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CreateMember2Component } from './components/members/create-member2/create-member2.component';
-import { DisplayThemesComponent } from './components/credential-themes/display-themes/display-themes.component';
 import { PageNotfoundComponent } from './utils/components/page-notfound/page-notfound.component';
+import { SettingsSystemComponent } from './components/settings/settings-system/settings-system.component';
+import { SetShepherdComponent } from './components/settings/set-shepherd/set-shepherd.component';
+import { UpdateShepherdComponent } from './components/settings/update-shepherd/update-shepherd.component';
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
@@ -17,7 +19,9 @@ const routes: Routes = [
     { path: 'members', component: DisplayMembersComponent },
     { path: 'create/member', component: CreateMember2Component },
     { path: 'members/:id/update', component: UpdateMemberComponent },
-    { path: 'credential/themes', component: DisplayThemesComponent }
+    { path: 'settings', component: SettingsSystemComponent },
+    { path: 'set/shepherd', component: SetShepherdComponent },
+    { path: 'shepherd/update', component: UpdateShepherdComponent }
   ]},
   { path:'**', redirectTo: '404' },
   { path:'404', component: PageNotfoundComponent }

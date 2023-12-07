@@ -27,7 +27,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(corsCustom -> corsCustom.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/metrics/**", "/fields/**", "/credential-themes/**", "/credentials/**", "/members/**", "/congregations/**", "/roles/**", "/upload/**", "/uploads/**", "/delete/**")
+                .requestMatchers("/shepherds/**", "/metrics/**", "/credential-themes/**", "/credentials/**", "/members/**", "/congregations/**", "/roles/**", "/upload/**", "/uploads/**", "/delete/**")
                 .permitAll()
                 .anyRequest()
                 .hasAuthority("CLIENT_ADMIN")

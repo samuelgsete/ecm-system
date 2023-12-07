@@ -23,7 +23,7 @@ public class ResourcePrintAllCredentials extends IPrintResource {
         model.addAttribute("dateFormatter", getDateFormatter());
         model.addAttribute("cpfFormatter", getCpfFormatter());
         model.addAttribute("maritalStatusFormatter", getMaritalStatusFormatter());
-        model.addAttribute("church", getChurch());
+        model.addAttribute("shepherd", shepherd());
 
         return template;
     }

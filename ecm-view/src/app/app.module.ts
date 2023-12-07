@@ -11,13 +11,15 @@ import { CongregationsModule } from './components/congregations/congregations.mo
 import { UploadsImagesModule } from './components/uploads-images/uploads-images.module';
 import { PaginateModule } from './components/paginate/paginate.module';
 import { LayoutModule } from './layout/layout.module';
+import { SettingsModule } from './components/settings/settings.module';
+import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 
 import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
-import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 import { UsersModule } from './components/users/users.module';
 import { DisplayMetricsResource } from './resources/metrics/display-metrics.resource';
 import { DisplayMetricsService } from './usecases/metrics/display-metrics.service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { DisplayMetricsService } from './usecases/metrics/display-metrics.servic
     UploadsImagesModule,
     LayoutModule,
     CredentialThemesModule,
-    UsersModule
+    UsersModule,
+    SettingsModule
   ],
   providers: [
     DisplayMetricsResource,

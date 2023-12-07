@@ -40,10 +40,6 @@ export class CroppedImageComponent {
     });
 
     this.data.onUpload.run(formData, this.cropped);
-
-    /*if(this.data.uploadWhat == 'photo') this.uploadPhoto.run(formData, this.cropped);
-
-    else if(this.data.uploadWhat == 'signature') this.unploadSignature.run(formData, this.cropped);*/
   }
 
   imageCropped(event: ImageCroppedEvent): void {

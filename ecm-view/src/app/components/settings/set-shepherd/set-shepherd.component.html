@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+    <mat-form-field class="width-fix" appearance="fill" color="primary">
+        <mat-label>Nome</mat-label>
+        <input 
+            formControlName="name"
+            placeholder="Ex.: João Gonçalves Alves"
+            minlength="2" 
+            maxlength="42"
+            max="42"
+            matInput 
+            required
+        >
+        <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+            Esse campo é obrigatório
+        </mat-error>
+        <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
+            Informe no mínimo 2 caracteres
+        </mat-error>
+        <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+            Informe no máximo 42 caracteres
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="width-fix" appearance="fill" color="primary">
+        <mat-label>Local</mat-label>
+        <input 
+            formControlName="location"
+            placeholder="Ex.: Maracanaú-CE"
+            minlength="2" 
+            maxlength="24"
+            max="24"
+            matInput 
+            required
+        >
+        <mat-error *ngIf="form['controls']['location'].errors?.['required']">
+            Esse campo é obrigatório
+        </mat-error>
+        <mat-error *ngIf="form['controls']['location'].errors?.['minlength']">
+            Informe no mínimo 2 caracteres
+        </mat-error>
+        <mat-error *ngIf="form['controls']['location'].errors?.['maxlength']">
+            Informe no máximo 24 caracteres
+        </mat-error>
+    </mat-form-field>
+
+    <label class="signature-shepherd">Assinatura Digitalizada</label>
+    <div class="ui-upload-image" *ngIf="!upload.uploading()  && !isUploadedSignatureShepherd" matRipple>
+        <mat-icon class="icon-image">upload</mat-icon>
+        <label for="input-file-photo">
+            Clique aqui para carregar a Assinatura
+        </label>
+        <input 
+            id="input-file-photo"
+            type="file"
+            (change)=" onChangeSignature($event)"
+            accept="image/png, image/jpeg"
+            hidden>
+    </div>
+    <div class="upload-content">
+        <app-upload-image-skeleton [isVisible]="upload.uploading()"></app-upload-image-skeleton>
+        <app-uploaded-image-preview 
+            [uploadedImage]="signatureShepherd"
+            [isUploaded]="isUploadedSignatureShepherd"
+            [destroy]="destroyer"
+        ></app-uploaded-image-preview>                   
+    </div>
+    <button 
+        class="btn btn-sm"
+        color="dark"
+        outline="true"
+        (click)="create.run(form.value)"
+        [disabled]="!form.valid"
+        matRipple
+    >SALVAR ALTERAÇÕES</button>
+</form>

@@ -16,7 +16,7 @@ export class SideBarComponent implements OnInit {
     { icon: 'group_add', path: 'create/member', name: 'Novo membro' },
     { icon: 'collections_bookmark', path: 'roles', name: 'Cargos' },
     { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
-    { icon: 'palette', path: 'credential/themes', name: 'Temas' }
+    { icon: 'settings', path: 'settings', name: 'Configurações' }
   ];
 
   constructor(
