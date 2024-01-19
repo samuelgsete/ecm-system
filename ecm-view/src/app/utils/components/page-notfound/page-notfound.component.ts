@@ -15,7 +15,7 @@ interface Image {
 export class PageNotfoundComponent implements OnInit {
 
   image: Image = {
-    src: '/assets/img/svg/page-not-found.svg',
+    src: 'assets/img/svg/page-not-found.svg',
     alt: 'Such Not Found'
   }
 

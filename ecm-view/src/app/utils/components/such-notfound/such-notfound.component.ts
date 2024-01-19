@@ -11,7 +11,7 @@ export class SuchNotfoundComponent {
   @Input() isVisible: boolean = false;
 
   image = {
-    src: '/assets/img/svg/page-not-found.svg',
+    src: 'assets/img/svg/page-not-found.svg',
     alt: 'Such Not Found'
   }
 }

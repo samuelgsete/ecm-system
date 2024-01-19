@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+
+@import url('./colors.css');
+
+div.ui-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.4em;
+    padding: 2em;
+    cursor: pointer;
+    transition: all 5ms;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: 2em 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+div.ui-card:hover {
+    background-color: rgb(var(--gray-0));
+}
+
+div.ui-card div.ui-card-header h1.card-title {
+    font-size: 1.65em;
+    letter-spacing: -0.8px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+div.ui-card div.ui-card-body {
+    width: 100%;
+}
