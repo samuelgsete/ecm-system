@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import br.com.samuel.app.models.ImageModel;
 
 @Repository
-public interface ImageModelRepository extends JpaRepository<ImageModel, Integer> {
+public interface ImageModelRepository extends JpaRepository<ImageModel, String> {
 
     @Query("SELECT i FROM ImageModel i WHERE i.publicId = :publicId")
     Optional<ImageModel> findByPublicId(@Param("publicId") String publicId);

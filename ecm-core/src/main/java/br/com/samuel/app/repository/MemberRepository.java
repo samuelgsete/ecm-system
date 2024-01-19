@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import br.com.samuel.app.models.Member;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Integer> {
+public interface MemberRepository extends JpaRepository<Member, String> {
 
     @Query("SELECT m FROM Member m WHERE m.id = :id")
     Optional<Member> findById(@Param("id") String id);

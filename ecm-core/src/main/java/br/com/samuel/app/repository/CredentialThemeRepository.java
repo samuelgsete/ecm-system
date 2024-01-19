@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import br.com.samuel.app.models.CredentialTheme;
 
 @Repository
-public interface CredentialThemeRepository extends JpaRepository<CredentialTheme, Integer> {
+public interface CredentialThemeRepository extends JpaRepository<CredentialTheme, String> {
     
   // Busca o tema cadastrado como principal
   @Query("SELECT t FROM CredentialTheme t WHERE t.isActive = true")

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import br.com.samuel.app.models.Congregation;
 
 @Repository
-public interface CongregationRepository extends JpaRepository<Congregation, Integer> {
+public interface CongregationRepository extends JpaRepository<Congregation, String> {
 
     @Query("SELECT c FROM Congregation c WHERE c.id = :id")
     Optional<Congregation> findById(@Param("id") String id);

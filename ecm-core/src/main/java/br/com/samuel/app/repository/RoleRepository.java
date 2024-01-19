@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import br.com.samuel.app.models.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
+public interface RoleRepository extends JpaRepository<Role, String> {
 
      @Query("SELECT r FROM Role r WHERE r.id = :id")
     Optional<Role> findById(@Param("id") String id);
