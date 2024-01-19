@@ -1,6 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
+import { Injectable, inject } from "@angular/core";
 import Swal from "sweetalert2";
 
 import { Role } from "src/app/models/role.entity";
@@ -10,11 +8,7 @@ import { IRemover } from "../interfaces/remover";
 @Injectable()
 export class DeleteRoleService extends IRemover<Role> {
 
-    constructor(
-        protected readonly toastr: ToastrService,
-        protected readonly spinner: NgxSpinnerService,
-        protected readonly remover: DeleteRoleResource
-    ) { super() }
+    private remover = inject(DeleteRoleResource);
 
     run(id: string, role: Role): void {
         Swal.fire({

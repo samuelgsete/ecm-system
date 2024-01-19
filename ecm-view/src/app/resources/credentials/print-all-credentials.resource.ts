@@ -1,16 +1,13 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { HttpRequest } from "../interfaces/http-request.resource";
 
 @Injectable()
-export class PrintAllCredentialsResource {
-
-    private baseUrl: string = 'http://localhost:8090/api/v1/credentials/print/all';
-
-    constructor(private readonly http: HttpClient) {}
+export class PrintAllCredentialsResource extends HttpRequest {
 
     run(): Observable<HttpResponse<string>> {
-        return this.http.get<string>(this.baseUrl, {
+        return this.http.get<string>(this.localUrl.concat('credentials/print/all'), {
             observe: 'response',
             responseType: 'text' as 'json'
         });

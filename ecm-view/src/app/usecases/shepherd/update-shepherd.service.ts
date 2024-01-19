@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { IUpdater } from "../interfaces/updater";
 import { Shepherd } from "src/app/models/shepherd.entity";
 import { UpdateShepherdResource } from "src/app/resources/shepherd/update-shepherd.resource";
@@ -9,11 +6,7 @@ import { UpdateShepherdResource } from "src/app/resources/shepherd/update-shephe
 @Injectable()
 export class UpdateShepherdService extends IUpdater<Shepherd> {
     
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly update: UpdateShepherdResource
-    ) { super() }
+    private updater = inject(UpdateShepherdResource);
 
     run(data: any): void {
         this.spinner.show();
@@ -25,7 +18,7 @@ export class UpdateShepherdService extends IUpdater<Shepherd> {
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
-        this.update.run(shepherd.id, shepherd).subscribe({
+        this.updater.run(shepherd.id, shepherd).subscribe({
             next: (response) => {
                 this.toastr.success('Dados atualizados com sucesso', 'Tuto Ok! :)', { 
                     progressBar: true,

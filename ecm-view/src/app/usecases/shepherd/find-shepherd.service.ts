@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { Shepherd } from "src/app/models/shepherd.entity";
 import { IFinderFirst } from "../interfaces/finder-first";
 import { FindShepherdResource } from "src/app/resources/shepherd/find-shepherd.resource";
@@ -9,24 +6,19 @@ import { FindShepherdResource } from "src/app/resources/shepherd/find-shepherd.r
 @Injectable()
 export class FindShepherdService extends IFinderFirst<Shepherd> {
 
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly find: FindShepherdResource
-    ) { super() }
+    private finder = inject(FindShepherdResource);
 
     run(): void {
         this.spinner.show();
-        this.find.run().subscribe({
+        this.finder.run().subscribe({
             next: (response) => {
                 this.complete.emit(response);
             },
             error: (eventErr) => {
-                console.log(eventErr);
-                /*this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
+                this.toastr.error(eventErr.error.message, `ERRO ${eventErr.error.code}`, { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
-                });*/
+                });
             }
         }).add(() => {
             this.spinner.hide();

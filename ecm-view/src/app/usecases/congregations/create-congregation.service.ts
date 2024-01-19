@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { CreateCongregationResource } from "src/app/resources/congregations/create-congregation.resource";
 import { Congregation } from "src/app/models/congregation.entity";
 import { ICreater } from "../interfaces/creater";
@@ -9,11 +6,7 @@ import { ICreater } from "../interfaces/creater";
 @Injectable()
 export class CreateCongregationService extends ICreater  {
 
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly create: CreateCongregationResource
-    ) { super() }
+    private creater = inject(CreateCongregationResource);
 
     run(data: any): void {
         this.spinner.show();
@@ -24,7 +17,7 @@ export class CreateCongregationService extends ICreater  {
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
-        this.create.run(congregation).subscribe({
+        this.creater.run(congregation).subscribe({
             next: (response) => {
                 this.toastr.success('Congregação criada com sucesso', 'Tudo ok! :)', { 
                     progressBar: true,

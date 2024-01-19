@@ -1,16 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-
 import { Role } from "src/app/models/role.entity";
 import { ICreaterResource } from "../interfaces/creater.resource";
 
 @Injectable()
 export class CreateRoleResource extends ICreaterResource<Role> {
 
-    public constructor(private readonly http: HttpClient) { super('roles') }
+    constructor() { super('roles') }
 
-    public override run(role: Role): Observable<any> {
+    run(role: Role): Observable<any> {
         return this.http.post<any>(this.baseUrl(), role);
     }
 }

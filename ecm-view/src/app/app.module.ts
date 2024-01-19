@@ -20,7 +20,6 @@ import { UsersModule } from './components/users/users.module';
 import { DisplayMetricsResource } from './resources/metrics/display-metrics.resource';
 import { DisplayMetricsService } from './usecases/metrics/display-metrics.service';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -43,7 +42,7 @@ import { DisplayMetricsService } from './usecases/metrics/display-metrics.servic
   ],
   providers: [
     DisplayMetricsResource,
-    DisplayMetricsService
+    DisplayMetricsService,
     /*{
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

@@ -1,8 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
+import { Injectable, inject } from "@angular/core";
 import Swal from "sweetalert2";
-
 import { Congregation } from "src/app/models/congregation.entity";
 import { DeleteCongregationeResource } from "src/app/resources/congregations/delete-congregation.resource";
 import { IRemover } from "../interfaces/remover";
@@ -10,11 +7,7 @@ import { IRemover } from "../interfaces/remover";
 @Injectable()
 export class DeleteCongregationService extends IRemover<Congregation> {
 
-    constructor(
-        protected readonly toastr: ToastrService,
-        protected readonly spinner: NgxSpinnerService,
-        protected readonly deleteOne: DeleteCongregationeResource
-    ) { super() }
+    protected remover = inject(DeleteCongregationeResource);
 
     run(id: string, congregation: Congregation): void {
         Swal.fire({
@@ -27,7 +20,7 @@ export class DeleteCongregationService extends IRemover<Congregation> {
         }).then((result) => {
             if(result.isConfirmed) {
                 this.spinner.show();
-                this.deleteOne.run(id, congregation).subscribe({
+                this.remover.run(id, congregation).subscribe({
                     next: (response) => {
                         this.toastr.success('A congregação foi removida', 'Tudo ok!', { 
                             progressBar: true,

@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { Congregation } from "src/app/models/congregation.entity";
 import { UpdateCongregationResource } from "src/app/resources/congregations/update-congregation.resource";
 import { IUpdater } from "../interfaces/updater";
@@ -9,11 +6,7 @@ import { IUpdater } from "../interfaces/updater";
 @Injectable()
 export class UpdateCongregationService extends IUpdater<Congregation> {
     
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly update: UpdateCongregationResource
-    ) { super() }
+    private updater = inject(UpdateCongregationResource);
 
     run(data: any): void {
         this.spinner.show();
@@ -24,7 +17,7 @@ export class UpdateCongregationService extends IUpdater<Congregation> {
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
-        this.update.run(congregation.id, congregation).subscribe({
+        this.updater.run(congregation.id, congregation).subscribe({
             next: (response) => {
                 this.toastr.success('Dados atualizado com sucesso', 'Tuto Ok! :)', { 
                     progressBar: true,

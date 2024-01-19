@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { Role } from "src/app/models/role.entity";
 import { CreateRoleResource } from "src/app/resources/roles/create-role.resource";
 import { ICreater } from "../interfaces/creater";
@@ -9,11 +6,7 @@ import { ICreater } from "../interfaces/creater";
 @Injectable()
 export class CreateRoleService extends ICreater {
 
-    public constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly create: CreateRoleResource
-    ) { super() }
+    private creater = inject(CreateRoleResource);
 
     public override run(data: any): void {
         this.spinner.show();
@@ -24,7 +17,7 @@ export class CreateRoleService extends ICreater {
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
-        this.create.run(role).subscribe({
+        this.creater.run(role).subscribe({
             next: (response) => {
                 this.toastr.success('Cargo criado com sucesso', 'Tudo ok! :)', { 
                     progressBar: true,

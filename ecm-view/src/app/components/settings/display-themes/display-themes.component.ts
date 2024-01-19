@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-
 import { CredentialTheme } from 'src/app/models/credential-theme.entity';
 import { Paginate } from 'src/app/models/paginate.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
@@ -13,14 +11,13 @@ import { PaginationService } from '../../paginate/pagination/pagination.service'
   templateUrl: './display-themes.component.html',
   styleUrls: ['./display-themes.component.css']
 })
-export class DisplayThemesComponent  implements OnInit {
+export class DisplayThemesComponent implements OnInit {
 
   themes: CredentialTheme[] = [];
   pagination: Pagination = new Pagination();
   numberOfThemes: number = 0;
  
   constructor(
-    readonly titleService: Title,
     readonly listThemes: ListCredentialThemesPaginatedService,
     readonly makeThemeToMain: MakeThemeToMainService,
     readonly onPaginate: PaginationService
@@ -32,7 +29,6 @@ export class DisplayThemesComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Ativar o tema para as credenciais');
     this.listThemes.run(this.pagination);
     this.listThemes.done().subscribe(response => {
       this.themes = response.content;

@@ -12,7 +12,7 @@ import br.com.samuel.app.usecases.interfaces.ICreater;
 public class CreateCongregation extends ICreater<Congregation, CongregationRepository> {
 
     public URI run(Congregation congregation) throws AlreadyCreatedException {
-        congregation.setId(primaryKey());
+        congregation.generatePrimaryKey();
         var name = congregation.getName();
         var congregationExists = repository().alreadyCreated(name);
     

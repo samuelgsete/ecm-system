@@ -1,6 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { HttpEventType } from "@angular/common/http";
-import { ToastrService } from "ngx-toastr";
 
 import { CreateMemberResource } from "src/app/resources/members/create-member.resource";
 import { Member } from "src/app/models/member.entity";
@@ -11,19 +10,15 @@ const PERCENTEGE = 100;
 @Injectable()
 export class CreateMemberService extends ICreater {
 
+    private creater = inject(CreateMemberResource);
     progressDone: number = 0;
 
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly create: CreateMemberResource
-    ) { super() }
-
     getProgressDone(): string {
-        return this.progressDone + '%';
+        return `${this.progressDone}%`;
     }
 
     run(member: Member): void {
-        this.create.run(member).subscribe({
+        this.creater.run(member).subscribe({
             next: (event) => {
                 if(event.type == HttpEventType.UploadProgress) {
                     this.progressDone = Math.round(PERCENTEGE * event.loaded / event.total);

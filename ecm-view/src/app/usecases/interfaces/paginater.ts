@@ -1,7 +1,12 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, inject } from "@angular/core";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
 import { Pagination } from "src/app/models/pagination.entity";
 
 export abstract class IPaginater {
+    
+    protected spinner: NgxSpinnerService = inject(NgxSpinnerService);
+    protected toastr: ToastrService = inject(ToastrService);
 
     protected readonly complete: EventEmitter<any> = new EventEmitter<any>();
     protected emptyData: boolean = false;

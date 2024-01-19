@@ -1,11 +1,14 @@
 <div class="full-screen">
+    <button class="close-dialog" mat-icon-button (click)="modalRef.close()">
+        <mat-icon>close</mat-icon>
+    </button>
     <img clss="image" [src]="image.url" [alt]="image.name">
-    <button 
-        class="btn btn-sm"
-        color="dark"
-        radius="true"
-        outline="true"
-        (click)="modalRef.close()"
-        matRipple
-    >FECHAR</button>
+    <mat-button-toggle-group>
+        <mat-button-toggle (click)="open()">
+          <mat-icon>open_in_new</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle (click)="download()">
+          <mat-icon>download</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
 </div>

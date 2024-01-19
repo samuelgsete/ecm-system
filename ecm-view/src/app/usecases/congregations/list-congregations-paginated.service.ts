@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { Pagination } from "src/app/models/pagination.entity";
 import { ListCongregationsPaginatedResource } from "src/app/resources/congregations/list-congregations-paginated.resource";
 import { IPaginater } from "../interfaces/paginater";
@@ -9,15 +6,11 @@ import { IPaginater } from "../interfaces/paginater";
 @Injectable()
 export class ListCongregationsPaginatedService extends IPaginater {
 
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly listPaginate: ListCongregationsPaginatedResource
-    ) { super() }
+    private paginater = inject(ListCongregationsPaginatedResource);
 
     run(pagination: Pagination): void {
         this.spinner.show();
-        this.listPaginate.run(pagination).subscribe({
+        this.paginater.run(pagination).subscribe({
             next: (response) => {
                 this.emptyData = (response.totalElements == 0 && pagination.search == "") ? true : false;
                 this.suchNotFound = (response.totalElements == 0 && pagination.search != "") ? true : false;

@@ -1,8 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
+import { Injectable, inject } from "@angular/core";
 import Swal from "sweetalert2";
-import { NgxSpinnerService } from "ngx-spinner";
-
 import { Member } from "src/app/models/member.entity";
 import { DeleteMemberResource } from "src/app/resources/members/delete-member.resource";
 import { IRemover } from "../interfaces/remover";
@@ -10,11 +7,7 @@ import { IRemover } from "../interfaces/remover";
 @Injectable()
 export class DeleteMemberService extends IRemover<Member> {
 
-    constructor(
-        protected readonly toastr: ToastrService,
-        protected readonly spinner: NgxSpinnerService,
-        protected readonly remover: DeleteMemberResource
-    ) { super() }
+    private remover = inject(DeleteMemberResource);
 
     run(id: string, member: Member): void {
         Swal.fire({

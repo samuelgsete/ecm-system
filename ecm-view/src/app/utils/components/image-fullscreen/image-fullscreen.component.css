@@ -6,12 +6,19 @@
     align-items: center;
     row-gap: 15px;
     overflow: auto;
+    position: relative;
 }
 
 img {
     width: 400px;
 }
 
-button {
-    width: min-content;
+button.close-dialog {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+mat-button-toggle {
+    color: rgb(var(--dark));
 }

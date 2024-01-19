@@ -1,17 +1,8 @@
 import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-
-import { DestroyerImageResource } from "src/app/resources/uploads-images/destroyer-image.resource";
 import { IDestroyerImage } from "../../interfaces/destroyer-image";
 
 @Injectable()
 export class DestroyerSignatureService extends IDestroyerImage {
-
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly destroyer:  DestroyerImageResource
-    ) { super(); }
-
 
     run(publicId: string): void {
         this.isDeleting = true;

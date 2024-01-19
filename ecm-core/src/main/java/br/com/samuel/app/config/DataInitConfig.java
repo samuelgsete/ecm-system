@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
 import br.com.samuel.app.models.CredentialTheme;
 import br.com.samuel.app.usecases.credentials.CreateManyThemes;
 import br.com.samuel.app.usecases.credentials.FindAllThemes;
-import br.com.samuel.app.usecases.utils.services.PrimaryKeyGenerator;
 
 @Component
 public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent> {
@@ -20,9 +18,6 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
 
     @Autowired
     private CreateManyThemes createMany;
-
-    @Autowired
-    private PrimaryKeyGenerator keyGenerator;
 
     public void onApplicationEvent(ContextRefreshedEvent arg) {
         createThemes();
@@ -36,49 +31,49 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
                 "blue-theme-special", 
                 false
             );
-            blueTheme.setId(keyGenerator.run());
+            blueTheme.generatePrimaryKey();
 
             var indigoTheme = new CredentialTheme(
                 "Indigo Theme Special",
                 "indigo-theme-special",
                 false
             );
-            indigoTheme.setId(keyGenerator.run());
+            indigoTheme.generatePrimaryKey();
 
             var purpleTheme = new CredentialTheme(
                 "Purple Theme Special", 
                 "purple-theme-special",
                 true
             );
-            purpleTheme.setId(keyGenerator.run());
+            purpleTheme.generatePrimaryKey();
 
             var greenTheme = new CredentialTheme(
                 "Green Theme Special", 
                 "green-theme-special", 
                 false
             );
-            greenTheme.setId(keyGenerator.run());
+            greenTheme.generatePrimaryKey();
 
             var yellowTheme = new CredentialTheme(
                 "Yellow Theme Special", 
                 "yellow-theme-special",
                 false
             );
-            yellowTheme.setId(keyGenerator.run());
+            yellowTheme.generatePrimaryKey();
 
             var pinkTheme = new CredentialTheme(
                 "Pink Theme Special", 
                 "pink-theme-special", 
                 false
             );
-            pinkTheme.setId(keyGenerator.run());
+            pinkTheme.generatePrimaryKey();
 
             var redTheme = new CredentialTheme(
                 "Red Theme Special", 
                 "red-theme-special",
                 false
             );
-            redTheme.setId(keyGenerator.run());
+            redTheme.generatePrimaryKey();
 
             var themes = new HashSet<CredentialTheme>(Arrays.asList(
                 blueTheme,

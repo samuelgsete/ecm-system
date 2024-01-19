@@ -3,7 +3,6 @@ package br.com.samuel.app.usecases.roles;
 import java.net.URI;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import br.com.samuel.app.exceptions.AlreadyCreatedException;
 import br.com.samuel.app.models.Role;
 import br.com.samuel.app.repository.RoleRepository;
@@ -13,7 +12,7 @@ import br.com.samuel.app.usecases.interfaces.ICreater;
 public class CreateRole extends ICreater<Role, RoleRepository> {
     
     public URI run(Role role) throws AlreadyCreatedException {
-        role.setId(primaryKey());
+        role.generatePrimaryKey();
         var name = role.getName();
         var roleExists = repository().alreadyCreated(name);
         if(roleExists.isPresent())

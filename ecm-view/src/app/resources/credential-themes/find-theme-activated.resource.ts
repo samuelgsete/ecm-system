@@ -1,19 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { CredentialTheme } from 'src/app/models/credential-theme.entity';
+import { HttpRequest } from '../interfaces/http-request.resource';
 
 @Injectable()
-export class FindThemeActivatedResource {
-
-    protected baseUrl: string = "http://localhost:8090/api/v1/credential-themes/active";
-
-    constructor(
-        protected readonly http: HttpClient
-    ) {}
+export class FindThemeActivatedResource extends HttpRequest {
 
     run(): Observable<CredentialTheme> {
-        return this.http.get<CredentialTheme>(this.baseUrl);
+        return this.http.get<CredentialTheme>(this.localUrl.concat('credential-themes/active'));
     }
 }

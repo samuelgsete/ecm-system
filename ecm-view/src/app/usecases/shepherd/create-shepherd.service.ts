@@ -1,7 +1,4 @@
-import { Injectable } from "@angular/core";
-import { ToastrService } from "ngx-toastr";
-import { NgxSpinnerService } from "ngx-spinner";
-
+import { Injectable, inject } from "@angular/core";
 import { ICreater } from "../interfaces/creater";
 import { CreateShepherdResource } from "src/app/resources/shepherd/create-shepherd.resource";
 import { Shepherd } from "src/app/models/shepherd.entity";
@@ -9,11 +6,7 @@ import { Shepherd } from "src/app/models/shepherd.entity";
 @Injectable()
 export class CreateShepherdService extends ICreater {
 
-    constructor(
-        private readonly toastr: ToastrService,
-        private readonly spinner: NgxSpinnerService,
-        private readonly create: CreateShepherdResource
-    ) { super() }
+    private creater = inject(CreateShepherdResource);
 
     override run(data: any): void {
         this.spinner.show();
@@ -25,7 +18,7 @@ export class CreateShepherdService extends ICreater {
             createdAt: data.createdAt,
             updatedAt: data.updatedAt
         });
-        this.create.run(shepherd).subscribe({
+        this.creater.run(shepherd).subscribe({
             next: (response) => {
                 this.toastr.success('Configuração definida com sucesso', 'Tudo ok! :)', { 
                     progressBar: true,
