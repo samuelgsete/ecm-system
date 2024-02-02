@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,6 @@ export class CreateCongregrationComponent implements OnInit {
 
   constructor(
     protected readonly router: Router,
-    protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateCongregrationComponent>,
     protected readonly buildForm: BuildFormCongregation,
     protected readonly create: CreateCongregationService,

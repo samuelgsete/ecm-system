@@ -22,6 +22,7 @@ import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-
 import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
+import { BuildFormRole } from 'src/app/usecases/roles/build-form-role.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-
     DeleteRoleResource,
     DeleteRoleService,
     EmitCredentialsByRoleResource,
-    EmitCredentialsByRoleService
+    EmitCredentialsByRoleService,
+    BuildFormRole
   ],
 })
 export class RolesModule {}

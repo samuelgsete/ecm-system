@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
+import { BuildFormRole } from 'src/app/usecases/roles/build-form-role.service';
 import { CreateRoleService } from 'src/app/usecases/roles/create-role.service';
+import { IFormRole } from 'src/app/usecases/roles/interfaces/form-role.interface';
 
 @Component({
   selector: 'app-create-role',
@@ -13,25 +15,18 @@ import { CreateRoleService } from 'src/app/usecases/roles/create-role.service';
 })
 export class CreateRoleComponent implements OnInit {
 
-  protected form!: FormGroup;
+  protected form!: FormGroup<IFormRole>;
 
   constructor(
     protected readonly router: Router,
-    protected readonly _fb: FormBuilder,
     protected readonly modalRef: MatDialogRef<CreateRoleComponent>,
+    protected readonly buildForm: BuildFormRole,
     protected readonly createRole: CreateRoleService,
     protected readonly updateMetrics: DisplayMetricsService
   ) {}
 
   ngOnInit(): void {
-    this.form = this._fb.group({
-      id: [null],
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(24)]],
-      numberOfMembers: [0],
-      createdAt: [null],
-      updatedAt: [null]
-    })
-
+    this.form = this.buildForm.run(null);
     this.createRole.done().subscribe(response => {
       this.updateMetrics.run();
       this.modalRef.close();

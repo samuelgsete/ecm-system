@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Role } from 'src/app/models/role.entity';
+import { BuildFormRole } from 'src/app/usecases/roles/build-form-role.service';
+import { IFormRole } from 'src/app/usecases/roles/interfaces/form-role.interface';
 import { UpdateRoleService } from 'src/app/usecases/roles/update-role.service';
 
 @Component({
@@ -13,28 +15,18 @@ import { UpdateRoleService } from 'src/app/usecases/roles/update-role.service';
 })
 export class UpdateRoleComponent implements OnInit {
   
-  protected form!: FormGroup;
+  protected form!: FormGroup<IFormRole>;
 
   constructor(
-    protected readonly _fb: FormBuilder,
     protected readonly router: Router,
     protected modalRef: MatDialogRef<UpdateRoleComponent>,
     @Inject(MAT_DIALOG_DATA) protected role: Role,
+    protected readonly buildForm: BuildFormRole,
     protected readonly update: UpdateRoleService
   ) {}
-  
-  private buildForm(role: Role): FormGroup {
-    return this._fb.group({
-      id: [role.id],
-      name: [role.name, [Validators.required, Validators.minLength(2), Validators.maxLength(24)]],
-      numberOfMembers: [role.numberOfMembers],
-      createdAt: [role.createdAt],
-      updatedAt: [role.updatedAt]
-    })
-  }
 
   ngOnInit(): void {
-    this.form = this.buildForm(this.role);
+    this.form = this.buildForm.run(this.role);
     this.update.done().subscribe(response => {
       this.modalRef.close();
     });
