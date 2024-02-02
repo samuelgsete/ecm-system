@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
+import { BuildFormMember } from 'src/app/usecases/members/build-form-member.service';
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
@@ -23,7 +23,7 @@ export class CreateMember2Component implements OnInit {
   constructor(
     readonly router: Router,
     readonly titleService: Title,
-    readonly buildForm: BuildFormCreateMemberService,
+    readonly buildForm: BuildFormMember,
     readonly createMember: CreateMemberService,
     readonly data: ParseDataToMemberService,
     readonly updateMetrics: DisplayMetricsService
@@ -31,11 +31,11 @@ export class CreateMember2Component implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Cadastrar novo membro');
-    const { step1, step2, step3, step4 } = this.buildForm.run();
-    this.step1 = step1;
-    this.step2 = step2;
-    this.step3 = step3;
-    this.step4 = step4;
+    const { formStep1, formStep2, formStep3, formStep4 } = this.buildForm.run(null);
+    this.step1 = formStep1;
+    this.step2 = formStep2;
+    this.step3 = formStep3;
+    this.step4 = formStep4;
     this.createMember.done().subscribe(response => {
       this.updateMetrics.run();
       this.router.navigateByUrl("/app/members");

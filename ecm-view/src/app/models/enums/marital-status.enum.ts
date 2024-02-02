@@ -1,7 +1,7 @@
 export enum MaritalStatus {
     
-    MARRIED, // Casado(a)
     SINGLE, // Solteiro(a)
+    MARRIED, // Casado(a)
     WINDOWER, // Viúvo(a)
     DIVORCED // Divorciado(a)
 }

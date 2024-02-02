@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BuildFormUpdateMemberService } from 'src/app/usecases/members/build-form-update-member.service';
+import { BuildFormMember } from 'src/app/usecases/members/build-form-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
 import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
@@ -24,7 +24,7 @@ export class UpdateMemberComponent implements OnInit {
     readonly router: Router,
     readonly route: ActivatedRoute,
     readonly titleService: Title,
-    readonly buildForm: BuildFormUpdateMemberService,
+    readonly buildForm: BuildFormMember,
     readonly findOne: FindOneMemberService,
     readonly data: ParseDataToMemberService,
     readonly update: UpdateMemberService
@@ -35,11 +35,11 @@ export class UpdateMemberComponent implements OnInit {
     this.findOne.run(id);
     this.findOne.done().subscribe(response => {
       this.titleService.setTitle(`Editar ${response.name}`);
-      const { step1, step2, step3, step4 } = this.buildForm.run(response);
-      this.step1 = step1;
-      this.step2 = step2;
-      this.step3 = step3;
-      this.step4 = step4;
+      const { formStep1, formStep2, formStep3, formStep4 } = this.buildForm.run(response);
+      this.step1 = formStep1;
+      this.step2 = formStep2;
+      this.step3 = formStep3;
+      this.step4 = formStep4;
     });
     this.update.done().subscribe(response => {
       this.router.navigateByUrl("app/members");

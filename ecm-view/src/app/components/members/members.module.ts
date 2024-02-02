@@ -42,6 +42,11 @@ import { DeleteMemberService } from 'src/app/usecases/members/delete-member.serv
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
 import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
+import { BuildFormMemberStep1 } from 'src/app/usecases/members/build-form-member-step1.service';
+import { BuildFormMemberStep2 } from 'src/app/usecases/members/build-form-member-step2.service';
+import { BuildFormMemberStep3 } from 'src/app/usecases/members/build-form-member-step3.service';
+import { BuildFormMemberStep4 } from 'src/app/usecases/members/build-form-member-step4.service';
+import { BuildFormMember } from 'src/app/usecases/members/build-form-member.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +92,12 @@ import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSe
     CountMembersSelectedsResource,
     CountMembersSelectedsService,
     ToggleSelectionMembersResource,
-    ToggleSelectionMembersService
+    ToggleSelectionMembersService,
+    BuildFormMemberStep1,
+    BuildFormMemberStep2,
+    BuildFormMemberStep3,
+    BuildFormMemberStep4,
+    BuildFormMember
   ]
 })
 export class MembersModule {}
