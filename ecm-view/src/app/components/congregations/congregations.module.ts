@@ -21,6 +21,7 @@ import { UpdateCongregationService } from 'src/app/usecases/congregations/update
 import { SelectCongregationComparatorService } from 'src/app/usecases/congregations/select-congregation-comparator.service';
 import { OrderCongregationsService } from 'src/app/usecases/congregations/order-congregations.service';
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
+import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form-congregation.service';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DeleteCongregationService } from 'src/app/usecases/congregations/delete
     SelectCongregationComparatorService,
     OrderCongregationsService,
     DeleteCongregationeResource,
-    DeleteCongregationService
+    DeleteCongregationService,
+    BuildFormCongregation
   ]
 })
 export class CongregationsModule {}

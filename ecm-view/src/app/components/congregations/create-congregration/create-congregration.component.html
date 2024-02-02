@@ -1,5 +1,5 @@
 <main>
-    <h1 class="form-title">Nova Congregação</h1>
+    <h1 class="modal-title">Nova Congregação</h1>
     <form [formGroup]="form">
         <div class="row-flex">
             <mat-form-field class="width-fix" appearance="fill" color="primary">
@@ -7,19 +7,19 @@
                 <input 
                     formControlName="name"
                     placeholder="Ex.: Sede"
-                    minlength="2" 
+                    minlength="4" 
                     maxlength="24"
-                    mat="24"
+                    max="24"
                     matInput 
                     required
                 >
-                <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+                <mat-error *ngIf="form.controls.name.errors?.['required']">
                     Esse campo é obrigatório
                 </mat-error>
-                <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
-                    Informe no mínimo 2 caracteres
+                <mat-error *ngIf="form.controls.name.errors?.['minlength']">
+                    Informe no mínimo 4 caracteres
                 </mat-error>
-                <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+                <mat-error *ngIf="form.controls.name.errors?.['maxlength']">
                     Informe no máximo 24 caracteres
                 </mat-error>
             </mat-form-field>
