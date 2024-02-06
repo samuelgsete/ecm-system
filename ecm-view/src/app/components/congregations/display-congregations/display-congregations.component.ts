@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { debounceTime } from 'rxjs';
 
 import { Congregation } from 'src/app/models/congregation.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
@@ -25,7 +23,7 @@ export class DisplayCongregationsComponent implements OnInit {
 
   congregations: Congregation[] = []
   pagination: Pagination = new Pagination()
-  formSearch: FormControl = new FormControl()
+  searchValue: string = '';
   
   constructor(
     protected readonly titleService: Title,
@@ -60,6 +58,11 @@ export class DisplayCongregationsComponent implements OnInit {
     })
   }
 
+  onSearch(keyword: string) {
+    this.searchValue = keyword;
+    this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }))
+  }
+
   ngOnInit(): void {
     this.titleService.setTitle('Gerenciar congregações');
     this.listCongregations.run(this.pagination);
@@ -74,10 +77,6 @@ export class DisplayCongregationsComponent implements OnInit {
       }))
     })
     
-    this.formSearch.valueChanges.pipe(debounceTime(900)).subscribe(keyword => {
-      this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }));
-    })
-
     this.onDelete.done().subscribe(congregationDeleted => {
       this.updateMetrics.run();
       this.listCongregations.run(new Pagination());

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
+import { UiModule } from 'src/app/ui/ui.module';
 
 import { CreateRoleComponent } from './create-role/create-role.component';
 import { DisplayRolesComponent } from './display-roles/display-roles.component';
@@ -34,7 +35,8 @@ import { BuildFormRole } from 'src/app/usecases/roles/build-form-role.service';
     CommonModule,
     SharedModule,
     PaginateModule,
-    UtilsModule
+    UtilsModule,
+    UiModule
   ],
   providers: [
     ListRolesPaginatedResource,

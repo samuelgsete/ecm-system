@@ -17,15 +17,9 @@
                         </mat-radio-button>
                     </button>
                 </mat-menu>
-                <div class="input-search">
-                    <mat-icon>search</mat-icon>
-                    <input 
-                        type="text"
-                        class="search"
-                        [formControl]="formSearch"
-                        placeholder="Pesquisar..."
-                    >
-                </div>
+                
+                <ui-input-search (keywordChange)="onSearch($event)"></ui-input-search>
+
                 <button 
                     class="btn btn-lg"
                     color="purple"
@@ -46,7 +40,7 @@
             >CADASTRAR NOVA</button>
         </app-no-data-created>
 
-        <app-such-notfound [keyword]="formSearch.value" [isVisible]="listCongregations.notFound()"></app-such-notfound>
+        <app-such-notfound [keyword]="searchValue" [isVisible]="listCongregations.notFound()"></app-such-notfound>
         
         <table class="ui-table stripped" *ngIf="!listCongregations.isEmpty() && !listCongregations.notFound()">
             <tr>

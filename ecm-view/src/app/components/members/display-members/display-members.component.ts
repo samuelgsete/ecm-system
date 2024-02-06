@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs';
 
 import { Member } from 'src/app/models/member.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
@@ -42,8 +40,8 @@ export class DisplayMembersComponent implements OnInit {
   members: Member[] = [];
   countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
-  formSearch: FormControl = new FormControl();
   allselecteds: boolean = true;
+  searchValue: string = '';
   
   constructor(
     readonly router: Router,
@@ -76,6 +74,11 @@ export class DisplayMembersComponent implements OnInit {
     return this.countSelecteds > 0 && this.countSelecteds < this.pagination.total;
   }
 
+  onSearch(keyword: string) {
+    this.searchValue = keyword;
+    this.listMembers.run(new Pagination({ search: keyword.toLowerCase() }))
+  }
+
   ngOnInit(): void {
     this.titleService.setTitle('Todos os membros cadastrados');
     this.listMembers.run(this.pagination);
@@ -90,10 +93,6 @@ export class DisplayMembersComponent implements OnInit {
       }))
     })
     
-    this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.listMembers.run(new Pagination({ search: keyword.toLowerCase() }))
-    })
-
     this.count.run();
     this.count.done().subscribe(response => {
       this.countSelecteds = response;

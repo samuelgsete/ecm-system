@@ -5,6 +5,7 @@ import { CredentialsModule } from '../credentials/credentials.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginateModule } from '../paginate/paginate.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
+import { UiModule } from 'src/app/ui/ui.module';
 
 import { CreateCongregrationComponent } from './create-congregration/create-congregration.component';
 import { DisplayCongregationsComponent } from './display-congregations/display-congregations.component';
@@ -23,7 +24,6 @@ import { OrderCongregationsService } from 'src/app/usecases/congregations/order-
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form-congregation.service';
 
-
 @NgModule({
   declarations: [
     CreateCongregrationComponent,
@@ -35,7 +35,8 @@ import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form
     SharedModule,
     PaginateModule,
     UtilsModule,
-    CredentialsModule
+    CredentialsModule,
+    UiModule
   ],
   providers: [
     ListCongregationsPaginatedResource,

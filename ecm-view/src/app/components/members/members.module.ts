@@ -47,6 +47,7 @@ import { BuildFormMemberStep2 } from 'src/app/usecases/members/build-form-member
 import { BuildFormMemberStep3 } from 'src/app/usecases/members/build-form-member-step3.service';
 import { BuildFormMemberStep4 } from 'src/app/usecases/members/build-form-member-step4.service';
 import { BuildFormMember } from 'src/app/usecases/members/build-form-member.service';
+import { UiModule } from 'src/app/ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { BuildFormMember } from 'src/app/usecases/members/build-form-member.serv
     LayoutModule,
     SharedModule,
     UploadsImagesModule,
-    UtilsModule
+    UtilsModule,
+    UiModule
   ],
   providers: [
     FindOneMemberResource,

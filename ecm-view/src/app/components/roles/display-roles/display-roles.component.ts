@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { debounceTime } from 'rxjs';
 
 import { Pagination } from 'src/app/models/pagination.entity';
 import { Role } from 'src/app/models/role.entity';
@@ -25,7 +23,7 @@ export class DisplayRolesComponent implements OnInit {
 
   roles: Role[] = [];
   pagination: Pagination = new Pagination();
-  formSearch: FormControl = new FormControl();
+  searchValue: string = '';
 
   constructor(
     protected readonly titleService: Title,
@@ -59,6 +57,11 @@ export class DisplayRolesComponent implements OnInit {
     })
   }
 
+  onSearch(keyword: string) {
+    this.searchValue = keyword;
+    this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
+  }
+
   ngOnInit(): void {
     this.titleService.setTitle('Gerenciar cargos');
     this.listRoles.run(this.pagination);
@@ -71,11 +74,6 @@ export class DisplayRolesComponent implements OnInit {
         totalElements: response.totalElements,
         totalPages: response.totalPages
       }))
-    })
-
-    this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
-      this.pagination.search = keyword
-      this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
     })
 
     this.onDelete.done().subscribe(roleDeleted => {
