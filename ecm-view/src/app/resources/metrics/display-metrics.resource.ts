@@ -4,7 +4,9 @@ import { Observable } from "rxjs";
 import { HttpRequest } from "../interfaces/http-request.resource";
 import { Metric } from "src/app/layout/metrics/metric.entity";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DisplayMetricsResource extends HttpRequest {
 
     run(): Observable<Metric[]> {

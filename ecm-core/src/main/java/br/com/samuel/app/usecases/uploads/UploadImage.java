@@ -30,6 +30,7 @@ public class UploadImage extends IUploaderImage {
         var urlTransformed = cloudinaryConfig()
             .url()
             .transformation(new Transformation()
+                .effect("background_removal")
                 .width(cropped.getWidth())
                 .height(cropped.getHeight())
                 .x(cropped.getPositionX1())

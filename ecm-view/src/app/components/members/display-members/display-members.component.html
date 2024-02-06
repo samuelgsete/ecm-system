@@ -3,15 +3,18 @@
         <header>
             <app-page-description title="Membros" subtitle="Cadastrados"></app-page-description>
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.isEmpty()">
-                <button class="filter-table"  [matMenuTriggerFor]="ordination" mat-icon-button>
+                <button class="filter-table"  [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Filtrar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name)"
-                    >{{ ordination.label }}
+                        (click)="order.run(ordination.name, pagination)"
+                    >
+                        <mat-radio-button [checked]="ordination.isActive" color="primary">
+                            <span class="label-ordination">{{ ordination.label }}</span>
+                        </mat-radio-button>
                     </button>
                 </mat-menu>
                 <div class="input-search">
@@ -75,7 +78,7 @@
                         (change)="onSelect.run($event.checked, member)"
                     ></mat-checkbox>
                 </td>
-                <td>
+                <td class="photo-column">
                     <img class="photo-member" [src]="member.photo.url" [alt]="member.name" (click)="onFullScreen.run(member.photo)">
                 </td>
                 <td>{{ member.name }}</td>

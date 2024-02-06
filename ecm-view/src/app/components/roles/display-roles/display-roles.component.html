@@ -3,16 +3,18 @@
         <header>
             <app-page-description title="Cargos" subtitle="Cadastrados"></app-page-description>
             <div class="row-flex space-between center-vertical" *ngIf="!listRoles.isEmpty()">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button>
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Filtrar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name)"
+                        (click)="order.run(ordination.name, pagination)"
                     >
-                        {{ ordination.label }}
+                        <mat-radio-button [checked]="ordination.isActive" color="primary">
+                            <span class="label-ordination">{{ ordination.label }}</span>
+                        </mat-radio-button>
                     </button>
                 </mat-menu>
                 <div class="input-search">

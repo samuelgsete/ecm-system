@@ -16,10 +16,11 @@ header button.filter-table {
     color: rgb(var(--gray-6));
 }
 
-header button.mat-menu {
-    font-family: 'Urbanist', sans-serif !important;
-    letter-spacing: -0.9px;
-    font-size: 0.84em !important;
+.label-ordination {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.05em;
+    cursor: pointer;
+    color: rgb(var(--dark-0));
 }
 
 table tr td:nth-child(1) {
@@ -45,9 +46,10 @@ table tr td img.photo-member {
     height: 100%;
     border-radius: 8px;
     cursor: pointer;
-    border: 0.12em solid rgb(var(--gray-2));
+    border: 0.12em solid rgb(var(--gray-3));
 }
 
-.input-size-pagination {
-    max-width: 150px;
+td.photo-column {
+    display: flex;
+    align-items: center;
 }

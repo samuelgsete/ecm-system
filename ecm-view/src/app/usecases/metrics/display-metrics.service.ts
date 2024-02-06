@@ -5,7 +5,9 @@ import { ToastrService } from "ngx-toastr";
 import { Metric } from "src/app/layout/metrics/metric.entity";
 import { DisplayMetricsResource } from "src/app/resources/metrics/display-metrics.resource";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DisplayMetricsService {
 
     private isDone: EventEmitter<Metric[]> = new EventEmitter<Metric[]>();

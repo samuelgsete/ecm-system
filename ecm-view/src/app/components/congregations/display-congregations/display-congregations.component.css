@@ -12,6 +12,13 @@ button.filter-table {
     color: rgb(var(--gray-6));
 }
 
+.label-ordination {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 1.05em;
+    cursor: pointer;
+    color: rgb(var(--dark-0));
+}
+
 table tr td:nth-child(1) {
     width: 10%;
     font-weight: 600;
@@ -29,8 +36,4 @@ table tr td > button:first-child {
 
 table tr td > button:last-child {
     color: rgb(var(--danger));
-}
-
-.input-size-pagination {
-    max-width: 150px;
 }

@@ -10,7 +10,7 @@
                     <button
                         mat-menu-item
                         *ngFor="let ordination of onOrder.ordinations"
-                        (click)="onOrder.run(ordination.name)"
+                        (click)="onOrder.run(ordination.name, pagination)"
                     >
                         {{ ordination.label }}
                     </button>

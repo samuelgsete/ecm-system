@@ -17,8 +17,6 @@ import { CredentialThemesModule } from './components/credential-themes/credentia
 import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
 import { UsersModule } from './components/users/users.module';
-import { DisplayMetricsResource } from './resources/metrics/display-metrics.resource';
-import { DisplayMetricsService } from './usecases/metrics/display-metrics.service';
 
 @NgModule({
   declarations: [
@@ -41,8 +39,6 @@ import { DisplayMetricsService } from './usecases/metrics/display-metrics.servic
     SettingsModule
   ],
   providers: [
-    DisplayMetricsResource,
-    DisplayMetricsService,
     /*{
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

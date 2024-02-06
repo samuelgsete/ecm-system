@@ -8,14 +8,15 @@ import { ListCredentialThemesPaginatedService } from "./list-credential-themes-p
 export class OrderThemesService {
 
     ordinations: Ordination[] = [
-        { label: 'Nome A-Z', name: 'by_name_asc' },
-        { label: 'Nome Z-A', name: 'by_name_desc' },
-        { label: 'Atualizados', name: 'latest_updated' }
+        { label: 'Nome A-Z', name: 'by_name_asc', isActive: true },
+        { label: 'Nome Z-A', name: 'by_name_desc', isActive: false },
+        { label: 'Atualizados', name: 'latest_updated', isActive: false }
     ]
 
     constructor(readonly listThemes: ListCredentialThemesPaginatedService) {}
 
-    run(_ordination: string) {
-        this.listThemes.run(new Pagination({ size: 7, ordination: _ordination}));
+    run(_ordination: string, pagination: Pagination) {
+        pagination.ordination = _ordination;
+        this.listThemes.run(pagination);
     }
 }

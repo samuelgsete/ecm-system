@@ -13,7 +13,7 @@ table.ui-table {
 }
 
 table.ui-table tr td {
-    padding: 0.5% 1%;
+    padding: 12px;
     text-align: left;
     animation: down 0.4s;
     font-family: 'Urbanist', sans-serif;
