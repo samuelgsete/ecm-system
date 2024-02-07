@@ -28,6 +28,17 @@ footer hr {
     margin: 2px;
 }
 
+ul.social-media {
+    list-style: none;
+    display: flex;
+    column-gap: 16px;
+    justify-content: center;
+}
+
+ul.social-media li a img {
+    width: 32px;
+}
+
 .support p:first-child, .logo p {
     font-family: 'Days One', sans-serif;
     font-weight: 600;

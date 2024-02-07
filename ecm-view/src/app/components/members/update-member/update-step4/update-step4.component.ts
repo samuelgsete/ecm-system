@@ -8,6 +8,7 @@ import { CroppedImageComponent } from 'src/app/components/uploads-images/cropped
 import { DestroyerPhotoService } from 'src/app/usecases/uploads/photo/destroyer-photo.service';
 import { DestroyerSignatureService } from 'src/app/usecases/uploads/signature/destroyer-signature.service';
 import { ImageModel } from 'src/app/models/image-model.entity';
+import { IFormMemberStep4 } from 'src/app/usecases/members/interfaces/form-member-step4.interface';
 
 @Component({
   selector: 'app-update-step4',
@@ -17,11 +18,11 @@ import { ImageModel } from 'src/app/models/image-model.entity';
 export class UpdateStep4Component implements OnInit {
   
   @Input()
-  form!: FormGroup;
+  form!: FormGroup<IFormMemberStep4>;
   protected isUploadedPhoto: boolean = true;
   protected isUploadedSignature: boolean = true;
-  protected photo!: ImageModel;
-  protected signature!: ImageModel;
+  protected photo: ImageModel = new ImageModel();
+  protected signature: ImageModel = new ImageModel();
   protected photoId: string = '';
   protected signatureId: string = '';
 
@@ -52,10 +53,10 @@ export class UpdateStep4Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this.photo = this.form.value['photo'];
-    this.signature = this.form.value['signature'];
-    this.photoId = this.form.value.photo.id;
-    this.signatureId = this.form.value.signature.id;
+    this.photo = this.form.value.photo || new ImageModel();
+    this.signature = this.form.value.signature || new ImageModel();
+    this.photoId = this.form.value.photo?.id || '';
+    this.signatureId = this.form.value.signature?.id || '';
     
     this.uploadPhoto.done().subscribe(response => {
       this.photo = response;

@@ -10,6 +10,7 @@ import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-pag
 import { Pagination } from 'src/app/models/pagination.entity';
 import { SelectRoleComparatorService } from 'src/app/usecases/roles/select-role-comparator.service';
 import { SelectCongregationComparatorService } from 'src/app/usecases/congregations/select-congregation-comparator.service';
+import { IFormMemberStep1 } from 'src/app/usecases/members/interfaces/form-member-step1.interface';
 
 const SIZE_PAGINATION = 120;
 
@@ -21,7 +22,7 @@ const SIZE_PAGINATION = 120;
 export class UpdateStep1Component implements OnInit {
 
   @Input() 
-  form!: FormGroup;
+  form!: FormGroup<IFormMemberStep1>;
 
   roles: Role[] = [];
   congregations: Congregation[] = []

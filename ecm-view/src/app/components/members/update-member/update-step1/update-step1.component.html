@@ -11,13 +11,13 @@
                 matInput
                 required
             >
-            <mat-error *ngIf="form['controls']['name'].errors?.['required']">
+            <mat-error *ngIf="form.controls.name.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
-            <mat-error *ngIf="form['controls']['name'].errors?.['minlength']">
+            <mat-error *ngIf="form.controls.name.errors?.['minlength']">
                 Informe no mínimo 6 caracteres
             </mat-error>
-            <mat-error *ngIf="form['controls']['name'].errors?.['maxlength']">
+            <mat-error *ngIf="form.controls.name.errors?.['maxlength']">
                 Informe no máximo 32 caracteres
             </mat-error>
         </mat-form-field> 
@@ -32,10 +32,10 @@
                 mask="000.000.000-00"
                 matInput
             >
-            <mat-error *ngIf="form['controls']['cpf'].errors?.['invalidCpf']">
+            <mat-error *ngIf="form.controls.cpf.errors?.['invalidCpf']">
                 CPF inválido
             </mat-error>
-            <mat-error *ngIf="form['controls']['cpf'].errors?.['mask']">
+            <mat-error *ngIf="form.controls.cpf.errors?.['mask']">
                 Formato inválido
             </mat-error>
         </mat-form-field>
@@ -47,7 +47,7 @@
                 mask="0000*"
                 matInput
             >
-            <mat-error *ngIf="form['controls']['rg'].errors?.['mask']">
+            <mat-error *ngIf="form.controls.rg.errors?.['mask']">
                 Formato inválido
             </mat-error>
         </mat-form-field>
@@ -56,14 +56,14 @@
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Data de Nascimento</mat-label>
             <input formControlName="dateOfBirth" type="date" matInput required>
-            <mat-error *ngIf="form['controls']['dateOfBirth'].errors?.['required']">
+            <mat-error *ngIf="form.controls.dateOfBirth.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Data de Batismo</mat-label>
             <input formControlName="dateOfBaptism" type="date" matInput required>
-            <mat-error *ngIf="form['controls']['dateOfBaptism'].errors?.['required']">
+            <mat-error *ngIf="form.controls.dateOfBaptism.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>
@@ -79,7 +79,7 @@
                     {{ maritalStatus.name }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="form['controls']['maritalStatus'].errors?.['required']">
+            <mat-error *ngIf="form.controls.maritalStatus.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>
@@ -93,7 +93,7 @@
                     {{ gender.name }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="form['controls']['gender'].errors?.['required']">
+            <mat-error *ngIf="form.controls.gender.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>
@@ -106,7 +106,7 @@
                     {{ congregation.name }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="form['controls']['congregation'].errors?.['required']">
+            <mat-error *ngIf="form.controls.congregation.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>
@@ -117,7 +117,7 @@
                     {{ role.name }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="form['controls']['role'].errors?.['required']">
+            <mat-error *ngIf="form.controls.role.errors?.['required']">
                 Esse campo é obrigatório
             </mat-error>
         </mat-form-field>

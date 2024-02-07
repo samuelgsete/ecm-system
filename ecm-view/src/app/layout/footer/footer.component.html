@@ -2,11 +2,18 @@
     <div class="logo">
         <img src="assets/img/se-cred.png" alt="Logo SE-CRED System">
         <p>&copy; SE-CRED {{ currentYear }}</p>
+        <ul class="social-media">
+            <li *ngFor="let link of socialMedia">
+                <a [href]="link.target" target="_blank">
+                    <img [src]="link.icon" [alt]="link.name">
+                </a>
+            </li>
+        </ul>
     </div>
     <hr class="separator">
     <div class="row-flex space-between">
         <div class="support">
-            <p>Contatos do Desenvolvedor</p>
+            <p>Suporte</p>
             <p>
                 <mat-icon>call</mat-icon>
                 +55 (85) 98971-1010

@@ -8,6 +8,7 @@ import { ListMaritalStatusService } from 'src/app/utils/services/list-marital-st
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
 import { Pagination } from 'src/app/models/pagination.entity';
+import { IFormMemberStep1 } from 'src/app/usecases/members/interfaces/form-member-step1.interface';
 
 const SIZE_PAGINATION = 120;
 
@@ -18,7 +19,7 @@ const SIZE_PAGINATION = 120;
 })
 export class Step1Component implements OnInit {
 
-  @Input() public form!: FormGroup;
+  @Input() public form!: FormGroup<IFormMemberStep1>;
 
   protected roles: Role[] = [];
   protected congregations: Congregation[] = []

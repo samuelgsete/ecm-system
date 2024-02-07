@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { IFormMemberStep3 } from 'src/app/usecases/members/interfaces/form-member-step3.interface';
 
 @Component({
   selector: 'app-update-step3',
@@ -9,6 +10,5 @@ import { FormGroup } from '@angular/forms';
 export class UpdateStep3Component {
   
   @Input()
-  form!: FormGroup;
-  
+  form!: FormGroup<IFormMemberStep3>;
 }

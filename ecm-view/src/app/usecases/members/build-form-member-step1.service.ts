@@ -5,8 +5,6 @@ import { IFormMemberStep1 } from "./interfaces/form-member-step1.interface";
 import { IFormStep1Values } from "./interfaces/form-values-step1.interface";
 import cpfValidator from "src/app/utils/validators/cpf.validator";
 import acceptNullValues from "src/app/utils/validators/accept-null-values.validator";
-import { MaritalStatus } from "src/app/models/enums/marital-status.enum";
-import { Gender } from "src/app/models/enums/gender.enum";
 
 @Injectable()
 export class BuildFormMemberStep1 {
@@ -22,8 +20,8 @@ export class BuildFormMemberStep1 {
             rg: [values?.rg || null, acceptNullValues],
             dateOfBirth: [values?.dateOfBirth || null, Validators.required],
             dateOfBaptism: [values?.dateOfBaptism || null, Validators.required],
-            maritalStatus: [values?.maritalStatus || MaritalStatus.SINGLE, Validators.required],
-            gender: [values?.gender || Gender.MALE, Validators.required],
+            maritalStatus: [values?.maritalStatus || null, Validators.required],
+            gender: [values?.gender || null, Validators.required],
             congregation: [values?.congregation || null],
             role: [values?.role || null]
         })

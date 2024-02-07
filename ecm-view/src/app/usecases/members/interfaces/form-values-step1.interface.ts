@@ -1,6 +1,4 @@
 import { Congregation } from "src/app/models/congregation.entity";
-import { Gender } from "src/app/models/enums/gender.enum";
-import { MaritalStatus } from "src/app/models/enums/marital-status.enum";
 import { Role } from "src/app/models/role.entity";
 
 export class IFormStep1Values {
@@ -12,8 +10,8 @@ export class IFormStep1Values {
     rg!: string;
     dateOfBirth!: string;
     dateOfBaptism!: string;
-    maritalStatus!: MaritalStatus;
-    gender!: Gender;
+    maritalStatus!: string;
+    gender!: string;
     congregation!: Congregation;
     role!: Role;
 }

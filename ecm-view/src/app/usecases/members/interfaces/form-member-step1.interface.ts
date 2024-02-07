@@ -1,8 +1,6 @@
 import { FormControl } from "@angular/forms";
 
 import { Congregation } from "src/app/models/congregation.entity";
-import { Gender } from "src/app/models/enums/gender.enum";
-import { MaritalStatus } from "src/app/models/enums/marital-status.enum";
 import { Role } from "src/app/models/role.entity";
 
 export interface IFormMemberStep1 {
@@ -14,8 +12,8 @@ export interface IFormMemberStep1 {
     rg: FormControl<string | null>;
     dateOfBirth: FormControl<string | null>;
     dateOfBaptism: FormControl<string | null>;
-    maritalStatus: FormControl<MaritalStatus | null>;
-    gender: FormControl<Gender | null>;
+    maritalStatus: FormControl<string | null>;
+    gender: FormControl<string | null>;
     congregation: FormControl<Congregation | null>;
     role: FormControl<Role | null>;
 }

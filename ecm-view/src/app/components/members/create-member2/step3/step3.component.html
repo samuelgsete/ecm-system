@@ -10,10 +10,10 @@
                 max="32"
                 matInput
             >
-            <mat-error *ngIf="form['controls']['fatherName'].errors?.['minlength']">
+            <mat-error *ngIf="form.controls.fatherName.errors?.['minlength']">
                 Informe no mínimo 6 caracteres
             </mat-error>
-            <mat-error *ngIf="form['controls']['fatherName'].errors?.['maxlength']">
+            <mat-error *ngIf="form.controls.fatherName.errors?.['maxlength']">
                 Informe no máximo 32 caracteres
             </mat-error>
         </mat-form-field>
@@ -29,10 +29,10 @@
                 max="32"
                 matInput
             >
-            <mat-error *ngIf="form['controls']['motherName'].errors?.['minlength']">
+            <mat-error *ngIf="form.controls.motherName.errors?.['minlength']">
                 Informe no mínimo 6 caracteres
             </mat-error>
-            <mat-error *ngIf="form['controls']['motherName'].errors?.['maxlength']">
+            <mat-error *ngIf="form.controls.motherName.errors?.['maxlength']">
                 Informe no máximo 32 caracteres
             </mat-error>
         </mat-form-field>

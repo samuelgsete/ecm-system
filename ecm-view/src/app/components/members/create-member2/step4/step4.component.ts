@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { CroppedImageComponent } from 'src/app/components/uploads-images/cropped-image/cropped-image.component';
 import { ImageModel } from 'src/app/models/image-model.entity';
+import { IFormMemberStep4 } from 'src/app/usecases/members/interfaces/form-member-step4.interface';
 import { DestroyerPhotoService } from 'src/app/usecases/uploads/photo/destroyer-photo.service';
 import { UploadPhotoService } from 'src/app/usecases/uploads/photo/upload-photo.service';
 import { DestroyerSignatureService } from 'src/app/usecases/uploads/signature/destroyer-signature.service';
@@ -16,7 +17,7 @@ import { UploadSignatureService } from 'src/app/usecases/uploads/signature/uploa
 })
 export class Step4Component implements OnInit {
 
-  @Input() form!: FormGroup;
+  @Input() form!: FormGroup<IFormMemberStep4>;
   protected isUploadedPhoto: boolean = false;
   protected isUploadedSignature: boolean = false;
   protected photo!: ImageModel;
