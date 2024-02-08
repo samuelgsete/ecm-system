@@ -31,9 +31,7 @@ import { CountMembersSelectedsResource } from 'src/app/resources/members/count-m
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
-import { BuildFormCreateMemberService } from 'src/app/usecases/members/build-form-create-member.service';
-import { BuildFormUpdateMemberService } from 'src/app/usecases/members/build-form-update-member.service';
-import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
+import { GetFormDataMemberService } from 'src/app/usecases/members/get-form-data-member.service';
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
@@ -84,9 +82,7 @@ import { UiModule } from 'src/app/ui/ui.module';
     GoToEditService,
     GoToPrintService,
     OnSelectMemberService,
-    BuildFormCreateMemberService,
-    BuildFormUpdateMemberService,
-    ParseDataToMemberService,
+    GetFormDataMemberService,
     ListMembersSelectedsResource,
     ListMembersSelectedsService,
     DeleteMemberResource,

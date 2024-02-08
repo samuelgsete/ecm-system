@@ -4,20 +4,22 @@ import { FormGroup } from "@angular/forms";
 import { CreateMember2Component } from "src/app/components/members/create-member2/create-member2.component";
 import { UpdateMemberComponent } from "src/app/components/members/update-member/update-member.component";
 import { Affiliation } from "src/app/models/affiliation.entity";
-import { Congregation } from "src/app/models/congregation.entity";
 import { Member } from "src/app/models/member.entity";
-import { Role } from "src/app/models/role.entity";
+import { IFormMemberStep1 } from "./interfaces/form-member-step1.interface";
+import { IFormMemberStep2 } from "./interfaces/form-member-step2.interface";
+import { IFormMemberStep3 } from "./interfaces/form-member-step3.interface";
+import { IFormMemberStep4 } from "./interfaces/form-member-step4.interface";
 
 @Injectable()
-export class ParseDataToMemberService {
+export class GetFormDataMemberService {
 
   component!: CreateMember2Component | UpdateMemberComponent;
 
   run(): Member {
-    const step1: FormGroup = this.component.step1
-    const step2: FormGroup = this.component.step2
-    const step3: FormGroup = this.component.step3
-    const step4: FormGroup = this.component.step4
+    const step1: FormGroup<IFormMemberStep1> = this.component.step1
+    const step2: FormGroup<IFormMemberStep2> = this.component.step2
+    const step3: FormGroup<IFormMemberStep3> = this.component.step3
+    const step4: FormGroup<IFormMemberStep4> = this.component.step4
 
     const _role = step1.value.role;
     const _congregation = step1.value.congregation;
@@ -28,8 +30,8 @@ export class ParseDataToMemberService {
       name: step1.value.name,
       cpf: step1.value.cpf,
       rg: step1.value.rg,
-      dateOfBirth: new Date(step1.value.dateOfBirth).toISOString(),
-      dateOfBaptism: new Date(step1.value.dateOfBaptism).toISOString(),
+      dateOfBirth: new Date(step1.value.dateOfBirth || '').toISOString(),
+      dateOfBaptism: new Date(step1.value.dateOfBaptism || '').toISOString(),
       gender: step1.value.gender,
       maritalStatus: step1.value.maritalStatus,
       role: _role,
@@ -43,6 +45,6 @@ export class ParseDataToMemberService {
       }),
       photo: step4.value.photo,
       signature: step4.value.signature
-    })
+    });
   }
 }

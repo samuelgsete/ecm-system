@@ -4,6 +4,7 @@ import { BuildFormMemberStep1 } from "./build-form-member-step1.service";
 import { BuildFormMemberStep2 } from "./build-form-member-step2.service";
 import { BuildFormMemberStep4 } from "./build-form-member-step4.service";
 import { BuildFormMemberStep3 } from "./build-form-member-step3.service";
+import { FormatDateService } from "src/app/utils/services/format-date.service";
 import { Member } from "src/app/models/member.entity";
 
 @Injectable()
@@ -13,6 +14,7 @@ export class BuildFormMember {
     private buildFormStep2 = inject(BuildFormMemberStep2);
     private buildFormStep3 = inject(BuildFormMemberStep3);
     private buildFormStep4 = inject(BuildFormMemberStep4);
+    private formatDate = inject(FormatDateService);
     
     run(values: Member | null) {
         if(values == null) {
@@ -29,8 +31,8 @@ export class BuildFormMember {
             isSelected: values.isSelected,
             cpf: values.cpf,
             rg: values.rg,
-            dateOfBirth: values.dateOfBirth,
-            dateOfBaptism: values.dateOfBaptism,
+            dateOfBirth: this.formatDate.run(values.dateOfBirth, 'yyyy-MM-dd'),
+            dateOfBaptism: this.formatDate.run(values.dateOfBaptism, 'yyyy-MM-dd'),
             maritalStatus: values.maritalStatus,
             gender: values.gender,
             congregation: values.congregation,

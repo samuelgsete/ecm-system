@@ -62,7 +62,7 @@
                 <th>Membro</th>
                 <th>Estado civil</th>
                 <th>Idade</th>
-                <th>Última Atualização</th>
+                <th>Registrado</th>
                 <th>Ações</th>
             </tr>
             <tr *ngFor="let member of members">
@@ -78,7 +78,7 @@
                 <td>{{ member.name }}</td>
                 <td>{{ member.maritalStatus | maritalstatus }}</td>
                 <td>{{ member.age }} anos</td>
-                <td>{{ member.updatedAt | dateDuration }}</td>
+                <td>{{ member.createdAt | dateDuration }}</td>
                 <td>
                     <button mat-icon-button (click)="onPrint.run(member.id)">
                         <mat-icon>print</mat-icon>

@@ -5,8 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BuildFormMember } from 'src/app/usecases/members/build-form-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
-import { ParseDataToMemberService } from 'src/app/usecases/members/parse-data-to-member.service';
+import { GetFormDataMemberService } from 'src/app/usecases/members/get-form-data-member.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
+import { IFormMemberStep1 } from 'src/app/usecases/members/interfaces/form-member-step1.interface';
+import { IFormMemberStep2 } from 'src/app/usecases/members/interfaces/form-member-step2.interface';
+import { IFormMemberStep3 } from 'src/app/usecases/members/interfaces/form-member-step3.interface';
+import { IFormMemberStep4 } from 'src/app/usecases/members/interfaces/form-member-step4.interface';
 
 @Component({
   selector: 'app-update-member',
@@ -15,10 +19,10 @@ import { UpdateMemberService } from 'src/app/usecases/members/update-member.serv
 })
 export class UpdateMemberComponent implements OnInit {
 
-  step1!: FormGroup;
-  step2!: FormGroup;
-  step3!: FormGroup;
-  step4!: FormGroup;
+  step1!: FormGroup<IFormMemberStep1>;
+  step2!: FormGroup<IFormMemberStep2>;
+  step3!: FormGroup<IFormMemberStep3>;
+  step4!: FormGroup<IFormMemberStep4>;
    
   constructor(
     readonly router: Router,
@@ -26,9 +30,9 @@ export class UpdateMemberComponent implements OnInit {
     readonly titleService: Title,
     readonly buildForm: BuildFormMember,
     readonly findOne: FindOneMemberService,
-    readonly data: ParseDataToMemberService,
+    readonly formData: GetFormDataMemberService,
     readonly update: UpdateMemberService
-  ) { data.component = this }
+  ) { formData.component = this }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id']
