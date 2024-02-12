@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { Congregation } from 'src/app/models/congregation.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
@@ -21,7 +22,7 @@ import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentia
 })
 export class DisplayCongregationsComponent implements OnInit {
 
-  congregations: Congregation[] = []
+  congregations$!: Observable<Congregation[]>;
   pagination: Pagination = new Pagination()
   searchValue: string = '';
   
@@ -34,17 +35,23 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly order: OrderCongregationsService,
     protected readonly updateMetrics: DisplayMetricsService,
     protected readonly onEmit: EmitCredentialsByCongregationService
-  ) {}
+  ) {
+    this.order.setComponent(this);
+  }
+
+  onLoad(): void {
+    this.congregations$ = this.listCongregations.run(this.pagination);
+  }
 
   nextPage(page: number): void {
     this.pagination.page = page;
-    this.listCongregations.run(this.pagination);
+    this.onLoad();
   }
 
   openCreateCongregationComponent(): void {
     this.modal.open(CreateCongregrationComponent);
     this.modal.afterAllClosed.subscribe(() => {
-      this.listCongregations.run(this.pagination);
+      this.onLoad();
     });
   }
 
@@ -54,32 +61,23 @@ export class DisplayCongregationsComponent implements OnInit {
     })
 
     this.modal.afterAllClosed.subscribe(() => {
-      this.listCongregations.run(this.pagination);
+      this.onLoad();
     })
   }
 
   onSearch(keyword: string) {
     this.searchValue = keyword;
-    this.listCongregations.run(new Pagination({ search: keyword.toLowerCase() }))
+    this.pagination.search = this.searchValue;
+    this.onLoad();
   }
 
   ngOnInit(): void {
+    this.onLoad();
     this.titleService.setTitle('Gerenciar congregações');
-    this.listCongregations.run(this.pagination);
-    this.listCongregations.done().subscribe(response => {
-      this.congregations = response.content;
-      this.pagination.page = response.number
-      this.pagination.total = response.totalElements
-      this.onPaginate.onBuild(new Paginate({
-        currentPage: response.number,
-        totalElements: response.totalElements,
-        totalPages: response.totalPages
-      }))
-    })
-    
+       
     this.onDelete.done().subscribe(congregationDeleted => {
-      this.updateMetrics.run();
-      this.listCongregations.run(new Pagination());
+      this.updateMetrics.onUpdate();
+      this.onLoad();
     })
 
     this.onEmit.done().subscribe(htmlContent => {

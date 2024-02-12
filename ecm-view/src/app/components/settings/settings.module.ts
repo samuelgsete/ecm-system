@@ -5,6 +5,7 @@ import { UtilsModule } from 'src/app/utils/utils.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UploadsImagesModule } from '../uploads-images/uploads-images.module';
 import { PaginateModule } from '../paginate/paginate.module';
+import { UiModule } from 'src/app/ui/ui.module';
 
 import { SettingsSystemComponent } from './settings-system/settings-system.component';
 import { SetShepherdComponent } from './set-shepherd/set-shepherd.component';
@@ -34,7 +35,8 @@ import { UpdateShepherdService } from 'src/app/usecases/shepherd/update-shepherd
     PaginateModule,
     UtilsModule,
     SharedModule,
-    UploadsImagesModule
+    UploadsImagesModule,
+    UiModule
   ],
   providers: [
     FindShepherdResource,

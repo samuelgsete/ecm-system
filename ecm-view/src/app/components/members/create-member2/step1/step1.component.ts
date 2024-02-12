@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { Role } from 'src/app/models/role.entity';
 import { Congregation } from 'src/app/models/congregation.entity';
@@ -17,28 +18,34 @@ const SIZE_PAGINATION = 120;
   templateUrl: './step1.component.html',
   styleUrls: ['./step1.component.css']
 })
-export class Step1Component implements OnInit {
+export class Step1Component {
 
   @Input() public form!: FormGroup<IFormMemberStep1>;
 
-  protected roles: Role[] = [];
-  protected congregations: Congregation[] = []
-  
-  public constructor(
+  roles$!: Observable<Role[]>;
+  congregations$!: Observable<Congregation[]>;
+      
+  constructor(
     protected readonly listGenders: ListGendersService,
     protected readonly listMaritalStatus: ListMaritalStatusService,
     protected readonly listRoles: ListRolesPaginatedService,
     protected readonly listCongregations: ListCongregationsPaginatedService,
   ) {}
 
-  public ngOnInit(): void {
-    this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
-    this.listRoles.done().subscribe(response => {
-      this.roles = response.content
-    })
-    this.listCongregations.run(new Pagination({ size: SIZE_PAGINATION }));
-    this.listCongregations.done().subscribe(response => {
-      this.congregations = response.content;
-    })
+  
+  openSelectionRoles(): void {
+    !this.roles$ && this.loadRoles();
+  }
+
+  openSelectionCongregations(): void {
+    !this.congregations$ && this.loadCongregations();
+  }
+
+  protected loadRoles(): void {
+    this.roles$ = this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
+  }
+
+  protected loadCongregations(): void {
+    this.congregations$ = this.listCongregations.run(new Pagination({ size: SIZE_PAGINATION }));
   }
 }

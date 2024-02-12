@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Metric } from './metric.entity';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
@@ -10,14 +11,16 @@ import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.
 })
 export class MetricsComponent implements OnInit {
 
-  metrics: Metric[] = [];
+  metrics$!: Observable<Metric[]>;
   
-  constructor(private readonly displayMetrics: DisplayMetricsService) {}
+  constructor(readonly displayMetrics: DisplayMetricsService) {}
+
+  onLoad(): void {
+   this.metrics$ = this.displayMetrics.run();
+  }
 
   ngOnInit(): void {
-    this.displayMetrics.run();
-    this.displayMetrics.done().subscribe(response => {
-      this.metrics = response;
-    })
+    this.onLoad();
+    this.displayMetrics.update.subscribe(() => this.onLoad());
   }
 }

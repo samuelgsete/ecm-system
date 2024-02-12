@@ -7,7 +7,7 @@
 ul.pagination {
     list-style: none;
     display: flex;
-    margin-top: 2%;
+    margin-top: 16px;
     column-gap: 0.6em;
     justify-content: right;
     align-items: center;
@@ -20,13 +20,13 @@ li.disabled {
 }
 
 ul.pagination li.page {
-    padding: 10px 15px;
+    padding: 16px;
     color: rgb(var(--gray-7));
-    font-size: 1.08em;
+    font-size: 1.16em;
     font-weight: 550;
     font-family: 'Heebo', sans-serif;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 4px;
     transition: all 0.5s;
 }
 
@@ -36,8 +36,8 @@ ul.pagination li.page:hover {
 }
 
 ul.pagination li.isCurrent {
-    background-color: rgb(var(--purple));
-    color: rgb(var(--gray-0));
+    background-color: rgb(var(--dark-0));
+    color: rgb(var(--gray-4));
     pointer-events: none;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     animation: fade 0.35s;

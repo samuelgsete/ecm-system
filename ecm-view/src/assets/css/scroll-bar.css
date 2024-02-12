@@ -5,10 +5,10 @@ body *::-webkit-scrollbar, body::-webkit-scrollbar {
 }
   
 body *::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
-    background: rgb(var(--dark));
+    background: rgb(var(--gray-3));
 }
   
 body *::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb  {
-    background-color: rgb(var(--gray-4));
+    background-color: rgb(var(--dark-0));
     border: none;
 }

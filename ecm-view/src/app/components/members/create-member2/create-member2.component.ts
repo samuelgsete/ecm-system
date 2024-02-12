@@ -41,7 +41,7 @@ export class CreateMember2Component implements OnInit {
     this.step3 = formStep3;
     this.step4 = formStep4;
     this.createMember.done().subscribe(response => {
-      this.updateMetrics.run();
+      this.updateMetrics.onUpdate();
       this.router.navigateByUrl("/app/members");
     })
   }

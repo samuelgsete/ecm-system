@@ -1,6 +1,8 @@
 import { EventEmitter, inject } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+import { Page } from "src/app/components/paginate/pagination/page.entity";
+import { Pageable } from "src/app/components/paginate/pagination/pageable.entity";
 import { Pagination } from "src/app/models/pagination.entity";
 
 export abstract class IPaginater {
@@ -12,14 +14,24 @@ export abstract class IPaginater {
     protected emptyData: boolean = false;
     protected finally: boolean = false;
     protected suchNotFound: boolean = false;
+    
+    pageable!: Pageable;
+
+    setPageable(currentPage: number, totalPages: number): void {
+        const page = new Page({ label: currentPage, isCurrent: true });
+        this.pageable = new Pageable({
+            currentPage: page,
+            totalPages: totalPages
+        });
+    }
    
-    public done(): EventEmitter<any> { return this.complete }
+    done(): EventEmitter<any> { return this.complete }
 
-    public isEmpty(): boolean { return this.emptyData }
+    isEmpty(): boolean { return this.emptyData }
 
-    public notFound(): boolean { return this.suchNotFound }
+    notFound(): boolean { return this.suchNotFound }
 
-    public isFinally(): boolean { return this.finally }
+    isFinally(): boolean { return this.finally }
 
-    public abstract run(pagination: Pagination): void;
+    abstract run(pagination: Pagination): void;
 }

@@ -3,14 +3,14 @@
         <header>
             <app-page-description title="Membros" subtitle="Cadastrados"></app-page-description>
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.isEmpty()">
-                <button class="filter-table"  [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Filtrar listagem">
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name, pagination)"
+                        (click)="order.run(ordination.name)"
                     >
                         <mat-radio-button [checked]="ordination.isActive" color="primary">
                             <span class="label-ordination">{{ ordination.label }}</span>
@@ -39,8 +39,6 @@
                 matRipple
             >CADASTRAR NOVO</button>
         </app-no-data-created>
-
-        <app-such-notfound [keyword]="searchValue" [isVisible]="listMembers.notFound()"></app-such-notfound>
         
         <div class="row-flex space-between center-vertical">
             <button 
@@ -52,47 +50,60 @@
                 [disabled]="countSelecteds == 0"
             >Aguardando emissão</button>
         </div>
-
-        <table class="ui-table default" *ngIf="!listMembers.isEmpty() && !listMembers.notFound()">
-            <tr>
-                <th>
-                    <mat-checkbox [checked]="allSelecteds()" [indeterminate]="someSelecteds()" (change)="onToggleSelection.run($event.checked)" ></mat-checkbox>
-                </th>
-                <th>Foto</th>
-                <th>Membro</th>
-                <th>Estado civil</th>
-                <th>Idade</th>
-                <th>Registrado</th>
-                <th>Ações</th>
-            </tr>
-            <tr *ngFor="let member of members">
-                <td>
-                    <mat-checkbox 
-                        [checked]="member.isSelected"
-                        (change)="onSelect.run($event.checked, member)"
-                    ></mat-checkbox>
-                </td>
-                <td class="photo-column">
-                    <img class="photo-member" [src]="member.photo.url" [alt]="member.name" (click)="onFullScreen.run(member.photo)">
-                </td>
-                <td>{{ member.name }}</td>
-                <td>{{ member.maritalStatus | maritalstatus }}</td>
-                <td>{{ member.age }} anos</td>
-                <td>{{ member.createdAt | dateDuration }}</td>
-                <td>
-                    <button mat-icon-button (click)="onPrint.run(member.id)">
-                        <mat-icon>print</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="goToEdit.run(member.id)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="onDelete.run(member.id, member)">
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </table>
-        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
+        <ng-template #loading>
+            <ui-table-skeleton></ui-table-skeleton>
+        </ng-template>
+        <div class="content" *ngIf="members$ | async as members; else loading">
+            <table class="ui-table default">
+                <tr>
+                    <th>
+                        <mat-checkbox
+                            [disabled]="pagination.total == 0"
+                            [checked]="allSelecteds()"
+                            [indeterminate]="someSelecteds()"
+                            (change)="onToggleSelection.run($event.checked)"
+                        ></mat-checkbox>
+                    </th>
+                    <th>Foto</th>
+                    <th>Membro</th>
+                    <th>Estado civil</th>
+                    <th>Idade</th>
+                    <th>Registrado</th>
+                    <th>Ações</th>
+                </tr>
+                <tr *ngFor="let member of members">
+                    <td>
+                        <mat-checkbox 
+                            [checked]="member.isSelected"
+                            (change)="onSelect.run($event.checked, member)"
+                        ></mat-checkbox>
+                    </td>
+                    <td class="photo-column">
+                        <img class="photo-member" [src]="member.photo.url" [alt]="member.name" (click)="onFullScreen.run(member.photo)">
+                    </td>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.maritalStatus | maritalstatus }}</td>
+                    <td>{{ member.age }} anos</td>
+                    <td>{{ member.createdAt | dateDuration }}</td>
+                    <td>
+                        <button mat-icon-button (click)="onPrint.run(member.id)">
+                            <mat-icon>print</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="goToEdit.run(member.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="onDelete.run(member.id, member)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <app-pagination
+                (changePage)="nextPage($event.label)"
+                [pageable]="listMembers.pageable"
+            >
+            </app-pagination>
+        </div>
     </section>
 </main>
 

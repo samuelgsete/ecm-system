@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { PaginationService } from './pagination.service';
 import { Page } from './page.entity';
-import { Paginate } from 'src/app/models/paginate.entity';
+import { Pageable } from './pageable.entity';
 
 @Component({
   selector: 'app-pagination',
@@ -11,32 +10,34 @@ import { Paginate } from 'src/app/models/paginate.entity';
 })
 export class PaginationComponent implements OnInit {
     
-  pages: Page[] = []
   @Output() changePage: EventEmitter<any> = new EventEmitter<any>()
-
-  constructor(
-    readonly pagination: PaginationService
-  ) {}
+  @Input() pageable: Pageable = new Pageable();
+  pages: Page[] = [];
 
   onChangePage(nextPage: Page): void {
+    let currentPage = this.getCurrentPage();
+    currentPage.isCurrent = false;
+    nextPage.isCurrent = true;
     this.changePage.emit(nextPage)
+    
   }
 
-  renderPagination(paginate: Paginate): void {
-    const totalPages = paginate.totalPages
-    const currentPage = paginate.currentPage
+  protected getCurrentPage(): Page {
+    return this.pages.filter(page => page.isCurrent)[0];
+  }
+
+  render(): void {
+    const totalPages = this.pageable.totalPages;
+    const currentPage = this.pageable.currentPage;
     for(let i = 0; i < totalPages; i++) {
       this.pages.push({
         label: i,
-        isCurrent: currentPage == i ? true : false
+        isCurrent: currentPage.label == i ? true : false,
       })
     }
   }
 
   ngOnInit(): void {
-    this.pagination.onRender().subscribe(paginate => {
-      this.pages = []
-      this.renderPagination(paginate)
-    })
+    this.render();    
   }
 }

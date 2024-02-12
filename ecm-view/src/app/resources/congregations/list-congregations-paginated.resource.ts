@@ -1,21 +1,24 @@
 import { Injectable } from "@angular/core";
 import { HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
+
 import { Pagination } from "src/app/models/pagination.entity";
 import { IPaginaterResource } from "../interfaces/paginater.resource";
+import { ResponsePageable } from "src/app/models/response-pageable.entity";
+import { Congregation } from "src/app/models/congregation.entity";
 
 @Injectable()
 export class ListCongregationsPaginatedResource extends IPaginaterResource {
 
     constructor() { super('congregations') }
 
-    public run(pagination: Pagination): Observable<any> {
+    run(pagination: Pagination): Observable<ResponsePageable<Congregation>> {
         const _params = new HttpParams()
             .set('search', pagination.search)
             .set('ordination', pagination.ordination)
             .set('page', pagination.page)
             .set('size', pagination.size)
 
-        return this.http.get<any>(this.baseUrl(), { params: _params });
+        return this.http.get<ResponsePageable<Congregation>>(this.baseUrl(), { params: _params });
     }
 }

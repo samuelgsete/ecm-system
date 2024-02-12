@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Member } from 'src/app/models/member.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
-import { Paginate } from 'src/app/models/paginate.entity';
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
 import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
@@ -37,7 +37,7 @@ import { OnFullScreenImage } from 'src/app/utils/services/on-fullscreen-image.se
 })
 export class DisplayMembersComponent implements OnInit {
 
-  members: Member[] = [];
+  members$!: Observable<Member[]>;
   countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
   allselecteds: boolean = true;
@@ -57,13 +57,20 @@ export class DisplayMembersComponent implements OnInit {
     readonly onPrintAll: PrintAllCredentialsService,
     readonly onDelete: DeleteMemberService,
     readonly onToggleSelection: ToggleSelectionMembersService,
-    readonly updateMetrics: DisplayMetricsService,
+    readonly displayMetrics: DisplayMetricsService,
     readonly onFullScreen: OnFullScreenImage
-  ) {}
+  ) {
+    this.order.setComponent(this);
+  }
+
+  onLoad(): void {
+    this.members$ = this.listMembers.run(this.pagination);
+  }
   
   nextPage(page: number): void {
     this.pagination.page = page;
-    this.listMembers.run(this.pagination);
+    this.onLoad();
+    window.scrollTo({ top: 60, behavior: 'smooth' });
   }
 
   allSelecteds(): boolean {
@@ -76,23 +83,15 @@ export class DisplayMembersComponent implements OnInit {
 
   onSearch(keyword: string) {
     this.searchValue = keyword;
-    this.listMembers.run(new Pagination({ search: keyword.toLowerCase() }))
+    this.pagination.search = this.searchValue;
+    this.pagination.page = 0;
+    this.onLoad();
   }
 
   ngOnInit(): void {
+    this.onLoad();
     this.titleService.setTitle('Todos os membros cadastrados');
-    this.listMembers.run(this.pagination);
-    this.listMembers.done().subscribe(response => {
-      this.members = response.content;
-      this.pagination.page = response.number
-      this.pagination.total = response.totalElements     
-      this.onPaginate.onBuild(new Paginate({
-        currentPage: response.number,
-        totalElements: response.totalElements,
-        totalPages: response.totalPages
-      }))
-    })
-    
+          
     this.count.run();
     this.count.done().subscribe(response => {
       this.countSelecteds = response;
@@ -109,20 +108,19 @@ export class DisplayMembersComponent implements OnInit {
     })
 
     this.onDelete.done().subscribe(response => {
-      this.listMembers.run(new Pagination());
-      this.updateMetrics.run();
+      this.onLoad();
       this.count.run();
     })
 
     this.onToggleSelection.done().subscribe(response => {
-      this.listMembers.run(new Pagination());
+      this.onLoad();
       this.count.run();
-      this.updateMetrics.run();
+      this.displayMetrics.onUpdate();
     })
 
     this.onSelect.done().subscribe(response => {
-      this.updateMetrics.run();
       this.count.run();
+      this.displayMetrics.onUpdate();
     })
   }
 }

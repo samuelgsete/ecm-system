@@ -100,10 +100,18 @@
     <div class="row-flex">
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Congregação</mat-label>
-            <mat-select formControlName="congregation">
-                <mat-option *ngFor="let congregation of congregations" [value]="congregation">
-                    {{ congregation.name }}
-                </mat-option>
+            <mat-select formControlName="congregation" (openedChange)="openSelectionCongregations()">
+                <ng-template #loadingCongregations>
+                    <mat-option>
+                        <span> Carregando...</span>
+                    </mat-option>
+                </ng-template>
+                <div class="options" *ngIf="congregations$ | async as congregations; else loadingCongregations">
+                    <mat-option *ngFor="let congregation of congregations" [value]="congregation">
+                        {{ congregation.name }}
+                    </mat-option>
+                </div>
+                
             </mat-select>
             <mat-error *ngIf="form.controls.congregation.errors?.['required']">
                 Esse campo é obrigatório
@@ -111,10 +119,17 @@
         </mat-form-field>
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Cargo</mat-label>
-            <mat-select formControlName="role">
-                <mat-option *ngFor="let role of roles" [value]="role">
-                    {{ role.name }}
-                </mat-option>
+            <mat-select formControlName="role" (openedChange)="openSelectionRoles()">
+                <ng-template #loadingRoles>
+                    <mat-option>
+                        <span> Carregando...</span>
+                    </mat-option>
+                </ng-template>
+                <div class="options" *ngIf="roles$ | async as roles; else loadingRoles">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{ role.name }}
+                    </mat-option>
+                </div>
             </mat-select>
             <mat-error *ngIf="form.controls.role.errors?.['required']">
                 Esse campo é obrigatório

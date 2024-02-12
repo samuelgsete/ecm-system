@@ -3,14 +3,14 @@
         <header>
             <app-page-description title="Cargos" subtitle="Cadastrados"></app-page-description>
             <div class="row-flex space-between center-vertical" *ngIf="!listRoles.isEmpty()">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Filtrar listagem">
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name, pagination)"
+                        (click)="order.run(ordination.name)"
                     >
                         <mat-radio-button [checked]="ordination.isActive" color="primary">
                             <span class="label-ordination">{{ ordination.label }}</span>
@@ -40,35 +40,43 @@
             >CADASTRAR NOVO</button>
         </app-no-data-created>
 
-        <app-such-notfound [keyword]="searchValue" [isVisible]="listRoles.notFound()"></app-such-notfound>
-        
-        <table class="ui-table stripped" *ngIf="!listRoles.isEmpty() && !listRoles.notFound()">
-            <tr>
-                <th>ID</th>
-                <th>Cargo</th>
-                <th>Total cadastrado</th>
-                <th>última Atualização</th>
-                <th>Ações</th>
-            </tr>
-            <tr *ngFor="let role of roles">
-                <td>{{ role.id }}</td>
-                <td>{{ role.name }}</td>
-                <td>{{ role.numberOfMembers }} membro(s)</td>
-                <td>{{ role.updatedAt | dateDuration }}</td>
-                <td>
-                    <button mat-icon-button [disabled]="role.numberOfMembers <= 0" (click)="onEmit.run(role.name)">
-                        <mat-icon>print</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="openUpdateRoleComponent(role)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="onDelete.run(role.id, role)">
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </table>
-        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
+        <ng-template #loading>
+            <ui-table-skeleton></ui-table-skeleton>
+        </ng-template>
+
+        <div class="content" *ngIf="roles$ | async as roles; else loading">
+            <table class="ui-table stripped">
+                <tr>
+                    <th>ID</th>
+                    <th>Cargo</th>
+                    <th>Total cadastrado</th>
+                    <th>última Atualização</th>
+                    <th>Ações</th>
+                </tr>
+                <tr *ngFor="let role of roles">
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.name }}</td>
+                    <td>{{ role.numberOfMembers }} membro(s)</td>
+                    <td>{{ role.updatedAt | dateDuration }}</td>
+                    <td>
+                        <button mat-icon-button [disabled]="role.numberOfMembers <= 0" (click)="onEmit.run(role.name)">
+                            <mat-icon>print</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="openUpdateRoleComponent(role)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="onDelete.run(role.id, role)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <app-pagination
+                *ngIf="listRoles.isFinally()" 
+                (changePage)="nextPage($event.label)" 
+                [pageable]="listRoles.pageable"
+            ></app-pagination>
+        </div>
     </section>
 </main>
 

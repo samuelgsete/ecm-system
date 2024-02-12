@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
 import { Pagination } from 'src/app/models/pagination.entity';
 import { Role } from 'src/app/models/role.entity';
@@ -9,7 +10,6 @@ import { UpdateRoleComponent } from '../update-role/update-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';
 import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
-import { Paginate } from 'src/app/models/paginate.entity';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
@@ -21,10 +21,10 @@ import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-
 })
 export class DisplayRolesComponent implements OnInit {
 
-  roles: Role[] = [];
+  roles$!: Observable<Role[]>
   pagination: Pagination = new Pagination();
   searchValue: string = '';
-
+   
   constructor(
     protected readonly titleService: Title,
     protected readonly modal: MatDialog,
@@ -34,11 +34,17 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly order: OrderRolesService,
     protected readonly updateMetrics: DisplayMetricsService,
     protected readonly onEmit: EmitCredentialsByRoleService
-  ) {}
+  ) {
+    this.order.setComponent(this);
+  }
+
+  onLoad(): void {
+    this.roles$ = this.listRoles.run(this.pagination);
+  }
 
   nextPage(page: number): void {
     this.pagination.page = page;
-    this.listRoles.run(this.pagination);
+    this.onLoad();
   }
 
   openUpdateRoleComponent(role: Role): void {
@@ -46,38 +52,28 @@ export class DisplayRolesComponent implements OnInit {
       data: role
     })
     this.modal.afterAllClosed.subscribe(() => {
-      this.listRoles.run(this.pagination);
+      this.onLoad();
     })
   }
 
   openCreateRoleComponent(): void {
     this.modal.open(CreateRoleComponent);
     this.modal.afterAllClosed.subscribe(() => {
-      this.listRoles.run(this.pagination);
+      this.onLoad();
     })
   }
 
   onSearch(keyword: string) {
     this.searchValue = keyword;
-    this.listRoles.run(new Pagination({ search: keyword.toLowerCase() }))
+    this.pagination.search = this.searchValue;
+    this.onLoad();
   }
 
   ngOnInit(): void {
+    this.onLoad();
     this.titleService.setTitle('Gerenciar cargos');
-    this.listRoles.run(this.pagination);
-    this.listRoles.done().subscribe(response => {
-      this.roles = response.content;
-      this.pagination.page = response.number
-      this.pagination.total = response.totalElements 
-      this.onPaginate.onBuild(new Paginate({
-        currentPage: response.number,
-        totalElements: response.totalElements,
-        totalPages: response.totalPages
-      }))
-    })
-
     this.onDelete.done().subscribe(roleDeleted => {
-      this.updateMetrics.run();
+      this.updateMetrics.onUpdate();
       this.listRoles.run(new Pagination());
     });
 

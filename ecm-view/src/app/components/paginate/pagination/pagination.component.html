@@ -1,11 +1,11 @@
-<ul class="pagination" *ngIf="pages.length > 1">
-    <li 
-        class="page" 
-        *ngFor="let page of pages"
-        (click)="onChangePage(page)"
-        [ngClass]="{ 'isCurrent' : page.isCurrent == true }"
-        matRipple
-    >
-        {{ page.label + 1 }}
-    </li>
-</ul>
+<nav>
+    <ul class="pagination" *ngIf="pageable.totalPages > 1">
+        <li 
+            class="page" 
+            *ngFor="let page of pages"
+            (click)="onChangePage(page)"
+            [ngClass]="{ 'isCurrent' : page.isCurrent == true }"
+            matRipple
+        >{{ page.label + 1 }}</li>
+    </ul>
+</nav>

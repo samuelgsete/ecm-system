@@ -4,7 +4,7 @@ export class Paginate {
     totalElements: number = 0
     totalPages: number = 0
     
-    public constructor(values: Object = {}) { 
+    constructor(values: Object = {}) { 
         Object.assign(this, values);
     }
 }

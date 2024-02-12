@@ -20,7 +20,6 @@ export class CountMembersSelectedsService {
     }
 
     run(): void {
-        this.spinner.show()
         this.count.run().subscribe({
             next: (response) => {
                 this.isDone.emit(response);
@@ -31,8 +30,6 @@ export class CountMembersSelectedsService {
                     positionClass: 'toast-bottom-center'
                 });
             }
-        }).add(() => {
-            this.spinner.hide();
-        });
+        })
     }
 }

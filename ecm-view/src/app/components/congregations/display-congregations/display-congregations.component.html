@@ -3,14 +3,14 @@
         <header>
             <app-page-description title="Congregações" subtitle="Cadastradas"></app-page-description>
             <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.isEmpty()">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Filtrar listagem">
+                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
                 <mat-menu #ordination="matMenu">
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name, pagination)"
+                        (click)="order.run(ordination.name)"
                     >
                         <mat-radio-button [checked]="ordination.isActive" color="primary">
                             <span class="label-ordination">{{ ordination.label }}</span>
@@ -40,42 +40,42 @@
             >CADASTRAR NOVA</button>
         </app-no-data-created>
 
-        <app-such-notfound [keyword]="searchValue" [isVisible]="listCongregations.notFound()"></app-such-notfound>
+        <ng-template #loading>
+            <ui-table-skeleton></ui-table-skeleton>
+        </ng-template>
         
-        <table class="ui-table stripped" *ngIf="!listCongregations.isEmpty() && !listCongregations.notFound()">
-            <tr>
-                <th>ID</th>
-                <th>Congregação</th>
-                <th>Total cadastrado</th>
-                <th>Última Atualização</th>
-                <th>Ações</th>
-            </tr>
-            <tr *ngFor="let congregation of congregations">
-                <td>{{ congregation.id }}</td>
-                <td>{{ congregation.name }}</td>
-                <td>{{ congregation.numberOfMembers }} membro(s)</td>
-                <td>{{ congregation.updatedAt | dateDuration }}</td>
-                <td>
-                    <button mat-icon-button [disabled]="congregation.numberOfMembers <= 0" (click)="onEmit.run(congregation.name)">
-                        <mat-icon>print</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="onDelete.run(congregation.id, congregation)">
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </table>
-        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
+        <div class="content" *ngIf="congregations$ | async as congregations; else loading">
+            <table class="ui-table stripped">
+                <tr>
+                    <th>ID</th>
+                    <th>Congregação</th>
+                    <th>Total cadastrado</th>
+                    <th>Última Atualização</th>
+                    <th>Ações</th>
+                </tr>
+                <tr *ngFor="let congregation of congregations">
+                    <td>{{ congregation.id }}</td>
+                    <td>{{ congregation.name }}</td>
+                    <td>{{ congregation.numberOfMembers }} membro(s)</td>
+                    <td>{{ congregation.updatedAt | dateDuration }}</td>
+                    <td>
+                        <button mat-icon-button [disabled]="congregation.numberOfMembers <= 0" (click)="onEmit.run(congregation.name)">
+                            <mat-icon>print</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="onDelete.run(congregation.id, congregation)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <app-pagination
+                (changePage)="nextPage($event.label)"
+                [pageable]="listCongregations.pageable"
+            >
+            </app-pagination>
+        </div>
     </section>
 </main>
-
-<ngx-spinner 
-    bdColor="rgba(0, 0, 0, 0.8)"
-    size="medium"
-    color="#8e27fa"
-    type="ball-atom"
-    [fullScreen]="true">
-</ngx-spinner>

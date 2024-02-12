@@ -102,9 +102,11 @@
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Congregação</mat-label>
             <mat-select formControlName="congregation" [compareWith]="congregationComparator.run">
-                <mat-option *ngFor="let congregation of congregations" [value]="congregation">
-                    {{ congregation.name }}
-                </mat-option>
+                <div class="options" *ngIf="congregations$ | async as congregations">
+                    <mat-option *ngFor="let congregation of congregations" [value]="congregation">
+                        {{ congregation.name }}
+                    </mat-option>
+                </div>
             </mat-select>
             <mat-error *ngIf="form.controls.congregation.errors?.['required']">
                 Esse campo é obrigatório
@@ -113,9 +115,11 @@
         <mat-form-field class="width-fix" appearance="fill" color="primary">
             <mat-label>Cargo</mat-label>
             <mat-select formControlName="role" [compareWith]="roleComparator.run">
-                <mat-option *ngFor="let role of roles" [value]="role">
-                    {{ role.name }}
-                </mat-option>
+                <div class="options" *ngIf="roles$ | async as roles">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{ role.name }}
+                    </mat-option>
+                </div>
             </mat-select>
             <mat-error *ngIf="form.controls.role.errors?.['required']">
                 Esse campo é obrigatório

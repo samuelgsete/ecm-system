@@ -9,6 +9,7 @@ header {
 }
 
 button.filter-table {
+    background-color: rgb(var(--gray-3));
     color: rgb(var(--gray-6));
 }
 

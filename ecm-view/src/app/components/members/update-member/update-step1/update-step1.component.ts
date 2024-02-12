@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { Role } from 'src/app/models/role.entity';
 import { Congregation } from 'src/app/models/congregation.entity';
@@ -24,8 +25,8 @@ export class UpdateStep1Component implements OnInit {
   @Input() 
   form!: FormGroup<IFormMemberStep1>;
 
-  roles: Role[] = [];
-  congregations: Congregation[] = []
+  roles$!: Observable<Role[]>;
+  congregations$!: Observable<Congregation[]>;
   
   constructor(
     protected readonly listGenders: ListGendersService,
@@ -36,14 +37,24 @@ export class UpdateStep1Component implements OnInit {
     protected readonly congregationComparator: SelectCongregationComparatorService
   ) {}
 
+  openSelectionRoles(): void {
+    !this.roles$ && this.loadRoles();
+  }
+
+  openSelectionCongregations(): void {
+    !this.congregations$ && this.loadCongregations();
+  }
+
+  protected loadRoles(): void {
+    this.roles$ = this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
+  }
+
+  protected loadCongregations(): void {
+    this.congregations$ = this.listCongregations.run(new Pagination({ size: SIZE_PAGINATION }));
+  }
+
   ngOnInit(): void {
-    this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
-    this.listRoles.done().subscribe(response => {
-      this.roles = response.content;
-    })
-    this.listCongregations.run(new Pagination({ size: SIZE_PAGINATION }));
-    this.listCongregations.done().subscribe(response => {
-      this.congregations = response.content;
-    });
+    this.loadRoles();
+     this.loadCongregations();
   }
 }

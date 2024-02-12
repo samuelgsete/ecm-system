@@ -4,36 +4,48 @@
             <mat-panel-title>Temas de Credenciais</mat-panel-title>
             <mat-panel-description>{{ numberOfThemes}} disponíveis</mat-panel-description>
         </mat-expansion-panel-header>
-        <table class="ui-table default" *ngIf="!listThemes.isEmpty()">
-            <tr>
-                <th>ID</th>
-                <th>Tema</th>
-                <th>Status</th>
-                <th>última Atualização</th>
-                <th>Ações</th>
-            </tr>
-            <tr *ngFor="let theme of themes">
-                <td>{{ theme.id }}</td>
-                <td>{{ theme.name }}</td>
-                <td>
-                    <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
-                        {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
-                    </div>
-                </td>
-                <td>{{ theme.updatedAt | dateDuration }}</td>
-                <td>
-                    <button
-                        class="btn btn-sm"
-                        color="dark"
-                        radius="true"
-                        outline="true"
-                        (click)="makeThemeToMain.run(theme.id)"
-                        [disabled]="theme.isActive"
-                        matRipple
-                    >ATIVAR</button>
-                </td>
-            </tr>
-        </table>
+
+        <ng-template #loading>
+            <ui-table-skeleton></ui-table-skeleton>
+        </ng-template>
+
+        <div class="content" *ngIf="themes$ | async as themes; else loading">
+            <table class="ui-table default" *ngIf="!listThemes.isEmpty()">
+                <tr>
+                    <th>ID</th>
+                    <th>Tema</th>
+                    <th>Status</th>
+                    <th>última Atualização</th>
+                    <th>Ações</th>
+                </tr>
+                <tr *ngFor="let theme of themes">
+                    <td>{{ theme.id }}</td>
+                    <td>{{ theme.name }}</td>
+                    <td>
+                        <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
+                            {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
+                        </div>
+                    </td>
+                    <td>{{ theme.updatedAt | dateDuration }}</td>
+                    <td>
+                        <button
+                            class="btn btn-sm"
+                            color="dark"
+                            radius="true"
+                            outline="true"
+                            (click)="makeThemeToMain.run(theme.id)"
+                            [disabled]="theme.isActive"
+                            matRipple
+                        >ATIVAR</button>
+                    </td>
+                </tr>
+            </table>
+            <app-pagination
+                (changePage)="nextPage($event.label)"
+                [pageable]="listThemes.pageable"
+            >
+            </app-pagination>
+        </div>
         <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </mat-expansion-panel>
 </mat-accordion>

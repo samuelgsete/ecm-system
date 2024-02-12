@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 
-import { ListMembersPaginatedService } from "./list-members-paginated.service"; 
-import { Pagination } from "src/app/models/pagination.entity";
 import { Ordination } from "../../models/ordination.entity";
+import { DisplayMembersComponent } from "src/app/components/members/display-members/display-members.component";
 
 @Injectable()
 export class OrderMembersService {
+
+    displayMembersComponent!: DisplayMembersComponent;
 
     ordinations: Ordination[] = [
         { label: 'Nome A-Z', name: 'by_name_asc', isActive: true },
@@ -13,12 +14,15 @@ export class OrderMembersService {
         { label: 'Recentes', name: 'latest_created', isActive: false },
         { label: 'Atualizados', name: 'latest_updated', isActive: false },
         { label: 'Antigos', name: 'older_created', isActive: false }
-    ]
+    ];
 
-    constructor(readonly listMembers: ListMembersPaginatedService) {}
-
-    run(_ordination: string, pagination: Pagination) {
+    run(_ordination: string) {
+        let pagination = this.displayMembersComponent.pagination;
         pagination.ordination = _ordination;
-        this.listMembers.run(pagination);
+        this.displayMembersComponent.onLoad();
+    }
+
+    setComponent(component: DisplayMembersComponent): void {
+        this.displayMembersComponent = component;
     }
 }
