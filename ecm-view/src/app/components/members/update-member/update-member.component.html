@@ -1,12 +1,12 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Membros" subtitle="Editar"></app-page-description>
+            <app-page-description title="Membros" subtitle="Editar" />
         </header>
         <div class="content" *ngIf="!findOne.inProgress()">
             <mat-stepper orientation="vertical" animationDuration="420" [linear]="!true" scrollStepperFix>
                 <mat-step label="Dados Pessoais" [stepControl]="step1" state="account" errorMessage="Revise essa etapa">
-                    <app-update-step1 [form]="step1"></app-update-step1>
+                    <app-update-step1 [form]="step1" />
                     <div class="row-flex">
                         <button 
                             class="btn btn-lg"
@@ -20,7 +20,7 @@
                 </mat-step>
                 <mat-step [stepControl]="step2" label="Contato" state="contact" errorMessage="Revise essa etapa">
                     <form [formGroup]="step2">
-                        <app-update-step2 [form]="step2"></app-update-step2>
+                        <app-update-step2 [form]="step2" />
                         <div class="row-flex">
                             <button 
                                 class="btn btn-lg"
@@ -42,7 +42,7 @@
                 </mat-step>
                 <mat-step label="Filiação" [stepControl]="step3" state="group-add" errorMessage="Revise essa etapa">
                     <form [formGroup]="step3">
-                        <app-update-step3 [form]="step3"></app-update-step3>
+                        <app-update-step3 [form]="step3" />
                         <div class="row-flex">
                             <button 
                                 class="btn btn-lg"
@@ -63,7 +63,7 @@
                     </form>
                 </mat-step>
                 <mat-step label="Imagens" [stepControl]="step4" state="add-image" errorMessage="Revise essa etapa">
-                    <app-update-step4 [form]="step4"></app-update-step4>
+                    <app-update-step4 [form]="step4" />
                     <div class="row-flex">
                         <button 
                             class="btn btn-lg"

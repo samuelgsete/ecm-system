@@ -67,7 +67,7 @@ export class DisplayMembersComponent implements OnInit {
     this.members$ = this.listMembers.run(this.pagination);
   }
   
-  nextPage(page: number): void {
+  changePage(page: number): void {
     this.pagination.page = page;
     this.onLoad();
     window.scrollTo({ top: 60, behavior: 'smooth' });

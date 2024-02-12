@@ -1,8 +1,8 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Cargos" subtitle="Cadastrados"></app-page-description>
-            <div class="row-flex space-between center-vertical" *ngIf="!listRoles.isEmpty()">
+            <app-page-description title="Cargos" subtitle="Cadastrados" />
+            <div class="row-flex space-between center-vertical" *ngIf="!listRoles.emptyData">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -30,7 +30,7 @@
             </div>
         </header>
                 
-        <app-no-data-created message="Você ainda não têm cargos cadastrados" [isVisible]="listRoles.isEmpty()">
+        <app-no-data-created message="Você ainda não têm cargos cadastrados" [isVisible]="listRoles.emptyData">
             <button 
                 class="btn btn-lg"
                 color="purple"
@@ -41,7 +41,7 @@
         </app-no-data-created>
 
         <ng-template #loading>
-            <ui-table-skeleton></ui-table-skeleton>
+            <ui-table-skeleton />
         </ng-template>
 
         <div class="content" *ngIf="roles$ | async as roles; else loading">
@@ -71,12 +71,9 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination
-                *ngIf="listRoles.isFinally()" 
-                (changePage)="nextPage($event.label)" 
-                [pageable]="listRoles.pageable"
-            ></app-pagination>
+            <app-pagination (changePage)="changePage($event.label)" [pageable]="listRoles.pageable" />
         </div>
+        <such-notfound [keyword]="searchValue" [isVisible]="listRoles.searchNotFound" />
     </section>
 </main>
 

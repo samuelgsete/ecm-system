@@ -9,7 +9,6 @@ import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-pag
 import { UpdateRoleComponent } from '../update-role/update-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';
 import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
-import { PaginationService } from '../../paginate/pagination/pagination.service';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
@@ -28,7 +27,6 @@ export class DisplayRolesComponent implements OnInit {
   constructor(
     protected readonly titleService: Title,
     protected readonly modal: MatDialog,
-    protected readonly onPaginate: PaginationService,
     protected readonly listRoles: ListRolesPaginatedService,
     protected readonly onDelete: DeleteRoleService,
     protected readonly order: OrderRolesService,
@@ -42,7 +40,7 @@ export class DisplayRolesComponent implements OnInit {
     this.roles$ = this.listRoles.run(this.pagination);
   }
 
-  nextPage(page: number): void {
+  changePage(page: number): void {
     this.pagination.page = page;
     this.onLoad();
   }

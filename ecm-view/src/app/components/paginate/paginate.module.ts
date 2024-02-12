@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaginationComponent } from './pagination/pagination.component';
-import { PaginationService } from './pagination/pagination.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +14,6 @@ import { PaginationService } from './pagination/pagination.service';
   ],
   exports: [
     PaginationComponent
-  ],
-  providers: [
-    PaginationService
   ]
 })
 export class PaginateModule {}

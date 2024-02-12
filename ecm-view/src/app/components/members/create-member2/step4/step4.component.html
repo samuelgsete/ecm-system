@@ -22,12 +22,11 @@
             id="input-file-photo"
             type="file"
             (change)="onChangePhoto($event)"
-            accept="image/png, image/jpeg" hidden
-        >
+            accept="image/png, image/jpeg" hidden />
     </div>
     <div>
-        <app-upload-image-skeleton [isVisible]="uploadPhoto.uploading()"></app-upload-image-skeleton>
-        <app-uploaded-image-preview [uploadedImage]="photo" [isUploaded]="isUploadedPhoto" [destroy]="destroyerPhoto"></app-uploaded-image-preview>                   
+        <app-upload-image-skeleton [isVisible]="uploadPhoto.uploading()" />
+        <app-uploaded-image-preview [uploadedImage]="photo" [isUploaded]="isUploadedPhoto" [destroy]="destroyerPhoto" />                   
     </div>
     <div class="ui-upload-image" *ngIf="!uploadSignature.uploading() && !isUploadedSignature" matRipple>
         <mat-icon class="icon-image">upload</mat-icon>
@@ -39,11 +38,10 @@
             type="file"
             (change)="onChangeSignature($event)"
             accept="image/png, image/jpeg" 
-            hidden
-        >
+            hidden />
     </div>
     <div>
-        <app-upload-image-skeleton [isVisible]="uploadSignature.uploading()"></app-upload-image-skeleton>
-        <app-uploaded-image-preview [uploadedImage]="signature" [isUploaded]="isUploadedSignature" [destroy]="destroyerSignature"></app-uploaded-image-preview>                 
+        <app-upload-image-skeleton [isVisible]="uploadSignature.uploading()" />
+        <app-uploaded-image-preview [uploadedImage]="signature" [isUploaded]="isUploadedSignature" [destroy]="destroyerSignature" />                 
     </div>
 </form>

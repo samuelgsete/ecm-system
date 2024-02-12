@@ -14,9 +14,9 @@ export class ListMembersPaginatedService extends IPaginater {
     run(pagination: Pagination): Observable<Member[]>  {
         return this.paginater.run(pagination).pipe(
             map(response => {
-                pagination.total = response.totalElements;            
-                this.setPageable(response.number, response.totalPages);
-
+                pagination.total = response.totalElements;
+                this.emptyOrNotFound(pagination.total, pagination.search);
+                this.setPageable(response.number, response.totalPages);                     
                 return response.content;
             })
         )

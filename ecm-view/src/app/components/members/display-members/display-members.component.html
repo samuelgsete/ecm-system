@@ -1,8 +1,8 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Membros" subtitle="Cadastrados"></app-page-description>
-            <div class="row-flex space-between center-vertical" *ngIf="!listMembers.isEmpty()">
+            <app-page-description title="Membros" subtitle="Cadastrados" />
+            <div class="row-flex space-between center-vertical" *ngIf="!listMembers.emptyData">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -18,7 +18,7 @@
                     </button>
                 </mat-menu>
     
-                <ui-input-search (keywordChange)="onSearch($event)"></ui-input-search>
+                <ui-input-search (keywordChange)="onSearch($event)" />
 
                 <button 
                     class="btn btn-lg"
@@ -30,7 +30,7 @@
             </div>
         </header>
        
-        <app-no-data-created message="Você ainda não têm membros cadastrados" [isVisible]="listMembers.isEmpty()">
+        <app-no-data-created message="Você ainda não têm membros cadastrados" [isVisible]="listMembers.emptyData">
             <button 
                 class="btn btn-lg"
                 color="purple"
@@ -50,9 +50,11 @@
                 [disabled]="countSelecteds == 0"
             >Aguardando emissão</button>
         </div>
+
         <ng-template #loading>
-            <ui-table-skeleton></ui-table-skeleton>
+            <ui-table-skeleton />
         </ng-template>
+
         <div class="content" *ngIf="members$ | async as members; else loading">
             <table class="ui-table default">
                 <tr>
@@ -98,12 +100,9 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination
-                (changePage)="nextPage($event.label)"
-                [pageable]="listMembers.pageable"
-            >
-            </app-pagination>
+            <app-pagination (changePage)="changePage($event.label)" [pageable]="listMembers.pageable" />
         </div>
+        <such-notfound [keyword]="searchValue" [isVisible]="listMembers.searchNotFound" />
     </section>
 </main>
 

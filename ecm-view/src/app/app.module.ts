@@ -12,7 +12,6 @@ import { UploadsImagesModule } from './components/uploads-images/uploads-images.
 import { PaginateModule } from './components/paginate/paginate.module';
 import { LayoutModule } from './layout/layout.module';
 import { SettingsModule } from './components/settings/settings.module';
-import { CredentialThemesModule } from './components/credential-themes/credential-themes.module';
 
 import { AppComponent } from './app.component';
 import { initializeKeycloak } from './security/keycloak.config';
@@ -34,7 +33,6 @@ import { UsersModule } from './components/users/users.module';
     CongregationsModule,
     UploadsImagesModule,
     LayoutModule,
-    CredentialThemesModule,
     UsersModule,
     SettingsModule
   ],

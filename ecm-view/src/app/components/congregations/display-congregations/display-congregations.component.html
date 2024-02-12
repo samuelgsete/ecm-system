@@ -1,8 +1,8 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Congregações" subtitle="Cadastradas"></app-page-description>
-            <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.isEmpty()">
+            <app-page-description title="Congregações" subtitle="Cadastradas" />
+            <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.emptyData">
                 <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
                     <mat-icon>filter_list</mat-icon>
                 </button>
@@ -10,7 +10,7 @@
                     <button
                         mat-menu-item
                         *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name)"
+                        (click)="changeOrdination(ordination.name)"
                     >
                         <mat-radio-button [checked]="ordination.isActive" color="primary">
                             <span class="label-ordination">{{ ordination.label }}</span>
@@ -18,7 +18,7 @@
                     </button>
                 </mat-menu>
                 
-                <ui-input-search (keywordChange)="onSearch($event)"></ui-input-search>
+                <ui-input-search (keywordChange)="onSearch($event)" />
 
                 <button 
                     class="btn btn-lg"
@@ -30,7 +30,7 @@
             </div>
         </header>
 
-        <app-no-data-created message="Você ainda não têm congregações cadastradas" [isVisible]="listCongregations.isEmpty()">
+        <app-no-data-created message="Você ainda não têm congregações cadastradas" *ngIf="listCongregations.emptyData">
             <button 
                 class="btn btn-lg"
                 color="purple"
@@ -41,7 +41,7 @@
         </app-no-data-created>
 
         <ng-template #loading>
-            <ui-table-skeleton></ui-table-skeleton>
+            <ui-table-skeleton />
         </ng-template>
         
         <div class="content" *ngIf="congregations$ | async as congregations; else loading">
@@ -71,11 +71,8 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination
-                (changePage)="nextPage($event.label)"
-                [pageable]="listCongregations.pageable"
-            >
-            </app-pagination>
+            <app-pagination (changePage)="changePage($event.label)" [pageable]="listCongregations.pageable" />
         </div>
+        <such-notfound [keyword]="searchValue" [isVisible]="listCongregations.searchNotFound" />
     </section>
 </main>

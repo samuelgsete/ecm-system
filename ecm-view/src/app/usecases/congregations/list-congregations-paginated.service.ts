@@ -15,6 +15,7 @@ export class ListCongregationsPaginatedService extends IPaginater {
         return this.paginater.run(pagination).pipe(
             map(response => {
                 pagination.total = response.totalElements;
+                this.emptyOrNotFound(pagination.total, pagination.search);
                 this.setPageable(response.number, response.totalPages);                     
                 return response.content;
             })

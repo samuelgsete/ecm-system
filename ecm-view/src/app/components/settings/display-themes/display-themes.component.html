@@ -6,11 +6,11 @@
         </mat-expansion-panel-header>
 
         <ng-template #loading>
-            <ui-table-skeleton></ui-table-skeleton>
+            <ui-table-skeleton />
         </ng-template>
 
         <div class="content" *ngIf="themes$ | async as themes; else loading">
-            <table class="ui-table default" *ngIf="!listThemes.isEmpty()">
+            <table class="ui-table default">
                 <tr>
                     <th>ID</th>
                     <th>Tema</th>
@@ -40,13 +40,8 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination
-                (changePage)="nextPage($event.label)"
-                [pageable]="listThemes.pageable"
-            >
-            </app-pagination>
+            <app-pagination (changePage)="changePage($event.label)" [pageable]="listThemes.pageable" />
         </div>
-        <app-pagination (changePage)="nextPage($event.label)"></app-pagination>
     </mat-expansion-panel>
 </mat-accordion>
 

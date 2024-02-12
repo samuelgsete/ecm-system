@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { CredentialTheme } from 'src/app/models/credential-theme.entity';
-import { Paginate } from 'src/app/models/paginate.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
 import { ListCredentialThemesPaginatedService } from 'src/app/usecases/credential-themes/list-credential-themes-paginated.service';
 import { MakeThemeToMainService } from 'src/app/usecases/credential-themes/make-theme-to-main.service';
-import { PaginationService } from '../../paginate/pagination/pagination.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-display-themes',
@@ -20,11 +19,10 @@ export class DisplayThemesComponent implements OnInit {
  
   constructor(
     readonly listThemes: ListCredentialThemesPaginatedService,
-    readonly makeThemeToMain: MakeThemeToMainService,
-    readonly onPaginate: PaginationService
+    readonly makeThemeToMain: MakeThemeToMainService
   ) {}
 
-  nextPage(page: number): void {
+  changePage(page: number): void {
     this.pagination.page = page;
     this.onLoad();
   }
@@ -35,9 +33,8 @@ export class DisplayThemesComponent implements OnInit {
 
   ngOnInit(): void {
     this.onLoad();
-
     this.makeThemeToMain.done().subscribe(response => {
-      this.listThemes.run(this.pagination)
+      this.onLoad();
     })
   }
 }

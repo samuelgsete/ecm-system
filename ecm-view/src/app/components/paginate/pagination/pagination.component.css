@@ -20,7 +20,7 @@ li.disabled {
 }
 
 ul.pagination li.page {
-    padding: 16px;
+    padding: 12px 16px;
     color: rgb(var(--gray-7));
     font-size: 1.16em;
     font-weight: 550;

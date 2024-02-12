@@ -49,7 +49,7 @@ import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form
     OrderCongregationsService,
     DeleteCongregationeResource,
     DeleteCongregationService,
-    BuildFormCongregation
+    BuildFormCongregation,
   ]
 })
 export class CongregationsModule {}
