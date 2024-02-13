@@ -59,18 +59,21 @@ export class DisplayMembersComponent implements OnInit {
     readonly onToggleSelection: ToggleSelectionMembersService,
     readonly displayMetrics: DisplayMetricsService,
     readonly onFullScreen: OnFullScreenImage
-  ) {
-    this.order.setComponent(this);
-  }
+  ) {}
 
   onLoad(): void {
     this.members$ = this.listMembers.run(this.pagination);
   }
   
-  changePage(page: number): void {
-    this.pagination.page = page;
+  changePage(nextPage: number): void {
+    this.pagination.page = nextPage;
     this.onLoad();
     window.scrollTo({ top: 60, behavior: 'smooth' });
+  }
+
+  changeOrdination(ordination: string): void {
+    this.pagination.ordination = ordination;
+    this.onLoad();
   }
 
   allSelecteds(): boolean {

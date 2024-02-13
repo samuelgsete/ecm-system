@@ -10,16 +10,16 @@ import { Pageable } from './pageable.entity';
 })
 export class PaginationComponent implements OnInit {
     
-  @Output() changePage: EventEmitter<any> = new EventEmitter<any>()
+  @Output() changePage: EventEmitter<Page> = new EventEmitter<Page>()
   @Input() pageable: Pageable = new Pageable();
   pages: Page[] = [];
+  MAX_PAGES_VISIBLE = 8;
 
   onChangePage(nextPage: Page): void {
     let currentPage = this.getCurrentPage();
     currentPage.isCurrent = false;
     nextPage.isCurrent = true;
-    this.changePage.emit(nextPage)
-    
+    this.changePage.emit(nextPage);
   }
 
   protected getCurrentPage(): Page {
@@ -29,15 +29,17 @@ export class PaginationComponent implements OnInit {
   render(): void {
     const totalPages = this.pageable.totalPages;
     const currentPage = this.pageable.currentPage;
-    for(let i = 0; i < totalPages; i++) {
-      this.pages.push({
-        label: i,
-        isCurrent: currentPage.label == i ? true : false,
+    this.pages = Array.from({ length: totalPages }).map((item, index) => {
+      return new Page({
+        name: index  + 1,
+        value: index,
+        isCurrent: currentPage == index ? true : false,
+        isHidden: index < this.MAX_PAGES_VISIBLE ? false : true
       })
-    }
+    })
   }
 
   ngOnInit(): void {
-    this.render();    
+    this.render();
   }
 }

@@ -2,7 +2,7 @@ import { Page } from "./page.entity";
 
 export class Pageable {
     
-    currentPage!: Page;
+    currentPage!: number;
     totalPages!: number;
 
     constructor(values: Object = {}) { 

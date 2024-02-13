@@ -1,0 +1,14 @@
+<button class="order-list" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
+    <mat-icon>filter_list</mat-icon>
+</button>
+<mat-menu #ordination="matMenu">
+    <button
+        mat-menu-item
+        class="item-ordination"
+        *ngFor="let ordination of ordinations"
+        (click)="onChange(ordination)"
+        [ngClass]="{ 'ordination-active' : ordination.isActive }"
+    >
+        <span>{{ ordination.label }}</span>
+    </button>
+</mat-menu>

@@ -4,8 +4,22 @@
             class="page" 
             *ngFor="let page of pages"
             (click)="onChangePage(page)"
-            [ngClass]="{ 'isCurrent' : page.isCurrent == true }"
+            [ngClass]="{ 'isCurrent' : page.isCurrent, 'hidden-page' : page.isHidden }"
             matRipple
-        >{{ page.label + 1 }}</li>
+        >{{ page.name }}</li>
+        <li class="page" *ngIf="pageable.totalPages > MAX_PAGES_VISIBLE" [matMenuTriggerFor]="more_pages" matRipple>+</li>
+        -<mat-menu #more_pages="matMenu" style="height: 280px !important;">
+            <button
+                class="page-item"
+                mat-menu-item  
+                *ngFor="let page of pages"
+                (click)="onChangePage(page)"
+                [ngClass]="{ 'hidden-page' : !page.isHidden }"
+            >
+                <mat-radio-button [checked]="page.isCurrent" color="primary">
+                    <span class="page-menu">{{ page.name }}</span>
+                </mat-radio-button>
+            </button>
+        </mat-menu>
     </ul>
 </nav>

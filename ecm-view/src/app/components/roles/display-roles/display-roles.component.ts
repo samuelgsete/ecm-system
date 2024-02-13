@@ -32,16 +32,19 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly order: OrderRolesService,
     protected readonly updateMetrics: DisplayMetricsService,
     protected readonly onEmit: EmitCredentialsByRoleService
-  ) {
-    this.order.setComponent(this);
-  }
+  ) {}
 
   onLoad(): void {
     this.roles$ = this.listRoles.run(this.pagination);
   }
 
-  changePage(page: number): void {
-    this.pagination.page = page;
+  changePage(nextPage: number): void {
+    this.pagination.page = nextPage;
+    this.onLoad();
+  }
+
+  changeOrdination(ordination: string): void {
+    this.pagination.ordination = ordination;
     this.onLoad();
   }
 

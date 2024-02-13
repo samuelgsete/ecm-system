@@ -3,23 +3,8 @@
         <header>
             <app-page-description title="Cargos" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listRoles.emptyData">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
-                    <mat-icon>filter_list</mat-icon>
-                </button>
-                <mat-menu #ordination="matMenu">
-                    <button
-                        mat-menu-item
-                        *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name)"
-                    >
-                        <mat-radio-button [checked]="ordination.isActive" color="primary">
-                            <span class="label-ordination">{{ ordination.label }}</span>
-                        </mat-radio-button>
-                    </button>
-                </mat-menu>
-
+                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
                 <ui-input-search (keywordChange)="onSearch($event)"></ui-input-search>
-
                 <button 
                     class="btn btn-lg"
                     color="purple"
@@ -65,13 +50,13 @@
                         <button mat-icon-button (click)="openUpdateRoleComponent(role)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button (click)="onDelete.run(role.id, role)">
+                         <button mat-icon-button (click)="onDelete.run(role.id, role)">
                             <mat-icon>cancel</mat-icon>
                         </button>
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.label)" [pageable]="listRoles.pageable" />
+            <app-pagination (changePage)="changePage($event.value)" [pageable]="listRoles.pageable" />
         </div>
         <such-notfound [keyword]="searchValue" [isVisible]="listRoles.searchNotFound" />
     </section>

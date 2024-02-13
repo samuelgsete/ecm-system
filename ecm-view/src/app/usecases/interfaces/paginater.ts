@@ -8,11 +8,10 @@ export abstract class IPaginater {
     searchNotFound: boolean = false;
     pageable!: Pageable;
 
-    setPageable(currentPage: number, totalPages: number): void {
-        const page = new Page({ label: currentPage, isCurrent: true });
+    setPageable(_currentPage: number, _totalPages: number): void {
         this.pageable = new Pageable({
-            currentPage: page,
-            totalPages: totalPages
+            currentPage: _currentPage,
+            totalPages: _totalPages
         });
     }
 

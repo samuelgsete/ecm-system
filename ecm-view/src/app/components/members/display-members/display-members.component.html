@@ -3,20 +3,8 @@
         <header>
             <app-page-description title="Membros" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.emptyData">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
-                    <mat-icon>filter_list</mat-icon>
-                </button>
-                <mat-menu #ordination="matMenu">
-                    <button
-                        mat-menu-item
-                        *ngFor="let ordination of order.ordinations"
-                        (click)="order.run(ordination.name)"
-                    >
-                        <mat-radio-button [checked]="ordination.isActive" color="primary">
-                            <span class="label-ordination">{{ ordination.label }}</span>
-                        </mat-radio-button>
-                    </button>
-                </mat-menu>
+               
+                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
     
                 <ui-input-search (keywordChange)="onSearch($event)" />
 
@@ -100,7 +88,7 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.label)" [pageable]="listMembers.pageable" />
+            <app-pagination (changePage)="changePage($event.value)" [pageable]="listMembers.pageable" />
         </div>
         <such-notfound [keyword]="searchValue" [isVisible]="listMembers.searchNotFound" />
     </section>

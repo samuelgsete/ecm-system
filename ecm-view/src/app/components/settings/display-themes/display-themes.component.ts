@@ -15,8 +15,7 @@ export class DisplayThemesComponent implements OnInit {
 
   themes$!: Observable<CredentialTheme[]>;
   pagination: Pagination = new Pagination();
-  numberOfThemes: number = 0;
- 
+   
   constructor(
     readonly listThemes: ListCredentialThemesPaginatedService,
     readonly makeThemeToMain: MakeThemeToMainService

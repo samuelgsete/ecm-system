@@ -3,23 +3,8 @@
         <header>
             <app-page-description title="Congregações" subtitle="Cadastradas" />
             <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.emptyData">
-                <button class="filter-table" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
-                    <mat-icon>filter_list</mat-icon>
-                </button>
-                <mat-menu #ordination="matMenu">
-                    <button
-                        mat-menu-item
-                        *ngFor="let ordination of order.ordinations"
-                        (click)="changeOrdination(ordination.name)"
-                    >
-                        <mat-radio-button [checked]="ordination.isActive" color="primary">
-                            <span class="label-ordination">{{ ordination.label }}</span>
-                        </mat-radio-button>
-                    </button>
-                </mat-menu>
-                
+                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
                 <ui-input-search (keywordChange)="onSearch($event)" />
-
                 <button 
                     class="btn btn-lg"
                     color="purple"
@@ -71,7 +56,7 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.label)" [pageable]="listCongregations.pageable" />
+            <app-pagination (changePage)="changePage($event.value)" [pageable]="listCongregations.pageable" />
         </div>
         <such-notfound [keyword]="searchValue" [isVisible]="listCongregations.searchNotFound" />
     </section>
