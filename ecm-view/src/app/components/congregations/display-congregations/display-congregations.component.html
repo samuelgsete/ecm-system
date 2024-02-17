@@ -25,6 +25,12 @@
             >CADASTRAR NOVA</button>
         </app-no-data-created>
 
+        <ui-command-bar
+            [countSelecteds]="countSelecteds"
+            (deleteCommnad)="deleteSelecteds()"
+            [showDeleteCommand]="true"
+        />
+
         <ng-template #loading>
             <ui-table-skeleton />
         </ng-template>
@@ -32,23 +38,31 @@
         <div class="content" *ngIf="congregations$ | async as congregations; else loading">
             <table class="ui-table stripped">
                 <tr>
-                    <th>ID</th>
+                    <th>
+                        <mat-checkbox
+                            (change)="onSelectAll($event.checked)"
+                            [checked]="allSelecteds()"
+                            [indeterminate]="someSelecteds()"
+                        ></mat-checkbox>
+                    </th>
                     <th>Congregação</th>
                     <th>Total cadastrado</th>
+                    <th>Registrado</th>
                     <th>Última Atualização</th>
                     <th>Ações</th>
                 </tr>
                 <tr *ngFor="let congregation of congregations">
-                    <td>{{ congregation.id }}</td>
+                    <td><mat-checkbox [checked]="congregation.isSelected" (change)="onSelect(congregation.id, $event.checked)"></mat-checkbox></td>
                     <td>{{ congregation.name }}</td>
                     <td>{{ congregation.numberOfMembers }} membro(s)</td>
+                    <td>{{ congregation.createdAt | dateDuration }}</td>
                     <td>{{ congregation.updatedAt | dateDuration }}</td>
                     <td>
                         <button mat-icon-button [disabled]="congregation.numberOfMembers <= 0" (click)="onEmit.run(congregation.name)">
-                            <mat-icon>print</mat-icon>
+                            <mat-icon class="material-icons-outlined">badge</mat-icon>
                         </button>
                         <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
-                            <mat-icon>edit</mat-icon>
+                            <mat-icon>edit_note</mat-icon>
                         </button>
                         <button mat-icon-button (click)="onDelete.run(congregation.id, congregation)">
                             <mat-icon>cancel</mat-icon>

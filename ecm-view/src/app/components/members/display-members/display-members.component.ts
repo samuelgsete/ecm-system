@@ -40,25 +40,24 @@ export class DisplayMembersComponent implements OnInit {
   members$!: Observable<Member[]>;
   countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
-  allselecteds: boolean = true;
   searchValue: string = '';
   
   constructor(
-    readonly router: Router,
-    readonly titleService:Title,
-    readonly onPaginate: PaginationService,
-    readonly listMembers: ListMembersPaginatedService,
-    readonly updateMember: UpdateMemberService,
-    readonly count: CountMembersSelectedsService,
-    readonly goToEdit: GoToEditService,
-    readonly onSelect: OnSelectMemberService,
-    readonly order: OrderMembersService,
-    readonly onPrint: PrintOneCredentialsService,
-    readonly onPrintAll: PrintAllCredentialsService,
-    readonly onDelete: DeleteMemberService,
-    readonly onToggleSelection: ToggleSelectionMembersService,
-    readonly displayMetrics: DisplayMetricsService,
-    readonly onFullScreen: OnFullScreenImage
+    protected readonly router: Router,
+    protected readonly titleService:Title,
+    protected readonly onPaginate: PaginationService,
+    protected readonly listMembers: ListMembersPaginatedService,
+    protected readonly updateMember: UpdateMemberService,
+    protected readonly count: CountMembersSelectedsService,
+    protected readonly goToEdit: GoToEditService,
+    protected readonly onSelect: OnSelectMemberService,
+    protected readonly order: OrderMembersService,
+    protected readonly onPrint: PrintOneCredentialsService,
+    protected readonly onPrintAll: PrintAllCredentialsService,
+    protected readonly onDelete: DeleteMemberService,
+    protected readonly onToggleSelection: ToggleSelectionMembersService,
+    protected readonly displayMetrics: DisplayMetricsService,
+    protected readonly onFullScreen: OnFullScreenImage
   ) {}
 
   onLoad(): void {
@@ -82,6 +81,14 @@ export class DisplayMembersComponent implements OnInit {
 
   someSelecteds(): boolean {
     return this.countSelecteds > 0 && this.countSelecteds < this.pagination.total;
+  }
+
+  deleteSelecteds(): void {
+    alert('deletando..');
+  }
+
+  generateCredentials() {
+    this.onPrintAll.run()
   }
 
   onSearch(keyword: string) {

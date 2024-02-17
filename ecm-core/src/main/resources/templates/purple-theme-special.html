@@ -238,7 +238,7 @@
                 <div class="grid">
                     <div class="ui-text">
                         <label>Congregação</label>
-                        <p th:text="${member.congregation.name}"></p>
+                        <p th:text="${member.congregation} ? ${member.congregation.name} : 'Não consta'"></p>
                     </div>
                     <div class="ui-text">
                         <label>Estado Civil</label>
@@ -304,7 +304,7 @@
                     </div>
                     <div class="ui-text">
                         <label>Cargo</label>
-                        <p th:text="${member.role.name}"></p>
+                        <p th:text="${member.role} ? ${member.role.name} : 'Não consta'"></p>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,9 @@ public class Congregation extends EntityBase {
     @OneToMany(mappedBy = "congregation", cascade = CascadeType.ALL)
     private Set<Member> members = new HashSet<Member>();
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isSelected = false;
+
     public void addMember(Member member) {
         member.setCongregation(this);
         members.add(member);

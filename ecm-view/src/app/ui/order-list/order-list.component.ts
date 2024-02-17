@@ -11,7 +11,7 @@ export class OrderListComponent {
 
   @Input() ordinations: Ordination[] = [];
   @Output() changeOrdination: EventEmitter<string> = new EventEmitter<string>();
-  
+ 
   onChange(ordination: Ordination): void {
     const activeOrdination = this.ordinations.filter(ordination => ordination.isActive)[0];
     activeOrdination.isActive = false;

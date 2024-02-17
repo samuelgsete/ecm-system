@@ -1,8 +1,8 @@
 <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
         <mat-expansion-panel-header>
             <mat-panel-title>Temas de Credenciais</mat-panel-title>
-            <mat-panel-description>{{ this.pagination.total }} disponíveis</mat-panel-description>
+            <mat-panel-description>{{ pagination.total }} disponíveis</mat-panel-description>
         </mat-expansion-panel-header>
 
         <ng-template #loading>
@@ -12,20 +12,20 @@
         <div class="content" *ngIf="themes$ | async as themes; else loading">
             <table class="ui-table default">
                 <tr>
-                    <th>ID</th>
                     <th>Tema</th>
                     <th>Status</th>
+                    <th>Registrado</th>
                     <th>última Atualização</th>
                     <th>Ações</th>
                 </tr>
                 <tr *ngFor="let theme of themes">
-                    <td>{{ theme.id }}</td>
                     <td>{{ theme.name }}</td>
                     <td>
                         <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
                             {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
                         </div>
                     </td>
+                    <td>{{ theme.createdAt | dateDuration }}</td>
                     <td>{{ theme.updatedAt | dateDuration }}</td>
                     <td>
                         <button

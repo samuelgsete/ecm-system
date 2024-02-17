@@ -7,7 +7,9 @@ import { IPaginaterResource } from "../interfaces/paginater.resource";
 import { ResponsePageable } from "src/app/models/response-pageable.entity";
 import { Congregation } from "src/app/models/congregation.entity";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ListCongregationsPaginatedResource extends IPaginaterResource {
 
     constructor() { super('congregations') }

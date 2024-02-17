@@ -9,14 +9,7 @@ header {
 }
 
 table tr td:nth-child(1) {
-    width: 10%;
-    font-weight: 600;
-    font-size: 1.05em;
-}
-
-table tr td:nth-child(2),
-table tr td:nth-child(2) {
-    width: 30%;
+    width: 5%;
 }
 
 table tr td > button:first-child {

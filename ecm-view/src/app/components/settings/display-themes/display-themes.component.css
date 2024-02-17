@@ -9,13 +9,6 @@ mat-panel-description {
     color: rgb(var(--gray-8));
 }
 
-table tr td:nth-child(1) {
-    width: 5%;
-    font-weight: bold;
-    font-family: 'Urbanist', sans-serif;
-    font-size: 1.05em;
-}
-
 div.active {
     margin: 5px 0;
     border-radius: 22px;

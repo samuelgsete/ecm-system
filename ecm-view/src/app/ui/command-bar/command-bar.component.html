@@ -1,0 +1,20 @@
+<div class="commnad-bar" *ngIf="countSelecteds > 1">
+    <div class="commands">
+        <button mat-button *ngIf="showEmitCredentialCommand" (click)="onGenerateCredentials()">
+            <mat-icon class="material-icons-outlined">badge</mat-icon> 
+            Emitir credenciais
+        </button>
+        <button mat-button *ngIf="showReportCommand" (click)="onReport()">
+            <mat-icon class="material-icons-outlined">contact_page</mat-icon> 
+            Emitir relatório
+        </button>
+        <button mat-button *ngIf="showDeleteCommand" (click)="onDelete()">
+            <mat-icon class="material-icons-outlined">delete</mat-icon> 
+            Excluir
+        </button>
+    </div>
+    <span class="count-selecteds" matRipple>
+        {{ countSelecteds }} selecionados
+        <mat-icon>checklist</mat-icon> 
+    </span>
+</div>

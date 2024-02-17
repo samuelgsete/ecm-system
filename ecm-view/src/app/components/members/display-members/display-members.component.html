@@ -28,20 +28,18 @@
             >CADASTRAR NOVO</button>
         </app-no-data-created>
         
-        <div class="row-flex space-between center-vertical">
-            <button 
-                class="mb10"
-                mat-button 
-                [matBadge]="countSelecteds"
-                matBadgeColor="accent"
-                (click)="onPrintAll.run()"
-                [disabled]="countSelecteds == 0"
-            >Aguardando emissão</button>
-        </div>
-
         <ng-template #loading>
             <ui-table-skeleton />
         </ng-template>
+
+        <ui-command-bar
+            *ngIf="pagination.total != 0"
+            [countSelecteds]="countSelecteds"
+            (deleteCommnad)="deleteSelecteds()"
+            (generateCredentialsCommnad)="generateCredentials()"
+            [showDeleteCommand]="true"
+            [showEmitCredentialCommand]="true"
+        />
 
         <div class="content" *ngIf="members$ | async as members; else loading">
             <table class="ui-table default">
@@ -77,10 +75,10 @@
                     <td>{{ member.createdAt | dateDuration }}</td>
                     <td>
                         <button mat-icon-button (click)="onPrint.run(member.id)">
-                            <mat-icon>print</mat-icon>
+                            <mat-icon class="material-icons-outlined">badge</mat-icon>
                         </button>
                         <button mat-icon-button (click)="goToEdit.run(member.id)">
-                            <mat-icon>edit</mat-icon>
+                            <mat-icon>edit_note</mat-icon>
                         </button>
                         <button mat-icon-button (click)="onDelete.run(member.id, member)">
                             <mat-icon>cancel</mat-icon>

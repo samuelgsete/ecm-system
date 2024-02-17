@@ -3,7 +3,9 @@ import { Observable } from "rxjs";
 import { Congregation } from "src/app/models/congregation.entity";
 import { IRemoverResource } from "../interfaces/remover.resource";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DeleteCongregationeResource extends IRemoverResource<Congregation> {
 
     constructor() { super('congregations') }

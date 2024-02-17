@@ -6,6 +6,7 @@ import { UiInputSearchComponent } from './ui-input-search/ui-input-search.compon
 import { UiTableSkeletonComponent } from './ui-table-skeleton/ui-table-skeleton.component';
 import { UiMetricsSkeletonComponent } from './ui-metrics-skeleton/ui-metrics-skeleton.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { CommandBarComponent } from './command-bar/command-bar.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     UiTableSkeletonComponent,
     UiMetricsSkeletonComponent,
     OrderListComponent,
+    CommandBarComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     UiTableSkeletonComponent,
     UiMetricsSkeletonComponent,
     OrderListComponent,
+    CommandBarComponent,
   ]
 })
 export class UiModule {}

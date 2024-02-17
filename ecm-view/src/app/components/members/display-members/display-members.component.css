@@ -10,8 +10,6 @@ header {
 
 table tr td:nth-child(1) {
     width: 5%;
-    font-weight: 600;
-    font-size: 1.05em;
 }
 
 table tr td > button {

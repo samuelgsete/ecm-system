@@ -11,11 +11,6 @@ import { CreateCongregrationComponent } from './create-congregration/create-cong
 import { DisplayCongregationsComponent } from './display-congregations/display-congregations.component';
 import { UpdateCongregationComponent } from './update-congregation/update-congregation.component';
 
-import { ListCongregationsPaginatedResource } from 'src/app/resources/congregations/list-congregations-paginated.resource';
-import { CreateCongregationResource } from 'src/app/resources/congregations/create-congregation.resource';
-import { UpdateCongregationResource } from 'src/app/resources/congregations/update-congregation.resource';
-import { DeleteCongregationeResource } from 'src/app/resources/congregations/delete-congregation.resource';
-
 import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
 import { CreateCongregationService } from 'src/app/usecases/congregations/create-congregation.service';
 import { UpdateCongregationService } from 'src/app/usecases/congregations/update-congregation.service';
@@ -23,6 +18,10 @@ import { SelectCongregationComparatorService } from 'src/app/usecases/congregati
 import { OrderCongregationsService } from 'src/app/usecases/congregations/order-congregations.service';
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form-congregation.service';
+import { SelectOrUnselecteCongregationService } from 'src/app/usecases/congregations/select-or-unselect-congregation.service';
+import { CountCongregationsSelectedsService } from 'src/app/usecases/congregations/count-congegations-selecteds.service';
+import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
+import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
 
 @NgModule({
   declarations: [
@@ -39,17 +38,17 @@ import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form
     UiModule
   ],
   providers: [
-    ListCongregationsPaginatedResource,
     ListCongregationsPaginatedService,
-    CreateCongregationResource,
     CreateCongregationService,
-    UpdateCongregationResource,
     UpdateCongregationService,
     SelectCongregationComparatorService,
     OrderCongregationsService,
-    DeleteCongregationeResource,
     DeleteCongregationService,
     BuildFormCongregation,
+    SelectOrUnselecteCongregationService,
+    CountCongregationsSelectedsService,
+    SelectOrUnselectAllCongregationsService,
+    DeleteManyCongregationService
   ]
 })
 export class CongregationsModule {}

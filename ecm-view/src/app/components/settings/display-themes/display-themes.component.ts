@@ -15,10 +15,10 @@ export class DisplayThemesComponent implements OnInit {
 
   themes$!: Observable<CredentialTheme[]>;
   pagination: Pagination = new Pagination();
-   
+     
   constructor(
-    readonly listThemes: ListCredentialThemesPaginatedService,
-    readonly makeThemeToMain: MakeThemeToMainService
+    protected readonly listThemes: ListCredentialThemesPaginatedService,
+    protected readonly makeThemeToMain: MakeThemeToMainService
   ) {}
 
   changePage(page: number): void {

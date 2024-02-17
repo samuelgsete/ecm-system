@@ -4,6 +4,7 @@ export class Congregation extends EntityBase {
 
     name!: string;
     numberOfMembers!: number;
+    isSelected: boolean = false;
 
     constructor(values: Object = {}) { 
         super();

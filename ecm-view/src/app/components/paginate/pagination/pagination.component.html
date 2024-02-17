@@ -8,7 +8,7 @@
             matRipple
         >{{ page.name }}</li>
         <li class="page" *ngIf="pageable.totalPages > MAX_PAGES_VISIBLE" [matMenuTriggerFor]="more_pages" matRipple>+</li>
-        -<mat-menu #more_pages="matMenu" style="height: 280px !important;">
+        <mat-menu #more_pages="matMenu">
             <button
                 class="page-item"
                 mat-menu-item  

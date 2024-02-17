@@ -1,7 +1,7 @@
 package br.com.samuel.app.repository;
 
 import java.util.Optional;
-
+import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,4 +38,11 @@ public interface CongregationRepository extends JpaRepository<Congregation, Stri
 
     @Query("SELECT c FROM Congregation c WHERE lower(c.name) = lower(:name)")
     Optional<Congregation> alreadyCreated(@Param("name") String name);
+
+    @Query("SELECT c FROM Congregation c WHERE c.isSelected =  TRUE")
+    Set<Congregation> listAllSelecteds();
+
+    // Retorna a quantidade de congregações selecionadas
+    @Query("SELECT COUNT(c) FROM Congregation c WHERE c.isSelected = TRUE")
+    Integer countSelecteds();
 }

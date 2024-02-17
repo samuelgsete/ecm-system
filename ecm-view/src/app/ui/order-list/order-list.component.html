@@ -1,5 +1,15 @@
-<button class="order-list" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
+<!--<button class="order-list" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
     <mat-icon>filter_list</mat-icon>
+</button>-->
+<button 
+    mat-button
+    class="order-list"
+    [matMenuTriggerFor]="ordination"
+    #menu="matMenuTrigger"
+>
+    <mat-icon>
+        {{ menu.menuOpen ? 'switch_right' : 'switch_left' }}
+    </mat-icon> Ordenar por
 </button>
 <mat-menu #ordination="matMenu">
     <button

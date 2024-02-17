@@ -22,6 +22,9 @@ export class DisplayShepherdComponent implements OnInit {
   ngOnInit(): void {
     this.find.run();
     this.find.done().subscribe(response => {
+      /*
+        Verifica se o pastor presidente do campo foi definido
+      */
       this.isDefined = (response != null) ? true: false;
       this.shepherd = new Shepherd(response);
     })

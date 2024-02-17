@@ -1,0 +1,24 @@
+div.commnad-bar {
+    margin-top: 24px 0;
+    padding: 8px 16px;
+    background-color: rgb(var(--gray-1));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+div.commnad-bar button mat-icon {
+    color: rgb(var(--gray-7));
+}
+
+.count-selecteds {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    border-radius: 24px;
+    padding: 8px 16px;
+    border: 1.2pt solid rgb(var(--gray-3));
+    cursor: pointer;
+}

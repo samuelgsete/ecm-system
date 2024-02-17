@@ -3,7 +3,9 @@ import { Observable } from "rxjs";
 import { Congregation } from "src/app/models/congregation.entity";
 import { ICreaterResource } from "../interfaces/creater.resource";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CreateCongregationResource extends ICreaterResource<Congregation> {
 
     constructor() { super('congregations') }
