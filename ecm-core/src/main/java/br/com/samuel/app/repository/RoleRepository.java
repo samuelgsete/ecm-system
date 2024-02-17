@@ -37,4 +37,7 @@ public interface RoleRepository extends JpaRepository<Role, String> {
 
     @Query("SELECT r FROM Role r WHERE lower(r.name) = lower(:name)")
     Optional<Role> alreadyCreated(@Param("name") String name);
+
+    @Query("SELECT COUNT(r) FROM Role r WHERE r.isSelected = TRUE")
+    Integer countSelecteds();
 }
