@@ -12,10 +12,6 @@ table tr td:nth-child(1) {
     width: 5%;
 }
 
-table tr td > button:first-child {
-    color: rgb(var(--dark));
-}
-
 table tr td > button:last-child {
     color: rgb(var(--danger));
 }

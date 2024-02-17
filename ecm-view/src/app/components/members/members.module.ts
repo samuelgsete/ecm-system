@@ -26,7 +26,7 @@ import { FindOneMemberResource } from 'src/app/resources/members/find-one-member
 import { UpdateMemberResource } from 'src/app/resources/members/update-member.resource';
 import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
 import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
-import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.reousrce';
+import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.resource';
 
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';

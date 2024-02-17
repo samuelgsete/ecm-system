@@ -12,6 +12,7 @@ import { OrderRolesService } from 'src/app/usecases/roles/order-roles.service';
 import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
+import { SelectOrUnselectRoleService } from 'src/app/usecases/roles/select-or-unselect-role.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -31,7 +32,8 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly onDelete: DeleteRoleService,
     protected readonly order: OrderRolesService,
     protected readonly updateMetrics: DisplayMetricsService,
-    protected readonly onEmit: EmitCredentialsByRoleService
+    protected readonly onEmit: EmitCredentialsByRoleService,
+    protected readonly selectOrUnselect: SelectOrUnselectRoleService
   ) {}
 
   onLoad(): void {
@@ -46,6 +48,10 @@ export class DisplayRolesComponent implements OnInit {
   changeOrdination(ordination: string): void {
     this.pagination.ordination = ordination;
     this.onLoad();
+  }
+
+  onSelectOrUnselect(id: string, isSelected: boolean): void {
+    this.selectOrUnselect.run(id, isSelected)
   }
 
   openUpdateRoleComponent(role: Role): void {
@@ -81,6 +87,10 @@ export class DisplayRolesComponent implements OnInit {
     this.onEmit.done().subscribe(htmlContent => {
       let newWindow = open();
       newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
+    })
+
+    this.selectOrUnselect.isDone.subscribe(response => {
+      console.log(response)
     })
   }
 }

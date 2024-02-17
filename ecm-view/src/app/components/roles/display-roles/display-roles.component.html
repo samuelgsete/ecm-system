@@ -32,23 +32,27 @@
         <div class="content" *ngIf="roles$ | async as roles; else loading">
             <table class="ui-table stripped">
                 <tr>
-                    <th>ID</th>
+                    <th>
+                        <mat-checkbox></mat-checkbox>
+                    </th>
                     <th>Cargo</th>
                     <th>Total cadastrado</th>
+                    <th>Registrado</th>
                     <th>última Atualização</th>
                     <th>Ações</th>
                 </tr>
                 <tr *ngFor="let role of roles">
-                    <td>{{ role.id }}</td>
+                    <td><mat-checkbox [checked]="role.isSelected" (change)="onSelectOrUnselect(role.id, $event.checked)"></mat-checkbox></td>
                     <td>{{ role.name }}</td>
                     <td>{{ role.numberOfMembers }} membro(s)</td>
+                    <td>{{ role.createdAt | dateDuration }}</td>
                     <td>{{ role.updatedAt | dateDuration }}</td>
                     <td>
                         <button mat-icon-button [disabled]="role.numberOfMembers <= 0" (click)="onEmit.run(role.name)">
-                            <mat-icon>print</mat-icon>
+                            <mat-icon class="material-icons-outlined">badge</mat-icon>
                         </button>
                         <button mat-icon-button (click)="openUpdateRoleComponent(role)">
-                            <mat-icon>edit</mat-icon>
+                            <mat-icon class="material-icons-outlined">edit_note</mat-icon>
                         </button>
                          <button mat-icon-button (click)="onDelete.run(role.id, role)">
                             <mat-icon>cancel</mat-icon>

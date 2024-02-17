@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { CountMembersSelectedsResource } from "src/app/resources/members/count-members-selecteds.reousrce";
+import { CountMembersSelectedsResource } from "src/app/resources/members/count-members-selecteds.resource";
 
 @Injectable()
 export class CountMembersSelectedsService {
