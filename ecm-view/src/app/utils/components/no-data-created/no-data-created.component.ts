@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 interface Image {
   src: string,
@@ -19,4 +19,11 @@ export class NoDataCreatedComponent {
 
   @Input() message: string = 'Nenhum resultado encontrado';
   @Input() isVisible: boolean = false;
+  @Input() labelButton: string = 'NOVO REGISTRO'; 
+
+  @Output() onCreate: EventEmitter<void> = new EventEmitter<void>();
+
+  create(): void {
+    this.onCreate.emit();
+  }
 }

@@ -16,6 +16,7 @@ import { SelectOrUnselectRoleService } from 'src/app/usecases/roles/select-or-un
 import { CountRolesService } from 'src/app/usecases/roles/count-roles.service';
 import { CountElements } from 'src/app/utils/models/count-elements.entity';
 import { SelectOrUnselectAllRolesService } from 'src/app/usecases/roles/select-or-unselect-all-roles.service';
+import { DeleteManyRolesService } from 'src/app/usecases/roles/delete-many-roles.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -39,6 +40,7 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly onEmit: EmitCredentialsByRoleService,
     protected readonly selectOrUnselect: SelectOrUnselectRoleService,
     protected readonly selectOrUnselectAll: SelectOrUnselectAllRolesService,
+    protected readonly deleteMany: DeleteManyRolesService,
     protected readonly onCount: CountRolesService
   ) {}
 
@@ -74,13 +76,14 @@ export class DisplayRolesComponent implements OnInit {
   }
 
   deleteSelecteds(): void {
-    alert('On Delete Roles Selecteds...');
+    this.deleteMany.run();
   }
 
   openCreateRoleComponent(): void {
     this.modal.open(CreateRoleComponent);
     this.modal.afterAllClosed.subscribe(() => {
       this.onLoad();
+      this.updateMetrics.onUpdate();
     })
   }
 
@@ -98,8 +101,14 @@ export class DisplayRolesComponent implements OnInit {
     // Ao excluir o cargo
     this.onDelete.done().subscribe(roleDeleted => {
       this.updateMetrics.onUpdate();
-      this.listRoles.run(new Pagination());
+      this.onLoad();
     });
+    // Ao delete os cargos selecionados
+    this.deleteMany.isDone.subscribe(() => {
+      this.updateMetrics.onUpdate();
+      this.onLoad();
+      this.onCount.run();
+    })
     // Gera as credenciais de membro por congregação
     this.onEmit.done().subscribe(htmlContent => {
       let newWindow = open();

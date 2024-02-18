@@ -15,16 +15,13 @@
             </div>
         </header>
                 
-        <app-no-data-created message="Você ainda não têm cargos cadastrados" [isVisible]="listRoles.emptyData">
-            <button 
-                class="btn btn-lg"
-                color="purple"
-                radius="true"
-                (click)="openCreateRoleComponent()"
-                matRipple
-            >CADASTRAR NOVO</button>
-        </app-no-data-created>
-
+        <app-no-data-created 
+            message="Você ainda não têm cargos cadastrados"
+            [isVisible]="listRoles.emptyData"
+            labelButton="CADASTRAR NOVO"
+            (onCreate)="openCreateRoleComponent()"
+        />
+           
         <ui-command-bar
             [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
@@ -37,12 +34,12 @@
         </ng-template>
 
         <div class="content" *ngIf="roles$ | async as roles; else loading">
-            <table class="ui-table default">
+            <table class="ui-table default" *ngIf="roles.length != 0">
                 <tr>
                     <th>
                         <mat-checkbox
-                            (change)="onSelectOrUnselectAll($event.checked)"
                             [disabled]="pagination.total == 0"
+                            (change)="onSelectOrUnselectAll($event.checked)"
                             [checked]="countElements.everyoneIsSelected"
                             [indeterminate]="countElements.notEveryoneIsSelected"
                         ></mat-checkbox>

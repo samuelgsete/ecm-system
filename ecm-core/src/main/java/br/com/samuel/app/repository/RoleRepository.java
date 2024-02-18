@@ -1,6 +1,8 @@
 package br.com.samuel.app.repository;
 
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,4 +42,7 @@ public interface RoleRepository extends JpaRepository<Role, String> {
 
     @Query("SELECT COUNT(r) FROM Role r WHERE r.isSelected = TRUE")
     Long countSelecteds();
+
+    @Query("SELECT r FROM Role r WHERE r.isSelected = TRUE")
+    Set<Role> listSelecteds();
 }

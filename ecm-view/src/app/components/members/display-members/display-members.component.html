@@ -18,16 +18,13 @@
             </div>
         </header>
        
-        <app-no-data-created message="Você ainda não têm membros cadastrados" [isVisible]="listMembers.emptyData">
-            <button 
-                class="btn btn-lg"
-                color="purple"
-                radius="true"
-                (click)="router.navigateByUrl('/app/create/member')"
-                matRipple
-            >CADASTRAR NOVO</button>
-        </app-no-data-created>
-        
+        <app-no-data-created 
+            message="Você ainda não têm membros cadastrados"
+            [isVisible]="listMembers.emptyData"
+            labelButton="CADASTRAR NOVO"
+            (onCreate)="router.navigateByUrl('/app/create/member')"
+        />
+                
         <ng-template #loading>
             <ui-table-skeleton />
         </ng-template>

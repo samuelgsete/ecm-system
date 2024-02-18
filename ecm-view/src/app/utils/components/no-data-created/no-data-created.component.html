@@ -1,5 +1,11 @@
 <div class="no-data-found" *ngIf="isVisible">
     <img class="no-found" [src]="image.src" [alt]="image.alt">
     <p class="message">{{ message }}</p>
-    <ng-content></ng-content>
+    <button 
+        class="btn btn-lg"
+        color="purple"
+        radius="true"
+        (click)="create()"
+        matRipple
+    >{{ labelButton }}</button>
 </div>

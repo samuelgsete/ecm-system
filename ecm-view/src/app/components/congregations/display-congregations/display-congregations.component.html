@@ -15,16 +15,13 @@
             </div>
         </header>
 
-        <app-no-data-created message="Você ainda não têm congregações cadastradas" *ngIf="listCongregations.emptyData">
-            <button 
-                class="btn btn-lg"
-                color="purple"
-                radius="true"
-                (click)="openCreateCongregationComponent()"
-                matRipple
-            >CADASTRAR NOVA</button>
-        </app-no-data-created>
-
+        <app-no-data-created 
+            message="Você ainda não têm congregações cadastradas"
+            [isVisible]="listCongregations.emptyData"
+            labelButton="CADASTRAR NOVA"
+            (onCreate)="openCreateCongregationComponent()"
+        />
+        
         <ui-command-bar
             [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
@@ -36,7 +33,7 @@
         </ng-template>
         
         <div class="content" *ngIf="congregations$ | async as congregations; else loading">
-            <table class="ui-table stripped">
+            <table class="ui-table stripped" *ngIf="congregations.length != 0">
                 <tr>
                     <th>
                         <mat-checkbox

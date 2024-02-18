@@ -27,6 +27,7 @@ import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-
 import { SelectOrUnselectRoleService } from 'src/app/usecases/roles/select-or-unselect-role.service';
 import { CountRolesService } from 'src/app/usecases/roles/count-roles.service';
 import { SelectOrUnselectAllRolesService } from 'src/app/usecases/roles/select-or-unselect-all-roles.service';
+import { DeleteManyRolesService } from 'src/app/usecases/roles/delete-many-roles.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SelectOrUnselectAllRolesService } from 'src/app/usecases/roles/select-o
     EmitCredentialsByRoleService,
     SelectOrUnselectRoleService,
     CountRolesService,
-    SelectOrUnselectAllRolesService
+    SelectOrUnselectAllRolesService,
+    DeleteManyRolesService
   ],
 })
 export class RolesModule {}
