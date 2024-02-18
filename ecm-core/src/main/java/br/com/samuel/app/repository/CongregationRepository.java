@@ -44,5 +44,5 @@ public interface CongregationRepository extends JpaRepository<Congregation, Stri
 
     // Retorna a quantidade de congregações selecionadas
     @Query("SELECT COUNT(c) FROM Congregation c WHERE c.isSelected = TRUE")
-    Integer countSelecteds();
+    Long countSelecteds();
 }

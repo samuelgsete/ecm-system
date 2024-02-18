@@ -50,7 +50,7 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 
     // Retorna a quantidade de membros selecionados para impressão
     @Query("SELECT COUNT(m) FROM Member m WHERE m.isSelected = TRUE")
-    Integer countSelecteds();
+    Long countSelecteds();
 
     // Verifica se o membro já foi registrado
     @Query("SELECT m FROM Member m WHERE m.cpf = :cpf OR m.rg = :rg")

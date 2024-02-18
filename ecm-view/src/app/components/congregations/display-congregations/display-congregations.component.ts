@@ -13,9 +13,10 @@ import { DeleteCongregationService } from 'src/app/usecases/congregations/delete
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-by-congregation.service';
 import { SelectOrUnselecteCongregationService } from 'src/app/usecases/congregations/select-or-unselect-congregation.service';
-import { CountCongregationsSelectedsService } from 'src/app/usecases/congregations/count-congegations-selecteds.service';
+import { CountCongregationsService } from 'src/app/usecases/congregations/count-congegations.service';
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
+import { CountElements } from 'src/app/utils/models/count-elements.entity';
 
 @Component({
   selector: 'app-display-congregations',
@@ -27,7 +28,7 @@ export class DisplayCongregationsComponent implements OnInit {
   congregations$!: Observable<Congregation[]>;
   pagination: Pagination = new Pagination()
   searchValue: string = '';
-  countSelecteds: number = 0;
+  countElements = new CountElements();
    
   constructor(
     protected readonly titleService: Title,
@@ -40,7 +41,7 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly onEmit: EmitCredentialsByCongregationService,
     protected readonly selectOrUnselect: SelectOrUnselecteCongregationService,
     protected readonly selectOrUnselectAll: SelectOrUnselectAllCongregationsService,
-    protected readonly count: CountCongregationsSelectedsService
+    protected readonly onCount: CountCongregationsService
   ) {
   }
 
@@ -70,14 +71,6 @@ export class DisplayCongregationsComponent implements OnInit {
   changeOrdination(ordination: string): void {
     this.pagination.ordination = ordination;
     this.onLoad();
-  }
-
-  someSelecteds(): boolean {
-    return this.countSelecteds > 0 && this.countSelecteds < this.pagination.total;
-  }
-
-  allSelecteds(): boolean {
-    return this.countSelecteds == this.pagination.total;
   }
 
   deleteSelecteds(): void {
@@ -119,22 +112,22 @@ export class DisplayCongregationsComponent implements OnInit {
     })
     // Ao selecionar ou deselecionar uma congregação
     this.selectOrUnselect.isDone.subscribe(response => {
-      this.count.run();
+      this.onCount.run();
       this.onLoad();
     });
     // Contabilia a quantidade de congregações selecionadas
-    this.count.run();
-    this.count.isDone.subscribe(response => {
-      this.countSelecteds = response;
+    this.onCount.run();
+    this.onCount.isDone.subscribe(response => {
+      this.countElements = response;
     })
     // Ao selecionar ou deselecionar todas as congregações
     this.selectOrUnselectAll.isDone.subscribe(() => {
-      this.count.run();
+      this.onCount.run();
       this.onLoad();
     })
     // Ao delete as congregações selecionadas
     this.deleteMany.isDone.subscribe(() => {
-      this.count.run();
+      this.onCount.run();
       this.onLoad();
       this.updateMetrics.onUpdate();
     })

@@ -16,10 +16,11 @@ import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print
 import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
 import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
-import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { OnFullScreenImage } from 'src/app/utils/services/on-fullscreen-image.service';
+import { CountMembersService } from 'src/app/usecases/members/count-members.service';
+import { CountElements } from 'src/app/utils/models/count-elements.entity';
 
 @Component({
   selector: 'app-display-members',
@@ -38,9 +39,9 @@ import { OnFullScreenImage } from 'src/app/utils/services/on-fullscreen-image.se
 export class DisplayMembersComponent implements OnInit {
 
   members$!: Observable<Member[]>;
-  countSelecteds: number = 0;
   pagination: Pagination = new Pagination();
   searchValue: string = '';
+  countElements = new CountElements();
   
   constructor(
     protected readonly router: Router,
@@ -48,7 +49,7 @@ export class DisplayMembersComponent implements OnInit {
     protected readonly onPaginate: PaginationService,
     protected readonly listMembers: ListMembersPaginatedService,
     protected readonly updateMember: UpdateMemberService,
-    protected readonly count: CountMembersSelectedsService,
+    protected readonly onCount: CountMembersService,
     protected readonly goToEdit: GoToEditService,
     protected readonly onSelect: OnSelectMemberService,
     protected readonly order: OrderMembersService,
@@ -75,14 +76,6 @@ export class DisplayMembersComponent implements OnInit {
     this.onLoad();
   }
 
-  allSelecteds(): boolean {
-    return this.countSelecteds == this.pagination.total ? true : false;
-  }
-
-  someSelecteds(): boolean {
-    return this.countSelecteds > 0 && this.countSelecteds < this.pagination.total;
-  }
-
   deleteSelecteds(): void {
     alert('deletando..');
   }
@@ -102,9 +95,9 @@ export class DisplayMembersComponent implements OnInit {
     this.onLoad();
     this.titleService.setTitle('Todos os membros cadastrados');
           
-    this.count.run();
-    this.count.done().subscribe(response => {
-      this.countSelecteds = response;
+    this.onCount.run();
+    this.onCount.isDone.subscribe(response => {
+      this.countElements = response;
     })
 
     this.onPrint.done().subscribe(htmlContent => {
@@ -119,17 +112,17 @@ export class DisplayMembersComponent implements OnInit {
 
     this.onDelete.done().subscribe(response => {
       this.onLoad();
-      this.count.run();
+      this.onCount.run();
     })
 
     this.onToggleSelection.done().subscribe(response => {
       this.onLoad();
-      this.count.run();
+      this.onCount.run();
       this.displayMetrics.onUpdate();
     })
 
     this.onSelect.done().subscribe(response => {
-      this.count.run();
+      this.onCount.run();
       this.displayMetrics.onUpdate();
     })
   }

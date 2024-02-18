@@ -13,7 +13,9 @@ import { DeleteRoleService } from 'src/app/usecases/roles/delete-role.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByRoleService } from 'src/app/usecases/credentials/emit-credentials-by-role.service';
 import { SelectOrUnselectRoleService } from 'src/app/usecases/roles/select-or-unselect-role.service';
-import { CountRolesSelectedsService } from 'src/app/usecases/roles/count-roles-selecteds.service';
+import { CountRolesService } from 'src/app/usecases/roles/count-roles.service';
+import { CountElements } from 'src/app/utils/models/count-elements.entity';
+import { SelectOrUnselectAllRolesService } from 'src/app/usecases/roles/select-or-unselect-all-roles.service';
 
 @Component({
   selector: 'app-display-roles',
@@ -25,7 +27,7 @@ export class DisplayRolesComponent implements OnInit {
   roles$!: Observable<Role[]>
   pagination: Pagination = new Pagination();
   searchValue: string = '';
-  countSelecteds: number = 0;
+  countElements = new CountElements();
    
   constructor(
     protected readonly titleService: Title,
@@ -36,7 +38,8 @@ export class DisplayRolesComponent implements OnInit {
     protected readonly updateMetrics: DisplayMetricsService,
     protected readonly onEmit: EmitCredentialsByRoleService,
     protected readonly selectOrUnselect: SelectOrUnselectRoleService,
-    protected readonly count: CountRolesSelectedsService
+    protected readonly selectOrUnselectAll: SelectOrUnselectAllRolesService,
+    protected readonly onCount: CountRolesService
   ) {}
 
   onLoad(): void {
@@ -55,6 +58,10 @@ export class DisplayRolesComponent implements OnInit {
 
   onSelectOrUnselect(id: string, isSelected: boolean): void {
     this.selectOrUnselect.run(id, isSelected)
+  }
+
+  onSelectOrUnselectAll(isSelected: boolean): void {
+    this.selectOrUnselectAll.run(isSelected);
   }
 
   openUpdateRoleComponent(role: Role): void {
@@ -100,12 +107,17 @@ export class DisplayRolesComponent implements OnInit {
     })
     // Ao selecionar ou deselecionar um cargo
     this.selectOrUnselect.isDone.subscribe(response => {
-      this.count.run();
+      this.onCount.run();
+    })
+    // Ao selecionar ou deslecionar todos os cargos
+    this.selectOrUnselectAll.isDone.subscribe(() => {
+      this.onCount.run();
+      this.onLoad();
     })
     // Retorna a quantidade de cargos selecionados
-    this.count.run();
-    this.count.isDone.subscribe(response => {
-      this.countSelecteds = response;
+    this.onCount.run();
+    this.onCount.isDone.subscribe(response => {
+      this.countElements = response;
     })
   }
 }

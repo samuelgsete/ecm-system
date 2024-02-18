@@ -26,7 +26,7 @@
         </app-no-data-created>
 
         <ui-command-bar
-            [countSelecteds]="countSelecteds"
+            [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
             [showDeleteCommand]="true"
         />
@@ -41,8 +41,8 @@
                     <th>
                         <mat-checkbox
                             (change)="onSelectAll($event.checked)"
-                            [checked]="allSelecteds()"
-                            [indeterminate]="someSelecteds()"
+                            [checked]="countElements.everyoneIsSelected"
+                            [indeterminate]="countElements.notEveryoneIsSelected"
                         ></mat-checkbox>
                     </th>
                     <th>Congregação</th>

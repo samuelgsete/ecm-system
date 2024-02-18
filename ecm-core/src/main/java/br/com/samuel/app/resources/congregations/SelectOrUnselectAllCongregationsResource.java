@@ -19,7 +19,6 @@ public class SelectOrUnselectAllCongregationsResource {
     @PutMapping("/toggle-selection")
     public ResponseEntity<?> run(@RequestParam Integer selected) {
         var isSeleted = selected == 1 ? true : false;
-        System.out.println("OLÁ MUNDO MNDOO.........................");
         selectOrUnselectAll.run(isSeleted);
         return ResponseEntity.ok().build();
     }

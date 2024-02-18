@@ -26,7 +26,7 @@
         </app-no-data-created>
 
         <ui-command-bar
-            [countSelecteds]="countSelecteds"
+            [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
             [showDeleteCommand]="true"
         />
@@ -37,10 +37,15 @@
         </ng-template>
 
         <div class="content" *ngIf="roles$ | async as roles; else loading">
-            <table class="ui-table stripped">
+            <table class="ui-table default">
                 <tr>
                     <th>
-                        <mat-checkbox></mat-checkbox>
+                        <mat-checkbox
+                            (change)="onSelectOrUnselectAll($event.checked)"
+                            [disabled]="pagination.total == 0"
+                            [checked]="countElements.everyoneIsSelected"
+                            [indeterminate]="countElements.notEveryoneIsSelected"
+                        ></mat-checkbox>
                     </th>
                     <th>Cargo</th>
                     <th>Total cadastrado</th>

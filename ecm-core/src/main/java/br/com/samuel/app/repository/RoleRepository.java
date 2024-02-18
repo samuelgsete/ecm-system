@@ -39,5 +39,5 @@ public interface RoleRepository extends JpaRepository<Role, String> {
     Optional<Role> alreadyCreated(@Param("name") String name);
 
     @Query("SELECT COUNT(r) FROM Role r WHERE r.isSelected = TRUE")
-    Integer countSelecteds();
+    Long countSelecteds();
 }

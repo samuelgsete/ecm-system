@@ -34,7 +34,7 @@
 
         <ui-command-bar
             *ngIf="pagination.total != 0"
-            [countSelecteds]="countSelecteds"
+            [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
             (generateCredentialsCommnad)="generateCredentials()"
             [showDeleteCommand]="true"
@@ -47,8 +47,8 @@
                     <th>
                         <mat-checkbox
                             [disabled]="pagination.total == 0"
-                            [checked]="allSelecteds()"
-                            [indeterminate]="someSelecteds()"
+                            [checked]="countElements.everyoneIsSelected"
+                            [indeterminate]="countElements.notEveryoneIsSelected"
                             (change)="onToggleSelection.run($event.checked)"
                         ></mat-checkbox>
                     </th>

@@ -19,7 +19,7 @@ import { OrderCongregationsService } from 'src/app/usecases/congregations/order-
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { BuildFormCongregation } from 'src/app/usecases/congregations/build-form-congregation.service';
 import { SelectOrUnselecteCongregationService } from 'src/app/usecases/congregations/select-or-unselect-congregation.service';
-import { CountCongregationsSelectedsService } from 'src/app/usecases/congregations/count-congegations-selecteds.service';
+import { CountCongregationsService } from 'src/app/usecases/congregations/count-congegations.service';
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
 
@@ -46,7 +46,7 @@ import { DeleteManyCongregationService } from 'src/app/usecases/congregations/de
     DeleteCongregationService,
     BuildFormCongregation,
     SelectOrUnselecteCongregationService,
-    CountCongregationsSelectedsService,
+    CountCongregationsService,
     SelectOrUnselectAllCongregationsService,
     DeleteManyCongregationService
   ]

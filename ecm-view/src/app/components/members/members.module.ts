@@ -26,7 +26,6 @@ import { FindOneMemberResource } from 'src/app/resources/members/find-one-member
 import { UpdateMemberResource } from 'src/app/resources/members/update-member.resource';
 import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
 import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
-import { CountMembersSelectedsResource } from 'src/app/resources/members/count-members-selecteds.resource';
 
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
@@ -38,7 +37,7 @@ import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
-import { CountMembersSelectedsService } from 'src/app/usecases/members/count-members-selecteds.service';
+import { CountMembersService } from 'src/app/usecases/members/count-members.service';
 import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
 import { BuildFormMemberStep1 } from 'src/app/usecases/members/build-form-member-step1.service';
 import { BuildFormMemberStep2 } from 'src/app/usecases/members/build-form-member-step2.service';
@@ -87,8 +86,7 @@ import { UiModule } from 'src/app/ui/ui.module';
     ListMembersSelectedsService,
     DeleteMemberResource,
     DeleteMemberService,
-    CountMembersSelectedsResource,
-    CountMembersSelectedsService,
+    CountMembersService,
     ToggleSelectionMembersResource,
     ToggleSelectionMembersService,
     BuildFormMemberStep1,
