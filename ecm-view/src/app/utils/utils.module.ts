@@ -18,6 +18,7 @@ import { ListGendersService } from './services/list-genders.service';
 import { ListMaritalStatusService } from './services/list-marital-status.service';
 import { ImageFullscreenComponent } from './components/image-fullscreen/image-fullscreen.component';
 import { OnFullScreenImage } from './services/on-fullscreen-image.service';
+import { DisplayOrdinationPipe } from './pipes/name-ordination.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OnFullScreenImage } from './services/on-fullscreen-image.service';
     DateDurationPipe,
     MaritalStatusPipe,
     SmallTextPipe,
+    DisplayOrdinationPipe,
     ScrollStepperFixDirective,
     DragDropUploadDirective,
     NoDataCreatedComponent,
@@ -43,6 +45,7 @@ import { OnFullScreenImage } from './services/on-fullscreen-image.service';
     DateDurationPipe,
     MaritalStatusPipe,
     SmallTextPipe,
+    DisplayOrdinationPipe,
     DragDropUploadDirective,
     ScrollStepperFixDirective,
     NoDataCreatedComponent,

@@ -21,11 +21,9 @@ import { CreateMember2Component } from './create-member2/create-member2.componen
 import { UpdateMemberComponent } from './update-member/update-member.component';
 
 import { CreateMemberResource } from 'src/app/resources/members/create-member.resource';
-import { ListMembersPaginatedResource } from 'src/app/resources/members/list-members-paginated.resource';
 import { FindOneMemberResource } from 'src/app/resources/members/find-one-member.resource';
 import { UpdateMemberResource } from 'src/app/resources/members/update-member.resource';
 import { ListMembersSelectedsResource } from 'src/app/resources/members/list-members-selecteds.resource';
-import { ToggleSelectionMembersResource } from 'src/app/resources/members/ToggleSelectionMembers.resource';
 
 import { CreateMemberService } from 'src/app/usecases/members/create-member.service';
 import { FindOneMemberService } from 'src/app/usecases/members/find-one-member.service';
@@ -33,12 +31,12 @@ import { UpdateMemberService } from 'src/app/usecases/members/update-member.serv
 import { GetFormDataMemberService } from 'src/app/usecases/members/get-form-data-member.service';
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
-import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
+import { SelectOrUnselectMemberService } from 'src/app/usecases/members/select-or-unselect-member.service';
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
 import { CountMembersService } from 'src/app/usecases/members/count-members.service';
-import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
+import { SelectOrUnselectAllMembersService } from 'src/app/usecases/members/select-or-unselect-all-members.service';
 import { BuildFormMemberStep1 } from 'src/app/usecases/members/build-form-member-step1.service';
 import { BuildFormMemberStep2 } from 'src/app/usecases/members/build-form-member-step2.service';
 import { BuildFormMemberStep3 } from 'src/app/usecases/members/build-form-member-step3.service';
@@ -75,20 +73,18 @@ import { UiModule } from 'src/app/ui/ui.module';
     FindOneMemberService,
     CreateMemberResource,
     CreateMemberService,
-    ListMembersPaginatedResource,
     UpdateMemberResource,
     UpdateMemberService,
     GoToEditService,
     GoToPrintService,
-    OnSelectMemberService,
+    SelectOrUnselectMemberService,
     GetFormDataMemberService,
     ListMembersSelectedsResource,
     ListMembersSelectedsService,
     DeleteMemberResource,
     DeleteMemberService,
     CountMembersService,
-    ToggleSelectionMembersResource,
-    ToggleSelectionMembersService,
+    SelectOrUnselectAllMembersService,
     BuildFormMemberStep1,
     BuildFormMemberStep2,
     BuildFormMemberStep3,

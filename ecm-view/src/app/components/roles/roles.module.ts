@@ -10,7 +10,6 @@ import { CreateRoleComponent } from './create-role/create-role.component';
 import { DisplayRolesComponent } from './display-roles/display-roles.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
 
-import { ListRolesPaginatedResource } from 'src/app/resources/roles/list-roles-paginated.resource';
 import { CreateRoleResource } from 'src/app/resources/roles/create-role.resource';
 import { UpdateRoleResource } from 'src/app/resources/roles/update-role-resource';
 import { DeleteRoleResource } from 'src/app/resources/roles/delete-role.resource';
@@ -44,7 +43,6 @@ import { DeleteManyRolesService } from 'src/app/usecases/roles/delete-many-roles
   ],
   providers: [
     BuildFormRole,
-    ListRolesPaginatedResource,
     ListRolesPaginatedService,
     CreateRoleResource,
     CreateRoleService,

@@ -4,9 +4,9 @@
             <app-page-description title="Membros" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.emptyData">
                
-                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
+                <order-list [selectedOrdination]="pagination.ordination" [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
     
-                <ui-input-search (keywordChange)="onSearch($event)" />
+                <ui-input-search [search]="pagination.search" (keywordChange)="handleSearch($event)" />
 
                 <button 
                     class="btn btn-lg"
@@ -30,24 +30,24 @@
         </ng-template>
 
         <ui-command-bar
-            *ngIf="pagination.total != 0"
+            [isVisible]="!listMembers.searchNotFound"
             [countSelecteds]="countElements.totalSelected"
-            (deleteCommnad)="deleteSelecteds()"
-            (generateCredentialsCommnad)="generateCredentials()"
+            (deleteCommnad)="handleDeleteMany()"
+            (generateCredentialsCommnad)="handleGenerateCredentials()"
             [showDeleteCommand]="true"
             [showEmitCredentialCommand]="true"
         />
 
         <div class="content" *ngIf="members$ | async as members; else loading">
-            <table class="ui-table default">
+            <table class="ui-table default" *ngIf="members.length != 0">
                 <tr>
                     <th>
                         <mat-checkbox
-                            [disabled]="pagination.total == 0"
+                            [disabled]="pagination.totalElements == 0"
                             [checked]="countElements.everyoneIsSelected"
                             [indeterminate]="countElements.notEveryoneIsSelected"
-                            (change)="onToggleSelection.run($event.checked)"
-                        ></mat-checkbox>
+                            (change)="handleSelectOrUnselectAll($event.checked)"
+                        />
                     </th>
                     <th>Foto</th>
                     <th>Membro</th>
@@ -60,8 +60,8 @@
                     <td>
                         <mat-checkbox 
                             [checked]="member.isSelected"
-                            (change)="onSelect.run($event.checked, member)"
-                        ></mat-checkbox>
+                            (change)="handleSelectOrUnselectOne($event.checked, member.id)"
+                        />
                     </td>
                     <td class="photo-column">
                         <img class="photo-member" [src]="member.photo.url" [alt]="member.name" (click)="onFullScreen.run(member.photo)">
@@ -83,9 +83,14 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.value)" [pageable]="listMembers.pageable" />
+            <app-pagination 
+                (changePage)="changePage($event)"
+                (changeSize)="changeSizePage($event)"
+                [pageable]="listMembers.pageable"
+                [isVisible]="!listMembers.searchNotFound"
+             />
         </div>
-        <such-notfound [keyword]="searchValue" [isVisible]="listMembers.searchNotFound" />
+        <such-notfound [keyword]="pagination.search" [isVisible]="listMembers.searchNotFound" />
     </section>
 </main>
 

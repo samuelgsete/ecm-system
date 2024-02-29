@@ -36,3 +36,8 @@ td.photo-column {
     display: flex;
     align-items: center;
 }
+
+table tr td > button:first-child[disabled=true] {
+    background-color: transparent !important;
+    color: rgb(var(--gray-5)) !important;
+}

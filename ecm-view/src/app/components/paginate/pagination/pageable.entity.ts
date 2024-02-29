@@ -1,9 +1,9 @@
-import { Page } from "./page.entity";
-
 export class Pageable {
     
-    currentPage!: number;
+    pageCurrent!: number;
+    pageSize!: number;
     totalPages!: number;
+    totalElements!: number;
 
     constructor(values: Object = {}) { 
         Object.assign(this, values);

@@ -1,15 +1,18 @@
-<!--<button class="order-list" [matMenuTriggerFor]="ordination" mat-icon-button matTooltip="Ordenar listagem">
-    <mat-icon>filter_list</mat-icon>
-</button>-->
 <button 
     mat-button
     class="order-list"
     [matMenuTriggerFor]="ordination"
     #menu="matMenuTrigger"
 >
-    <mat-icon>
-        {{ menu.menuOpen ? 'switch_right' : 'switch_left' }}
-    </mat-icon> Ordenar por
+    <div class="btn-content">
+        <mat-icon [ngClass]="{ 'unexpand-icon' : !menu.menuOpen, 'expand-icon' : menu.menuOpen }">
+            expand_more
+        </mat-icon>
+        <div class="sort">
+            <span class="sort-label">Ordenar por</span>
+            <span class="sort-value">{{ selectedOrdination | displayordination }}</span>
+        </div>
+    </div>
 </button>
 <mat-menu #ordination="matMenu">
     <button

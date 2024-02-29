@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
+import { UtilsModule } from '../utils/utils.module';
+
 import { UiInputSearchComponent } from './ui-input-search/ui-input-search.component';
 import { UiTableSkeletonComponent } from './ui-table-skeleton/ui-table-skeleton.component';
 import { UiMetricsSkeletonComponent } from './ui-metrics-skeleton/ui-metrics-skeleton.component';
@@ -18,7 +20,8 @@ import { CommandBarComponent } from './command-bar/command-bar.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    UtilsModule,
   ],
   exports: [
     UiInputSearchComponent,

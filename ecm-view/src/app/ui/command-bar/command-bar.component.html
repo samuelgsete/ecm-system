@@ -1,4 +1,4 @@
-<div class="commnad-bar" *ngIf="countSelecteds > 1">
+<div class="commnad-bar" *ngIf="countSelecteds > 1 && isVisible">
     <div class="commands">
         <button mat-button *ngIf="showEmitCredentialCommand" (click)="onGenerateCredentials()">
             <mat-icon class="material-icons-outlined">badge</mat-icon> 

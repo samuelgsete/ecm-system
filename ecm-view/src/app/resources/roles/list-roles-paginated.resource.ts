@@ -7,7 +7,9 @@ import { IPaginaterResource } from "../interfaces/paginater.resource";
 import { ResponsePageable } from "src/app/models/response-pageable.entity";
 import { Role } from "src/app/models/role.entity";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ListRolesPaginatedResource extends IPaginaterResource {
 
     constructor() { super('roles') }
@@ -16,8 +18,8 @@ export class ListRolesPaginatedResource extends IPaginaterResource {
         const _params = new HttpParams()
             .set('search', pagination.search)
             .set('ordination', pagination.ordination)
-            .set('page', pagination.page)
-            .set('size', pagination.size)
+            .set('page', pagination.pageCurrent)
+            .set('size', pagination.pageSize)
         return this.http.get<ResponsePageable<Role>>(this.baseUrl(), { params: _params });
     }
 }

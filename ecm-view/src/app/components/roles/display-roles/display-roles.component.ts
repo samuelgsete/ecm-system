@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -27,10 +28,10 @@ export class DisplayRolesComponent implements OnInit {
 
   roles$!: Observable<Role[]>
   pagination: Pagination = new Pagination();
-  searchValue: string = '';
   countElements = new CountElements();
    
   constructor(
+    protected readonly route: ActivatedRoute,
     protected readonly titleService: Title,
     protected readonly modal: MatDialog,
     protected readonly listRoles: ListRolesPaginatedService,
@@ -49,7 +50,13 @@ export class DisplayRolesComponent implements OnInit {
   }
 
   changePage(nextPage: number): void {
-    this.pagination.page = nextPage;
+    this.pagination.pageCurrent = nextPage;
+    this.onLoad();
+  }
+
+  changeSizePage(size: number): void {
+    this.pagination.pageCurrent = 0;
+    this.pagination.pageSize = size;
     this.onLoad();
   }
 
@@ -88,12 +95,24 @@ export class DisplayRolesComponent implements OnInit {
   }
 
   onSearch(keyword: string) {
-    this.searchValue = keyword;
-    this.pagination.search = this.searchValue;
+    this.pagination.search = keyword.toLowerCase()
+    this.pagination.pageCurrent = 0;
     this.onLoad();
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const search = params['search'] || '';
+      const ordination = params['ordination'] || 'by_name_asc';
+      const pageCurrent = params['page_number'] || 0;
+      const pageSize = params['page_size'] || 10;
+    
+      this.pagination.search = search;
+      this.pagination.ordination = ordination;
+      this.pagination.pageCurrent = parseInt(pageCurrent);
+      this.pagination.pageSize = parseInt(pageSize);
+    })
+
     // Carrega os cargos cadastrados
     this.onLoad();
     // Configura o título da página

@@ -19,6 +19,9 @@ export class CommandBarComponent {
   @Input()
   showEmitCredentialCommand: boolean = false;
 
+  @Input()
+  isVisible: boolean = true;
+
   @Output()
   deleteCommnad: EventEmitter<void> = new EventEmitter<void>();
 

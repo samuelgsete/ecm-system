@@ -3,8 +3,8 @@
         <header>
             <app-page-description title="Congregações" subtitle="Cadastradas" />
             <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.emptyData">
-                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
-                <ui-input-search (keywordChange)="onSearch($event)" />
+                <order-list [ordinations]="order.ordinations" [selectedOrdination]="pagination.ordination" (changeOrdination)="changeOrdination($event)" />
+                <ui-input-search [search]="pagination.search" (keywordChange)="handleSearch($event)" />
                 <button 
                     class="btn btn-lg"
                     color="purple"
@@ -23,8 +23,9 @@
         />
         
         <ui-command-bar
+            [isVisible]="!listCongregations.searchNotFound"
             [countSelecteds]="countElements.totalSelected"
-            (deleteCommnad)="deleteSelecteds()"
+            (deleteCommnad)="handleDeleteMany()"
             [showDeleteCommand]="true"
         />
 
@@ -33,14 +34,15 @@
         </ng-template>
         
         <div class="content" *ngIf="congregations$ | async as congregations; else loading">
-            <table class="ui-table stripped" *ngIf="congregations.length != 0">
+            <table class="ui-table default" *ngIf="congregations.length != 0">
                 <tr>
                     <th>
                         <mat-checkbox
-                            (change)="onSelectAll($event.checked)"
+                            [disabled]="pagination.totalElements == 0"
+                            (change)="handleSelectOrUnselectAll($event.checked)"
                             [checked]="countElements.everyoneIsSelected"
                             [indeterminate]="countElements.notEveryoneIsSelected"
-                        ></mat-checkbox>
+                        />
                     </th>
                     <th>Congregação</th>
                     <th>Total cadastrado</th>
@@ -49,13 +51,22 @@
                     <th>Ações</th>
                 </tr>
                 <tr *ngFor="let congregation of congregations">
-                    <td><mat-checkbox [checked]="congregation.isSelected" (change)="onSelect(congregation.id, $event.checked)"></mat-checkbox></td>
+                    <td>
+                        <mat-checkbox 
+                            [checked]="congregation.isSelected"
+                            (change)="handleSelectOrUnselectOne(congregation.id, $event.checked)" 
+                        />
+                    </td>
                     <td>{{ congregation.name }}</td>
                     <td>{{ congregation.numberOfMembers }} membro(s)</td>
                     <td>{{ congregation.createdAt | dateDuration }}</td>
                     <td>{{ congregation.updatedAt | dateDuration }}</td>
                     <td>
-                        <button mat-icon-button [disabled]="congregation.numberOfMembers <= 0" (click)="onEmit.run(congregation.name)">
+                        <button 
+                            mat-icon-button
+                            [disabled]="congregation.numberOfMembers <= 0" 
+                            (click)="handleEmitCredentialsOfCongregation(congregation.name)"
+                        >
                             <mat-icon class="material-icons-outlined">badge</mat-icon>
                         </button>
                         <button mat-icon-button (click)="openUpdateCongregationComponent(congregation)">
@@ -67,8 +78,21 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.value)" [pageable]="listCongregations.pageable" />
+            <app-pagination 
+                (changePage)="changePage($event)"
+                (changeSize)="changeSizePage($event)"
+                [pageable]="listCongregations.pageable"
+                [isVisible]="!listCongregations.searchNotFound"
+            />
         </div>
-        <such-notfound [keyword]="searchValue" [isVisible]="listCongregations.searchNotFound" />
+        <such-notfound [keyword]="pagination.search" [isVisible]="listCongregations.searchNotFound" />
     </section>
 </main>
+
+<ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#8e27fa"
+    type="ball-atom"
+    [fullScreen]="true">
+</ngx-spinner>

@@ -1,20 +1,20 @@
 import { Injectable, inject } from "@angular/core";
 
-import { Role } from "src/app/models/role.entity";
+import { Member } from "src/app/models/member.entity";
 import { ISelectOrUnselect } from "../interfaces/select-or-unselect";
-import { SelectOrUnselectRolesResource } from "src/app/resources/roles/select-or-unselect-role.resource";
+import { SelectOrUnselectMemberResource } from "src/app/resources/members/select-or-unselect-member.resource";
 
 @Injectable()
-export class SelectOrUnselectRoleService extends ISelectOrUnselect<Role> {
+export class SelectOrUnselectMemberService extends ISelectOrUnselect<Member> {
 
-    private selectOrUnselect = inject(SelectOrUnselectRolesResource)
+    private selectOrUnselect = inject(SelectOrUnselectMemberResource);
 
     run(id: string, isSelected: boolean): void {
         this.spinner.show();
         this.selectOrUnselect.run(id, isSelected).subscribe({
             next: (response) => { this.isDone.emit(response) },
             error: (eventErr) => {
-                this.toastr.error('Não foi possível selecionar o cargo', 'Que pena :(', { 
+                this.toastr.error('Não foi possível selecionar o membero', 'Que pena :(', { 
                     progressBar: true,
                     positionClass: 'toast-bottom-center'
                 });

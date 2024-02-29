@@ -7,7 +7,9 @@ import { IPaginaterResource } from "../interfaces/paginater.resource";
 import { ResponsePageable } from "src/app/models/response-pageable.entity";
 import { Member } from "src/app/models/member.entity";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ListMembersPaginatedResource extends IPaginaterResource {
 
     constructor() { super('members') }
@@ -16,8 +18,8 @@ export class ListMembersPaginatedResource extends IPaginaterResource {
         const _params = new HttpParams()
             .set('search', pagination.search)
             .set('ordination', pagination.ordination)
-            .set('page', pagination.page)
-            .set('size', pagination.size)
+            .set('page', pagination.pageCurrent)
+            .set('size', pagination.pageSize)
         return this.http.get<ResponsePageable<Member>>(this.baseUrl(), { params: _params });
     }
 }

@@ -1,22 +1,19 @@
 export class ResponsePageable<T> {
-    /*
-        Conteúdo com os dados
-        trazidos do backend
-    */
+
+    /* Conteúdo trazido na paginação */
     content!: Array<T>;
-    /*
-        Quantidade de elementos
-        trazidos do backend
-    */
+
+    /* Quantidade total de elementos */
     totalElements!: number;
-    /*
-        Quantidade total de paginas disponíveis
-    */
-   totalPages!: number;
-    /*
-        Página atual selecionada
-    */
+
+    /* Quantidade total de paginas */
+    totalPages!: number;
+
+    /* Página atual selecionada */
     number!: number;
+
+    /* Tamanho da página */
+    size!: number;
 
     constructor(values: Object = {}) { 
         Object.assign(this, values);

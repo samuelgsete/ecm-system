@@ -6,12 +6,12 @@ import { ISelectOrUnselectAllResource } from "../interfaces/select-or-unselect-a
 @Injectable({
     providedIn: 'root'
 })
-export class SelectOrUnselectAllCongregationsResource extends ISelectOrUnselectAllResource {
+export class SelectOrUnselectAllMembersResource extends ISelectOrUnselectAllResource {
 
-    constructor() { super('congregations', 'toggle-selection') }
+    constructor() { super('members', 'toggle-selection') }
 
-    run(isSelected: boolean): Observable<any> {
-        const selected = isSelected ? 1 : 0;
+    run(isSelected: boolean): Observable<void> {
+        let selected = isSelected ? 1 : 0;
         return this.http.put<void>(this.baseUrl().concat(`?selected=${selected}`), {});
     }
 }

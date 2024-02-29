@@ -20,7 +20,7 @@ public class SelectOrUnSelectCongregationResource {
     
     @PatchMapping("/{id}")
     public ResponseEntity<Congregation> run(@PathVariable String id, @RequestParam Integer selected) {
-        var isSelected = selected == 1 ? true : false;
+        var isSelected = selected == 1;
         return selectOrUnselect
             .run(id, isSelected)
             .map(updatedCongregation -> ResponseEntity.ok(updatedCongregation))

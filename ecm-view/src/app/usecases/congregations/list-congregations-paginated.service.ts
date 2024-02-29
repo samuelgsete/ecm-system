@@ -14,12 +14,17 @@ export class ListCongregationsPaginatedService extends IPaginater {
     run(pagination: Pagination): Observable<Congregation[]> {
         return this.paginater.run(pagination).pipe(
             map(response => {
-                pagination.total = response.totalElements;
-                this.emptyOrNotFound(pagination.total, pagination.search);
-                this.setPageable(response.number, response.totalPages);                     
+                const search = pagination.search;
+                const ordination = pagination.ordination;
+                const pageCurrent = response.number;
+                const pageSize = response.size;
+                this.setParamsURL(search, ordination, pageCurrent, pageSize);
+                this.setPageable(pageCurrent, pageSize, response.totalPages, response.totalElements);
+
+                pagination.totalElements = response.totalElements;
+                this.emptyOrNotFound(pagination.totalElements, pagination.search);                   
                 return response.content;
-            },
-            )
+            })
         ).pipe(
             shareReplay()
         )

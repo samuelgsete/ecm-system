@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Page } from './page.entity';
 import { Pageable } from './pageable.entity';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pagination',
@@ -9,37 +9,47 @@ import { Pageable } from './pageable.entity';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-    
-  @Output() changePage: EventEmitter<Page> = new EventEmitter<Page>()
+   
+  @Output() changeSize: EventEmitter<number> = new EventEmitter<number>();
+  @Output() changePage: EventEmitter<number> = new EventEmitter<number>();
   @Input() pageable: Pageable = new Pageable();
-  pages: Page[] = [];
-  MAX_PAGES_VISIBLE = 8;
+  @Input() isVisible: boolean = true;
 
-  onChangePage(nextPage: Page): void {
-    let currentPage = this.getCurrentPage();
-    currentPage.isCurrent = false;
-    nextPage.isCurrent = true;
+  differentSizes: number[] = [2, 5, 10, 15, 25, 30];
+  formSize: FormControl = new FormControl();
+
+  currentPage: number = 0;
+  totalPages: number = 0;
+  totalElements: number = 0;
+  size: number = 0;
+  firstPage: number = 0;
+  lastPage: number = 0;
+  
+  handleNextPage(): void {
+    const nextPage = this.pageable.pageCurrent + 1;
     this.changePage.emit(nextPage);
   }
 
-  protected getCurrentPage(): Page {
-    return this.pages.filter(page => page.isCurrent)[0];
+  handlePreviousPage(): void {
+    const previousPage = this.pageable.pageCurrent - 1;
+    this.changePage.emit(previousPage);
   }
 
-  render(): void {
-    const totalPages = this.pageable.totalPages;
-    const currentPage = this.pageable.currentPage;
-    this.pages = Array.from({ length: totalPages }).map((item, index) => {
-      return new Page({
-        name: index  + 1,
-        value: index,
-        isCurrent: currentPage == index ? true : false,
-        isHidden: index < this.MAX_PAGES_VISIBLE ? false : true
-      })
-    })
+  handleFirstPage(): void {
+    const firstPage = 0;
+    this.changePage.emit(firstPage);
+  }
+
+  handleLastPage(): void {
+    const lastPage = this.pageable.totalPages - 1;
+    this.changePage.emit(lastPage);
+  }
+
+  handleSize(size: number): void {
+    this.changeSize.emit(size);
   }
 
   ngOnInit(): void {
-    this.render();
+    this.formSize.patchValue(this.pageable.pageSize);
   }
 }

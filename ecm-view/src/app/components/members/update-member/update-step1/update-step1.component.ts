@@ -46,11 +46,11 @@ export class UpdateStep1Component implements OnInit {
   }
 
   protected loadRoles(): void {
-    this.roles$ = this.listRoles.run(new Pagination({ size: SIZE_PAGINATION }));
+    this.roles$ = this.listRoles.run(new Pagination({ pageSize: SIZE_PAGINATION }));
   }
 
   protected loadCongregations(): void {
-    this.congregations$ = this.listCongregations.run(new Pagination({ size: SIZE_PAGINATION }));
+    this.congregations$ = this.listCongregations.run(new Pagination({ pageSize: SIZE_PAGINATION }));
   }
 
   ngOnInit(): void {

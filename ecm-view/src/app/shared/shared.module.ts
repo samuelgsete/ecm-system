@@ -105,7 +105,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 
     NgxMaskDirective,
     NgxMaskPipe,
-
     NgxSpinnerModule,
     ToastrModule,
     ImageCropperModule

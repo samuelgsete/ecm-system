@@ -13,7 +13,7 @@ export class SelectOrUnselectRolesResource  extends ISelectOrUnselectResource<Ro
 
     run(id: string, isSelected: boolean): Observable<Role> {
         const selected = isSelected ? 1 : 0;
-        return this.http.patch<Role>(this.baseUrl().concat(`/${id}?isSelected=${selected}`), {});
+        return this.http.patch<Role>(this.baseUrl().concat(`/${id}?selected=${selected}`), {});
     }
 
 }

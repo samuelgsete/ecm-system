@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -12,7 +13,7 @@ import { OrderCongregationsService } from 'src/app/usecases/congregations/order-
 import { DeleteCongregationService } from 'src/app/usecases/congregations/delete-congregation.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { EmitCredentialsByCongregationService } from 'src/app/usecases/credentials/emit-credentials-by-congregation.service';
-import { SelectOrUnselecteCongregationService } from 'src/app/usecases/congregations/select-or-unselect-congregation.service';
+import { SelectOrUnselectCongregationService } from 'src/app/usecases/congregations/select-or-unselect-congregation.service';
 import { CountCongregationsService } from 'src/app/usecases/congregations/count-congegations.service';
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
@@ -26,11 +27,11 @@ import { CountElements } from 'src/app/utils/models/count-elements.entity';
 export class DisplayCongregationsComponent implements OnInit {
 
   congregations$!: Observable<Congregation[]>;
-  pagination: Pagination = new Pagination()
-  searchValue: string = '';
+  pagination: Pagination = new Pagination();
   countElements = new CountElements();
    
   constructor(
+    protected readonly route: ActivatedRoute,
     protected readonly titleService: Title,
     protected readonly modal: MatDialog,
     protected readonly listCongregations: ListCongregationsPaginatedService,
@@ -38,8 +39,8 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly deleteMany: DeleteManyCongregationService,
     protected readonly order: OrderCongregationsService,
     protected readonly updateMetrics: DisplayMetricsService,
-    protected readonly onEmit: EmitCredentialsByCongregationService,
-    protected readonly selectOrUnselect: SelectOrUnselecteCongregationService,
+    protected readonly emitCredentials: EmitCredentialsByCongregationService,
+    protected readonly selectOrUnselectOne: SelectOrUnselectCongregationService,
     protected readonly selectOrUnselectAll: SelectOrUnselectAllCongregationsService,
     protected readonly onCount: CountCongregationsService
   ) {
@@ -49,22 +50,33 @@ export class DisplayCongregationsComponent implements OnInit {
     this.congregations$ = this.listCongregations.run(this.pagination);
   }
 
-  changePage(page: number) :void {
-    this.pagination.page = page;
+  changePage(nextPage: number): void {
+    this.pagination.pageCurrent = nextPage;
+    this.onLoad();
+    window.scrollTo({ top: 60, behavior: 'smooth' });
+  }
+
+  changeSizePage(size: number): void {
+    this.pagination.pageCurrent = 0;
+    this.pagination.pageSize = size;
     this.onLoad();
   }
 
-  onSelect(id: string, selected: boolean): void {
-    this.selectOrUnselect.run(id, selected);
+  handleEmitCredentialsOfCongregation(name: string): void {
+    this.emitCredentials.run(name);
   }
 
-  onSelectAll(isSelected: boolean): void {
+  handleSelectOrUnselectOne(id: string, selected: boolean): void {
+    this.selectOrUnselectOne.run(id, selected);
+  }
+
+  handleSelectOrUnselectAll(isSelected: boolean): void {
     this.selectOrUnselectAll.run(isSelected);
   }
 
-  onSearch(keyword: string): void {
-    this.searchValue = keyword;
-    this.pagination.search = keyword;
+  handleSearch(keyword: string): void {
+    this.pagination.search = keyword.toLowerCase()
+    this.pagination.pageCurrent = 0;
     this.onLoad();
   }
 
@@ -73,7 +85,7 @@ export class DisplayCongregationsComponent implements OnInit {
     this.onLoad();
   }
 
-  deleteSelecteds(): void {
+  handleDeleteMany(): void {
     this.deleteMany.run();
   }
 
@@ -96,6 +108,17 @@ export class DisplayCongregationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const search = params['search'] || '';
+      const ordination = params['ordination'] || 'by_name_asc';
+      const pageCurrent = params['page_number'] || 0;
+      const pageSize = params['page_size'] || 10;
+    
+      this.pagination.search = search;
+      this.pagination.ordination = ordination;
+      this.pagination.pageCurrent = parseInt(pageCurrent);
+      this.pagination.pageSize = parseInt(pageSize);
+    });
     // Carrega as congregações
     this.onLoad();
     // Configura o título da página
@@ -106,12 +129,12 @@ export class DisplayCongregationsComponent implements OnInit {
       this.onLoad();
     })
     // Obtém um conteúdo html com as credenciais e os renderiza em uma nova aba do navegador
-    this.onEmit.done().subscribe(htmlContent => {
+    this.emitCredentials.done().subscribe(htmlContent => {
       let newWindow = open();
       newWindow?.document.write(htmlContent || "ERRO 404: Not Found");
     })
     // Ao selecionar ou deselecionar uma congregação
-    this.selectOrUnselect.isDone.subscribe(response => {
+    this.selectOrUnselectOne.isDone.subscribe(response => {
       this.onCount.run();
       this.onLoad();
     });

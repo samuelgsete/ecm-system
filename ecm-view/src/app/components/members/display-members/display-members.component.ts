@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Member } from 'src/app/models/member.entity';
 import { Pagination } from 'src/app/models/pagination.entity';
 import { GoToEditService } from 'src/app/usecases/members/go-to-edit.service';
 import { ListMembersPaginatedService } from 'src/app/usecases/members/list-members-paginated.service';
-import { OnSelectMemberService } from 'src/app/usecases/members/on-select-member.service';
+import { SelectOrUnselectMemberService } from 'src/app/usecases/members/select-or-unselect-member.service';
 import { OrderMembersService } from 'src/app/usecases/members/order-members.service';
 import { UpdateMemberService } from 'src/app/usecases/members/update-member.service';
 import { PaginationService } from '../../paginate/pagination/pagination.service';
@@ -16,7 +16,7 @@ import { PrintOneCredentialsResource } from 'src/app/resources/credentials/print
 import { PrintAllCredentialsService } from 'src/app/usecases/credentials/print-all-credentials.service';
 import { PrintAllCredentialsResource } from 'src/app/resources/credentials/print-all-credentials.resource';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
-import { ToggleSelectionMembersService } from 'src/app/usecases/members/ToggleSelectionMembers.service';
+import { SelectOrUnselectAllMembersService } from 'src/app/usecases/members/select-or-unselect-all-members.service';
 import { DisplayMetricsService } from 'src/app/usecases/metrics/display-metrics.service';
 import { OnFullScreenImage } from 'src/app/utils/services/on-fullscreen-image.service';
 import { CountMembersService } from 'src/app/usecases/members/count-members.service';
@@ -40,23 +40,23 @@ export class DisplayMembersComponent implements OnInit {
 
   members$!: Observable<Member[]>;
   pagination: Pagination = new Pagination();
-  searchValue: string = '';
   countElements = new CountElements();
   
   constructor(
     protected readonly router: Router,
+    protected readonly route: ActivatedRoute,
     protected readonly titleService:Title,
     protected readonly onPaginate: PaginationService,
     protected readonly listMembers: ListMembersPaginatedService,
     protected readonly updateMember: UpdateMemberService,
     protected readonly onCount: CountMembersService,
     protected readonly goToEdit: GoToEditService,
-    protected readonly onSelect: OnSelectMemberService,
+    protected readonly selectOrUnselectOne: SelectOrUnselectMemberService,
     protected readonly order: OrderMembersService,
     protected readonly onPrint: PrintOneCredentialsService,
     protected readonly onPrintAll: PrintAllCredentialsService,
     protected readonly onDelete: DeleteMemberService,
-    protected readonly onToggleSelection: ToggleSelectionMembersService,
+    protected readonly selectOrUnselectAll: SelectOrUnselectAllMembersService,
     protected readonly displayMetrics: DisplayMetricsService,
     protected readonly onFullScreen: OnFullScreenImage
   ) {}
@@ -66,9 +66,15 @@ export class DisplayMembersComponent implements OnInit {
   }
   
   changePage(nextPage: number): void {
-    this.pagination.page = nextPage;
+    this.pagination.pageCurrent = nextPage;
     this.onLoad();
     window.scrollTo({ top: 60, behavior: 'smooth' });
+  }
+
+  changeSizePage(size: number): void {
+    this.pagination.pageCurrent = 0;
+    this.pagination.pageSize = size;
+    this.onLoad();
   }
 
   changeOrdination(ordination: string): void {
@@ -76,22 +82,41 @@ export class DisplayMembersComponent implements OnInit {
     this.onLoad();
   }
 
-  deleteSelecteds(): void {
+  handleDeleteMany(): void {
     alert('deletando..');
   }
 
-  generateCredentials() {
+  handleGenerateCredentials() {
     this.onPrintAll.run()
   }
 
-  onSearch(keyword: string) {
-    this.searchValue = keyword;
-    this.pagination.search = this.searchValue;
-    this.pagination.page = 0;
+  handleSelectOrUnselectAll(isSelected: boolean): void {
+    this.selectOrUnselectAll.run(isSelected);
+  }
+
+  handleSelectOrUnselectOne(isSelected: boolean, id: string): void {
+    this.selectOrUnselectOne.run(id, isSelected);
+  }
+
+  handleSearch(keyword: string) {
+    this.pagination.search = keyword.toLowerCase()
+    this.pagination.pageCurrent = 0;
     this.onLoad();
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const search = params['search'] || '';
+      const ordination = params['ordination'] || 'by_name_asc';
+      const pageCurrent = params['page_number'] || 0;
+      const pageSize = params['page_size'] || 10;
+    
+      this.pagination.search = search;
+      this.pagination.ordination = ordination;
+      this.pagination.pageCurrent = parseInt(pageCurrent);
+      this.pagination.pageSize = parseInt(pageSize);
+    });
+
     this.onLoad();
     this.titleService.setTitle('Todos os membros cadastrados');
           
@@ -115,13 +140,13 @@ export class DisplayMembersComponent implements OnInit {
       this.onCount.run();
     })
 
-    this.onToggleSelection.done().subscribe(response => {
+    this.selectOrUnselectAll.isDone.subscribe(response => {
       this.onLoad();
       this.onCount.run();
       this.displayMetrics.onUpdate();
     })
 
-    this.onSelect.done().subscribe(response => {
+    this.selectOrUnselectOne.isDone.subscribe(response => {
       this.onCount.run();
       this.displayMetrics.onUpdate();
     })

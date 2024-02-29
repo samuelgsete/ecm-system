@@ -1,25 +1,35 @@
-<nav class="nav-pagination">
-    <ul class="pagination" *ngIf="pageable.totalPages > 1">
-        <li 
-            class="page" 
-            *ngFor="let page of pages"
-            (click)="onChangePage(page)"
-            [ngClass]="{ 'isCurrent' : page.isCurrent, 'hidden-page' : page.isHidden }"
-            matRipple
-        >{{ page.name }}</li>
-        <li class="page" *ngIf="pageable.totalPages > MAX_PAGES_VISIBLE" [matMenuTriggerFor]="more_pages" matRipple>+</li>
-        <mat-menu #more_pages="matMenu">
-            <button
-                class="page-item"
-                mat-menu-item  
-                *ngFor="let page of pages"
-                (click)="onChangePage(page)"
-                [ngClass]="{ 'hidden-page' : !page.isHidden }"
-            >
-                <mat-radio-button [checked]="page.isCurrent" color="primary">
-                    <span class="page-menu">{{ page.name }}</span>
-                </mat-radio-button>
-            </button>
-        </mat-menu>
-    </ul>
+<nav class="ui-nav-pagination" *ngIf="isVisible">
+    <div class="pagination-total">       
+        <span>
+            <strong>{{ pageable.totalElements }}</strong> registro(s)
+        </span>
+    </div>
+    <div class="pagination-content">
+        <mat-form-field class="page_size" appearance="outline">
+            <mat-label>ítens/página</mat-label>
+            <mat-select [formControl]="formSize" (selectionChange)="handleSize($event.value)">
+                <mat-option
+                    class="size-options"
+                    *ngFor="let size of differentSizes" 
+                    [value]="size"
+                >
+                    <span>{{ size }} ítens</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field> 
+        <span class="pagination-details">Página {{ pageable.pageCurrent + 1 }} de {{ pageable.totalPages }}</span>
+        
+        <button mat-icon-button (click)="handleFirstPage()" [disabled]="pageable.pageCurrent == 0">
+            <mat-icon>first_page</mat-icon> 
+        </button>
+        <button mat-icon-button (click)="handlePreviousPage()" [disabled]="pageable.pageCurrent == 0">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="handleNextPage()" [disabled]="pageable.pageCurrent == pageable.totalPages - 1">
+            <mat-icon>chevron_right</mat-icon> 
+        </button>
+        <button mat-icon-button (click)="handleLastPage()" [disabled]="pageable.pageCurrent == pageable.totalPages - 1">
+            <mat-icon>last_page</mat-icon>
+        </button>
+    </div>
 </nav>

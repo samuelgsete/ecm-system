@@ -3,8 +3,8 @@
         <header>
             <app-page-description title="Cargos" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listRoles.emptyData">
-                <order-list [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
-                <ui-input-search (keywordChange)="onSearch($event)"></ui-input-search>
+                <order-list [ordinations]="order.ordinations" [selectedOrdination]="pagination.ordination" (changeOrdination)="changeOrdination($event)" />
+                <ui-input-search [search]="pagination.search" (keywordChange)="onSearch($event)"></ui-input-search>
                 <button 
                     class="btn btn-lg"
                     color="purple"
@@ -23,11 +23,11 @@
         />
            
         <ui-command-bar
+            [isVisible]="!listRoles.searchNotFound"
             [countSelecteds]="countElements.totalSelected"
             (deleteCommnad)="deleteSelecteds()"
             [showDeleteCommand]="true"
         />
-
 
         <ng-template #loading>
             <ui-table-skeleton />
@@ -38,7 +38,7 @@
                 <tr>
                     <th>
                         <mat-checkbox
-                            [disabled]="pagination.total == 0"
+                            [disabled]="pagination.totalElements == 0"
                             (change)="onSelectOrUnselectAll($event.checked)"
                             [checked]="countElements.everyoneIsSelected"
                             [indeterminate]="countElements.notEveryoneIsSelected"
@@ -69,9 +69,14 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.value)" [pageable]="listRoles.pageable" />
+            <app-pagination 
+                (changePage)="changePage($event)"
+                (changeSize)="changeSizePage($event)"
+                [pageable]="listRoles.pageable" 
+                [isVisible]="!listRoles.searchNotFound"
+            />
         </div>
-        <such-notfound [keyword]="searchValue" [isVisible]="listRoles.searchNotFound" />
+        <such-notfound [keyword]="pagination.search" [isVisible]="listRoles.searchNotFound" />
     </section>
 </main>
 

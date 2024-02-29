@@ -9,13 +9,16 @@ import { debounceTime } from 'rxjs';
 })
 export class UiInputSearchComponent implements OnInit {
   
-  formSearch: FormControl = new FormControl();
+  @Input() search: string = '';
+
+  formSearch: FormControl = new FormControl('');
   
   @Output() 
   keywordChange: EventEmitter<string> = new EventEmitter<string>();
 
 
   ngOnInit(): void {
+    this.formSearch.patchValue(this.search);
     this.formSearch.valueChanges.pipe(debounceTime(700)).subscribe(keyword => {
       this.keywordChange.emit(keyword);
     });

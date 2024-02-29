@@ -10,5 +10,5 @@ public abstract class ISelectOrUnselectResource<T, R> {
 
     protected R selectOrUnselect() { return selectOrUnselect; }
 
-    protected abstract ResponseEntity<T> run(String id, Integer isSelected);
+    public abstract ResponseEntity<T> run(String id, Integer selected);
 }

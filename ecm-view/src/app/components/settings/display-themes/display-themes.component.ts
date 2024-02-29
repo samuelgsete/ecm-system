@@ -22,7 +22,7 @@ export class DisplayThemesComponent implements OnInit {
   ) {}
 
   changePage(page: number): void {
-    this.pagination.page = page;
+    this.pagination.pageCurrent = page;
     this.onLoad();
   }
 

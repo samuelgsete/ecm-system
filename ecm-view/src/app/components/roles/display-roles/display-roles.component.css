@@ -15,3 +15,8 @@ table tr td:nth-child(1) {
 table tr td > button:last-child {
     color: rgb(var(--danger));
 }
+
+table tr td > button:first-child[disabled=true] {
+    background-color: transparent !important;
+    color: rgb(var(--gray-5)) !important;
+}

@@ -2,7 +2,7 @@
     <mat-expansion-panel expanded="true">
         <mat-expansion-panel-header>
             <mat-panel-title>Temas de Credenciais</mat-panel-title>
-            <mat-panel-description>{{ pagination.total }} disponíveis</mat-panel-description>
+            <mat-panel-description>{{ pagination.totalElements }} disponíveis</mat-panel-description>
         </mat-expansion-panel-header>
 
         <ng-template #loading>
@@ -40,7 +40,7 @@
                     </td>
                 </tr>
             </table>
-            <app-pagination (changePage)="changePage($event.value)" [pageable]="listThemes.pageable" />
+            <app-pagination (changePage)="changePage($event)" [pageable]="listThemes.pageable" />
         </div>
     </mat-expansion-panel>
 </mat-accordion>

@@ -18,8 +18,8 @@ export class ListCongregationsPaginatedResource extends IPaginaterResource {
         const _params = new HttpParams()
             .set('search', pagination.search)
             .set('ordination', pagination.ordination)
-            .set('page', pagination.page)
-            .set('size', pagination.size)
+            .set('page', pagination.pageCurrent)
+            .set('size', pagination.pageSize)
 
         return this.http.get<ResponsePageable<Congregation>>(this.baseUrl(), { params: _params });
     }

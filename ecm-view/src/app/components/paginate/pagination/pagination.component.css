@@ -1,51 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
-
-ul.pagination {
-    list-style: none;
-    display: flex;
-    margin-top: 16px;
-    column-gap: 0.6em;
-    justify-content: center;
-    align-items: center;
-}
-
-ul.pagination li.page {
+.ui-nav-pagination {
     padding: 12px 16px;
+    margin: 16px 0 0 0;
+    display: flex;
+    column-gap: 4px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(var(--gray-2));
+    border-radius: 6px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.ui-nav-pagination
+.pagination-content {
+    display: flex;
+    align-items: center;
+    
+}
+
+.ui-nav-pagination
+.pagination-content
+.page_size {
+    width: 148px;
+    height: 56px;
+    transform: scale(86%);
+}
+
+.ui-nav-pagination
+.pagination-content
+.size-options {
+    font-size: 0.84em;
+}
+
+.ui-nav-pagination
+.pagination-content span {
+    font-size: 0.98em;
+    font-weight: 600;
+    padding: 8px;
+    margin-right: 4px;
+    border-right: 1.5pt solid rgb(var(--gray-4));
+}
+
+.ui-nav-pagination
+.pagination-total span strong {
+    font-size: 1.42em;
+    font-weight: 700;
+    color: rgb(var(--purple));
+}
+
+
+.ui-nav-pagination
+.pagination-total span {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.ui-nav-pagination 
+.pagination-content
+.pagination-details {
     color: rgb(var(--gray-7));
-    background-color: rgb(var(--gray-3));
-    font-size: 1.16em;
-    font-weight: 550;
-    font-family: 'Heebo', sans-serif;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.5s;
+} 
+
+.ui-nav-pagination 
+.pagination-content
+button {
+    color: rgb(var(--dark-0));
 }
 
-.page-menu {
-    color: rgb(var(--gray-6));
-    font-size: 1.08em;
-    font-weight: 550;
-    font-family: 'Heebo', sans-serif;
-    cursor: pointer;
-}
-
-ul.pagination li.page:hover {
-    background-color: rgb(var(--gray-1));
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
-
-ul.pagination li.isCurrent {
-    background-color: rgb(var(--dark-0));
-    color: rgb(var(--gray-4));
-    pointer-events: none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    animation: fade 0.35s;
-}
-
-.hidden-page {
-    display: none;
+.ui-nav-pagination 
+.pagination-content
+button[disabled=true] {
+    background-color: transparent !important;
+    color: rgb(var(--gray-5)) !important;
+    cursor: not-allowed !important;
 }

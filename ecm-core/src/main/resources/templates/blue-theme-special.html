@@ -184,6 +184,13 @@
             margin: 5px 0;
             grid-template-columns: 1fr 1fr 1fr;
         }
+
+        div.id {
+            font-size: 0.64em;
+            font-family: 'Noto Sans', sans-serif;
+            text-align: center;
+            color: rgb(var(--gray-7));
+        }
     
         div.row-1 {
             display: grid;
@@ -213,97 +220,96 @@
             }
         }
     </style>
-    <div class="template-credential" th:each="member : ${members}">
-        <div class="template-credential">
-            <div class="back">
-                <p class="date-of-issue">
-                    EM
-                    <span th:text="${shepherd.location}"></span>
-                    <span th:text="${dateFormatter.run(dateOfIssue, 'dd-MM-yyyy hh:mm:ss')}"></span>
-                </p>
-                <div class="grid">
-                    <div class="ui-text">
-                        <label>CPF</label>
-                        <p th:text="${cpfFormatter.run(member.cpf)}"></p>
+    <div class="content">
+        <div class="template-credential" th:each="member : ${members}">
+            <div class="template-credential">
+                <div class="back">
+                    <p class="date-of-issue">
+                        EM
+                        <span th:text="${shepherd.location}"></span>
+                        <span th:text="${dateFormatter.run(dateOfIssue, 'dd-MM-yyyy hh:mm:ss')}"></span>
+                    </p>
+                    <div class="grid">
+                        <div class="ui-text">
+                            <label>CPF</label>
+                            <p th:text="${cpfFormatter.run(member.cpf)}"></p>
+                        </div>
+                        <div class="ui-text">
+                            <label>RG</label>
+                            <p th:text="${member.rg} ?: '************' "></p>
+                        </div>
+                        <div class="ui-text">
+                            <label>Data de Batismo</label>
+                            <p th:text="${dateFormatter.run(member.dateOfBaptism, 'dd/MM/yyyy')}"></p>
+                        </div>
                     </div>
-                    <div class="ui-text">
-                        <label>RG</label>
-                        <p th:text="${member.rg} ?: '************' "></p>
+                    <div class="grid">
+                        <div class="ui-text">
+                            <label>Congregação</label>
+                            <p th:text="${member.congregation} ? ${member.congregation.name} : 'Não consta'"></p>
+                        </div>
+                        <div class="ui-text">
+                            <label>Estado Civil</label>
+                            <p th:text="${maritalStatusFormatter.run(member.maritalStatus, member.gender)}"></p>
+                        </div>
+                        <div class="ui-text">
+                            <label>Data de Nascimento</label>
+                            <p th:text="${dateFormatter.run(member.dateOfBirth, 'dd/MM/yyyy')}"></p>
+                        </div>
                     </div>
-                    <div class="ui-text">
-                        <label>Data de Batismo</label>
-                        <p th:text="${dateFormatter.run(member.dateOfBaptism, 'dd/MM/yyyy')}"></p>
+                    <div class="member">
+                        <div class="signature-member">
+                            <img
+                                th:src="${member.signature.url}"
+                                alt="Assinatura do membro"
+                                width="100%"
+                            >
+                        </div>
+                        <p class="name-member" th:text="${member.name}"></p>
+                        <p class="carrier-member">MEMBRO PORTADOR</p>
                     </div>
-                </div>
-                <div class="grid">
-                    <div class="ui-text">
-                        <label>Congregação</label>
-                        <p th:text="${member.congregation} ? ${member.congregation.name} : 'Não consta'"></p>
-                    </div>
-                    <div class="ui-text">
-                        <label>Estado Civil</label>
-                        <p th:text="${maritalStatusFormatter.run(member.maritalStatus, member.gender)}"></p>
-                    </div>
-                    <div class="ui-text">
-                        <label>Data de Nascimento</label>
-                        <p th:text="${dateFormatter.run(member.dateOfBirth, 'dd/MM/yyyy')}"></p>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="signature-member">
-                        <img
-                            th:src="${member.signature.url}"
-                            alt="Assinatura do membro"
-                            width="100%"
-                        >
-                    </div>
-                    <p class="name-member" th:text="${member.name}"></p>
-                    <p class="carrier-member">MEMBRO PORTADOR</p>
-                </div>
-                <div class="shepherd">
-                    <div class="signature-shepherd">
-                        <img 
-                            th:src="${shepherd.signature.url}"
-                            alt="Assinatura do pastor" 
-                            width="100%" 
-                            height="100%"
-                        >
-                    </div>
-                    <p class="name-shepherd" th:text="${shepherd.name}"></p>
-                    <p class="president-shepherd">PASTOR PRESIDENTE</p>
-                </div>
-            </div>
-            <div class="front">
-                <div class="banner">
-                    <img src="https://res.cloudinary.com/dt4bynswk/image/upload/v1697824011/se-cred/static/blue-logo_o2f1zx_msonw0.png" alt="Logotipo Igreja">
-                </div>
-                <div class="row-1">
-                    <div class="photo">
-                        <img
-                            th:src="${member.photo.url}" 
-                            alt="Photo of Member" 
-                            width="100%" 
-                            height="100%"
-                        >
-                    </div>
-                    <div class="ui-text">
-                        <label>Nome</label>
-                        <p th:text="${member.name}"></p>
-                    </div>
-                    <div class="ui-text">
-                        <label>ID</label>
-                        <p th:text="${member.id}"></p>
+                    <div class="shepherd">
+                        <div class="signature-shepherd">
+                            <img 
+                                th:src="${shepherd.signature.url}"
+                                alt="Assinatura do pastor" 
+                                width="100%" 
+                                height="100%"
+                            >
+                        </div>
+                        <p class="name-shepherd" th:text="${shepherd.name}"></p>
+                        <p class="president-shepherd">PASTOR PRESIDENTE</p>
                     </div>
                 </div>
-                <div class="row-flex space-between">
-                    <div class="ui-text">
-                        <label>Filiação</label>
-                        <p th:text="${member.affiliation.fatherName} ?: '************ *****' "></p>
-                        <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
+                <div class="front">
+                    <div class="banner">
+                        <img src="https://res.cloudinary.com/dt4bynswk/image/upload/v1697824011/se-cred/static/blue-logo_o2f1zx_msonw0.png" alt="Logotipo Igreja">
                     </div>
-                    <div class="ui-text">
-                        <label>Cargo</label>
-                        <p th:text="${member.role} ? ${member.role.name} : 'Não consta'"></p>
+                    <div class="row-1">
+                        <div class="photo">
+                            <img
+                                th:src="${member.photo.url}" 
+                                alt="Photo of Member" 
+                                width="100%" 
+                                height="100%"
+                            >
+                            <div class="id">ID.: <span th:text="${member.id}"></span></div>
+                        </div>
+                        <div class="ui-text">
+                            <label>Nome</label>
+                            <p th:text="${member.name}"></p>
+                        </div>
+                    </div>
+                    <div class="row-flex space-between">
+                        <div class="ui-text">
+                            <label>Filiação</label>
+                            <p th:text="${member.affiliation.fatherName} ?: '************ *****' "></p>
+                            <p th:text="${member.affiliation.motherName} ?: '************ *****' "></p>
+                        </div>
+                        <div class="ui-text">
+                            <label>Cargo</label>
+                            <p th:text="${member.role} ? ${member.role.name} : 'Não consta'"></p>
+                        </div>
                     </div>
                 </div>
             </div>

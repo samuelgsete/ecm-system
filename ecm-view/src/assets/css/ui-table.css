@@ -39,3 +39,7 @@ table.ui-table tr th {
 .default tr {
     border-bottom: 1.45pt solid rgb(var(--gray-2));
 }
+
+table.default > tr:last-child {
+    border-bottom: none;
+}

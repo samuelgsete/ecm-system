@@ -1,9 +1,23 @@
+.order-list {
+    background-color: rgb(var(--gray-2));
+    padding: 24px 16px 24px 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
 .order-list mat-icon {
     color: rgb(var(--gray-8));
 }
 
-.item-ordination span {
-    color: rgb(var(--gray-8));
+.sort {
+    display: flex;
+    flex-direction: column;
+    line-height: 16px;
+    text-align: left;
+}
+
+.sort span.sort-value {
+    font-size: 0.78em;
+    font-weight: 600;
+    color: rgb(var(--purple));
 }
 
 .ordination-active span {
@@ -13,4 +27,32 @@
 .ordination-active {
     background-color: rgba(var(--purple), 0.098);
     pointer-events: none;
+}
+
+.btn-content {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+
+.btn-content mat-icon:last-child {
+    color: rgb(var(--gray-7));
+}
+
+.unexpand-icon {
+    transition: all 0.2s;
+}
+
+.expand-icon {
+    transform: rotate(-180deg);
+    animation: expand 0.2s ease-in-out;
+}
+
+@keyframes expand {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-180deg);
+    }
 }
