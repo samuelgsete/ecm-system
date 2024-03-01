@@ -1,5 +1,5 @@
 import { Injectable, inject } from "@angular/core";
-import { Observable, map, shareReplay } from "rxjs";
+import { Observable, map } from "rxjs";
 
 import { Pagination } from "src/app/models/pagination.entity";
 import { ListCongregationsPaginatedResource } from "src/app/resources/congregations/list-congregations-paginated.resource";
@@ -25,8 +25,6 @@ export class ListCongregationsPaginatedService extends IPaginater {
                 this.emptyOrNotFound(pagination.totalElements, pagination.search);                   
                 return response.content;
             })
-        ).pipe(
-            shareReplay()
         )
     }
 }

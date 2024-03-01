@@ -27,6 +27,7 @@ import { SelectOrUnselectRoleService } from 'src/app/usecases/roles/select-or-un
 import { CountRolesService } from 'src/app/usecases/roles/count-roles.service';
 import { SelectOrUnselectAllRolesService } from 'src/app/usecases/roles/select-or-unselect-all-roles.service';
 import { DeleteManyRolesService } from 'src/app/usecases/roles/delete-many-roles.service';
+import { FindAllRolesService } from 'src/app/usecases/roles/find-all-roles.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DeleteManyRolesService } from 'src/app/usecases/roles/delete-many-roles
   ],
   providers: [
     BuildFormRole,
+    FindAllRolesService,
     ListRolesPaginatedService,
     CreateRoleResource,
     CreateRoleService,

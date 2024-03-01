@@ -5,13 +5,10 @@ import { Observable } from 'rxjs';
 import { Role } from 'src/app/models/role.entity';
 import { Congregation } from 'src/app/models/congregation.entity';
 import { ListGendersService } from 'src/app/utils/services/list-genders.service';
+import { FindAllCongregationsService } from 'src/app/usecases/congregations/find-all-congregations.service';
 import { ListMaritalStatusService } from 'src/app/utils/services/list-marital-status.service';
-import { ListCongregationsPaginatedService } from 'src/app/usecases/congregations/list-congregations-paginated.service';
-import { ListRolesPaginatedService } from 'src/app/usecases/roles/list-roles-paginated.service';
-import { Pagination } from 'src/app/models/pagination.entity';
 import { IFormMemberStep1 } from 'src/app/usecases/members/interfaces/form-member-step1.interface';
-
-const SIZE_PAGINATION = 120;
+import { FindAllRolesService } from 'src/app/usecases/roles/find-all-roles.service';
 
 @Component({
   selector: 'app-step1',
@@ -28,10 +25,9 @@ export class Step1Component {
   constructor(
     protected readonly listGenders: ListGendersService,
     protected readonly listMaritalStatus: ListMaritalStatusService,
-    protected readonly listRoles: ListRolesPaginatedService,
-    protected readonly listCongregations: ListCongregationsPaginatedService,
+    protected readonly findAllRoles: FindAllRolesService,
+    protected readonly findAllCongregations: FindAllCongregationsService,
   ) {}
-
   
   openSelectionRoles(): void {
     !this.roles$ && this.loadRoles();
@@ -42,10 +38,10 @@ export class Step1Component {
   }
 
   protected loadRoles(): void {
-    this.roles$ = this.listRoles.run(new Pagination({ pageSize: SIZE_PAGINATION }));
+    this.roles$ = this.findAllRoles.run();
   }
 
   protected loadCongregations(): void {
-    this.congregations$ = this.listCongregations.run(new Pagination({ pageSize: SIZE_PAGINATION }));
+    this.congregations$ = this.findAllCongregations.run();
   }
 }

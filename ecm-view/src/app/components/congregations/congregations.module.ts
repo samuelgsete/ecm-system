@@ -22,6 +22,7 @@ import { SelectOrUnselectCongregationService } from 'src/app/usecases/congregati
 import { CountCongregationsService } from 'src/app/usecases/congregations/count-congegations.service';
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
+import { FindAllCongregationsService } from 'src/app/usecases/congregations/find-all-congregations.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DeleteManyCongregationService } from 'src/app/usecases/congregations/de
     UiModule
   ],
   providers: [
+    FindAllCongregationsService,
     ListCongregationsPaginatedService,
     CreateCongregationService,
     UpdateCongregationService,
