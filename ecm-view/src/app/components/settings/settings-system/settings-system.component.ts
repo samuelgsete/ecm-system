@@ -18,7 +18,7 @@ export class SettingsSystemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle("Suas configurações atuais");
+    this.title.setTitle("Temas disponíveis");
     this.findShepherd.run();
     this.findShepherd.done().subscribe(response => {
       this.shepherd = new Shepherd(response);

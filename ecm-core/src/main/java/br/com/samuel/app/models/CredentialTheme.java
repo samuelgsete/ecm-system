@@ -22,6 +22,12 @@ public class CredentialTheme extends EntityBase {
     @Column(length = 24, nullable = false)
     private String template;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
     private Boolean isActive;
+
+    private String urlPreview;
+    private Integer rating;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isFavorite = false;
 }

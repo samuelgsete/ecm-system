@@ -1,49 +1,61 @@
-<mat-accordion>
-    <mat-expansion-panel expanded="true">
-        <mat-expansion-panel-header>
-            <mat-panel-title>Temas de Credenciais</mat-panel-title>
-            <mat-panel-description>{{ pagination.totalElements }} disponíveis</mat-panel-description>
-        </mat-expansion-panel-header>
+<!--<main>
+    <ng-template #loading>
+        <ui-table-skeleton />
+    </ng-template>
+    <div class="content" *ngIf="themes$ | async as themes; else loading">
+        <table class="ui-table default">
+            <tr>
+                <th>Tema</th>
+                <th>Status</th>
+                <th>Registrado</th>
+                <th>última Atualização</th>
+                <th>Ações</th>
+            </tr>
+            <tr *ngFor="let theme of themes">
+                <td>{{ theme.name }}</td>
+                <td>
+                    <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
+                        {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
+                    </div>
+                </td>
+                <td>{{ theme.createdAt | dateDuration }}</td>
+                <td>{{ theme.updatedAt | dateDuration }}</td>
+                <td>
+                    <button
+                        class="btn btn-sm"
+                        color="dark"
+                        radius="true"
+                        outline="true"
+                        (click)="makeThemeToMain.run(theme.id)"
+                        [disabled]="theme.isActive"
+                        matRipple
+                    >ATIVAR</button>
+                </td>
+            </tr>
+        </table>
+        <app-pagination (changePage)="changePage($event)" [pageable]="listThemes.pageable" />
+    </div>
+</main>-->
 
-        <ng-template #loading>
-            <ui-table-skeleton />
-        </ng-template>
-
-        <div class="content" *ngIf="themes$ | async as themes; else loading">
-            <table class="ui-table default">
-                <tr>
-                    <th>Tema</th>
-                    <th>Status</th>
-                    <th>Registrado</th>
-                    <th>última Atualização</th>
-                    <th>Ações</th>
-                </tr>
-                <tr *ngFor="let theme of themes">
-                    <td>{{ theme.name }}</td>
-                    <td>
-                        <div [ngClass]="{ 'active' : theme.isActive, 'inactive' : !theme.isActive }" matRipple>
-                            {{ theme.isActive ? 'ATIVADO' : 'DESATIVADO' }}
-                        </div>
-                    </td>
-                    <td>{{ theme.createdAt | dateDuration }}</td>
-                    <td>{{ theme.updatedAt | dateDuration }}</td>
-                    <td>
-                        <button
-                            class="btn btn-sm"
-                            color="dark"
-                            radius="true"
-                            outline="true"
-                            (click)="makeThemeToMain.run(theme.id)"
-                            [disabled]="theme.isActive"
-                            matRipple
-                        >ATIVAR</button>
-                    </td>
-                </tr>
-            </table>
-            <app-pagination (changePage)="changePage($event)" [pageable]="listThemes.pageable" />
+<main>
+    <ng-template #loading>
+        <span>Carregando...</span>
+    </ng-template>
+    <div class="content" *ngIf="themes$ | async as themes; else loading">
+        <div class="container">
+            <ui-card-cred-theme 
+                *ngFor="let theme of themes" 
+                [credTheme]="theme"
+                (onActive)="handleActiveTheme(theme.id)"
+            />
         </div>
-    </mat-expansion-panel>
-</mat-accordion>
+        <app-pagination 
+            (changePage)="changePage($event)"
+            (changeSize)="changeSizePage($event)"
+            [pageable]="listThemes.pageable"
+        />
+    </div>
+</main>
 
 <ngx-spinner 
     bdColor="rgba(0, 0, 0, 0.8)"

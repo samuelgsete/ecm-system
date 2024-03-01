@@ -1,0 +1,12 @@
+.star-rating {
+    margin: 0 0 8px 0;
+    color: rgb(var(--gray-6));
+}
+
+.star-rating mat-icon {
+    cursor: pointer;
+}
+
+.active {
+    color: rgb(var(--warning));
+}

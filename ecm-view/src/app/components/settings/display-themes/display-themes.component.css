@@ -36,3 +36,13 @@ div.inactive {
     color: rgb(var(--danger));
     background-color: rgba(var(--danger), 0.12);
 }
+
+.container {
+    border-radius: 6px 0;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    background-color: rgb(var(--gray-1));
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}

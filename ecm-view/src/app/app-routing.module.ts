@@ -11,6 +11,7 @@ import { PageNotfoundComponent } from './utils/components/page-notfound/page-not
 import { SettingsSystemComponent } from './components/settings/settings-system/settings-system.component';
 import { SetShepherdComponent } from './components/settings/set-shepherd/set-shepherd.component';
 import { UpdateShepherdComponent } from './components/settings/update-shepherd/update-shepherd.component';
+import { DisplayThemesComponent } from './components/settings/display-themes/display-themes.component';
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
@@ -19,10 +20,11 @@ const routes: Routes = [
     { path: 'members', component: DisplayMembersComponent },
     { path: 'create/member', component: CreateMember2Component },
     { path: 'members/:id/update', component: UpdateMemberComponent },
-    { path: 'settings', component: SettingsSystemComponent },
+    { path: 'templates', component: SettingsSystemComponent },
     { path: 'set/shepherd', component: SetShepherdComponent },
     { path: 'shepherd/update', component: UpdateShepherdComponent }
   ]},
+  { path: 'themes', component: DisplayThemesComponent },
   { path:'**', redirectTo: '404' },
   { path:'404', component: PageNotfoundComponent }
 ];

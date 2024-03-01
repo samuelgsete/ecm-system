@@ -29,6 +29,9 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var blueTheme = new CredentialTheme(
                 "Blue Theme Special", 
                 "blue-theme-special", 
+                false,
+                "",
+                4,
                 false
             );
             blueTheme.generatePrimaryKey();
@@ -36,6 +39,9 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var indigoTheme = new CredentialTheme(
                 "Indigo Theme Special",
                 "indigo-theme-special",
+                false,
+                "",
+                5,
                 false
             );
             indigoTheme.generatePrimaryKey();
@@ -43,13 +49,19 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var purpleTheme = new CredentialTheme(
                 "Purple Theme Special", 
                 "purple-theme-special",
-                true
+                true,
+                "",
+                5,
+                false
             );
             purpleTheme.generatePrimaryKey();
 
             var greenTheme = new CredentialTheme(
                 "Green Theme Special", 
                 "green-theme-special", 
+                false,
+                "",
+                3,
                 false
             );
             greenTheme.generatePrimaryKey();
@@ -57,6 +69,9 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var yellowTheme = new CredentialTheme(
                 "Yellow Theme Special", 
                 "yellow-theme-special",
+                false,
+                "", 
+                4,
                 false
             );
             yellowTheme.generatePrimaryKey();
@@ -64,6 +79,9 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var pinkTheme = new CredentialTheme(
                 "Pink Theme Special", 
                 "pink-theme-special", 
+                false,
+                "",
+                2,
                 false
             );
             pinkTheme.generatePrimaryKey();
@@ -71,6 +89,9 @@ public class DataInitConfig implements ApplicationListener<ContextRefreshedEvent
             var redTheme = new CredentialTheme(
                 "Red Theme Special", 
                 "red-theme-special",
+                false,
+                "",
+                3,
                 false
             );
             redTheme.generatePrimaryKey();
