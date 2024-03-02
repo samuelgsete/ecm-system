@@ -1,7 +1,9 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, inject } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 
 export abstract class IFinder<T> {
     
+    protected readonly toastr = inject(ToastrService);
     protected complete: EventEmitter<T> = new EventEmitter<T>();
     protected progress: boolean = false;
 

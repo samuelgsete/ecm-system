@@ -18,15 +18,19 @@
     position: relative;
 }
 
-.ui-preview-image .image {
-    text-align: center;
+
+.ui-preview-image .cancel-upload {
+    color: rgb(var(--gray-7));
 }
 
-.ui-preview-image .image p,image-resolution {
-    font-size: 0.81em;
-    font-family: 'Figtree', monospace;
-    font-weight: 400;
-    letter-spacing: -0.4px;
+.ui-preview-image .image {
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.ui-preview-image .image:hover {
+    filter: brightness(90%);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .ui-preview-image .image img.image-uploaded {
@@ -40,7 +44,7 @@
     font-size: 0.92em;
     color: rgb(var(--gray-8));
     letter-spacing: -0.8px;
-    margin: 2px 0;
+    margin: 0;
     text-decoration: none;
     transition: all 0.55s;
 }
@@ -52,18 +56,22 @@
 
 .ui-preview-image .image-description p.image-size {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.88em;
+    font-size: 0.82em;
     color: rgb(var(--dark));
     font-weight: 700;
     margin: 3px 0 0 0;
 }
 
+.ui-preview-image .image-description p.image-size strong {
+    color: rgb(var(--gray-6));
+}
+
 .ui-preview-image .image-description p.uploaded-at {
     font-size: 0.88em;
-    color: rgb(var(--success));
+    color: rgb(var(--amber));
     font-family: 'Maven Pro', sans-serif;
     letter-spacing: -0.5px;
-    padding: 0.5em 0;
+    padding: 4px 0 1px 0;
     max-width: fit-content;
     font-weight: 550;
 }

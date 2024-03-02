@@ -3,6 +3,9 @@
         <header>
             <app-page-description title="Membros" subtitle="Editar" />
         </header>
+        <div class="content" *ngIf="findOne.inProgress()">
+            <ui-form-skeleton />
+        </div>
         <div class="content" *ngIf="!findOne.inProgress()">
             <mat-stepper orientation="vertical" animationDuration="420" [linear]="!true" scrollStepperFix>
                 <mat-step label="Dados Pessoais" [stepControl]="step1" state="account" errorMessage="Revise essa etapa">

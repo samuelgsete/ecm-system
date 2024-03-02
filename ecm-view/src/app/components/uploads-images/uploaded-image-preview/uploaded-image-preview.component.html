@@ -12,14 +12,14 @@
             {{ uploadedImage.url | smalltext: '56' }}
         </a>
         <p class="image-size">
-            {{ uploadedImage.size | filesize: 'Kb' }}
+            {{ uploadedImage.width }} x {{ uploadedImage.height }} pixels | <strong>{{ uploadedImage.size | filesize: 'Kb' }}</strong>
         </p>
         <p class="uploaded-at">
             Concluído {{ uploadedImage.uploadedAt | dateDuration }}
         </p>
     </div>
-    <button mat-icon-button color="warn" (click)="destroy.run(uploadedImage.publicId)">
-        <mat-icon>cancel</mat-icon>
+    <button mat-icon-button class="cancel-upload" (click)="destroy.run(uploadedImage.publicId)">
+        <mat-icon class="material-icons-outlined">delete</mat-icon>
     </button>
     <div class="progress-upload" *ngIf="destroy.deleting()">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>

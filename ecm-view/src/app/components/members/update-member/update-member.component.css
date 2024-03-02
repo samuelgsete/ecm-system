@@ -14,15 +14,19 @@ header {
 }
 
 div.content {
-    width: 96%;
-    padding: 0 2%;
+    width: 100%;
+    padding: 24px 0;
     display: flex;
     justify-content: center;
     animation: up 0.5s;
+    background-color: rgb(var(--gray-2));
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 mat-stepper {
+    border-radius: 8px;
     width: 640px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 div.complete-registration {

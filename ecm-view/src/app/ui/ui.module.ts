@@ -12,6 +12,7 @@ import { CommandBarComponent } from './command-bar/command-bar.component';
 import { CardCredThemeComponent } from './card-cred-theme/card-cred-theme.component';
 import { StarRateComponent } from './star-rate/star-rate.component';
 import { UiCardSkeletonComponent } from './ui-card-skeleton/ui-card-skeleton.component';
+import { UiFormSkeletonComponent } from './ui-form-skeleton/ui-form-skeleton.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UiCardSkeletonComponent } from './ui-card-skeleton/ui-card-skeleton.com
     CardCredThemeComponent,
     StarRateComponent,
     UiCardSkeletonComponent,
+    UiFormSkeletonComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { UiCardSkeletonComponent } from './ui-card-skeleton/ui-card-skeleton.com
     CommandBarComponent,
     CardCredThemeComponent,
     UiCardSkeletonComponent,
+    UiFormSkeletonComponent,
   ]
 })
 export class UiModule {}
