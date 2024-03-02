@@ -1,0 +1,72 @@
+
+.img-skeleton {
+    width: auto;
+    background: url('../img/image-skeleton.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: content-box;
+    animation: img-loading 0.7s linear infinite alternate;
+}
+
+.img-h-sm {
+    height: 80px;
+}
+
+.img-h-md {
+    height: 140px;
+}
+
+.img-h-lg {
+    height: 180px;
+}
+
+.img-h-lx {
+    height: 220px;
+}
+
+.title-skeleton {
+    padding: 2px;
+    width: 50%;
+    border-radius: 6px;
+    font-size: 1.2em;
+    color: transparent;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+.subtitle-skeleton {
+    width: 70%;
+    border-radius: 6px;
+    font-size: 0.88em;
+    color: transparent;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+.text-skeleton {
+    padding: 2px;
+    width: 90%;
+    border-radius: 6px;
+    font-size: 0.76em;
+    color: transparent;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+      background-color: rgb(var(--gray-2));
+    }
+    100% {
+      background-color: rgb(var(--gray-5));
+    }
+}
+
+@keyframes img-loading {
+    0% {
+        filter: blur(2px);
+        background-color: rgb(var(--gray-0));
+    }
+    100% {
+        filter: blur(0);
+        background-color: rgb(var(--gray-1));
+    }
+}

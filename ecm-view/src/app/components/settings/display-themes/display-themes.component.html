@@ -1,6 +1,8 @@
 <main>
     <ng-template #loading>
-        <span>Carregando...</span>
+        <div class="container">
+            <ui-card-skeleton *ngFor="let card of [0,1,3,4]" />
+        </div>
     </ng-template>
     <div class="content" *ngIf="themes$ | async as themes; else loading">
         <div class="container">

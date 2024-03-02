@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Shepherd } from 'src/app/models/shepherd.entity';
-import { FindShepherdService } from 'src/app/usecases/shepherd/find-shepherd.service';
 
 @Component({
   selector: 'app-settings-system',
@@ -10,18 +8,9 @@ import { FindShepherdService } from 'src/app/usecases/shepherd/find-shepherd.ser
 })
 export class SettingsSystemComponent implements OnInit {
 
-  shepherd!: Shepherd;
-
-  constructor(
-    protected readonly title: Title,
-    protected readonly findShepherd: FindShepherdService
-  ) {}
+  constructor(protected readonly title: Title) {}
 
   ngOnInit(): void {
     this.title.setTitle("Temas disponíveis");
-    this.findShepherd.run();
-    this.findShepherd.done().subscribe(response => {
-      this.shepherd = new Shepherd(response);
-    })
   }
 }

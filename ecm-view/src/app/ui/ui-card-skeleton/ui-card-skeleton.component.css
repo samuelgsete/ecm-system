@@ -1,0 +1,21 @@
+.ui-card-seketon {
+    max-width: auto;
+    width: 100%;
+    border: 1.5pt solid rgb(var(--gray-3));
+    background-color: rgb(var(--gray-0));
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.ui-card-seketon
+.ui-card-header {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+.ui-card-seketon
+.ui-card-body {
+    padding: 24px;
+}
