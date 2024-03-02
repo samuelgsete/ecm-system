@@ -3,7 +3,12 @@
         <header>
             <app-page-description title="Cargos" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listRoles.emptyData">
-                <order-list [ordinations]="order.ordinations" [selectedOrdination]="pagination.ordination" (changeOrdination)="changeOrdination($event)" />
+                <order-list
+                    [disabled]="listRoles.searchNotFound"
+                    [ordinations]="order.ordinations"
+                    [selectedOrdination]="pagination.ordination"
+                    (changeOrdination)="changeOrdination($event)"
+                />
                 <ui-input-search [search]="pagination.search" (keywordChange)="onSearch($event)"></ui-input-search>
                 <button 
                     class="btn btn-lg"

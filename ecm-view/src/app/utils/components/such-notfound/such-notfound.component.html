@@ -1,7 +1,8 @@
 <div class="such-notfound" *ngIf="isVisible">
     <img class="notfound" [src]="image.src" [alt]="image.alt">
-    <p class="message">
-        Nenhum resultado encontrado para a busca
+    <h1 class="message">
+        Nenhum resultado encontrado para a palavra-chave
         <strong>"{{ keyword }}"</strong>
-    </p>
+    </h1>
+    <p class="text">Clique no ícone <mat-icon>close</mat-icon> para reiniciar a busca</p>
 </div>

@@ -5,7 +5,16 @@
     border-radius: 24px;
 }
 
-.input-search-container mat-icon {
+.input-search-container mat-icon.clear {
+    cursor: pointer;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    color: rgb(var(--purple));
+    padding: 6px;
+}
+
+.input-search-container mat-icon.search {
     position: absolute;
     left: 6px;
     top: 6px;
@@ -31,6 +40,6 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
-.search-field:focus + mat-icon {
+.search-field:focus + mat-icon.search {
     color: rgb(var(--purple));
 }

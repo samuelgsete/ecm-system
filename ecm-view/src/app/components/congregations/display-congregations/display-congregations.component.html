@@ -3,7 +3,13 @@
         <header>
             <app-page-description title="Congregações" subtitle="Cadastradas" />
             <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.emptyData">
-                <order-list [ordinations]="order.ordinations" [selectedOrdination]="pagination.ordination" (changeOrdination)="changeOrdination($event)" />
+                <order-list
+                    [disabled]="listCongregations.searchNotFound"
+                    [ordinations]="order.ordinations"
+                    [selectedOrdination]="pagination.ordination"
+                    (changeOrdination)="changeOrdination($event)"
+                />
+                
                 <ui-input-search [search]="pagination.search" (keywordChange)="handleSearch($event)" />
                 <button 
                     class="btn btn-lg"
@@ -22,18 +28,17 @@
             (onCreate)="openCreateCongregationComponent()"
         />
         
-        <ui-command-bar
-            [isVisible]="!listCongregations.searchNotFound"
-            [countSelecteds]="countElements.totalSelected"
-            (deleteCommnad)="handleDeleteMany()"
-            [showDeleteCommand]="true"
-        />
-
         <ng-template #loading>
             <ui-table-skeleton />
         </ng-template>
         
         <div class="content" *ngIf="congregations$ | async as congregations; else loading">
+            <ui-command-bar
+                [isVisible]="!listCongregations.searchNotFound"
+                [countSelecteds]="countElements.totalSelected"
+                (deleteCommnad)="handleDeleteMany()"
+                [showDeleteCommand]="true"
+            />
             <table class="ui-table default" *ngIf="congregations.length != 0">
                 <tr>
                     <th>

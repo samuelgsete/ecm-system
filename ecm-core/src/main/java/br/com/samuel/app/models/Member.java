@@ -99,6 +99,25 @@ public class Member extends EntityBase {
         return Duration.between(dateOfBirth, LocalDateTime.now()).toDays() / 365L;
     }
 
+    public String getBirthday() {
+        String[] months = {
+            "Janeiro", "Favereiro", "Março", "Abril",
+            "Maio", "Junho", "Julho", "Agosto",
+            "Setembro", "Outubro", "Novembro", "Dezembro"
+        };
+
+        var day = dateOfBirth.getDayOfMonth();
+        var month = months[dateOfBirth.getMonthValue() - 1];
+
+        return day + " de " + month;
+    }
+
+    public Boolean getIsBirthday() {
+        var currentMonth = LocalDateTime.now().getMonthValue();
+        var birthMonth = dateOfBirth.getMonthValue();
+        return currentMonth == birthMonth;
+    }
+
     public boolean equals(Object o) {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;

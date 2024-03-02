@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -41,7 +41,7 @@ export class DisplayMembersComponent implements OnInit {
   members$!: Observable<Member[]>;
   pagination: Pagination = new Pagination();
   countElements = new CountElements();
-  
+    
   constructor(
     protected readonly router: Router,
     protected readonly route: ActivatedRoute,
@@ -99,7 +99,7 @@ export class DisplayMembersComponent implements OnInit {
   }
 
   handleSearch(keyword: string) {
-    this.pagination.search = keyword.toLowerCase()
+    this.pagination.search = keyword.toLowerCase();
     this.pagination.pageCurrent = 0;
     this.onLoad();
   }

@@ -4,6 +4,14 @@
         class="search-field"
         [formControl]="formSearch"
         placeholder="Pesquisar..."
+        maxlength="20"
+        autofocus
+        #input
     >
-    <mat-icon>search</mat-icon>
+    <mat-icon class="search">search</mat-icon>
+    <mat-icon 
+        class="clear"
+        (click)="handleClear()"
+        *ngIf="input.value != ''"
+    >close</mat-icon>
 </div>

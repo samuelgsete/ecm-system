@@ -12,6 +12,8 @@ export class Member extends EntityBase {
     public dateOfBirth!: string;
     public dateOfBaptism!: string;
     public age!: number;
+    public birthday!: string;
+    public isBirthday!: boolean;
     public phone!: string;
     public email!: string;
     public gender!: string;

@@ -48,6 +48,14 @@
     animation: expand 0.2s ease-in-out;
 }
 
+button[disabled=true] {
+    background-color: rgb(var(--gray-5)) !important;
+}
+
+button[disabled=true] .btn-content * {
+    color: rgb(var(--gray-3)) !important;
+}
+
 @keyframes expand {
     from {
         transform: rotate(0deg);

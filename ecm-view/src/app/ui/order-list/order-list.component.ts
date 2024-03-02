@@ -9,6 +9,7 @@ import { Ordination } from 'src/app/models/ordination.entity';
 })
 export class OrderListComponent implements OnInit {
  
+  @Input() disabled: boolean = true;
   @Input() ordinations: Ordination[] = [];
   @Input() selectedOrdination: string = '';
   @Output() changeOrdination: EventEmitter<string> = new EventEmitter<string>();

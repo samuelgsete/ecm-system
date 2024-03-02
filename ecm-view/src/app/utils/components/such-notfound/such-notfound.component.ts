@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'such-notfound',

@@ -62,6 +62,12 @@ export class DisplayCongregationsComponent implements OnInit {
     this.onLoad();
   }
 
+  changeOrdination(ordination: string): void {
+    this.pagination.ordination = ordination;
+    this.pagination.search = '';
+    this.onLoad();
+  }
+
   handleEmitCredentialsOfCongregation(name: string): void {
     this.emitCredentials.run(name);
   }
@@ -77,11 +83,6 @@ export class DisplayCongregationsComponent implements OnInit {
   handleSearch(keyword: string): void {
     this.pagination.search = keyword.toLowerCase()
     this.pagination.pageCurrent = 0;
-    this.onLoad();
-  }
-
-  changeOrdination(ordination: string): void {
-    this.pagination.ordination = ordination;
     this.onLoad();
   }
 

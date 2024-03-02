@@ -62,6 +62,7 @@ export class DisplayRolesComponent implements OnInit {
 
   changeOrdination(ordination: string): void {
     this.pagination.ordination = ordination;
+    this.pagination.search = '';
     this.onLoad();
   }
 

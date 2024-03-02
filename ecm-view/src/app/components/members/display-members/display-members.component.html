@@ -4,9 +4,14 @@
             <app-page-description title="Membros" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.emptyData">
                
-                <order-list [selectedOrdination]="pagination.ordination" [ordinations]="order.ordinations" (changeOrdination)="changeOrdination($event)" />
+                <order-list
+                    [disabled]="listMembers.searchNotFound"
+                    [selectedOrdination]="pagination.ordination"
+                    [ordinations]="order.ordinations"
+                    (changeOrdination)="changeOrdination($event)"
+                 />
     
-                <ui-input-search [search]="pagination.search" (keywordChange)="handleSearch($event)" />
+                <ui-input-search #input_search [search]="pagination.search" (keywordChange)="handleSearch($event)" />
 
                 <button 
                     class="btn btn-lg"
@@ -29,16 +34,15 @@
             <ui-table-skeleton />
         </ng-template>
 
-        <ui-command-bar
-            [isVisible]="!listMembers.searchNotFound"
-            [countSelecteds]="countElements.totalSelected"
-            (deleteCommnad)="handleDeleteMany()"
-            (generateCredentialsCommnad)="handleGenerateCredentials()"
-            [showDeleteCommand]="true"
-            [showEmitCredentialCommand]="true"
-        />
-
         <div class="content" *ngIf="members$ | async as members; else loading">
+            <ui-command-bar
+                [isVisible]="!listMembers.searchNotFound"
+                [countSelecteds]="countElements.totalSelected"
+                (deleteCommnad)="handleDeleteMany()"
+                (generateCredentialsCommnad)="handleGenerateCredentials()"
+                [showDeleteCommand]="true"
+                [showEmitCredentialCommand]="true"
+            />
             <table class="ui-table default" *ngIf="members.length != 0">
                 <tr>
                     <th>
@@ -53,6 +57,7 @@
                     <th>Membro</th>
                     <th>Estado civil</th>
                     <th>Idade</th>
+                    <th>Aniversário</th>
                     <th>Registrado</th>
                     <th>Ações</th>
                 </tr>
@@ -69,6 +74,9 @@
                     <td>{{ member.name }}</td>
                     <td>{{ member.maritalStatus | maritalstatus }}</td>
                     <td>{{ member.age }} anos</td>
+                    <td>
+                        <div class="birthday" [ngClass]="{ 'birth-month' : member.isBirthday }"> {{ member.birthday }}</div>
+                    </td>
                     <td>{{ member.createdAt | dateDuration }}</td>
                     <td>
                         <button mat-icon-button (click)="onPrint.run(member.id)">
