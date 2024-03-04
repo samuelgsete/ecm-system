@@ -4,7 +4,7 @@
 }
 
 nav.side-bar {
-    background-color: rgb(var(--gray-2));
+    background-color: rgb(var(--gray-3));
     width: 85px;
     height: calc(100% - 20px);
     position: fixed;
@@ -25,7 +25,7 @@ img.logotipo {
 div.name-initial {
     font-family: 'Geologica', sans-serif;
     border: 1.8px solid rgb(var(--dark));
-    color: rgb(var(--purple));
+    color: rgb(var(--dark-0));
     font-weight: 600;
     font-size: 1.55em;
     background-color: rgba(var(--purple), 0.14);
@@ -69,7 +69,7 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link {
 
 nav.side-bar ul.nav-menu li.nav-item a.item-link mat-icon {
     transform: scale(85%);
-    color: rgb(var(--purple));
+    color: rgb(var(--dark-0));
 }
 
 nav.side-bar ul.nav-menu li.nav-item a.item-link {
@@ -78,7 +78,7 @@ nav.side-bar ul.nav-menu li.nav-item a.item-link {
 }
 
 nav.side-bar ul.nav-menu li.nav-item a.item-link:hover {
-    background-color: rgba(var(--purple), 0.2);
+    background-color: rgba(var(--dark), 0.2);
 }
 
 nav.side-bar ul.nav-menu li.nav-item a.active {
@@ -86,4 +86,8 @@ nav.side-bar ul.nav-menu li.nav-item a.active {
     border-right: 2.4pt solid rgb(var(--purple));
     color: rgb(var(--purple));
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+nav.side-bar ul.nav-menu li.nav-item a.active mat-icon { 
+    color: rgb(var(--purple));
 }

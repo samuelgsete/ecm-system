@@ -1,17 +1,21 @@
-<ng-template #loading>
-    <ui-metrics-skeleton></ui-metrics-skeleton>
-</ng-template>
-<section class="metrics" *ngIf="metrics$ | async as metrics; else loading">
-    <div class="card-metric" *ngFor="let metric of metrics" matRipple>
-        <button mat-icon-button>
-            <mat-icon>{{ metric.icon }}</mat-icon>
-        </button>
-        <div class="card-content">
-            <h1 class="card-title">{{ metric.name }}</h1>
-            <p class="card-value">
-                <strong>{{ metric.value }}</strong>
-                registro(s)
-            </p>
+<main>
+    <ng-template #loading>
+        <ui-metrics-skeleton></ui-metrics-skeleton>
+    </ng-template>
+    <div class="conent" *ngIf="metrics$ | async as metrics; else loading">
+        <div class="grid">
+            <div class="card-metric" *ngFor="let metric of metrics" matRipple>
+                <button mat-icon-button>
+                    <mat-icon>{{ metric.icon }}</mat-icon>
+                </button>
+                <div class="card-content">
+                    <h1 class="card-title">{{ metric.name }}</h1>
+                    <p class="card-value">
+                        <strong>{{ metric.value }}</strong>
+                        registro(s)
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</main>

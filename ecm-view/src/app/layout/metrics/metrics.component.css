@@ -1,23 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
 
+main {
+    width: calc(100% - 85px);
+    position: fixed;
+    top: 70px;
+    z-index: 9999999;
+    background-color: rgb(var(--dark-1)); 
+    border-radius: 0 0 12px 12px;  
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
 section h1, p {
     font-family: 'Noto Sans', sans-serif !important;
 }
 
-section {
-    width: 96%;
-    padding: 2%;
-    display: flex;
-    justify-content: space-between;
-    column-gap: 1%;
-    border-radius: 0 0 12px 12px;
-    background-color: rgb(var(--dark));
-    margin: 5px 0;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
 .card-metric {
+    width: calc(100% - 100px);
     display: flex;
     column-gap: 20px;
     padding: 20px 50px;
