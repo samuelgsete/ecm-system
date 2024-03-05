@@ -4,7 +4,7 @@
 }
 
 section {
-    padding: 32px 0 64px;
+    padding: 32px 0 0 0;
 }
 
 div.content {
@@ -13,7 +13,7 @@ div.content {
     display: flex;
     justify-content: center;
     background-color: rgb(var(--gray-2));
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 mat-stepper {
