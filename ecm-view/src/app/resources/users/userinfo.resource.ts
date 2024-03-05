@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
+import { IUserResponse } from "./user-response.interface";
+
 @Injectable()
 export class UserInfoResource {
 
@@ -11,7 +13,7 @@ export class UserInfoResource {
         private readonly http: HttpClient
     ) {}
 
-    run(): Observable<any> {
-        return this.http.get<any>(this.url);
+    run(): Observable<IUserResponse> {
+        return this.http.get<IUserResponse>(this.url);
     }
 }

@@ -1,0 +1,32 @@
+<ng-template #loading>
+    <span>Carregando usuário</span>
+</ng-template>
+
+<div class="user-logged" *ngIf="$user | async as userLogged; else loading">
+    <div class="initial-name">
+        <h1>{{ userLogged.name[0] }}</h1>
+    </div>
+    <div class="user-details">
+        <p class="name">{{ userLogged.name }}</p>
+        <p class="email">{{ userLogged.email }}</p>
+    </div>
+    <button 
+        mat-icon-button
+        [matMenuTriggerFor]="user"
+        #menu="matMenuTrigger"
+    >
+        <mat-icon 
+            [ngClass]="{ 'unexpand' : !menu.menuOpen, 'expand' : menu.menuOpen }"
+        >expand_more</mat-icon>
+    </button>
+</div>
+<mat-menu #user="matMenu">
+    <button mat-menu-item (click)="handleAccount()">
+        <mat-icon class="material-icons-outlined">manage_accounts</mat-icon>
+        <span>Conta</span>
+    </button>
+    <button mat-menu-item (click)="handleLogout()">
+        <mat-icon class="material-icons-outlined">logout</mat-icon>
+        <span>Logout</span>
+    </button>
+</mat-menu>

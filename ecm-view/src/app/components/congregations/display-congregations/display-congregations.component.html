@@ -1,7 +1,6 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Congregações" subtitle="Cadastradas" />
             <div class="row-flex space-between center-vertical" *ngIf="!listCongregations.emptyData">
                 <order-list
                     [disabled]="listCongregations.searchNotFound"

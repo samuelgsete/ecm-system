@@ -1,14 +1,13 @@
-<nav class="side-bar">
-    <img class="logotipo" src="assets/img/se-cred.png" alt="SE-CRED Logotipo">
+<nav class="ui-side-bar">
+    <div class="logo" matRipple>
+        <img src="../../../assets/img/logotipo.png" alt="SECRED Logo">
+    </div>
     <ul class="nav-menu">
         <li class="nav-item" *ngFor="let route of routes" matRipple>
-            <a class="item-link" [routerLink]="route.path" routerLinkActive="active">
-                <mat-icon>{{ route.icon }}</mat-icon>
-                {{ route.name }}
+            <a class="item-link" [routerLink]="route.path" routerLinkActive="active" (click)="handleTitlePage(route.title)">
+                <mat-icon class="material-icons-outlined">{{ route.icon }}</mat-icon> {{ route.name }}
             </a>
         </li>
     </ul>
-    <div class="name-initial" matRipple>
-        {{ nameInitial }}
-    </div>
+    <user-logged />
 </nav>

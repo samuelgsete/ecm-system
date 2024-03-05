@@ -31,6 +31,7 @@
     padding: 0 20px 0 40px;
     border-radius: 24px;
     border: 1.1pt solid rgb(var(--gray-4));
+    background-color: transparent;
     transition: all 0.6s;
 }
 

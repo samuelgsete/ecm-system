@@ -3,10 +3,10 @@
         <ui-metrics-skeleton></ui-metrics-skeleton>
     </ng-template>
     <div class="conent" *ngIf="metrics$ | async as metrics; else loading">
-        <div class="grid">
+        <div class="container">
             <div class="card-metric" *ngFor="let metric of metrics" matRipple>
                 <button mat-icon-button>
-                    <mat-icon>{{ metric.icon }}</mat-icon>
+                    <mat-icon class="material-icons-outlined">{{ metric.icon }}</mat-icon>
                 </button>
                 <div class="card-content">
                     <h1 class="card-title">{{ metric.name }}</h1>

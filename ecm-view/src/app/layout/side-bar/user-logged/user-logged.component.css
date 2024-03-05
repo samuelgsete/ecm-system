@@ -1,0 +1,73 @@
+.user-logged p, h1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-logged {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    padding: 24px 8px;
+    cursor: pointer;
+    background-color: rgb(var(--gray-1));
+}
+
+.user-logged
+.initial-name h1 {
+    border: 1.8px solid rgb(var(--dark));
+    color: rgb(var(--purple));
+    font-weight: 550;
+    font-size: 1.65em;
+    background-color: rgba(var(--purple), 0.14);
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.user-logged 
+.user-details
+p.name {
+    letter-spacing: -0.3px;
+    font-weight: 550;
+    font-size: 0.92em;
+}
+
+.user-logged 
+.user-details
+p.email {
+    color: rgb(var(--gray-6));
+    font-size: 0.75em;
+    letter-spacing: -0.6px;
+}
+
+.user-logged button {
+    transform: scale(90%);
+}
+
+.unexpand {
+    transition: all 0.2s;
+}
+
+.expand {
+    transform: rotate(-180deg);
+    color: rgb(var(--purple));
+    animation: expand 0.2s ease-in-out;
+}
+
+@keyframes expand {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-180deg);
+    }
+}

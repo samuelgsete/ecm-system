@@ -1,6 +1,10 @@
-section.content {
-    position: absolute;
-    top: 195px;
-    left: 85px;
-    width: calc(100% - 85px);
+main {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    left: 232px;
+    padding: 32px;
+    background-color: rgb(var(--gray-0));
+    width: calc(100% - 296px);
+    height: calc(100% - 64px);
 }

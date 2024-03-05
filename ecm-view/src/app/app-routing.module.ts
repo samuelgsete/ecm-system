@@ -15,6 +15,7 @@ import { DisplayThemesComponent } from './components/settings/display-themes/dis
 
 const routes: Routes = [
   { path: 'app', component: LayoutComponent, children: [
+    { path: 'home', component: DisplayMembersComponent },
     { path: 'roles', component: DisplayRolesComponent },
     { path: 'congregations', component: DisplayCongregationsComponent },
     { path: 'members', component: DisplayMembersComponent },

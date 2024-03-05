@@ -1,7 +1,9 @@
-<app-side-bar></app-side-bar>
-<section class="content">
-    <app-top-bar></app-top-bar>
-    <app-metrics></app-metrics>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
-</section>
+<app-side-bar (changeTitlePage)="handleTitlePage($event)" />
+<main>
+    <app-page-description 
+        [title]="title"
+        [subtitle]="subtile"
+    />
+    <app-metrics />
+    <router-outlet />
+</main>

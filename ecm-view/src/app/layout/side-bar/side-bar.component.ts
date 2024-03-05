@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserInfoService } from 'src/app/usecases/users/userinfo.service';
 import { PathRoute } from './path-route.entity';
 
 @Component({
@@ -10,26 +9,34 @@ import { PathRoute } from './path-route.entity';
 })
 export class SideBarComponent implements OnInit {
 
-  nameInitial: string = "U";
   routes: PathRoute[] = [
-    { icon: 'person_search', path: 'members', name: 'Membros' },
-    { icon: 'group_add', path: 'create/member', name: 'Novo membro' },
-    { icon: 'collections_bookmark', path: 'roles', name: 'Cargos' },
-    { icon: 'wb_shade', path: 'congregations', name: 'Congregações' },
-    { icon: 'palette', path: 'templates', name: 'Templates' }
+    { icon: 'home', path: 'home', name: 'Início', title: 'Início Bem-vindo(a)',},
+    { icon: 'person_search', path: 'members', name: 'Membros', title: 'Membros Cadastrados' },
+    { icon: 'group_add', path: 'create/member', name: 'Novo membro' , title: 'Membros Cadastrar'},
+    { icon: 'collections_bookmark', path: 'roles', name: 'Cargos', title: 'Cargos cadastrados' },
+    { icon: 'wb_shade', path: 'congregations', name: 'Congregações', title: 'Congregações cadastradas' },
+    { icon: 'palette', path: 'templates', name: 'Templates', title: 'Templates disponíveis' }
   ];
 
+  @Output()
+  changeTitlePage: EventEmitter<string> = new EventEmitter<string>;
+
   constructor(
-    protected readonly router: Router,
-    protected readonly userinfo: UserInfoService
+    protected readonly router: Router
   ) {}
 
+  handleTitlePage(title: string): void {
+    this.changeTitlePage.emit(title)
+  }
+
+  setTitlePageOnReload(): void {
+    let pathWithParams = this.router.url.split('/')[2];
+    const path = pathWithParams.split('?')[0];
+    const activeRoute = this.routes.filter(route => route.path === path)[0];
+    this.changeTitlePage.emit(activeRoute.title);
+  }
+
   ngOnInit(): void {
-    /**
-      Recupera as informações do usuário logado
-    **/
-    this.userinfo.done().subscribe(userData => {
-      this.nameInitial = userData.given_name[0];
-    })
+   this.setTitlePageOnReload();
   }
 }

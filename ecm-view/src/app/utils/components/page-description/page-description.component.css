@@ -9,7 +9,7 @@ p.page-description {
     font-family: 'Urbanist', sans-serif !important;
     cursor: pointer;
     transition: all 6ms;
-    padding: 10px 0;
+    padding: 10px 0 16px 0;
 }
 
 p.page-description span:hover {

@@ -1,9 +1,7 @@
 <main>
     <section>
         <header>
-            <app-page-description title="Membros" subtitle="Cadastrados" />
             <div class="row-flex space-between center-vertical" *ngIf="!listMembers.emptyData">
-               
                 <order-list
                     [disabled]="listMembers.searchNotFound"
                     [selectedOrdination]="pagination.ordination"
