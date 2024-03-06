@@ -20,13 +20,13 @@
         >expand_more</mat-icon>
     </button>
 </div>
-<mat-menu #user="matMenu">
+<mat-menu class="user-menu" #user="matMenu">
     <button mat-menu-item (click)="handleAccount()">
         <mat-icon class="material-icons-outlined">manage_accounts</mat-icon>
-        <span>Conta</span>
+        <span class="account">Conta</span>
     </button>
     <button mat-menu-item (click)="handleLogout()">
         <mat-icon class="material-icons-outlined">logout</mat-icon>
-        <span>Logout</span>
+        <span>Sair</span>
     </button>
 </mat-menu>

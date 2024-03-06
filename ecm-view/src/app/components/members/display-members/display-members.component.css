@@ -44,7 +44,7 @@ table tr td > button:first-child[disabled=true] {
     color: rgb(var(--gray-6));
     background-color: rgba(var(--purple), 0.1);
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 24px;
 }
 
 .birth-month {

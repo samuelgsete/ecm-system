@@ -1,3 +1,11 @@
+main {
+    background-color: rgb(var(--gray-0));
+}
+
+mat-button-toggle {
+    background-color: transparent !important;
+}
+
 image-cropper {
     width: 400px;
     margin: 0 auto;

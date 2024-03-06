@@ -4,7 +4,6 @@
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
-    column-gap: 24px;
     background-color: rgb(var(--gray-2));
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
@@ -12,11 +11,12 @@
 .card-metric {
     width: 25%;
     display: flex;
-    column-gap: 16px;
+    column-gap: 24px;
     padding: 24px 48px 24px 36px;
     align-items: center;
     cursor: pointer;
-    border-right: 1.6pt solid rgb(var(--gray-3));
+    transition: all 0.2s;
+    border-right: 1.6pt solid rgb(var(--gray-4));
 }
 
 .card-metric:last-child {
@@ -25,8 +25,8 @@
 
 .card-metric button {
     pointer-events: none;
+    background-color: rgba(var(--purple), 0.08);
     transform: scale(1.35);
-    transition: all 0.6s;
 }
 
 .card-metric button mat-icon {
@@ -37,18 +37,25 @@
     color: rgb(var(--gray-8));
 }
 
-.card-metric h1 {
-    letter-spacing: -0.5px;
-    color: rgb(var(--gray-5));
+.card-metric h1.card-title {
+    letter-spacing: -0.8px;
+    color: rgb(var(--dark-0));
     font-weight: 600;
-    font-size: 0.76em;
-    width: max-content;
+    font-size: 0.88em;
     margin: 0;
     padding: 0;
     transition: all 0.6s;
 }
 
-.card-metric p {
+.card-metric:hover {
+    background-color: rgba(var(--purple), 0.04);
+}
+
+.card-metric:hover h1.card-title {
+    color: rgb(var(--purple));
+}
+
+.card-metric p.card-value {
     font-size: 0.92em;
     letter-spacing: -0.02px;
     display: flex;
@@ -57,8 +64,7 @@
     margin: 5px 0;
 }
 
-.card-metric p strong {
+.card-metric p.card-value strong {
     font-family: 'Kanit', sans-serif;
-    font-size: 2.3em;
-    transition: all 0.4s;
+    font-size: 1.85em;
 }

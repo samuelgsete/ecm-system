@@ -1,7 +1,7 @@
 div.commnad-bar {
     margin-top: 24px 0;
     padding: 8px 16px;
-    background-color: rgb(var(--gray-1));
+    background-color: rgb(var(--gray-2));
     display: flex;
     align-items: center;
     justify-content: space-between;

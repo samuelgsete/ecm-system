@@ -12,7 +12,7 @@ button.btn {
     letter-spacing: 0.5px;
     border: none;
     font-family: 'Urbanist', sans-serif;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     position: relative;
 }
 
@@ -212,10 +212,6 @@ button.btn[block=true] {
     width: 100%;
 }
 
-button.btn[radius=true] {
-    border-radius: 30px;
-}
-
 button.btn:enabled {
     cursor: pointer;
     background-position: center;
@@ -242,4 +238,16 @@ button.btn[disabled=true], button.btn:disabled {
     background-color: rgb(var(--gray-4)) !important;
     border: 2px solid rgb(var(--gray-4)) !important;
     color: rgb(var(--gray-0)) !important;
+}
+
+button.rounded-sm {
+    border-radius: 6px;
+}
+
+button.rounded-md {
+    border-radius: 14px;
+}
+
+button.rounded-lg {
+    border-radius: 32px;
 }

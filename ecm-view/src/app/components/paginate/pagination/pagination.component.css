@@ -25,6 +25,11 @@
     transform: scale(86%);
 }
 
+::ng-deep .page_size mat-label {    
+    color: rgb(var(--dark-0));
+    font-weight: 600;
+}
+
 .ui-nav-pagination
 .pagination-content
 .size-options {

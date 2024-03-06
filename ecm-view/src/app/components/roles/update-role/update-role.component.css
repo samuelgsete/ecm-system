@@ -5,6 +5,7 @@
 
 main {
     padding: 20px 25px;
+    background-color: rgb(var(--gray-1));
 }
 
 main h1.modal-title {

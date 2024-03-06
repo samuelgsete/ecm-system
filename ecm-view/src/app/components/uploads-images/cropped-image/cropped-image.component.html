@@ -1,25 +1,27 @@
-<h2 mat-dialog-title>Editar imagem</h2>
-<mat-dialog-content>
-    <image-cropper
-        [imageChangedEvent]="data.changeEvent"
-        [maintainAspectRatio]="false"
-        [aspectRatio]="4/3"
-        format="png"
-        [transform]="transform"
-        (imageCropped)="imageCropped($event)"
-    ></image-cropper>
-</mat-dialog-content>
-<div class="row-flex center-horizontal">
-    <mat-button-toggle-group>
-        <mat-button-toggle (click)="zoomIn()">
-            <mat-icon>zoom_in</mat-icon>
-        </mat-button-toggle>
-        <mat-button-toggle (click)="zoomOut()">
-            <mat-icon>zoom_out</mat-icon>
-        </mat-button-toggle>
-    </mat-button-toggle-group>
-</div>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>CANCELAR</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onUploadFile()">CONFIRMAR</button>
-</mat-dialog-actions>
+<main>
+    <h2 mat-dialog-title>Editar imagem</h2>
+    <mat-dialog-content>
+        <image-cropper
+            [imageChangedEvent]="data.changeEvent"
+            [maintainAspectRatio]="false"
+            [aspectRatio]="4/3"
+            format="png"
+            [transform]="transform"
+            (imageCropped)="imageCropped($event)"
+        ></image-cropper>
+    </mat-dialog-content>
+    <div class="row-flex center-horizontal">
+        <mat-button-toggle-group>
+            <mat-button-toggle (click)="zoomIn()">
+                <mat-icon>zoom_in</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle (click)="zoomOut()">
+                <mat-icon>zoom_out</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>CANCELAR</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onUploadFile()">CONFIRMAR</button>
+    </mat-dialog-actions>
+</main>

@@ -2,9 +2,10 @@ main {
     position: fixed;
     overflow: auto;
     top: 0;
-    left: 232px;
-    padding: 32px;
+    left: 230px;
+    padding: 32px 32px 0 32px;
     background-color: rgb(var(--gray-0));
     width: calc(100% - 296px);
-    height: calc(100% - 64px);
+    height: calc(100% - 32px);
+    z-index: 999;
 }

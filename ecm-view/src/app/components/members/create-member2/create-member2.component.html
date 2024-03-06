@@ -6,9 +6,8 @@
                     <app-step1 [form]="step1" />        
                     <div class="row-flex">
                         <button 
-                            class="btn btn-lg"
+                            class="btn btn-lg rounded-lg"
                             color="purple"
-                            radius="true"
                             [disabled]="!step1.valid"
                             matStepperNext
                             matRipple
@@ -20,16 +19,14 @@
                         <app-step2 [form]="step2"></app-step2>
                         <div class="row-flex">
                             <button 
-                                class="btn btn-lg"
+                                class="btn btn-lg rounded-lg"
                                 color="dark"
-                                radius="true"
                                 matStepperPrevious
                                 matRipple
                             >ANTERIOR</button>
                             <button 
-                                class="btn btn-lg"
+                                class="btn btn-lg rounded-lg"
                                 color="purple"
-                                radius="true"
                                 [disabled]="!step2.valid"
                                 matStepperNext
                                 matRipple
@@ -42,16 +39,14 @@
                         <app-step3 [form]="step3" />
                         <div class="row-flex">
                             <button 
-                                class="btn btn-lg"
-                                color="dark"
-                                radius="true"
+                                class="btn btn-lg rounded-lg"
+                                color="dark"                
                                 matStepperPrevious
                                 matRipple
                             >ANTERIOR</button>
                             <button 
-                                class="btn btn-lg"
-                                color="purple"
-                                radius="true"
+                                class="btn btn-lg rounded-lg"
+                                color="purple"     
                                 [disabled]="!step3.valid"
                                 matStepperNext
                                 matRipple
@@ -63,16 +58,14 @@
                     <app-step4 [form]="step4" />
                     <div class="row-flex">
                         <button 
-                            class="btn btn-lg"
-                            color="dark"
-                            radius="true"
+                            class="btn btn-lg rounded-lg"
+                            color="dark"         
                             matStepperPrevious
                             matRipple
                         >ANTERIOR</button>
                         <button 
-                            class="btn btn-lg"
-                            color="purple"
-                            radius="true"
+                            class="btn btn-lg rounded-lg"
+                            color="purple"            
                             matStepperNext
                             [disabled]="!step4.valid"
                             matRipple
@@ -90,16 +83,14 @@
                     </div>
                     <div class="row-flex center-horizontal">
                         <button 
-                            class="btn btn-lg"
-                            color="light"
-                            radius="true"
+                            class="btn btn-lg rounded-lg"
+                            color="light"          
                             matStepperPrevious
                             matRipple
                         >REVISAR</button>
                         <button 
-                            class="btn btn-lg"
-                            color="success"
-                            radius="true"
+                            class="btn btn-lg rounded-lg"
+                            color="success"           
                             (click)="createMember.run(formData.run())"
                             [disabled]="!step1.valid || !step2.valid || !step3.valid || !step4.valid"
                             matRipple

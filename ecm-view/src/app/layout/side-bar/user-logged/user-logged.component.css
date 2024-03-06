@@ -49,6 +49,19 @@ p.email {
     letter-spacing: -0.6px;
 }
 
+::ng-deep .user-menu {
+    background-color: rgb(var(--gray-1));
+}
+
+::ng-deep .user-menu button > mat-icon {
+    color: rgb(var(--dark)) !important;
+}
+
+::ng-deep .user-menu button > span {
+    color: rgb(var(--dark-0));
+    font-size: 0.95em;
+}
+
 .user-logged button {
     transform: scale(90%);
 }

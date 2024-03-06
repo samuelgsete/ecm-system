@@ -20,8 +20,14 @@
     color: rgb(var(--purple));
 }
 
+.sort span.sort-label {
+    font-size: 0.99em;
+    font-weight: 550;
+    color: rgb(var(--dark-0));
+}
+
 .ordination-active span {
-    color: rgb(var(--purple));
+    color: rgb(var(--purple)) !important;
 }
 
 .ordination-active {
@@ -35,8 +41,10 @@
     align-items: center;
 }
 
-.btn-content mat-icon:last-child {
-    color: rgb(var(--gray-7));
+.item-ordination span {
+    color: rgb(var(--dark-0));
+    font-size: 0.95em;
+    font-weight: 550;
 }
 
 .unexpand-icon {
@@ -54,6 +62,10 @@ button[disabled=true] {
 
 button[disabled=true] .btn-content * {
     color: rgb(var(--gray-3)) !important;
+}
+
+::ng-deep .menu-ordinations {
+    background-color: rgb(var(--gray-0));
 }
 
 @keyframes expand {
