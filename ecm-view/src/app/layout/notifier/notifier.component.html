@@ -1,0 +1,15 @@
+<button 
+    class="notification"
+    mat-icon-button
+    [matBadge]="totalNotifications"
+    [matMenuTriggerFor]="notificationMenu"
+    #menu="matMenuTrigger"
+>
+    <mat-icon class="material-icons-outlined">notifications</mat-icon>
+</button>
+
+<mat-menu class="menu-notifications" #notificationMenu="matMenu">
+    <button class="item-notification" mat-menu-item>
+        <span>Nada por aqui!</span>
+    </button>
+</mat-menu>

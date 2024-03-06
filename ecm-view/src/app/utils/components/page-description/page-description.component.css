@@ -1,15 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 p.page-description {
     display: flex;
     column-gap: 10px;
     align-items: center;
-    font-size: 0.97em;
+    font-size: 0.99em;
     font-weight: 600;
     color: rgb(var(--gray-6));
     letter-spacing: -0.2px;
     font-family: 'Urbanist', sans-serif !important;
     cursor: pointer;
     transition: all 6ms;
-    padding: 10px 0 16px 0;
 }
 
 p.page-description span:hover {
@@ -17,6 +21,6 @@ p.page-description span:hover {
 }
 
 p.page-description mat-icon {
-    transform: scale(78%);
+    transform: scale(85%);
     color: rgb(var(--purple));
 }

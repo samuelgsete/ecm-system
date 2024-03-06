@@ -1,0 +1,20 @@
+button.notification {
+    background-color: rgb(var(--gray-2));
+    color: rgb(var(--purple));
+    transition: all 0.4s;
+}
+
+button.notification:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+::ng-deep .menu-notifications {
+    background-color: rgb(var(--gray-0));
+}
+
+::ng-deep 
+.menu-notifications
+.item-notification span {
+    font-size: 0.94em;
+    color: rgb(var(--dark-0));
+}

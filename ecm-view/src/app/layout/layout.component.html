@@ -1,9 +1,12 @@
 <app-side-bar (changeTitlePage)="handleTitlePage($event)" />
 <main>
-    <app-page-description 
-        [title]="title"
-        [subtitle]="subtile"
-    />
+    <header>
+        <app-page-description 
+            [title]="title"
+            [subtitle]="subtile"
+        />
+        <ui-notifier />
+    </header>
     <app-metrics />
     <router-outlet />
     <ui-footer />

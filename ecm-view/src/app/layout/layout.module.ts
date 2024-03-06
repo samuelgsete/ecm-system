@@ -15,6 +15,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { LogoutService } from '../security/logout.service';
 import { MetricsComponent } from './metrics/metrics.component';
 import { UserLoggedComponent } from './side-bar/user-logged/user-logged.component';
+import { NotifierComponent } from './notifier/notifier.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserLoggedComponent } from './side-bar/user-logged/user-logged.componen
     FooterComponent,
     TopBarComponent,
     MetricsComponent,
-    UserLoggedComponent
+    UserLoggedComponent,
+    NotifierComponent
   ],
   imports: [
     CommonModule,

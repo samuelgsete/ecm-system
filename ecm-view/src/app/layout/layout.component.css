@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
 main {
     position: fixed;
     overflow: auto;
@@ -8,4 +10,12 @@ main {
     width: calc(100% - 296px);
     height: calc(100% - 32px);
     z-index: 999;
+}
+
+header {
+    margin-bottom: 12px;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
