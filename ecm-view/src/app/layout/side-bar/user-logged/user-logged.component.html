@@ -1,5 +1,5 @@
 <ng-template #loading>
-    <span>Carregando usuário</span>
+    <ui-user-logged-skeleton />
 </ng-template>
 
 <div class="user-logged" *ngIf="$user | async as userLogged; else loading">

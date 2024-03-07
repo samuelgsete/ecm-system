@@ -1,0 +1,43 @@
+div.ui-user-skeleton * {
+    margin: 0;
+    padding: 0;
+}
+
+div.ui-user-skeleton {
+    padding: 12px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+div.name-initial {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+div.user-details h1.name {
+    font-size: 1.09em;
+    color: transparent;
+    border-radius: 4px;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+div.user-details p.email {
+    margin-top: 4px;
+    font-size: 0.72em;
+    color: transparent;
+    border-radius: 2px;
+    animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+      background-color: rgb(var(--gray-2));
+    }
+    100% {
+      background-color: rgb(var(--gray-5));
+    }
+}

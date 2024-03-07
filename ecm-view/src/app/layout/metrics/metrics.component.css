@@ -3,20 +3,21 @@
 .container {
     padding: 8px 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: rgb(var(--gray-2));
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .card-metric {
-    width: 25%;
+    flex: 1 0 1rem;
     display: flex;
     column-gap: 24px;
     padding: 24px 48px 24px 36px;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s;
     border-right: 1.6pt solid rgb(var(--gray-4));
+    transition: all 0.2s;
 }
 
 .card-metric:last-child {
@@ -45,10 +46,6 @@
     margin: 0;
     padding: 0;
     transition: all 0.6s;
-}
-
-.card-metric:hover {
-    background-color: rgba(var(--purple), 0.04);
 }
 
 .card-metric:hover h1.card-title {

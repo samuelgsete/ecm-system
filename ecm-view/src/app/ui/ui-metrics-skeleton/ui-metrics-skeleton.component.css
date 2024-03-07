@@ -1,14 +1,29 @@
+.container {
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgb(var(--gray-2));
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
 section {
     padding: 16px 0 0 0;
 }
 
 .card-metric {
+    flex: 1 0 1rem;
     width: calc(100% - 100px);
     height: calc(100% - 40px);
     display: flex;
     align-items: center;
     column-gap: 16px;
     padding: 20px 50px;
+    border-right: 1.6pt solid rgb(var(--gray-4));
+}
+
+.card-metric:last-child {
+    border-right: none;
 }
 
 .card-metric .card-icon {
