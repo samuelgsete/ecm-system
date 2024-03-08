@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'members/:id/update', component: UpdateMemberComponent },
     { path: 'templates', component: SettingsSystemComponent },
     { path: 'set/shepherd', component: SetShepherdComponent },
-    { path: 'shepherd/update', component: UpdateShepherdComponent }
+    { path: 'shepherd/update', component: UpdateShepherdComponent },
   ]},
   { path: 'themes', component: DisplayThemesComponent },
   { path:'**', redirectTo: '404' },

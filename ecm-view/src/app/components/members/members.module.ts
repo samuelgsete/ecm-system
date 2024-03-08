@@ -34,6 +34,7 @@ import { GoToPrintService } from 'src/app/usecases/members/go-to-print.service';
 import { SelectOrUnselectMemberService } from 'src/app/usecases/members/select-or-unselect-member.service';
 import { ListMembersSelectedsService } from 'src/app/usecases/members/list-members-selecteds.service';
 import { DeleteMemberService } from 'src/app/usecases/members/delete-member.service';
+
 import { DeleteMemberResource } from 'src/app/resources/members/delete-member.resource';
 import { CountMembersService } from 'src/app/usecases/members/count-members.service';
 import { SelectOrUnselectAllMembersService } from 'src/app/usecases/members/select-or-unselect-all-members.service';

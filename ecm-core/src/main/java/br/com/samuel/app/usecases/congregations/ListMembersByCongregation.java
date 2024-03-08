@@ -14,6 +14,6 @@ public class ListMembersByCongregation {
     private MemberRepository repository;
 
     public Set<Member> run(String congregation) {
-        return repository.listMembersByCongregation(congregation);
+        return repository.listMembersByCongregation(congregation.toLowerCase());
     }
 }

@@ -23,6 +23,7 @@ import { CountCongregationsService } from 'src/app/usecases/congregations/count-
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
 import { FindAllCongregationsService } from 'src/app/usecases/congregations/find-all-congregations.service';
+import { DisplayMembersByCongregationService } from 'src/app/usecases/members/display-members-by-congregation.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FindAllCongregationsService } from 'src/app/usecases/congregations/find
     SelectOrUnselectCongregationService,
     CountCongregationsService,
     SelectOrUnselectAllCongregationsService,
-    DeleteManyCongregationService
+    DeleteManyCongregationService,
+    DisplayMembersByCongregationService
   ]
 })
 export class CongregationsModule {}

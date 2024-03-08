@@ -67,6 +67,13 @@
                     <td>
                         <button 
                             mat-icon-button
+                            [disabled]="congregation.numberOfMembers <= 0"
+                            (click)="handleDisplayMembers(congregation.name)"
+                        >
+                            <mat-icon class="material-icons-outlined">storage</mat-icon>
+                        </button>
+                        <button 
+                            mat-icon-button
                             [disabled]="congregation.numberOfMembers <= 0" 
                             (click)="handleEmitCredentialsOfCongregation(congregation.name)"
                         >

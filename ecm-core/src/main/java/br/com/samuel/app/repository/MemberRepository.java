@@ -17,7 +17,7 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     Optional<Member> findById(@Param("id") String id);
 
     // Listar membros filtrando pela congregação
-    @Query("SELECT m FROM Member m WHERE m.congregation.name = :congregation ORDER BY m.name ASC")
+    @Query("SELECT m FROM Member m WHERE lower(m.congregation.name) = :congregation ORDER BY m.name ASC")
     Set<Member> listMembersByCongregation(@Param("congregation") String congregation);
 
     // Listar membros filtrando pelo cargo
@@ -55,4 +55,8 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     // Verifica se o membro já foi registrado
     @Query("SELECT m FROM Member m WHERE m.cpf = :cpf OR m.rg = :rg")
     Optional<Member> alreadyCreated(@Param("cpf") String cpf, @Param("rg") String rg);
+
+
+    @Query("SELECT m FROM Member m WHERE MONTH(m.dateOfBirth) = :month AND lower(m.congregation.name) = :congregation ORDER BY DAY(m.dateOfBirth) ASC")
+    Set<Member> listMembersByBirthday(@Param("month") Integer month, @Param("congregation") String congregation);
 }

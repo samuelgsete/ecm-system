@@ -17,6 +17,7 @@ import { SelectOrUnselectCongregationService } from 'src/app/usecases/congregati
 import { CountCongregationsService } from 'src/app/usecases/congregations/count-congegations.service';
 import { SelectOrUnselectAllCongregationsService } from 'src/app/usecases/congregations/select-or-unselect-all-congregations.service';
 import { DeleteManyCongregationService } from 'src/app/usecases/congregations/delete-many-congregations.service';
+import { DisplayMembersByCongregationService } from 'src/app/usecases/members/display-members-by-congregation.service';
 import { CountElements } from 'src/app/utils/models/count-elements.entity';
 
 @Component({
@@ -42,7 +43,8 @@ export class DisplayCongregationsComponent implements OnInit {
     protected readonly emitCredentials: EmitCredentialsByCongregationService,
     protected readonly selectOrUnselectOne: SelectOrUnselectCongregationService,
     protected readonly selectOrUnselectAll: SelectOrUnselectAllCongregationsService,
-    protected readonly onCount: CountCongregationsService
+    protected readonly onCount: CountCongregationsService,
+    protected readonly displayMembers: DisplayMembersByCongregationService
   ) {
   }
 
@@ -88,6 +90,10 @@ export class DisplayCongregationsComponent implements OnInit {
 
   handleDeleteMany(): void {
     this.deleteMany.run();
+  }
+
+  handleDisplayMembers(congregation: string): void {
+    this.displayMembers.run(congregation);
   }
 
   openCreateCongregationComponent(): void {
@@ -154,6 +160,11 @@ export class DisplayCongregationsComponent implements OnInit {
       this.onCount.run();
       this.onLoad();
       this.updateMetrics.onUpdate();
-    })
+    });
+    /* Ao exibir a relação de membros da congregação */
+    this.displayMembers.done.subscribe(htmlContent => {
+      let newWindow = open();
+      newWindow?.document.write(htmlContent);
+    });
   }
 }
