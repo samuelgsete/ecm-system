@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'roles', component: DisplayRolesComponent },
     { path: 'congregations', component: DisplayCongregationsComponent },
     { path: 'members', component: DisplayMembersComponent },
-    { path: 'create/member', component: CreateMember2Component },
+    { path: 'new-member', component: CreateMember2Component },
     { path: 'members/:id/update', component: UpdateMemberComponent },
     { path: 'templates', component: SettingsSystemComponent },
     { path: 'set/shepherd', component: SetShepherdComponent },
